@@ -28,6 +28,7 @@
 #define HEIGHT_FDB 3 /*Constant asignated for the height of feedback interface*/
 #define WIDTH_SPACE 17 /*Constante asignated for the maximum size of the lines inside the space*/
 #define HEIGHT_SPACE 9 /*Constante asignated for the maximum size of the columns inside the space*/
+#define MAX_RESULT 10 /*Constant fot the maximum size of the result*/
 /**
  * @brief This struct stores all the information of the graphic engine (everything showed by screen).
  *
@@ -185,7 +186,7 @@ char **graphic_engine_print_space(Id space_id, Game *game){
         }
         names_lenght = strlen(str);
         if (names_lenght > WIDTH_SPACE - 2) { 
-            strncpy(strspace[7], "|", 1);
+            strncpy(strspace[7], "|", 2);
             strncat(strspace[7], str, WIDTH_SPACE - 5);
             strncat(strspace[7], "...|", 5);
         } else {
@@ -209,7 +210,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   char **space_left = NULL ,**space_right = NULL, **space_back = NULL, **space_next = NULL, **space_actual = NULL, **space1 = NULL, **space2 = NULL, **space3 = NULL;
   int i=0, j=0;
   CommandCode last_cmd = UNKNOWN;
-  char cmd_result[MAX_STR];
+  char cmd_result[MAX_RESULT];
   extern char *cmd_to_str[N_CMD][N_CMDT];
   Object **objects;
   Character **characters;

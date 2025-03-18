@@ -202,3 +202,54 @@ Status game_reader_load_characters(Game *game, char *filename){
   return status;
 
 }
+
+Status game_reader_load_players(Game *game, char *filename){
+  
+  FILE *file=NULL;
+  char line[WORD_SIZE] = "";
+  char name[WORD_SIZE] = "";
+  char gdesc[WORD_SIZE] = "";
+  long health = 0;
+  long max_objects;
+  char *toks = NULL;
+  Id player_id = NO_ID, space_id = NO_ID;
+  Player *player = NULL;
+  Status status = OK;
+
+  if (!filename || !game) {
+    return ERROR;
+  }
+
+  file = fopen(filename, "r");
+  if (file == NULL) {
+    return ERROR;
+  }
+
+  while (fgets(line, WORD_SIZE, file)){
+    if (strncmp("#p:", line, 3) == 0){
+      /*Read all the data and then store it in variables*/
+      toks = strtok(line + 3, "|");
+      player_id = atol(toks);
+      toks = strtok(NULL, "|");
+      strcpy(name, toks);
+      toks = strtok(NULL, "|");
+      strcpy(gdesc, toks);
+      toks = strtok(NULL, "|");
+      space_id = atol(toks);
+      toks = strtok(NULL, "|");
+      health = atol(toks);
+      toks = strtok(NULL, "|");
+      max_objects = atol(toks);
+
+      /*Create the Player*/
+      player = player_create(player_id);
+      if (!player) return ERROR;
+      player_set_name(player, name);
+      player_set_health(player, health);
+      player_set_gdesc(player, gdesc);
+      game_set_player_location(game, space_id); /*Cambiar esta funcion para que reciba un id de player*/
+      /*Faltan funciones de modulo inventory*/
+    }
+  }
+  
+}
