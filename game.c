@@ -12,6 +12,7 @@
 #include "game_reader.h"
 #include "character.h"
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -35,6 +36,7 @@ struct _Game {
   Character *characters[MAX_CHARACTERS]; /*!< It contains all the characters of the game*/
   char message[MAX_MESSAGE]; /*!< It contains the message of the chat*/
   Status last_cmd_status; /*!< It contains the status of the last command*/
+  Link *links[MAX_LINKS];
 };
 
 
