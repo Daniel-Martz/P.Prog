@@ -11,14 +11,19 @@
  */
 #include "link.h"
 
+/**
+ * @brief This struct stores all the information of a link
+ *
+ * @author Jorge Martín
+ */
 struct _Link
 {
-    Id id;
-    char name[MAX_NAME];
-    Id origin;
-    Id destination;
-    Direction direction;
-    Bool open;
+    Id id; /*!<The identification for the link*/
+    char name[MAX_NAME]; /*!<The name of the link*/
+    Id origin; /*!<The origin id of the link*/
+    Id destination; /*!<The destination id of the link*/
+    Direction direction; /*!<The direction of the link*/
+    Bool open; /*!<The open status of the link*/
 };
 
 Link *link_create(Id id)

@@ -53,7 +53,6 @@ Status set_destroy (Set* set);
  */
 Status set_print (Set* set);
 
-
 /**
  * @brief Adds a new element to the array of elements in set
  * @author Jaime Romero
