@@ -9,7 +9,6 @@
  * @copyright Copyright (c) 2025
  * 
  */
-//hola
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,6 +16,11 @@
 
 #include "character.h"
 
+/**
+ * @brief This struct stores all the information of a character
+ *
+ * @author Daniel Martínez
+ */
 struct _Character
 {
     Id id;/*!< The identification for the character*/

@@ -1,7 +1,7 @@
 /**
  * @brief It defines the functions in charge of creating the spaces  
  * @file game_reader.h
- * @author Jaime Romero, Daniel Martínez
+ * @author Jaime Romero
  * 
  * @version 0.1
  * @date 2025-02-08

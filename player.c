@@ -16,10 +16,9 @@
 #include "player.h"
 
 /**
- * @brief It stores infomation about a player
- * 
- * @author Daniel Martinez
- * 
+ * @brief This struct stores all the information of a player
+ *
+ * @author Daniel Martínez
  */
 struct _Player {
     Id id; /*!<The identification for the player*/
