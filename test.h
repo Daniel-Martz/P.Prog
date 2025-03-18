@@ -1,3 +1,13 @@
+/**
+ * @brief It defines the general tests interface
+ * @file test.h
+ * @author Daniel Martinez
+ * @version 0.1
+ * @date 2025-02-08
+ * 
+ * @copyright Copyright (c) 2025
+ */
+
 #ifndef _TEST_H
 #define _TEST_H
 

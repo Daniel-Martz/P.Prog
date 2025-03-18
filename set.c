@@ -11,9 +11,14 @@
  */
 #include "set.h"
 
+/**
+ * @brief This struct stores all the information of a set
+ *
+ * @author Daniel Martínez
+ */
 struct _Set {
-    Id *ids;
-    long n_ids;
+    Id *ids; /*!< An array of ids */
+    long n_ids; /*!< Number of ids */
 };
 
 /*Public functions*/

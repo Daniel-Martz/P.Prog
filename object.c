@@ -12,9 +12,9 @@
 #include <string.h>
 
 /**
- * @brief It stores information about an object
- * 
- * @author Jaime Romero
+ * @brief This struct stores all the information of an object
+ *
+ * @author Daniel Martínez
  */
 struct _Object {
     Id id; /*!<The identification of the object*/

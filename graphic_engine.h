@@ -1,6 +1,6 @@
 /**
- * @brief The function creates teverything showed on screen
- * @file object.c
+ * @brief It defines the graphic engine interface
+ * @file graphic_engine.h
  * @author Daniel Martinez
  * @version 0.1
  * @date 2025-02-08
