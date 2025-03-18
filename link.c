@@ -14,7 +14,7 @@
 struct _Link
 {
     Id id;
-    char name[50];
+    char name[MAX_NAME];
     Id origin;
     Id destination;
     Direction direction;

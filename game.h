@@ -70,6 +70,17 @@ Status game_add_object(Game *game, Object *object);
 Status game_add_character(Game *game, Character *character);
 
 /**
+ * @brief It adds a new link to the game
+ * @author Jorge Martín
+ * 
+ * @param game A pointer to Game
+ * @param link A pointer to Link
+ * 
+ * @return OK if everything went good, ERROR if not
+*/
+Status game_add_link(Game *game, Link* link);
+
+/**
  * @brief It assigns a value from a file to every Game parameter, controling the errors
  * 
  * @author Daniel Martínez
@@ -360,5 +371,54 @@ Status game_set_last_cmd_status(Game *game, Status cmd_status);
  */
 char *game_get_message(Game *game);
 
-#endif
+/**
+ * @brief It returns the number of links in the game
+ * 
+ * @author Jorge Martin
+ * @param game A pointer to the game
+ * @return an integer (NO_ID if there was a problem)
+ */
+int game_get_nlinks(Game *game);
 
+/**
+ * @brief It set the number of links in the game
+ * 
+ * @author Jorge Martin
+ * @param game A pointer to game
+ * @param n_objects an integer with the number of links
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_nlinks(Game *game, int n_links);
+
+/**
+ * @brief It get the array of links in the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @return Returns an array of links
+ */
+Link **game_get_links(Game *game);
+
+/**
+ * @brief It get the connection id of the space to move
+ * 
+ * @author Jorge Martin
+ * @param game A pointer to game
+ * @param id_act The id of the space that the player is located
+ * @param direction The direction the player wants to move to
+ * @return Returns the Id of the space in set direction (NO_ID if there is not)
+ */
+Id game_get_connection(Game *game, Id id_act, Direction direction);
+
+/**
+ * @brief It get the connection open state of the space to move
+ * 
+ * @author Jorge Martin
+ * @param game A pointer to game
+ * @param id_act The id of the space that the player is located
+ * @param direction The direction the player wants to move to
+ * @return Returns if the link between spaces is open (FALSE if there is no link)
+ */
+Bool game_connection_is_open(Game *game, Id id_act, Direction direction);
+
+#endif
