@@ -22,10 +22,6 @@
 struct _Space {
   Id id;                    /*!< Id number of the space, it must be unique */
   char name[WORD_SIZE + 1]; /*!< Name of the space */
-  Id north;                 /*!< Id of the space at the north */
-  Id south;                 /*!< Id of the space at the south */
-  Id east;                  /*!< Id of the space at the east */
-  Id west;                  /*!< Id of the space at the west */
   Set *objects;              /*!< It contains the set of the arrays of object */
   Id character;              /*!< It contains the id of the character */
   char gdesc[N_ROWS][N_COLUMNS]; /*!< An array of five strings, with 9 characters each (+1 for the '\0')*/
@@ -47,10 +43,6 @@ Space* space_create(Id id) {
   /* Initialization of an empty space*/
   newSpace->id = id;
   newSpace->name[0] = '\0';
-  newSpace->north = NO_ID;
-  newSpace->south = NO_ID;
-  newSpace->east = NO_ID;
-  newSpace->west = NO_ID;
   newSpace->character = NO_ID;
   for (i = 0; i < 5; i++)
   {
@@ -81,38 +73,6 @@ Status space_set_name(Space* space, char* name) {
   if (!strcpy(space->name, name)) {
     return ERROR;
   }
-  return OK;
-}
-
-Status space_set_north(Space* space, Id id) {
-  if (!space || id == NO_ID) {
-    return ERROR;
-  }
-  space->north = id;
-  return OK;
-}
-
-Status space_set_south(Space* space, Id id) {
-  if (!space || id == NO_ID) {
-    return ERROR;
-  }
-  space->south = id;
-  return OK;
-}
-
-Status space_set_east(Space* space, Id id) {
-  if (!space || id == NO_ID) {
-    return ERROR;
-  }
-  space->east = id;
-  return OK;
-}
-
-Status space_set_west(Space* space, Id id) {
-  if (!space || id == NO_ID) {
-    return ERROR;
-  }
-  space->west = id;
   return OK;
 }
 
@@ -176,34 +136,6 @@ const char* space_get_name(Space* space) {
     return NULL;
   }
   return space->name;
-}
-
-Id space_get_north(Space* space) {
-  if (!space) {
-    return NO_ID;
-  }
-  return space->north;
-}
-
-Id space_get_south(Space* space) {
-  if (!space) {
-    return NO_ID;
-  }
-  return space->south;
-}
-
-Id space_get_east(Space* space) {
-  if (!space) {
-    return NO_ID;
-  }
-  return space->east;
-}
-
-Id space_get_west(Space* space) {
-  if (!space) {
-    return NO_ID;
-  }
-  return space->west;
 }
 
 Status space_object_is_there(Space* space, Id object_id) {
