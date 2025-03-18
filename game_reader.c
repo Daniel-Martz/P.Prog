@@ -240,7 +240,15 @@ Status game_reader_load_players(Game *game, char *filename){
       health = atol(toks);
       toks = strtok(NULL, "|");
       max_objects = atol(toks);
-      
+
+      /*Create the Player*/
+      player = player_create(player_id);
+      if (!player) return ERROR;
+      player_set_name(player, name);
+      player_set_health(player, health);
+      player_set_gdesc(player, gdesc);
+      game_set_player_location(game, space_id); /*Cambiar esta funcion para que reciba un id de player*/
+      /*Faltan funciones de modulo inventory*/
     }
   }
   
