@@ -21,6 +21,6 @@ typedef enum { FALSE, TRUE } Bool; /*It establishes a boolean type of data (True
 
 typedef enum { ERROR, OK } Status; /* It establishes a status type of data (ERROR or OK) */
 
-typedef enum { N, S, E, W } Direction; /* It establishes the type of data related to the direction*/
+typedef enum { N, S, E, W, U } Direction; /* It establishes the type of data related to the direction*/
 
 #endif

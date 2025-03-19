@@ -45,7 +45,7 @@ Link *link_create(Id id)
     link->name[0] = '\0';
     link->origin = NO_ID;
     link->destination = NO_ID;
-    link->direction = N;
+    link->direction = U;
     link->open = FALSE;
 
     return link;

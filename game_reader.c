@@ -169,13 +169,13 @@ Status game_reader_load_characters(Game *game, char *filename){
       toks = strtok(NULL, "|");
       strcpy(name, toks);
       toks = strtok(NULL, "|");
-      health = atol(toks);
-      toks = strtok(NULL, "|");
-      friendly = (Bool)atol(toks);
+      strncpy(gdesc, toks,G_DESC-1);
       toks = strtok(NULL, "|");
       space_id = atol(toks);
       toks = strtok(NULL, "|");
-      strncpy(gdesc, toks,G_DESC-1);
+      health = atol(toks);
+      toks = strtok(NULL, "|");
+      friendly = (Bool)atol(toks);
       toks = strtok(NULL, "|");
       strncpy(message, toks, MAX_MESSAGE-1);
       
