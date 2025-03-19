@@ -11,6 +11,7 @@
  */
 #include "inventory.h"
 
+
 struct _Inventory {
     Set *objs;
     int max_objs;
@@ -27,34 +28,39 @@ Inventory *inventory_create() {
         free(inventory);
         return NULL;
     }
-    inventory->max_objs = 10;
+    inventory->max_objs = 0;
 
     return inventory;
 }
 
 Status inventory_destroy(Inventory *inventory) {
-    if(inventory) {
-        set_destroy(inventory->objs);
-        free(inventory);
-    }  
+    Status state = ERROR;
+
+    if(inventory == NULL){
+        return state;
+    }
+
+    state = set_destroy(inventory->objs);
+    free(inventory);  
+    return state;
 }
 
 Status inventory_add_obj_id(Inventory *inventory, Id obj_id) {
-    if(inventory == NULL) {
+    if(inventory == NULL || obj_id == NO_ID) {
         return ERROR;
     }
     return set_add(inventory->objs, obj_id);
 }
 
 Status inventory_delete_obj_id(Inventory *inventory, Id obj_id) {
-    if(inventory == NULL) {
+    if(inventory == NULL || obj_id == NO_ID) {
         return ERROR;
     }
     return set_del(inventory->objs, obj_id);
 }
 
 Status inventory_set_max_objs(Inventory *inventory, int max_objs) {
-    if(inventory == NULL) {
+    if(inventory == NULL || max_objs < 0) {
         return ERROR;
     }
     inventory->max_objs = max_objs;
@@ -69,11 +75,13 @@ int inventory_get_max_objs(Inventory *inventory) {
 }
 
 Status inventory_print(Inventory *inventory) {
+    Status state = ERROR;
     if(inventory == NULL) {
         return ERROR;
     }
-    if(set_print(inventory->objs) == ERROR) {
-        return ERROR;
-    }
+   
+    state = set_print(inventory->objs);
     fprintf(stdout, "\nMax objects: %d", inventory->max_objs);
+
+    return state;
 }
