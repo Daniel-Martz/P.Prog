@@ -186,14 +186,17 @@ Status link_print(Link *link) {
     else if (link->direction==S) {
         fprintf(stdout, "Link direction: South\n");
     }
-    else {
+    else if (link->direction==W){
         fprintf(stdout, "Link direction: West\n");
     }
-    if (link->open==FALSE) {
-        fprintf(stdout, "Link open statues: False\n");
+    else {
+        fprintf(stdout, "Link direction: Unknown\n");
+    }
+    if (link->open==TRUE) {
+        fprintf(stdout, "Link open status: True\n");
     }
     else {
-        fprintf(stdout, "Link open statues: True\n");
+        fprintf(stdout, "Link open status: False\n");
     }
 
     return OK;
