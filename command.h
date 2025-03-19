@@ -14,13 +14,13 @@
 #include "types.h"
 
 #define N_CMDT 2 /* It defines a constant for the the abreviature of the command and the command*/
-#define N_CMD 11 /* It defines a constant for the number of commands */
+#define N_CMD 8 /* It defines a constant for the number of commands */
 
 /* It establishes a data type for the two posible ways to refer to a command */
 typedef enum { CMDS, CMDL } CommandType;
 
 /*It establishses a data type for the posible 7 commands*/
-typedef enum { NO_CMD = -1, UNKNOWN, EXIT, NEXT, BACK, LEFT, RIGHT, TAKE, DROP, ATTACK, CHAT } CommandCode;
+typedef enum { NO_CMD = -1, UNKNOWN, EXIT, MOVE, TAKE, DROP, ATTACK, CHAT } CommandCode;
 
 /*It estiblishes a structure that will contain the name of the command*/
 typedef struct _Command Command;
@@ -81,6 +81,25 @@ Status command_set_objname(Command *command, const char *objname);
  * @return A string
 */
 char *command_get_objname(Command *command);
+
+/**
+ * @brief It asignates the command direction as an argument to the command and control errors
+ * @author Jorge Martín
+ * 
+ * @param command a pointer to a command structure
+ * @param direction the direction of the command
+ * @return OK if everything was correct, ERROR if not
+*/
+Status command_set_direction(Command *command, Direction direction);
+
+/**
+ * @brief It returns the command direction stored in the command passed by argument and control errors
+ * @author Jorge Martín
+ * 
+ * @param command a pointer to a command structure
+ * @return A direction
+*/
+Direction command_get_direction(Command *command);
 
 /**
  * @brief The users introduces a command and it is asigned to a variable command, controlling erors 

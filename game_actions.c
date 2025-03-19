@@ -38,40 +38,13 @@ Status game_actions_unknown(Game *game);
 Status game_actions_exit(Game *game);
 
 /**
- * @brief It checks that the player is in a valid location and then changes the location to south if valid
- * @author Jaime Romero
+ * @brief It checks that the player is in a valid location and then changes the location to the space in the command direction if valid
+ * @author Jorge Martín
  * 
  * @param game a pointer to Game
  * @return Status indicating the result of the action
  */
-Status game_actions_next(Game *game);
-
-/**
- * @brief It checks that the player is in a valid location and then changes the location to north if valid
- * @author Jaime Romero
- * 
- * @param game a pointer to Game
- * @return Status indicating the result of the action
- */
-Status game_actions_back(Game *game);
-
-/**
- * @brief It checks that the player is in a valid location and then changes the location to west if valid
- * @author Daniel Martínez
- * 
- * @param game a pointer to Game
- * @return Status indicating the result of the action
- */
-Status game_actions_left(Game *game);
-
-/**
- * @brief It checks that the player is in a valid location and then changes the location to east if valid
- * @author Daniel Martínez
- * 
- * @param game a pointer to Game
- * @return Status indicating the result of the action
- */
-Status game_actions_right(Game *game);
+Status game_actions_move(Game *game);
 
 /**
  * @brief It takes an object from a certain location
@@ -134,24 +107,11 @@ Status game_actions_update(Game *game, Command *command) {
     game_set_last_cmd_status(game, game_actions_exit(game));
       break;
 
-    case NEXT:
-    game_set_last_cmd_status(game, game_actions_next(game));
-      break;
-
-    case BACK:
-    game_set_last_cmd_status(game, game_actions_back(game));
-      break;
-    
-    case LEFT:
-    game_set_last_cmd_status(game, game_actions_left(game));
-      break;
-
-    case RIGHT:
-    game_set_last_cmd_status(game, game_actions_right(game));
+    case MOVE:
+    game_set_las_cmd_status(game, game_actions_move(game));
       break;
       
     case TAKE:
-
     game_set_last_cmd_status(game, game_actions_take(game));
       break;
     
@@ -186,94 +146,32 @@ Status game_actions_exit(Game *game) {
   return OK;
 }
 
-Status game_actions_next(Game *game) {
+Status game_actions_move(Game *game) {
   Id current_id = NO_ID;
   Id space_id = NO_ID;
+  Direction direction;
 
   if(!game) return ERROR;
+
   command_set_objname(game_get_last_command(game), "");
   game_set_message(game, "");
 
-  space_id = game_get_player_location(game);
-  if (space_id == NO_ID) {
+  if ((direction = command_get_direction(game_get_last_command(game))) == U) {
     return ERROR;
   }
-
-  current_id = space_get_south(game_get_space(game, space_id));
-  if (current_id != NO_ID) {
-    game_set_player_location(game, current_id);
-  }
-  else{
-    return ERROR;
-  }
-  return OK;
-}
-
-Status game_actions_back(Game *game) {
-  Id current_id = NO_ID;
-  Id space_id = NO_ID;
-
-  if(!game) return ERROR;
-  command_set_objname(game_get_last_command(game), "");
-  game_set_message(game, "");
 
   space_id = game_get_player_location(game);
-  if (space_id == NO_ID) {
-    return ERROR;
+
+  if (game_connection_is_open(game, space_id, direction)==TRUE) {
+    current_id = game_get_connection(game, space_id, direction);
+    if (current_id != NO_ID) {
+      game_set_player_location(game, current_id);
+    }
+    else {
+      return ERROR;
+    }
   }
-
-  current_id = space_get_north(game_get_space(game, space_id));
-  if (current_id != NO_ID) {
-    game_set_player_location(game, current_id);
-  }
-  else{
-    return ERROR;
-  }
-  return OK;
-}
-
-Status game_actions_left(Game *game) {
-  Id current_id = NO_ID;
-  Id space_id = NO_ID;
-
-  if(!game) return ERROR;
-  command_set_objname(game_get_last_command(game), "");
-  game_set_message(game, "");
-
-
-  space_id = game_get_player_location(game);
-  if (space_id == NO_ID) {
-    return ERROR;
-  }
-
-  current_id = space_get_west(game_get_space(game, space_id));
-  if (current_id != NO_ID) {
-    game_set_player_location(game, current_id);
-  }
-  else{
-    return ERROR;
-  }
-  return OK;
-}
-
-Status game_actions_right(Game *game) {
-  Id current_id = NO_ID;
-  Id space_id = NO_ID;
-
-  if(!game) return ERROR;
-  command_set_objname(game_get_last_command(game), "");
-  game_set_message(game, "");
-
-  space_id = game_get_player_location(game);
-  if (space_id == NO_ID) {
-    return ERROR;
-  }
-
-  current_id = space_get_east(game_get_space(game, space_id));
-  if (current_id != NO_ID) {
-    game_set_player_location(game, current_id);
-  }
-  else{
+  else {
     return ERROR;
   }
   return OK;
@@ -286,6 +184,7 @@ Status game_actions_take(Game *game){
   char *objname = NULL;
 
   if(!game) return ERROR;
+  command_set_direction(game_get_last_command(game), U);
   game_set_message(game, "");
 
   if(!(objname = command_get_objname(game_get_last_command(game)))){
@@ -324,6 +223,7 @@ Status game_actions_drop(Game *game){
   if(!game) return ERROR;
   if(!(player = game_get_player(game))) return ERROR;
 
+  command_set_direction(game_get_last_command(game), U);
   command_set_objname(game_get_last_command(game), "");
   game_set_message(game, "");
 
@@ -350,6 +250,7 @@ Status game_actions_attack(Game *game) {
   Id player_location = NO_ID;
 
   if(!game) return ERROR;
+  command_set_direction(game_get_last_command(game), U);
   command_set_objname(game_get_last_command(game), "");
   game_set_message(game, "");
 
@@ -383,6 +284,7 @@ Status game_actions_chat(Game *game) {
   Id character = NO_ID;
   Id player_location = NO_ID;
   if(!game) return ERROR;
+  command_set_direction(game_get_last_command(game), U);
   command_set_objname(game_get_last_command(game), "");
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;

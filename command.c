@@ -19,7 +19,7 @@
 #define MAX_SIZE 30  /* It denotes the maximum sizez for an array*/
 
 /* Store commands and it significate */
-char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"n", "Next"}, {"b", "Back"}, {"l", "Left"}, {"R", "Right"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}};
+char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}};
 
 /**
  * @brief This struct stores all the information of a command
@@ -29,6 +29,7 @@ char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "E
 struct _Command {
   CommandCode code; /*!< Name of the command */
   char objname[MAX_SIZE]; /*!< Name of the object to take */
+  Direction direction; /*!< Direction to move */
 };
 
 /** space_create allocates memory for a new space
@@ -45,6 +46,7 @@ Command* command_create(void) {
   /* Initialization of an empty command*/
   newCommand->code = NO_CMD;
   newCommand->objname[0] = '\0';
+  newCommand->direction = U;
 
   return newCommand;
 }
@@ -94,6 +96,23 @@ char *command_get_objname(Command *command){
   return command->objname;
 }
 
+Status command_set_direction(Command *command, Direction direction) {
+  if(!command) {
+    return ERROR;
+  }
+
+  command->direction=direction;
+  return OK;
+}
+
+Direction command_get_direction(Command *command) {
+  if(!command) {
+    return U;
+  }
+
+  return command->direction;
+}
+
 
 Status command_get_user_input(Command* command) {
   char input[CMD_LENGHT] = "", *token = NULL;
@@ -121,6 +140,24 @@ Status command_get_user_input(Command* command) {
     if(cmd == TAKE){
       token = strtok(NULL, "0 \n");
       command_set_objname(command, token);
+    }
+    if(cmd == MOVE){
+      token = strtok(NULL, "0 \n");
+      if (!strcasecmp(token, "North") || !strcasecmp(token, "n")) {
+        command_set_direction(command, N);
+      }
+      else if (!strcasecmp(token, "East") || !strcasecmp(token, "e")) {
+        command_set_direction(command, E);
+      }
+      else if (!strcasecmp(token, "South") || !strcasecmp(token, "s")) {
+        command_set_direction(command, S);
+      }
+      else if (!strcasecmp(token, "West") || !strcasecmp(token, "w")) {
+        command_set_direction(command, W);
+      }
+      else {
+        command_set_direction(command, U);
+      }
     }
     return command_set_code(command, cmd);
   }

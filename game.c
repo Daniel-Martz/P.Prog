@@ -498,7 +498,7 @@ Id game_get_connection(Game *game, Id id_act, Direction direction) {
   for (i=0; i<game->n_links; i++) {
     if (link_get_origin(game->links[i])==id_act){
       if (link_get_direction(game->links[i])==direction) {
-        return link_get_direction(game->links[i]);
+        return link_get_destination(game->links[i]);
       }
     }
   }
