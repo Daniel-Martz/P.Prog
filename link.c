@@ -127,6 +127,11 @@ Status link_set_destination(Link *link, Id destination)
 
 Direction link_get_direction(Link *link)
 {
+    if(!link)
+    {
+        return U;
+    }
+    
     return link->direction;
 }
 
