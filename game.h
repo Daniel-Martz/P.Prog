@@ -24,6 +24,7 @@
 #define MAX_OBJECTS 100 /* Constant that estabilshes the maximum number of objects as 100*/
 #define MAX_CHARACTERS 100 /* Constant that estabilshes the maximum number of characters as 100*/
 #define MAX_LINKS 100 /* Constant that estabilshes the maximum number of links as 100*/
+#define MAX_PLAYERS 2 /* Constant that estabilshes the maximum number of players as 2*/
 
 typedef struct _Game Game;
 
@@ -79,6 +80,17 @@ Status game_add_character(Game *game, Character *character);
  * @return OK if everything went good, ERROR if not
 */
 Status game_add_link(Game *game, Link* link);
+
+/**
+ * @brief It adds a new player to the game
+ * @author Jaime Romero
+ * 
+ * @param game A pointer to Game
+ * @param player A pointer to Player
+ * 
+ * @return OK if everything went good, ERROR if not
+*/
+Status game_add_player(Game *game, Player *player);
 
 /**
  * @brief It assigns a value from a file to every Game parameter, controling the errors

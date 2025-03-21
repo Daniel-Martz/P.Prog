@@ -25,13 +25,14 @@
  * @author Jaime Romero
  */
 struct _Game {
-  Player *player; /*!< Current location of the player and it information */
+  Player *player[MAX_PLAYERS]; /*!< Current location of the player and it information */
   Object *objects[MAX_OBJECTS]; /*!< Information of the objects*/
   Space *spaces[MAX_SPACES]; /*!< *an array of all the sapces of the game*/
   int n_spaces; /*!< Number of spaces that the game has */
   int n_objects; /*!< Number of objects that the game has */
   int n_characters; /*!< Number of characters that the game has */
   int n_links; /*!< Number of links that the game has */
+  int n_players; /*!< Number of players that the game has */
   Command *last_cmd; /*!< It stores the last command called */
   Bool finished; /*!< It defines if the game finished or not */
   Character *characters[MAX_CHARACTERS]; /*!< It contains all the characters of the game*/
@@ -85,7 +86,7 @@ Game *game_create(void){
   game->n_objects = 0;
   game->n_characters = 0;
   game->n_links = 0;
-  game->player = player_create(INIT_ID); 
+  game->n_players = 0;
   game->last_cmd = command_create();
   game->finished = FALSE;
   game ->last_cmd_status = ERROR;
@@ -141,6 +142,15 @@ Status game_add_link(Game *game, Link* link) {
 
   return OK;
 } 
+
+Status game_add_player(Game *game, Player* player){
+  if (!game || !player || game->n_players >= MAX_PLAYERS) return ERROR;
+
+  game->player[game->n_players] = player;
+  game->n_players++;
+
+  return OK;
+}
 
 Game *game_create_from_file(char *filename) {
   Game *game = NULL;
