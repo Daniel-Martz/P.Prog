@@ -14,7 +14,7 @@
 #include "command.h"
 #include "space.h"
 #include "types.h"
-
+#include "inventory.h"
 #include "player.h"
 #include "object.h"
 #include "character.h"
@@ -172,7 +172,7 @@ Id game_get_object_location(Game *game, Id id);
  * 
  * @author Jaime Romero
  * @param game A pointer to game 
- * @param id The Id of a player whose location will be changed
+ * @param id The Id of the space
  * @return OK if everything worked properly or ERROR if it didn't
  */
 Status game_set_player_location(Game *game, Id location);

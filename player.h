@@ -15,6 +15,8 @@
 
 #include "types.h"
 
+#define G_DESC 7
+
 typedef struct _Player Player;
 
 /*============================Init============================*/
@@ -86,6 +88,14 @@ int player_get_health(Player* player);
  */
 Id player_get_location (Player* player);
 
+/**
+ * @brief Gets the player's description
+ * @author Jaime Romero
+ *
+ * @param player a pointer to Player
+ * @return a string with the player's description
+ */
+const char* player_get_gdesc(Player *player);
 
 /*============================Set============================*/
 
@@ -136,6 +146,16 @@ Status player_set_health(Player* player, int health);
  */
 Status player_set_location (Player* player, Id location);
 
+/**
+ * @brief Defines the player's description
+ * @author Jaime Romero
+ *
+ * @param Player A pointer to player
+ * @param gdesc Character's description
+ * 
+ * @return OK if everything goes well, ERROR if anything goes wrong
+ */
+Status player_set_gdesc(Player *player, const char* gdesc);
 
 /*============================Print============================*/
 

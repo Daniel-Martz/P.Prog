@@ -26,6 +26,7 @@ struct _Player {
     Id location; /*!<Player's location (stored as an Id)*/
     Id object_id; /*!<Id of the objcet carried by the player*/
     long health; /*!<Player's healthpoints*/
+    char gdesc[G_DESC] /*!<Player's graphic description*/
 };
 
 /*============================Init============================*/
@@ -84,6 +85,11 @@ Id player_get_location (Player* player){
     return player->location;
 }
 
+const char* player_get_gdesc(Player *player){
+    if (!player) return NULL;
+    return player->gdesc;
+}
+
 /*============================Set============================*/
 Status player_set_id (Player* player, Id id){
     if (!player) return ERROR;
@@ -119,6 +125,16 @@ Status player_set_health(Player* player, int health){
 Status player_set_location (Player* player, Id location){
     if (!player) return ERROR;
     player->location = location;
+    return OK;
+}
+
+Status player_set_gdesc(Player *player, const char* gdesc){
+    if (!player || !gdesc) return ERROR;
+    
+    if (!(strcpy(player->gdesc, gdesc)))
+    {
+        return ERROR;
+    }
     return OK;
 }
 

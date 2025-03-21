@@ -19,7 +19,7 @@ Status game_reader_load_spaces(Game *game, char *filename) {
   char line[WORD_SIZE] = "";
   char name[WORD_SIZE] = "";
   char *toks = NULL;
-  Id id = NO_ID, north = NO_ID, east = NO_ID, south = NO_ID, west = NO_ID;
+  Id space_id = NO_ID;
   Space *space = NULL;
   Status status = OK;
   char gdesc[N_ROWS][N_COLUMNS];
@@ -37,17 +37,9 @@ Status game_reader_load_spaces(Game *game, char *filename) {
   while (fgets(line, WORD_SIZE, file)) {
     if (strncmp("#s:", line, 3) == 0) {
       toks = strtok(line + 3, "|");
-      id = atol(toks);
+      space_id = atol(toks);
       toks = strtok(NULL, "|");
       strcpy(name, toks);
-      toks = strtok(NULL, "|");
-      north = atol(toks);
-      toks = strtok(NULL, "|");
-      west = atol(toks);
-      toks = strtok(NULL, "|");
-      south = atol(toks);
-      toks = strtok(NULL, "|");
-      east = atol(toks);
 
       for (row = 0; row < N_ROWS; row++)
       {
@@ -68,13 +60,9 @@ Status game_reader_load_spaces(Game *game, char *filename) {
 #ifdef DEBUG
       printf("Leido: %ld|%s|%ld|%ld|%ld|%ld\n", id, name, north, east, south, west);
 #endif
-      space = space_create(id);
+      space = space_create(space_id);
       if (space != NULL) {
         space_set_name(space, name);
-        space_set_north(space, north);
-        space_set_west(space, west);
-        space_set_south(space, south);
-        space_set_east(space, east);
         space_set_gdesc(space, (const char(*)[N_COLUMNS])gdesc); /*Hacemos casting al llamar a la fucnión set_gdesc para que concuerde con el tipo de dato que requiere la fucnión*/
         game_add_space(game, space);
       }
@@ -210,11 +198,12 @@ Status game_reader_load_players(Game *game, char *filename){
   char name[WORD_SIZE] = "";
   char gdesc[WORD_SIZE] = "";
   long health = 0;
-  long max_objects;
+  int max_objects;
   char *toks = NULL;
   Id player_id = NO_ID, space_id = NO_ID;
   Player *player = NULL;
   Status status = OK;
+  Inventory* inv;
 
   if (!filename || !game) {
     return ERROR;
@@ -241,15 +230,85 @@ Status game_reader_load_players(Game *game, char *filename){
       toks = strtok(NULL, "|");
       max_objects = atol(toks);
 
-      /*Create the Player*/
+      /*Create the Player (with its inventory)*/
       player = player_create(player_id);
       if (!player) return ERROR;
+      inv = inventory_create();
+      if (!inv) return ERROR;
       player_set_name(player, name);
       player_set_health(player, health);
       player_set_gdesc(player, gdesc);
-      game_set_player_location(game, space_id); /*Cambiar esta funcion para que reciba un id de player*/
-      /*Faltan funciones de modulo inventory*/
+      game_set_player_location(game, space_id);
+      inventory_set_max_objs(inv, max_objects);
+      /*No se si me hace falta un game_add_player*/
     }
   }
+
+  if (ferror(file)) {
+    status = ERROR;
+  }
+
+  fclose(file);
+
+  return status;
   
+}
+
+Status game_reader_load_links(Game *game, char *filename){
+  
+  FILE *file=NULL;
+  char line[WORD_SIZE] = "";
+  char name[WORD_SIZE] = "";
+  char *toks = NULL;
+  Id link_id = NO_ID, orig_space_id = NO_ID, dest_space_id = NO_ID;
+  Direction direction;
+  Bool open = FALSE;
+  Link *link;
+  Status status = OK;
+
+  if (!filename || !game) {
+    return ERROR;
+  }
+
+  file = fopen(filename, "r");
+  if (file == NULL) {
+    return ERROR;
+  }
+
+  while (fgets(line, WORD_SIZE, file)){
+    if (strncmp("#l:", line, 3) == 0){
+      /*Read all the data and then store it in variables*/
+      toks = strtok(line + 3, "|");
+      link_id = atol(toks);
+      toks = strtok(NULL, "|");
+      strcpy(name, toks);
+      toks = strtok(NULL, "|");
+      orig_space_id = atol(toks);
+      toks = strtok(NULL, "|");
+      dest_space_id = atol(toks);
+      toks = strtok(NULL, "|");
+      direction = atol(toks);
+      toks = strtok(NULL, "|");
+      open = atol(toks);
+
+      /*Create the link*/
+      link = link_create(link_id);
+      if (!link) return ERROR;
+      link_set_name(link, name);
+      link_set_origin(link, orig_space_id);
+      link_set_destination(link, dest_space_id);
+      link_set_direction(link, direction);
+      link_set_open(link, open);
+      game_add_link(game, link);
+    }
+  }
+
+  if (ferror(file)) {
+    status = ERROR;
+  }
+
+  fclose(file);
+
+  return status;
+
 }
