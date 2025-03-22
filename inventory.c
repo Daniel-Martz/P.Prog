@@ -46,7 +46,7 @@ Status inventory_destroy(Inventory *inventory) {
 }
 
 Status inventory_add_obj_id(Inventory *inventory, Id obj_id) {
-    if(inventory == NULL || obj_id == NO_ID) {
+    if(inventory == NULL || obj_id == NO_ID || set_get_nids(inventory->objs) >= inventory->max_objs) {
         return ERROR;
     }
     return set_add(inventory->objs, obj_id);
