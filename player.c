@@ -24,7 +24,7 @@ struct _Player {
     Id id; /*!<The identification for the player*/
     char name[WORD_SIZE]; /*!<Player's name*/
     Id location; /*!<Player's location (stored as an Id)*/
-    Id object_id; /*!<Id of the objcet carried by the player*/
+    Inventory *backpack; /*!<IInventory of the objects carried by the player*/
     long health; /*!<Player's healthpoints*/
     char gdesc[G_DESC] /*!<Player's graphic description*/
 };
@@ -44,7 +44,7 @@ Player* player_create (Id id){
     newPlayer->id = id;
     newPlayer->name[0] = '\0';
     newPlayer->location = NO_ID;
-    newPlayer->object_id = NO_ID;
+    if(inventory_create(newPlayer->backpack) == NULL) return NULL;
     newPlayer->health = 10;
 
     return newPlayer;
@@ -65,9 +65,9 @@ Id player_get_id (Player* player){
     return player->id;
 }
 
-Id player_get_object (Player* player){
-    if (!player) return NO_ID;
-    return player->object_id;
+Inventory *player_get_backpack (Player* player){
+    if (!player) return NULL;
+    return player->backpack;
 }
 
 const char* player_get_name (Player* player){
@@ -97,10 +97,9 @@ Status player_set_id (Player* player, Id id){
     return OK;
 }
 
-Status player_set_object (Player* player, Id object){
+Status player_add_object (Player* player, Id object){
     if (!player) return ERROR;
-    player->object_id = object;
-    return OK;
+    return inventory_add_obj_id(player->backpack, object);
 }
 
 Status player_set_name (Player* player, const char* name){
@@ -136,6 +135,11 @@ Status player_set_gdesc(Player *player, const char* gdesc){
         return ERROR;
     }
     return OK;
+}
+
+Status player_delete_object(Player *player, Id obj_id) {
+    if(!player) return ERROR;
+    return inventory_delete_obj_id(player->backpack, obj_id);
 }
 
 /*============================Print============================*/
