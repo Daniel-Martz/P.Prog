@@ -14,6 +14,7 @@
 #define PLAYER_H
 
 #include "types.h"
+#include "inventory.h"
 
 #define G_DESC 7
 
@@ -53,13 +54,13 @@ Status player_destroy (Player* player);
 Id player_get_id (Player* player);
 
 /**
- * @brief It gets the object the player is carrying
- * @author Daniel Martinez
+ * @brief It gets the backpack the player is carrying
+ * @author Jimena Sanchiz
  *
  * @param player a pointer to the player
- * @return the object that the player is carrying
+ * @return the backpack of objects that the player is carrying
  */
-Id player_get_object (Player* player);
+Inventory *player_get_backpack (Player* player);
 
 /**
  * @brief Gets the player's name
@@ -109,6 +110,15 @@ const char* player_get_gdesc(Player *player);
 Status player_set_id (Player* player, Id id);
 
 /**
+ * @brief Adds a new object to the backpack of a player
+ * @author Jimena Sanchiz
+ *
+ * @param player a pointer to the player
+ * @return OK, if everything goes well or ERROR if there was some mistake
+ */
+Status player_add_object (Player* player, Id object);
+
+/**
  * @brief Assigns a name to a player
  * @author Daniel Martinez
  *
@@ -116,15 +126,6 @@ Status player_set_id (Player* player, Id id);
  * @return OK, if everything goes well or ERROR if there was some mistake
  */
 Status player_set_name (Player* player, const char* name);
-
-/**
- * @brief Changes the object a player is carrying
- * @author Daniel Martinez
- *
- * @param player a pointer to the player
- * @return OK, if everything goes well or ERROR if there was some mistake
- */
-Status player_set_object (Player* player, Id object);
 
 /**
  * @brief Establishes the player's hp
@@ -156,6 +157,15 @@ Status player_set_location (Player* player, Id location);
  * @return OK if everything goes well, ERROR if anything goes wrong
  */
 Status player_set_gdesc(Player *player, const char* gdesc);
+
+/**
+ * @brief Deletes an object from the backpack of a player
+ * @author Jimena Sanchiz
+ *
+ * @param player a pointer to the player
+ * @return OK, if everything goes well or ERROR if there was some mistake
+ */
+Status player_delete_object(Player *player, Id obj_id);
 
 /*============================Print============================*/
 
