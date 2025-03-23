@@ -171,8 +171,13 @@ Game *game_create_from_file(char *filename) {
     return NULL;
   }
 
-  /* The player and the object are located in the first space */
-  game_set_player_location(game, game_get_space_id_at(game, 0));
+  if (game_reader_load_links(game, filename) == ERROR) {
+    return NULL;
+  }
+
+  if (game_reader_load_players(game, filename) == ERROR) {
+    return NULL;
+  }
 
   return game;
 }
@@ -196,11 +201,14 @@ Status game_destroy(Game *game) {
   }
 
   for (i = 0; i < game->n_links; i++) {
-    character_destroy(game->links[i]);
+    link_destroy(game->links[i]);
+  }
+
+  for (i = 0; i < game->n_players; i++) {
+    player_destroy(game->player[i]);
   }
 
   command_destroy(game->last_cmd);
-  player_destroy(game->player);
 
   free(game);
   
