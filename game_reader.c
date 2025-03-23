@@ -240,7 +240,7 @@ Status game_reader_load_players(Game *game, char *filename){
       player_set_gdesc(player, gdesc);
       game_set_player_location(game, space_id);
       inventory_set_max_objs(inv, max_objects);
-      /*No se si me hace falta un game_add_player*/
+      game_add_player(game, player);
     }
   }
 
