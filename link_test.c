@@ -121,7 +121,7 @@ void test1_link_get_origin() {
 
 void test2_link_get_origin() {
     Link *link = NULL;
-    PRINT_TEST_RESULT(link_get_origin(link) == NULL);
+    PRINT_TEST_RESULT(link_get_origin(link) == NO_ID);
 }
 
 void test1_link_set_origin() {
@@ -149,7 +149,7 @@ void test1_link_get_destination() {
 
 void test2_link_get_destination() {
     Link *link = NULL;
-    PRINT_TEST_RESULT(link_get_destination(link) == NULL);
+    PRINT_TEST_RESULT(link_get_destination(link) == NO_ID);
 }
 
 void test1_link_set_destination() {
@@ -177,7 +177,7 @@ void test1_link_get_direction() {
 
 void test2_link_get_direction() {
     Link *link = NULL;
-    PRINT_TEST_RESULT(link_get_destination(link) == NULL);
+    PRINT_TEST_RESULT(link_get_direction(link) == U);
 }
 
 void test1_link_set_direction() {
@@ -205,7 +205,7 @@ void test1_link_get_open() {
 
 void test2_link_get_open() {
     Link *link = NULL;
-    PRINT_TEST_RESULT(link_get_destination(link) == NULL);
+    PRINT_TEST_RESULT(link_get_open(link) == FALSE);
 }
 
 void test1_link_set_open() {
@@ -220,7 +220,7 @@ void test2_link_set_open() {
     Link *link = NULL;
     link = link_create(1);
     link_set_open(link, TRUE);
-    PRINT_TEST_RESULT(link_get_open(link) != NULL);
+    PRINT_TEST_RESULT(link_get_open(link) != FALSE);
     link_destroy(link);
 }
 

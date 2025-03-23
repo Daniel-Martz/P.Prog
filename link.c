@@ -87,7 +87,7 @@ Id link_get_origin(Link *link)
 {
     if (!link)
     {
-        return NULL;
+        return NO_ID;
     }
 
     return link->origin;
@@ -108,7 +108,7 @@ Id link_get_destination(Link *link)
 {
     if (!link)
     {
-        return NULL;
+        return NO_ID;
     }
 
     return link->destination;
