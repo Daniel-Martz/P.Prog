@@ -98,6 +98,19 @@ Status space_set_gdesc (Space* space, const char new_gdesc[N_ROWS][N_COLUMNS]);
  * @return ERROR if there was a problem, OK if everything was good
  */
 Status space_object_del(Space *space, Id object_id);
+
+/**
+ * @brief It sets if the space was discovered or not
+ * 
+ * @author Jimena Sanchiz
+ * 
+ * @param space A pointer to Space structure
+ * @param discovered the boolean that shows if the space was discovered or not
+ * 
+ * @return ERROR if there was a problem, OK if everything was good
+ */
+Status space_set_discovered(Space *space, Bool discovered);
+
 /*============================Get============================*/
 
 /**
@@ -172,6 +185,15 @@ Id space_get_character(Space *space);
  * @return a string with the description of the space
  */
 const char* space_get_gdesc(Space* space, int row);
+
+/**
+ * @brief Gets if the space was discovered or not (game's interface)
+ * @author Jimena Sanchiz
+ *
+ * @param space A pointer to Space
+ * @return if the space was discovered or not
+ */
+Bool space_get_discovered(Space *space);
 
 /*============================Print============================*/
 
