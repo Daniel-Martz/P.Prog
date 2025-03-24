@@ -165,3 +165,54 @@ Status command_get_user_input(Command* command) {
     return command_set_code(command, EXIT);
   
 }
+
+Status command_get_input_from_string(Command* command, char* str) {
+  char *token = NULL;
+  int i = UNKNOWN - NO_CMD + 1;
+  CommandCode cmd;
+
+  if (!command) {
+    return ERROR;
+  }
+
+  if (str) {
+    token = strtok(str, " \n");
+    if (!token) {
+      return command_set_code(command, UNKNOWN);
+    }
+
+    cmd = UNKNOWN;
+    while (cmd == UNKNOWN && i < N_CMD) {
+      if (!strcasecmp(token, cmd_to_str[i][CMDS]) || !strcasecmp(token, cmd_to_str[i][CMDL])) {
+        cmd = i + NO_CMD;
+      } else {
+        i++;
+      }
+    }
+    if(cmd == TAKE){
+      token = strtok(NULL, "0 \n");
+      command_set_objname(command, token);
+    }
+    if(cmd == MOVE){
+      token = strtok(NULL, "0 \n");
+      if (!strcasecmp(token, "North") || !strcasecmp(token, "n")) {
+        command_set_direction(command, N);
+      }
+      else if (!strcasecmp(token, "East") || !strcasecmp(token, "e")) {
+        command_set_direction(command, E);
+      }
+      else if (!strcasecmp(token, "South") || !strcasecmp(token, "s")) {
+        command_set_direction(command, S);
+      }
+      else if (!strcasecmp(token, "West") || !strcasecmp(token, "w")) {
+        command_set_direction(command, W);
+      }
+      else {
+        command_set_direction(command, U);
+      }
+    }
+    return command_set_code(command, cmd);
+  }
+  else
+    return command_set_code(command, EXIT);
+}

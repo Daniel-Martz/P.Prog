@@ -110,4 +110,14 @@ Direction command_get_direction(Command *command);
 */
 Status command_get_user_input(Command* command);
 
+/**
+ * @brief The string has a command and it is asigned to a variable command, controlling erors 
+ * @author Jorge Martín
+ * 
+ * @param command a pointer to a command structure
+ * @param str a string with the command
+ * @return OK if everything was correct, ERROR if not
+*/
+Status command_get_input_from_string(Command* command, char* str);
+
 #endif
