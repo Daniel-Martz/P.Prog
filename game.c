@@ -25,7 +25,7 @@
  * @author Jaime Romero
  */
 struct _Game {
-  Player *player[MAX_PLAYERS]; /*!< Current location of the player and it information */
+  Player *player[MAX_PLAYERS]; /*!< An array of players */
   Object *objects[MAX_OBJECTS]; /*!< Information of the objects*/
   Space *spaces[MAX_SPACES]; /*!< *an array of all the sapces of the game*/
   int n_spaces; /*!< Number of spaces that the game has */

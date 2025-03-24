@@ -70,7 +70,7 @@ link_test.o: link_test.c link_test.h test.h link.h types.h
 	
 # Limpiar archivos generados
 clean:
-	rm -f $(EXEC) $(OBJS) space_test space_test.o set_test set_test.o character_test character_test.o
+	rm -f $(EXEC) $(OBJS) space_test space_test.o set_test set_test.o character_test character_test.o link_test.o
 
 # Correr valgrind
 runv :
