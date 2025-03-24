@@ -26,7 +26,7 @@ struct _Player {
     Id location; /*!<Player's location (stored as an Id)*/
     Inventory *backpack; /*!<IInventory of the objects carried by the player*/
     long health; /*!<Player's healthpoints*/
-    char gdesc[G_DESC] /*!<Player's graphic description*/
+    char gdesc[G_DESC]; /*!<Player's graphic description*/
 };
 
 /*============================Init============================*/
