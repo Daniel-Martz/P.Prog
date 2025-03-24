@@ -63,6 +63,9 @@ character_test: character_test.o character.o
 character_test.o: character_test.c character_test.h character.h test.h types.h
 	$(CC) $(CFLAGS) -o character_test.o character_test.c
 
+link_test.o: link_test.c link_test.h test.h link.h types.h
+	$(CC) $(CFLAGS) -o link_test.o link_test.c
+
 
 	
 # Limpiar archivos generados
@@ -88,6 +91,8 @@ testset: set_test
 testcharacter: character_test
 	./character_test
 
+testlink: link_test
+	./link_test
 
 # Ejecutar el valgrind con castle
 crunv :
