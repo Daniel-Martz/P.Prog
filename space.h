@@ -198,8 +198,8 @@ Bool space_get_discovered(Space *space);
 /*============================Print============================*/
 
 /**
- * @brief It prints the space information This fucntion shows the id and name 
- * of the space, the spaces that surrounds it and wheter it has an object or not.
+ * @brief It prints the space information This functions shows the id and name 
+ * of the space, the graphic descripction, whether it has an object or not, whether it has a character or not and whether it was discovered or not.
  * @author Daniel Martinez
  * 
  * @param space a pointer to the space
