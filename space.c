@@ -25,6 +25,8 @@ struct _Space {
   Set *objects;              /*!< It contains the set of the arrays of object */
   Id character;              /*!< It contains the id of the character */
   char gdesc[N_ROWS][N_COLUMNS]; /*!< An array of five strings, with 9 characters each (+1 for the '\0')*/
+  Bool discovered;
+
 };
 
 /*=======================Create and Destroy========================*/
@@ -49,6 +51,7 @@ Space* space_create(Id id) {
     newSpace->gdesc[i][0] = '\0';
   }
   newSpace->objects = set_create();
+  newSpace->discovered = FALSE;
 
   return newSpace;
 }
@@ -123,6 +126,15 @@ Status space_object_del(Space *space, Id object_id){
   return OK;
 }
 
+Status space_set_discovered(Space *space, Bool discovered) {
+  if (!space) {
+    return ERROR;
+  }
+  space->discovered = discovered;
+  return OK;
+
+}
+
 /*============================Get============================*/
 Id space_get_id(Space* space) {
   if (!space) {
@@ -170,6 +182,15 @@ const char* space_get_gdesc(Space* space, int row){
 
   return space->gdesc[row];
 }
+
+
+Bool space_get_discovered(Space *space) {
+  if (!space) {
+    return FALSE;
+  }
+  return space->discovered;
+}
+
 /*============================Print============================*/
 Status space_print(Space* space) {
   Id idaux = NO_ID;
@@ -201,6 +222,14 @@ Status space_print(Space* space) {
   } else {
     fprintf(stdout, "---> No character in the space.\n");
   }
+
+   /* 6. Prints if the space was discovered or not */
+   if(space_get_discovered(space) == TRUE) {
+    fprintf(stdout, "---> The space was discovered.\n");
+   } else {
+    fprintf(stdout, "---> The space was not discovered.\n");
+   }
+  
 
   return OK;
 }
