@@ -47,6 +47,15 @@ Status game_actions_exit(Game *game);
 Status game_actions_move(Game *game);
 
 /**
+ * @brief It allows the player to inspect an object in the inventory or in the space
+ * @author Daniel Martínez
+ * 
+ * @param game a pointer to Game
+ * @return Status indicating the result of the action
+ */
+Status game_actions_inspect(Game *game);
+
+/**
  * @brief It takes an object from a certain location
  * @author Daniel Martínez
  * 
@@ -82,6 +91,8 @@ Status game_actions_attack(Game *game);
  */
 Status game_actions_chat(Game *game);
 
+
+
 /**
  * @brief Game actions implementation
  */
@@ -109,6 +120,10 @@ Status game_actions_update(Game *game, Command *command) {
 
     case MOVE:
     game_set_las_cmd_status(game, game_actions_move(game));
+      break;
+    
+    case INSPECT:
+    game_set_las_cmd_status(game, game_actions_inspect(game));
       break;
       
     case TAKE:
@@ -175,6 +190,39 @@ Status game_actions_move(Game *game) {
     return ERROR;
   }
   return OK;
+}
+
+Status game_actions_inspect(Game *game){
+
+  Id player_location = NO_ID, *ids_aux = NULL;
+  char *objname = NULL;
+  int i;
+
+  if(!game){
+    return ERROR;
+  }
+
+  if(!(objname = command_get_objname(game_get_last_command(game)))){
+    return ERROR;
+  }
+
+  if((player_location = game_get_player_location(game)) == NO_ID){
+    return ERROR;
+  }
+
+  if(!(ids_aux = space_get_objects_ids(game_get_space(game, player_location)))){
+    return ERROR;
+  }
+
+  for(i = 0; i < space_get_nobjects(game_get_space(game, player_location)); i++){
+
+  }
+
+  if(!(ids_aux = inventort_get_obj_ids(player_get_backpack(game_get_player(game))))){
+    return ERROR;
+  }
+
+
 }
 
 Status game_actions_take(Game *game){

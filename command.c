@@ -19,7 +19,7 @@
 #define MAX_SIZE 30  /* It denotes the maximum sizez for an array*/
 
 /* Store commands and it significate */
-char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}};
+char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}};
 
 /**
  * @brief This struct stores all the information of a command
@@ -211,6 +211,12 @@ Status command_get_input_from_string(Command* command, char* str) {
         command_set_direction(command, U);
       }
     }
+
+    if(cmd == INSPECT){
+      token = strtok(NULL, "0 \n");
+      command_set_objname(command, token);
+    }
+    
     return command_set_code(command, cmd);
   }
   else
