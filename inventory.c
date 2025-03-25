@@ -10,6 +10,7 @@
  * @copyright Copyright (c) 2025
  */
 #include "inventory.h"
+#define MAX_OBJ 10
 
 
 struct _Inventory {
@@ -28,7 +29,7 @@ Inventory *inventory_create() {
         free(inventory);
         return NULL;
     }
-    inventory->max_objs = 0;
+    inventory->max_objs = MAX_OBJ;
 
     return inventory;
 }
