@@ -83,7 +83,7 @@ Status set_del (Set* set, Id id);
  * 
  * @param set A pointer to Set structure
  * 
- * @return 0 if there was a problem, and the number of ids in the set if everything was OK.
+ * @return -1 if there was a problem, and the number of ids in the set if everything was OK.
  */
 long set_get_nids(Set* set);
 
