@@ -126,7 +126,9 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Status log_status, char 
   FILE *log_file=NULL;
   FILE *log_output=NULL;
   char command[CMD_LENGHT];
+  extern char *cmd_to_str[N_CMD][N_CMDT];
   Status st;
+  int i;
 
   if (log_status==FALSE) {
     if (!gengine || !game) {
@@ -164,11 +166,16 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Status log_status, char 
     }
     st = game_actions_update(game, last_cmd);
     if (log_status==TRUE) {
-      if (st==OK) {
-        fprintf(log_output, "%s OK\n", command_get_code(command)); /*No se que tan bien está la impresión de command_code*/
+      for (i=0; i<N_CMD-1; i++) {
+        if (command_get_code(last_cmd) == i) {
+          fprintf(log_output, "%s ", cmd_to_str[i+1][CMDL]);
+        }
       }
-      if (st==FALSE) {
-        fprintf(log_output, "%s FALSE\n", command_get_code(command)); /*No se que tan bien está la impresión de command_code*/
+      if (st==OK) {
+        fprintf(log_output, "OK\n");
+      }
+      if (st==ERROR) {
+        fprintf(log_output, "ERROR\n");
       }
     }
   }
