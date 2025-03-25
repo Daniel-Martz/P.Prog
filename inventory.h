@@ -107,7 +107,7 @@ int inventory_get_n_objs(Inventory *inventory);
  * 
  * @return NULL if there was a problem, and the array of objects ids in the inventory if everything was OK.
  */
-Id *inventort_get_obj_ids(Inventory *inventory);
+Id *inventory_get_obj_ids(Inventory *inventory);
 
 /**
  * @brief Prints the elements of the inventory
