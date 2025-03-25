@@ -409,7 +409,7 @@
    }
  
    for(i=0; i<game->n_objects; i++){
-     if(!strcmp(object_get_name(game->objects[i]),objname)){
+     if(!strcasecmp(object_get_name(game->objects[i]),objname)){
        return object_get_id(game->objects[i]);
      }
    }
