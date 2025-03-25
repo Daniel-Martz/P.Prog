@@ -74,6 +74,18 @@ int inventory_get_max_objs(Inventory *inventory) {
     return inventory->max_objs;
 }
 
+int inventory_get_n_objs(Inventory *inventory) {
+    if(inventory == NULL) {
+        return -1;
+    }
+    return set_get_nids(inventory->objs);
+}
+
+Id *inventort_get_obj_ids(Inventory *inventory) {
+    if(inventory == NULL) return NULL;
+    return set_get_ids(inventory->objs);
+}
+
 Status inventory_print(Inventory *inventory) {
     Status state = ERROR;
     if(inventory == NULL) {
