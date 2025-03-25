@@ -578,7 +578,7 @@
   }
 
   Status game_set_turn(Game *game, int turn){
-    if(!game || turn > 1 || turn < 0) return ERROR;
+    if(!game || turn > game->n_players || turn < 0) return ERROR;
     game->turn = turn;
     return OK;
   }
@@ -587,13 +587,14 @@
     int next_turn = -1;
     if(!game) return ERROR;
 
-    if(game->turn == 1){
-      next_turn = 0;
-    } else if (game->turn == 0)
+    if(game->turn < game->n_players){
+      next_turn++;
+    } else if (game->turn == game->n_players - 1)
     {
-      next_turn = 1;
+      next_turn = 0;
     }
 
     game->turn = next_turn;
     return OK;
   }
+
