@@ -25,7 +25,7 @@
   * @author Jaime Romero
   */
  struct _Game {
-   Player *player[MAX_PLAYERS]; /*!< An array of players */
+   Player *players[MAX_PLAYERS]; /*!< An array of players */
    Object *objects[MAX_OBJECTS]; /*!< Information of the objects*/
    Space *spaces[MAX_SPACES]; /*!< *an array of all the sapces of the game*/
    int n_spaces; /*!< Number of spaces that the game has */
@@ -33,6 +33,7 @@
    int n_characters; /*!< Number of characters that the game has */
    int n_links; /*!< Number of links that the game has */
    int n_players; /*!< Number of players that the game has */
+   int turn; /*!< Integrer defining the player's turn (0 or 1)*/
    Command *last_cmd; /*!< It stores the last command called */
    Bool finished; /*!< It defines if the game finished or not */
    Character *characters[MAX_CHARACTERS]; /*!< It contains all the characters of the game*/
@@ -79,6 +80,10 @@
    for (i = 0; i < MAX_LINKS; i++) {
      game->links[i] = NULL;
    }
+
+   for (i = 0; i < MAX_PLAYERS; i++) {
+     game->players[i] = NULL;
+   }
    
    game->message[0] = '\0';
  
@@ -87,12 +92,13 @@
    game->n_characters = 0;
    game->n_links = 0;
    game->n_players = 0;
+   game->turn = 0;
    game->last_cmd = command_create();
    game->finished = FALSE;
    game ->last_cmd_status = ERROR;
   
  
-   if (!game->player || !game->last_cmd) {
+   if (!game->last_cmd) {
      return NULL;
    }
  
@@ -146,7 +152,7 @@
  Status game_add_player(Game *game, Player* player){
    if (!game || !player || game->n_players >= MAX_PLAYERS) return ERROR;
  
-   game->player[game->n_players] = player;
+   game->players[game->n_players] = player;
    game->n_players++;
  
    return OK;
@@ -205,7 +211,7 @@
    }
  
    for (i = 0; i < game->n_players; i++) {
-     player_destroy(game->player[i]);
+     player_destroy(game->players[i]);
    }
  
    command_destroy(game->last_cmd);
@@ -273,10 +279,11 @@
    if(!game){
      return NULL;
    }
-   return game->player;
+   
+   return game->players[game_get_turn(game)];
  }
  
- Id game_get_player_location(Game *game) { return player_get_location (game->player); }
+ Id game_get_player_location(Game *game) { return player_get_location (game->players[game_get_turn(game)]); }
  
  char *game_get_message(Game *game){
    if(!game) return NULL;
@@ -309,7 +316,7 @@
      return ERROR;
    }
  
-   player_set_location(game->player, location); 
+   player_set_location(game->players[game_get_turn(game)], location); 
    space = game_get_space(game, location);
    
    if (space_get_discovered(space) == FALSE) {
@@ -442,6 +449,18 @@
    game->n_characters = n_characters;
    return OK;
  }
+
+  int game_get_nplayers(Game *game){
+    if(!game) return POINT_ERROR;
+    return game->n_players;
+  }
+
+  Status game_set_nplayers(Game*game, int n_players){
+    if(!game || n_players < 0 || n_players > MAX_CHARACTERS) return ERROR;
+
+    game->n_players = n_players;
+    return OK;
+  }
  
  void game_print(Game *game) {
    int i = 0;
@@ -478,6 +497,11 @@
    return game->characters;
  }
  
+  Player **game_get_players(Game *game){
+    if(!game) return NULL;
+    return game->players;
+  }
+
  /*Declaration of the function*/
  Id game_get_space_id_at(Game *game, int position) {
    if (position < 0 || position >= game->n_spaces) {
@@ -547,3 +571,16 @@
  
    return FALSE;
  }
+
+  int game_get_turn(Game *game){
+    if (!game) return POINT_ERROR;
+    return game->turn;
+  }
+
+  Status game_set_turn(Game *game, int turn){
+    if(!game || turn > 1 || turn < 0) return ERROR;
+    game->turn = turn;
+    return OK;
+  }
+
+  Status game_next_turn();

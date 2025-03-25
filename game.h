@@ -24,7 +24,7 @@
 #define MAX_OBJECTS 100 /* Constant that estabilshes the maximum number of objects as 100*/
 #define MAX_CHARACTERS 100 /* Constant that estabilshes the maximum number of characters as 100*/
 #define MAX_LINKS 100 /* Constant that estabilshes the maximum number of links as 100*/
-#define MAX_PLAYERS 5 /* Constant that estabilshes the maximum number of players as 5*/
+#define MAX_PLAYERS 2 /* Constant that estabilshes the maximum number of players as 2*/
 
 typedef struct _Game Game;
 
@@ -338,7 +338,26 @@ int game_get_ncharacters(Game *game);
 Status game_set_ncharacters(Game *game, int n_characters);
 
 /**
- * @brief It get the array of objects in the game
+ * @brief It returns the number of players in the game
+ * 
+ * @author Jaime Romero
+ * @param game A pointer to the game
+ * @return an integer with the nimber of players in the game (NO_ID if there was a problem)
+ */
+int game_get_nplayers(Game *game);
+
+/**
+ * @brief It set the number of players in the game
+ * 
+ * @author Jaime Romero
+ * @param game A pointer to game
+ * @param n_players an integuer with the number of players
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_nplayers(Game*game, int n_players);
+
+/**
+ * @brief It gets the array of objects in the game
  * 
  * @author Daniel Martínez
  * @param game A pointer to game
@@ -347,13 +366,22 @@ Status game_set_ncharacters(Game *game, int n_characters);
 Object **game_get_objects(Game *game);
 
 /**
- * @brief It get the array of characters in the game
+ * @brief It get sthe array of characters in the game
  * 
  * @author Daniel Martínez
  * @param game A pointer to game
  * @return Returns an array of characters
  */
 Character **game_get_characters(Game *game);
+
+/**
+ * @brief It gets the array of players in the game
+ * 
+ * @author Jaime Romero
+ * @param game A pointer to game
+ * @return Returns an array of players
+ */
+Player **game_get_players(Game *game);
 
 /**
  * @brief It get the status of the last command
@@ -423,7 +451,7 @@ Link **game_get_links(Game *game);
 Id game_get_connection(Game *game, Id id_act, Direction direction);
 
 /**
- * @brief It get the connection open state of the space to move
+ * @brief It gets the connection open state of the space to move
  * 
  * @author Jorge Martin
  * @param game A pointer to game
@@ -432,5 +460,29 @@ Id game_get_connection(Game *game, Id id_act, Direction direction);
  * @return Returns if the link between spaces is open (FALSE if there is no link)
  */
 Bool game_connection_is_open(Game *game, Id id_act, Direction direction);
+
+/**
+ * @brief It gets the player's turn
+ * @author Jaime Romero
+ * 
+ * @param game A pointer to Game
+ * @return The number indicating each player's turn 
+ */
+int game_get_turn(Game *game);
+
+/**
+ * @brief It establishes the player's turn
+ * @author Jaime Romero
+ * 
+ * @param game A pointer to Game
+ * @param turn An integrer with the player's turn
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_turn(Game *game, int turn);
+
+/**
+ * 
+ */
+Status game_next_turn(Game *game);
 
 #endif
