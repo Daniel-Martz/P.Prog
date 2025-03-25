@@ -66,6 +66,9 @@ character_test.o: character_test.c character_test.h character.h test.h types.h
 link_test.o: link_test.c link_test.h test.h link.h types.h
 	$(CC) $(CFLAGS) -o link_test.o link_test.c
 
+player_test.o: player_test.c player_test.h player.h test.h types.h
+	$(CC) $(CFLAGS) -o player_test.o player_test.c
+
 
 	
 # Limpiar archivos generados

@@ -44,8 +44,9 @@ Player* player_create (Id id){
     newPlayer->id = id;
     newPlayer->name[0] = '\0';
     newPlayer->location = NO_ID;
-    if(inventory_create(newPlayer->backpack) == NULL) return NULL;
+    if((newPlayer->backpack = inventory_create()) == NULL) return NULL;
     newPlayer->health = 10;
+    newPlayer->gdesc[0] = '\0';
 
     return newPlayer;
 }
