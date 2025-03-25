@@ -481,7 +481,11 @@ int game_get_turn(Game *game);
 Status game_set_turn(Game *game, int turn);
 
 /**
+ * @brief It changes the turn to the next one
+ * @author Jaime Romero
  * 
+ * @param game A pointer to game
+ * @return OK if everything worked properly or ERROR if it didn't
  */
 Status game_next_turn(Game *game);
 

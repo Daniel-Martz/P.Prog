@@ -583,4 +583,17 @@
     return OK;
   }
 
-  Status game_next_turn();
+  Status game_next_turn(Game *game){
+    int next_turn = -1;
+    if(!game) return ERROR;
+
+    if(game->turn == 1){
+      next_turn = 0;
+    } else if (game->turn == 0)
+    {
+      next_turn = 1;
+    }
+
+    game->turn = next_turn;
+    return OK;
+  }

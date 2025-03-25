@@ -12,6 +12,9 @@
 #define LIBSCREEN_H
 
 typedef struct _Area Area;
+typedef enum {BLUE, GREEN, BLACK, RED, YELLOW, PURPLE, CYAN, WHITE} Frame_color;
+
+
 
 /**
  * @brief It creates a new screen
@@ -31,7 +34,7 @@ void screen_init(int rows, int columns);
  * As it frees the screen, it must be called at the end of the program,
  *  once the areas created have been freed.
  */
-void screen_destroy(void);
+void screen_destroy();
 
 /**
  * @brief It paints in the terminal the actual screen composition
@@ -40,7 +43,7 @@ void screen_destroy(void);
  * This function should be called when some updates
  *  in the screen want to be shown.
  */
-void screen_paint(void);
+void screen_paint(Frame_color color);
 
 /**
  * @brief It creates a new area inside a screen
@@ -94,6 +97,6 @@ void screen_area_reset_cursor(Area* area);
  * @param area the area to be modified
  * @param str a string that contains the information to be included in a particular area
  */
-void screen_area_puts(Area* area, const char* str);
+void screen_area_puts(Area* area, char* str);
 
 #endif
