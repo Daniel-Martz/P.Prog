@@ -88,6 +88,28 @@ Status inventory_set_max_objs(Inventory *inventory, int max_objs);
 int inventory_get_max_objs(Inventory *inventory);
 
 /**
+ * @brief This function gets the number of objects ids in the inventory
+ * 
+ * @author Jimena Sanchiz
+ * 
+ * @param inventory A pointer to Inventory structure
+ * 
+ * @return -1 if there was a problem, and the number of objects ids in the inventory if everything was OK.
+ */
+int inventory_get_n_objs(Inventory *inventory);
+
+/**
+ * @brief This function gets the array of objects ids in the inventory
+ * 
+ * @author Jimena Sanchiz
+ * 
+ * @param inventory A pointer to Inventory structure
+ * 
+ * @return NULL if there was a problem, and the array of objects ids in the inventory if everything was OK.
+ */
+Id *inventort_get_obj_ids(Inventory *inventory);
+
+/**
  * @brief Prints the elements of the inventory
  * 
  * @author Jimena Sanchiz
