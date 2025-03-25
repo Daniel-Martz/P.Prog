@@ -20,7 +20,7 @@
 typedef enum { CMDS, CMDL } CommandType;
 
 /*It establishses a data type for the posible 7 commands*/
-typedef enum { NO_CMD = -1, UNKNOWN, EXIT, MOVE, TAKE, DROP, ATTACK, CHAT } CommandCode;
+typedef enum { NO_CMD = -1, UNKNOWN, EXIT, MOVE, INSPECT, TAKE, DROP, ATTACK, CHAT } CommandCode;
 
 /*It estiblishes a structure that will contain the name of the command*/
 typedef struct _Command Command;

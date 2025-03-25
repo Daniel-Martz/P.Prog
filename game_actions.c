@@ -215,7 +215,9 @@ Status game_actions_inspect(Game *game){
   }
 
   for(i = 0; i < space_get_nobjects(game_get_space(game, player_location)); i++){
-
+    if(!(strcasecmp(object_get_name(game_get_object(game, ids_aux[i])), objname))){
+      object_set_description(game_get_object(game, ids_aux[i]))
+    }
   }
 
   if(!(ids_aux = inventort_get_obj_ids(player_get_backpack(game_get_player(game))))){

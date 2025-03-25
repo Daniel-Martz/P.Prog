@@ -79,6 +79,20 @@ const char* object_get_name (Object* obj){
     return obj->name;
 }
 
+const char* object_get_description(Object *obj){
+    if (!obj) return NULL;
+    return obj->description; 
+}
+
+Status object_set_description(Object *obj, const char *objdes){
+    
+    if((!obj) || (!objdes)) return ERROR;
+
+    if(!(strcpy(obj->description, objdes))) return ERROR;
+
+    return OK;
+}
+
 Status object_print (Object* obj){
 
     if (!obj) return ERROR;
