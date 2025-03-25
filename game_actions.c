@@ -196,11 +196,14 @@ Status game_actions_inspect(Game *game){
 
   Id player_location = NO_ID, *ids_aux = NULL;
   char *objname = NULL;
+  char *description = NULL;
   int i;
-
+  
   if(!game){
     return ERROR;
   }
+  command_set_direction(game_get_last_command(game), U);
+  game_set_message(game, "");
 
   if(!(objname = command_get_objname(game_get_last_command(game)))){
     return ERROR;
@@ -216,7 +219,7 @@ Status game_actions_inspect(Game *game){
 
   for(i = 0; i < space_get_nobjects(game_get_space(game, player_location)); i++){
     if(!(strcasecmp(object_get_name(game_get_object(game, ids_aux[i])), objname))){
-      object_set_description(game_get_object(game, ids_aux[i]))
+      return game_set_message(game, object_get_description(game_get_object(game, ids_aux[i])));      
     }
   }
 
@@ -224,7 +227,13 @@ Status game_actions_inspect(Game *game){
     return ERROR;
   }
 
+  for(i = 0; i < inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++){
+    if(!(strcasecmp(object_get_name(game_get_object(game, ids_aux[i])), objname))){
+      return game_set_message(game, object_get_description(game_get_object(game, ids_aux[i])));
+    }
+  }
 
+  return ERROR;
 }
 
 Status game_actions_take(Game *game){
@@ -266,18 +275,32 @@ Status game_actions_take(Game *game){
 }
 Status game_actions_drop(Game *game){
   Id player_location = NO_ID;
-  Id object_id = NO_ID;
+  Id object_id = NO_ID, *objsinvent = NULL;
   Space *current_space = NULL;
   Player *player = NULL;
+  int i;
+  char *objname = NULL;
   
   if(!game) return ERROR;
   if(!(player = game_get_player(game))) return ERROR;
 
   command_set_direction(game_get_last_command(game), U);
-  command_set_objname(game_get_last_command(game), "");
   game_set_message(game, "");
 
-  object_id = player_get_object(player);
+  if(!(objsinvent = inventory_get_obj_ids(player_get_backpack(game_get_player(game))))){
+    return ERROR;
+  }
+
+  if(!(objname = command_get_objname(game_get_last_command(game)))){
+    return ERROR;
+  }
+
+  for(i=0; i<inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++){
+    if(!(strcasecmp(objname, objsinvent[i]))){
+      object_id = objsinvent[i];
+    }
+  }
+
   if(object_id == NO_ID) return ERROR;
 
   player_location = game_get_player_location(game);
@@ -290,7 +313,7 @@ Status game_actions_drop(Game *game){
   }
 
   space_set_new_object(current_space, object_id);
-  player_set_object(player, NO_ID);
+  inventory_delete_obj_id(player_get_backpack(game_get_player(game)), object_id);
   return OK;   
 }
 
