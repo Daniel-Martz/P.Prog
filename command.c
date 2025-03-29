@@ -193,6 +193,12 @@ Status command_get_input_from_string(Command* command, char* str) {
       token = strtok(NULL, "0 \n");
       command_set_objname(command, token);
     }
+
+    if(cmd == DROP){
+      token = strtok(NULL, "0 \n");
+      command_set_objname(command, token);
+    }
+
     if(cmd == MOVE){
       token = strtok(NULL, "0 \n");
       if (!strcasecmp(token, "North") || !strcasecmp(token, "n")) {
