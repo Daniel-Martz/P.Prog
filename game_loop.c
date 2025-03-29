@@ -16,6 +16,7 @@
 #include "game_actions.h"
 #include "graphic_engine.h"
 #include "game_reader.h"
+#include "types.h"
 
 #define CMD_LENGHT 30 /* It denotes the length needed for the string that stores the introduced command */
 

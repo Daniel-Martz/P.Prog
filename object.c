@@ -20,7 +20,7 @@
 struct _Object {
     Id id; /*!<The identification of the object*/
     char name[NAME_SIZE]; /*!<Objects name*/
-    char description[MAX_DESCRIP] /*!<The description of the object*/
+    char description[MAX_DESCRIP]; /*!<The description of the object*/
 };
 
 Object* object_create (Id id){
