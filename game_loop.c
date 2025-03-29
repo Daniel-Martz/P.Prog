@@ -178,6 +178,9 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Status log_status, char 
         fprintf(log_output, "ERROR\n");
       }
     }
+
+    graphic_engine_paint_game(gengine, game);
+    game_next_turn(game);
   }
 
   if ((game_get_finished(game)==TRUE) && (player_get_health(game_get_player(game)) == 0))

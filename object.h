@@ -123,7 +123,7 @@ const char* object_get_description(Object *obj);
  * 
  * @return OK if everything goes well, ERROR if there is a failure
  */
-Status object_set_description(Object *obj, const char *objdes)
+Status object_set_description(Object *obj, const char *objdes);
 
 #endif
 
