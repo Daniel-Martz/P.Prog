@@ -224,7 +224,7 @@ Status game_actions_inspect(Game *game){
     }
   }
 
-  if(!(ids_aux = inventort_get_obj_ids(player_get_backpack(game_get_player(game))))){
+  if(!(ids_aux = inventory_get_obj_ids(player_get_backpack(game_get_player(game))))){
     return ERROR;
   }
 
@@ -239,7 +239,7 @@ Status game_actions_inspect(Game *game){
 
 Status game_actions_take(Game *game){
   Id player_location = NO_ID;
-  Id object = NO_ID;
+  Id object;
   Player *player = NULL;
   char *objname = NULL;
 
@@ -253,7 +253,6 @@ Status game_actions_take(Game *game){
   /* Take the player*/
   if(!(player = game_get_player(game))) return ERROR;
   /* Make sure that the player has no objects*/
-  if(player_get_object(player) != NO_ID) return ERROR;
 
   player_location = game_get_player_location(game);/* Initializate player_location*/
   if(player_location == NO_ID){
@@ -269,11 +268,13 @@ Status game_actions_take(Game *game){
     return ERROR;
   }
 
-  player_set_object(player, object);/* Copy the object in the player */
-  space_object_del(game_get_space(game, player_location), object); /*Delete the object from the sapce*/
+  if(inventory_add_obj_id(player_get_backpack(player), object) == ERROR){
+    return ERROR;
+  }
 
-  return OK;
+  return space_object_del(game_get_space(game, player_location), object); /*Delete the object from the sapce*/
 }
+
 Status game_actions_drop(Game *game){
   Id player_location = NO_ID;
   Id object_id = NO_ID, *objsinvent = NULL;
@@ -288,7 +289,7 @@ Status game_actions_drop(Game *game){
   command_set_direction(game_get_last_command(game), U);
   game_set_message(game, "");
 
-  if(!(objsinvent = inventory_get_obj_ids(player_get_backpack(game_get_player(game))))){
+  if(!(objsinvent = player_get_objects_ids(player))){
     return ERROR;
   }
 
@@ -297,8 +298,9 @@ Status game_actions_drop(Game *game){
   }
 
   for(i=0; i<inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++){
-    if(!(strcasecmp(objname, objsinvent[i]))){
+    if(!(strcasecmp(objname, object_get_name(game_get_object(game,objsinvent[i]))))){
       object_id = objsinvent[i];
+      break;
     }
   }
 

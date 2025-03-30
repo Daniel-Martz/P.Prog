@@ -54,6 +54,15 @@ Status player_destroy (Player* player);
 Id player_get_id (Player* player);
 
 /**
+ * @brief It gets all the ids of the objects that the player ports
+ * @author Daniel Martinez
+ *
+ * @param player a pointer to the player
+ * @return an array of object's ids
+ */
+Id *player_get_objects_ids (Player *player);
+
+/**
  * @brief It gets the backpack the player is carrying
  * @author Jimena Sanchiz
  *

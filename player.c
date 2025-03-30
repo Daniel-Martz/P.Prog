@@ -61,9 +61,18 @@ Status player_destroy (Player* player){
 
 /*============================Get============================*/
 Id player_get_id (Player* player){
-
     if (!player) return NO_ID;
     return player->id;
+}
+
+Id *player_get_objects_ids (Player *player){
+    Inventory *player_bp = NULL;
+
+    if(!player) return NULL;
+    player_bp = player_get_backpack(player);
+
+    return inventory_get_obj_ids(player_bp);
+
 }
 
 Inventory *player_get_backpack (Player* player){
