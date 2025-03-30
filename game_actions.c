@@ -9,6 +9,7 @@
  */
 
 #include "game_actions.h"
+#include "inventory.h"
 
 #include <stdio.h>
 #include <stdlib.h>

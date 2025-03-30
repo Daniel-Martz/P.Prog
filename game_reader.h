@@ -13,6 +13,8 @@
 
 #include "game.h"
 #include "types.h"
+#include "link.h"
+#include "inventory.h"
 
 /**
  * @brief It assigns to the space every id, loaded from a file

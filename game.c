@@ -11,6 +11,7 @@
  #include "game.h"
  #include "game_reader.h"
  #include "character.h"
+ #include "link.h"
  
  
  #include <stdio.h>
