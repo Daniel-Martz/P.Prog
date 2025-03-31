@@ -14,8 +14,8 @@
 
 
 struct _Inventory {
-    Set *objs;
-    int max_objs;
+    Set *objs; /*!< A set of object ids */
+    int max_objs; /*!< The maximum number of object ids */
 };
 
 Inventory *inventory_create() {
