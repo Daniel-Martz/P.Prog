@@ -4,7 +4,7 @@ CFLAGS = -Wall -ansi -pedantic -g -c
 OBJS = command.o space.o graphic_engine.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o
 EXEC = proyecto
 
-.PHONY: all clean
+.PHONY: all clean runv run testset testcharacter testspace crunv crun
 # Regla principal
 all: $(EXEC)
 

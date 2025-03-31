@@ -34,7 +34,7 @@
    int n_characters; /*!< Number of characters that the game has */
    int n_links; /*!< Number of links that the game has */
    int n_players; /*!< Number of players that the game has */
-   int turn; /*!< Integrer defining the player's turn (0 or 1)*/
+   int turn; /*!< Integrer defining the player's turn */
    Command *last_cmd; /*!< It stores the last command called */
    Bool finished; /*!< It defines if the game finished or not */
    Character *characters[MAX_CHARACTERS]; /*!< It contains all the characters of the game*/
