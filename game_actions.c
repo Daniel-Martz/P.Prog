@@ -120,11 +120,11 @@ Status game_actions_update(Game *game, Command *command) {
       break;
 
     case MOVE:
-    game_set_las_cmd_status(game, game_actions_move(game));
+    game_set_last_cmd_status(game, game_actions_move(game));
       break;
     
     case INSPECT:
-    game_set_las_cmd_status(game, game_actions_inspect(game));
+    game_set_last_cmd_status(game, game_actions_inspect(game));
       break;
       
     case TAKE:
