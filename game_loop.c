@@ -108,7 +108,7 @@ int game_loop_init(Game **game, Graphic_engine **gengine, char *file_name, Statu
     return 1;
   }
 
-  if (log_status==FALSE) {
+  if (log_status==ERROR) {
     if ((*gengine = graphic_engine_create()) == NULL) {
       fprintf(stderr, "Error while initializing graphic engine.\n");
       game_destroy(*game);
@@ -131,19 +131,19 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Status log_status, char 
   Status st;
   int i;
 
-  if (log_status==FALSE) {
+  if (log_status==ERROR) {
     if (!gengine || !game) {
       return;
     }
   }
 
-  if (log_status==TRUE) {
+  if (log_status==OK) {
     if (!game) {
       return;
     }
   }
 
-  if (log_status==TRUE) {
+  if (log_status==OK) {
     if (!(log_file = fopen(log_name, "r"))) {
       fprintf(stderr, "Error while opening the log file");
       return;
@@ -157,16 +157,16 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Status log_status, char 
   last_cmd=game_get_last_command(game);
   
   while ((command_get_code(last_cmd) != EXIT) && (game_get_finished(game) == FALSE)) {
-    if (log_status==FALSE) {
+    if (log_status==ERROR) {
       graphic_engine_paint_game(gengine, game);
       command_get_user_input(last_cmd);
     }
-    if (log_status==TRUE) {
+    if (log_status==OK) {
       fgets(command, CMD_LENGHT, log_file);
       command_get_input_from_string(last_cmd, command);
     }
     st = game_actions_update(game, last_cmd);
-    if (log_status==TRUE) {
+    if (log_status==OK) {
       for (i=0; i<N_CMD-1; i++) {
         if (command_get_code(last_cmd) == i) {
           fprintf(log_output, "%s ", cmd_to_str[i+1][CMDL]);
@@ -186,18 +186,18 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Status log_status, char 
 
   if ((game_get_finished(game)==TRUE) && (player_get_health(game_get_player(game)) == 0))
   {
-    if(log_status==FALSE) {
+    if(log_status==ERROR) {
       graphic_engine_paint_game(gengine, game);
       printf("GAME OVER");
     }
-    if(log_status==TRUE) {
+    if(log_status==OK) {
       fprintf(log_output, "GAME OVER\n");
       fclose(log_file);
       fclose(log_output);
     }
   }
   else {
-    if(log_status==TRUE) {
+    if(log_status==OK) {
       fclose(log_file);
       fclose(log_output);
     }
