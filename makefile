@@ -69,11 +69,29 @@ character_test: character_test.o character.o
 character_test.o: character_test.c character_test.h character.h test.h types.h
 	$(CC) $(CFLAGS) -o character_test.o character_test.c
 
+link_test: link_test.o link.o
+	$(CC) -o link_test link_test.o link.o
+
 link_test.o: link_test.c link_test.h test.h link.h types.h
 	$(CC) $(CFLAGS) -o link_test.o link_test.c
 
+player_test: player_test.o player.o
+	$(CC) -o player_test player_test.o player.o
+
 player_test.o: player_test.c player_test.h player.h test.h types.h
 	$(CC) $(CFLAGS) -o player_test.o player_test.c
+
+object_test: object_test.o object.o
+	$(CC) -o object_test object_test.o object.o
+
+object_test.o: object_test.c object_test.h object.h test.h types.h
+	$(CC) $(CFLAGS) -o object_test.o object_test.c
+
+inventory_test: inventory_test.o inventory.o
+	$(CC) -o inventory_test inventory_test.o inventory.o
+
+inventory_test.o: inventory_test.c inventory_test.h inventory.h test.h
+	$(CC) $(CFLAGS) -o inventory_test.o inventory_test.c
 
 
 	
@@ -97,11 +115,25 @@ testspace: space_test
 testset: set_test 
 	./set_test 
 
+# Ejecutar el archivo de testeo player
+testplayer: player_test
+	./player_test
+
+# Ejecutar el archivo de testeo character
 testcharacter: character_test
 	./character_test
 
+# Ejecutar el archivo de testeo object
+testobject: object_test
+	./object_test
+
+# Ejecutar el archivo de testeo link
 testlink: link_test
 	./link_test
+
+# Ejecutar el archivo de testeo inventory
+testinventory: inventory_test
+	./inventory_test
 
 # Ejecutar el valgrind con castle
 crunv :
