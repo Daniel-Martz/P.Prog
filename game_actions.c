@@ -197,7 +197,6 @@ Status game_actions_inspect(Game *game){
 
   Id player_location = NO_ID, *ids_aux = NULL;
   char *objname = NULL;
-  char *description = NULL;
   int i;
   
   if(!game){
