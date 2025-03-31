@@ -34,6 +34,7 @@ Object* object_create (Id id){
 
     obj->id = id;
     obj->name[0] = '\0';
+    obj->description[0] = '\0';
 
     return obj;
 }
