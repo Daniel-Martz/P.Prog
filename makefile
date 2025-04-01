@@ -4,7 +4,7 @@ CFLAGS = -Wall -ansi -pedantic -g -c
 OBJS = command.o space.o graphic_engine.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o link.o inventory.o
 EXEC = proyecto
 
-.PHONY: all clean runv run testset testcharacter testspace crunv crun doxyfile
+.PHONY: all clean runv run testset testcharacter testspace testinventory testplayer testobject testlink crunv crun doxyfile
 # Regla principal
 all: $(EXEC)
 
@@ -97,7 +97,7 @@ inventory_test.o: inventory_test.c inventory_test.h inventory.h test.h
 	
 # Limpiar archivos generados
 clean:
-	rm -f $(EXEC) $(OBJS) space_test space_test.o set_test set_test.o character_test character_test.o link_test.o Doxyfile
+	rm -f $(EXEC) $(OBJS) space_test space_test.o set_test set_test.o character_test character_test.o link_test.o inventory_test inventory_test.o object_test object_test.o player_test player_test.o
 
 # Correr valgrind
 runv :
@@ -144,4 +144,4 @@ crun: $(EXEC)
 	./$(EXEC) castle.dat
 
 doxyfile: 
-	doxygen -g Doxyfile
+	Doxygen -g
