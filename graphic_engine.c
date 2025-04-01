@@ -405,16 +405,9 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     sprintf(str, " %s (%s): %s", cmd_to_str[last_cmd - NO_CMD][CMDL], cmd_to_str[last_cmd - NO_CMD][CMDS], cmd_result);
     screen_area_puts(ge->feedback, str);
 
-    /* Dump to the terminal */
-    if (game_get_turn(game)%2 == 0)
-    {
-      screen_paint(BLUE);
-      printf("prompt:> ");
-    } else
-    {
-      screen_paint(GREEN);
-      printf("prompt:> ");
-    }
+    /* Dump to the terminal */    
+    screen_paint(game_get_turn(game));
+    printf("prompt:> ");
 
     /* PONER FREES DE LOS ESPACIOS */
     if (space_back != space_empty) {
