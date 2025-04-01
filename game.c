@@ -371,7 +371,7 @@
   Id space_id;
    
   if (!(game)) {
-    return NULL;
+    return POINT_ERROR;
   }
 
   for(i=0; i<game->n_objects;i++) {
@@ -417,7 +417,7 @@
   Id space_id;
    
   if (!(game)) {
-    return NULL;
+    return POINT_ERROR;
   }
 
   for(i=0; i<game->n_characters;i++) {
