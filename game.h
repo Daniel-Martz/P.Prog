@@ -24,7 +24,7 @@
 #define MAX_OBJECTS 100 /* Constant that estabilshes the maximum number of objects as 100*/
 #define MAX_CHARACTERS 100 /* Constant that estabilshes the maximum number of characters as 100*/
 #define MAX_LINKS 100 /* Constant that estabilshes the maximum number of links as 100*/
-#define MAX_PLAYERS 5 /* Constant that estabilshes the maximum number of players as 5*/
+#define MAX_PLAYERS 8 /* Constant that estabilshes the maximum number of players as 8*/
 
 typedef struct _Game Game;
 
