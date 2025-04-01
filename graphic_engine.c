@@ -336,51 +336,53 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     /* Paint in the description area */
     screen_area_clear(ge->descript);
     /*PASAMOS ARRAY DE OBJETOS A IDS*/
-    objects = game_get_objects_discovered(game);
-    if(!(objects_location =(Id*)calloc(game_get_n_objects_discovered(game),sizeof(Id)))){
-      return;
-    }
-      for(i=0; i < game_get_n_objects_discovered(game); i++){
-        objects_location[i] = game_get_object_location(game, object_get_id(objects[i]));
-      }
-    
-    /*IMPRESION*/
-    if (objects_location != NULL) {
-      sprintf(str, "  Objects: ");
+    if(!(objects = game_get_characters_discovered(game))){
+      fprintf(" There are no objects discovered", str);
       screen_area_puts(ge->descript, str);
-      for(i=0; i< game_get_nobjects(game); i++){
-        sprintf(str, " %s: %i",object_get_name(game_get_object(game,object_get_id(objects[i]))), (int)objects_location[i]);
-        screen_area_puts(ge->descript, str);
-      }
     }
     else{
-      sprintf(str, "  No objects");
-      screen_area_puts(ge->descript, str);
+      if(!(objects_location =(Id*)calloc(game_get_n_objects_discovered(game),sizeof(Id)))){
+        return;
+      }
+        for(i=0; i < game_get_n_objects_discovered(game); i++){
+          objects_location[i] = game_get_object_location(game, object_get_id(objects[i]));
+        }
+      
+      /*IMPRESION*/
+      if (objects_location != NULL) {
+        sprintf(str, "  Objects: ");
+        screen_area_puts(ge->descript, str);
+        for(i=0; i< game_get_nobjects(game); i++){
+          sprintf(str, " %s: %i",object_get_name(game_get_object(game,object_get_id(objects[i]))), (int)objects_location[i]);
+          screen_area_puts(ge->descript, str);
+        }
+      }
     }
     screen_area_puts(ge->descript, "          ");
 
     /*PASAMOS ARRAY DE CHARACTERS A IDS*/
-    characters = game_get_characters_discovered(game);
+    if(!(characters = game_get_characters_discovered(game))){
+      fprintf(" There are no characters discovered", str);
+      screen_area_puts(ge->descript, str);
+    }
 
-    if(!(characters_location = (Id*)calloc(game_get_n_characters_discovered(game),sizeof(Id)))){
-      return;
-    }
-    
-    for(i=0; i< game_get_ncharacters(game) ; i++){
-      characters_location[i] = game_get_character_location(game, character_get_id(characters[i]));
-    }
-    /*IMPRESION*/
-    if (game_get_ncharacters(game) != 0) {
-      sprintf(str, "  Characters: ");
-      screen_area_puts(ge->descript, str);
-      for(i=0; i< game_get_n_characters_discovered(game); i++){
-        sprintf(str, " %6.6s : %i (%i)",character_get_gdesc(characters[i]), (int)characters_location[i],character_get_health(characters[i]));
-        screen_area_puts(ge->descript, str);
-      }
-    }
     else{
-      sprintf(str, "  No characters");
-      screen_area_puts(ge->descript, str);
+      if(!(characters_location = (Id*)calloc(game_get_n_characters_discovered(game),sizeof(Id)))){
+        return;
+      }
+      
+      for(i=0; i< game_get_ncharacters(game) ; i++){
+        characters_location[i] = game_get_character_location(game, character_get_id(characters[i]));
+      }
+      /*IMPRESION*/
+      if (game_get_ncharacters(game) != 0) {
+        sprintf(str, "  Characters: ");
+        screen_area_puts(ge->descript, str);
+        for(i=0; i< game_get_n_characters_discovered(game); i++){
+          sprintf(str, " %6.6s : %i (%i)",character_get_gdesc(characters[i]), (int)characters_location[i],character_get_health(characters[i]));
+          screen_area_puts(ge->descript, str);
+        }
+      }
     }
 
     screen_area_puts(ge->descript, "       ");
