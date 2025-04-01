@@ -97,7 +97,7 @@ inventory_test.o: inventory_test.c inventory_test.h inventory.h test.h
 	
 # Limpiar archivos generados
 clean:
-	rm -f $(EXEC) $(OBJS) space_test space_test.o set_test set_test.o character_test character_test.o link_test.o
+	rm -f $(EXEC) $(OBJS) space_test space_test.o set_test set_test.o character_test character_test.o link_test.o Doxyfile
 
 # Correr valgrind
 runv :
@@ -144,4 +144,4 @@ crun: $(EXEC)
 	./$(EXEC) castle.dat
 
 doxyfile: 
-	Doxygen -g
+	doxygen -g Doxyfile
