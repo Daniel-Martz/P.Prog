@@ -220,10 +220,10 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   screen_area_clear(ge->map);
   if ((id_act = (game_get_player_location(game))) != NO_ID) {
     space_act = game_get_space(game, id_act);
-    id_back = game_get_connection(game, space_act, N);
-    id_next = game_get_connection(game, space_act, S);
-    id_left = game_get_connection(game, space_act, W);
-    id_right = game_get_connection(game, space_act, E);
+    id_back = game_get_connection(game, id_act, N);
+    id_next = game_get_connection(game, id_act, S);
+    id_left = game_get_connection(game, id_act, W);
+    id_right = game_get_connection(game, id_act, E);
     player_objects = player_get_objects_ids(game_get_player(game));
 
     if (space_empty == NULL) { 
@@ -363,10 +363,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     sprintf(str,"  Player: %i (%i)",(int)id_act,player_get_health(game_get_player(game)));
     screen_area_puts(ge->descript, str);
-    if(object_port != NO_ID){
-      sprintf(str, "  Player object: %i",(int)object_port);
-      screen_area_puts(ge->descript, str);
+    if(player_objects != NULL){
+      sprintf(str, "  Player object:");
+      for(i = 0; i < inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++ ){
+        sprintf(str, "%s %i",str, (int)player_objects[i]);
+        screen_area_puts(ge->descript, str);
+      }
     }
+
     else{
       screen_area_puts(ge->descript, "  Player has no object");
     }
