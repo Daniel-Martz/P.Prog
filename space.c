@@ -26,7 +26,6 @@ struct _Space {
   Id character;              /*!< It contains the id of the character */
   char gdesc[N_ROWS][N_COLUMNS]; /*!< An array of five strings, with 9 characters each (+1 for the '\0')*/
   Bool discovered;
-
 };
 
 /*=======================Create and Destroy========================*/
@@ -193,7 +192,6 @@ Bool space_get_discovered(Space *space) {
 
 /*============================Print============================*/
 Status space_print(Space* space) {
-  Id idaux = NO_ID;
   int i=0;
 
   /* Error Control */

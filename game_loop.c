@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "command.h"
 #include "game.h"
@@ -180,7 +181,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Status log_status, char 
       }
     }
 
-    graphic_engine_paint_game(gengine, game);
+    if (game_get_nplayers(game) > 1) {sleep(1.5);}
     game_next_turn(game);
   }
 
