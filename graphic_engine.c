@@ -460,7 +460,9 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     }
 
     free(objects_location);
+    free(objects);
     free(characters_location);
+    free(characters);
   }
   
 }
