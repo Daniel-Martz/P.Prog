@@ -203,7 +203,7 @@ char **graphic_engine_print_space(Id space_id, Game *game){
 
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   /* Declare de needed local variables of the function */
-  Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, id_left = NO_ID, id_right = NO_ID, *objects_location = NULL, *characters_location = NULL, object_port = NO_ID;
+  Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, id_left = NO_ID, id_right = NO_ID, *objects_location = NULL, *characters_location = NULL, *player_objects = NULL;
   Space *space_act = NULL;
   char str[MAX_STR];
   char **space_empty = NULL;
@@ -220,11 +220,11 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   screen_area_clear(ge->map);
   if ((id_act = (game_get_player_location(game))) != NO_ID) {
     space_act = game_get_space(game, id_act);
-    id_back = space_get_north(space_act);
-    id_next = space_get_south(space_act);
-    id_left = space_get_west(space_act);
-    id_right = space_get_east(space_act);
-    object_port = player_get_object(game_get_player(game));
+    id_back = game_get_connection(game, space_act, N);
+    id_next = game_get_connection(game, space_act, S);
+    id_left = game_get_connection(game, space_act, W);
+    id_right = game_get_connection(game, space_act, E);
+    player_objects = player_get_objects_ids(game_get_player(game));
 
     if (space_empty == NULL) { 
       if (!(space_empty = (char **)calloc(HEIGHT_MAP, sizeof(char *)))) {
