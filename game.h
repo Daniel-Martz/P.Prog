@@ -200,6 +200,15 @@ Status game_set_player_location(Game *game, Id location);
 Id game_get_character_location(Game *game, Id id);
 
 /**
+ * @brief It gets all the objects in the discovered spaces
+ * 
+ * @author Jimena Sanchiz
+ * @param game A pointer to the game
+ * @return An array of the objects in the discovered spaces
+ */
+Object **game_get_objects_discovered(Game *game);
+
+/**
  * @brief It sets to an object a location
  * 
  * @author Daniel Martínez

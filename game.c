@@ -341,6 +341,30 @@
    }
    return NO_ID;
  }
+
+ Object **game_get_objects_discovered(Game *game) {
+  int i, j, n = 0; 
+  Id space_id;
+  Object *objects_discovered[MAX_OBJECTS];
+   
+  if (!(game)) {
+    return NULL;
+  }
+
+  for(i=0; i<game->n_objects;i++) {
+    space_id = game_get_object_location(game, object_get_id(game->objects[i]));
+    for(j=0; j<game->n_spaces; j++) {
+      if(space_get_id(game->spaces[j]) == space_id) {
+        if(space_get_discovered(game->spaces[j]) == TRUE) {
+          objects_discovered[n] = game->objects[i];
+          n++;
+        }
+        break;
+      }
+    }
+  }
+  return objects_discovered;
+ }
  
  Id game_object_in_the_space(Game *game, Id space_id){
    int i;
