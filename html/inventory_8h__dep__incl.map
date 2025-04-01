@@ -1,0 +1,40 @@
+<map id="inventory.h" name="inventory.h">
+<area shape="rect" id="Node000001" title="It defines the Inventory module." alt="" coords="625,5,720,31"/>
+<area shape="rect" id="Node000002" href="$game_8h.html" title="It defines the game interface." alt="" coords="396,152,467,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="643,40,452,154,449,150,640,36"/>
+<area shape="rect" id="Node000005" href="$game__actions_8c.html" title="It implements the game update through user actions." alt="" coords="559,299,683,324"/>
+<area shape="poly" id="edge14_Node000001_Node000005" title=" " alt="" coords="668,45,659,79,637,207,625,299,619,298,632,207,654,78,663,43"/>
+<area shape="rect" id="Node000007" href="$game__reader_8h.html" title="It defines the functions in charge of creating the spaces" alt="" coords="67,225,185,251"/>
+<area shape="poly" id="edge15_Node000001_Node000007" title=" " alt="" coords="632,38,156,228,154,223,630,33"/>
+<area shape="rect" id="Node000011" href="$inventory_8c.html" title="It implements the Inventory module." alt="" coords="669,79,762,104"/>
+<area shape="poly" id="edge16_Node000001_Node000011" title=" " alt="" coords="689,41,711,77,706,80,684,44"/>
+<area shape="rect" id="Node000012" href="$inventory__test_8h.html" title="It declares the tests for the inventory module." alt="" coords="893,79,1021,104"/>
+<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="732,31,911,76,910,81,731,37"/>
+<area shape="rect" id="Node000014" href="$player_8h.html" title="It implements the player module." alt="" coords="786,79,861,104"/>
+<area shape="poly" id="edge19_Node000001_Node000014" title=" " alt="" coords="710,34,800,76,798,81,708,39"/>
+<area shape="rect" id="Node000003" href="$game_8c.html" title="It implements the game structure." alt="" coords="148,299,219,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="383,176,317,194,282,209,250,227,231,244,214,264,192,300,187,297,210,261,227,241,247,223,280,204,315,189,382,171"/>
+<area shape="rect" id="Node000004" href="$game__actions_8h.html" title="It defines the game update interface." alt="" coords="469,225,594,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="460,183,517,223,513,227,457,187"/>
+<area shape="rect" id="Node000006" href="$game__loop_8c.html" title="It defines the game loop." alt="" coords="399,299,504,324"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="437,191,452,298,447,299,432,192"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="383,180,176,228,174,223,382,175"/>
+<area shape="rect" id="Node000009" href="$graphic__engine_8h.html" title="It defines the graphic engine interface." alt="" coords="261,225,394,251"/>
+<area shape="poly" id="edge11_Node000002_Node000009" title=" " alt="" coords="405,187,346,227,343,223,402,183"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="558,257,608,296,604,301,555,261"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="510,262,466,300,463,296,507,258"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="146,260,176,297,172,300,142,263"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="192,251,399,296,398,301,191,256"/>
+<area shape="rect" id="Node000008" href="$game__reader_8c.html" title="It creates and adds the spaces." alt="" coords="5,299,124,324"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="109,263,77,300,73,297,105,260"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="360,255,432,296,430,301,358,260"/>
+<area shape="rect" id="Node000010" href="$graphic__engine_8c.html" title="It implements a textual graphic engine." alt="" coords="243,299,375,324"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="323,265,314,299,309,298,318,263"/>
+<area shape="rect" id="Node000013" href="$inventory__test_8c.html" title="It tests the inventory module." alt="" coords="897,152,1024,177"/>
+<area shape="poly" id="edge18_Node000012_Node000013" title=" " alt="" coords="961,118,963,152,957,152,955,118"/>
+<area shape="poly" id="edge20_Node000014_Node000002" title=" " alt="" coords="773,107,598,139,467,160,467,155,597,134,772,102"/>
+<area shape="rect" id="Node000015" href="$player__test_8h.html" title="It declares the tests for the player module." alt="" coords="766,152,873,177"/>
+<area shape="poly" id="edge21_Node000014_Node000015" title=" " alt="" coords="825,118,823,152,817,152,819,118"/>
+<area shape="rect" id="Node000016" href="$player__test_8c.html" title="It tests player module." alt="" coords="766,225,873,251"/>
+<area shape="poly" id="edge22_Node000015_Node000016" title=" " alt="" coords="822,191,822,225,817,225,817,191"/>
+</map>

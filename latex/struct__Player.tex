@@ -1,0 +1,84 @@
+\doxysection{\+\_\+\+Player Struct Reference}
+\hypertarget{struct__Player}{}\label{struct__Player}\index{\_Player@{\_Player}}
+
+
+This struct stores all the information of a player.  
+
+
+
+
+Collaboration diagram for \+\_\+\+Player\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{struct__Player__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Id \mbox{\hyperlink{struct__Player_a60d635cd063816a9c1bd873f4868bb90}{id}}
+\item 
+char \mbox{\hyperlink{struct__Player_adda99df91c28eb58d392f2b43fc6898f}{name}} \mbox{[}WORD\+\_\+\+SIZE\mbox{]}
+\item 
+Id \mbox{\hyperlink{struct__Player_adbb6195d15b88f3f658e74274eff52d8}{location}}
+\item 
+\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct__Player_a566b4fc26d28f33d9bd2a1743ae6c067}{backpack}}
+\item 
+long \mbox{\hyperlink{struct__Player_a187de1986ebf1a6122375374fd4a35d6}{health}}
+\item 
+char \mbox{\hyperlink{struct__Player_a08dde9230ec85ef55120dba8d5c3c161}{gdesc}} \mbox{[}G\+\_\+\+DESC\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This struct stores all the information of a player. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct__Player_a566b4fc26d28f33d9bd2a1743ae6c067}\label{struct__Player_a566b4fc26d28f33d9bd2a1743ae6c067} 
+\index{\_Player@{\_Player}!backpack@{backpack}}
+\index{backpack@{backpack}!\_Player@{\_Player}}
+\doxysubsubsection{\texorpdfstring{backpack}{backpack}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Inventory}{Inventory}}\texorpdfstring{$\ast$}{*} \+\_\+\+Player\+::backpack}
+
+IInventory of the objects carried by the player \Hypertarget{struct__Player_a08dde9230ec85ef55120dba8d5c3c161}\label{struct__Player_a08dde9230ec85ef55120dba8d5c3c161} 
+\index{\_Player@{\_Player}!gdesc@{gdesc}}
+\index{gdesc@{gdesc}!\_Player@{\_Player}}
+\doxysubsubsection{\texorpdfstring{gdesc}{gdesc}}
+{\footnotesize\ttfamily char \+\_\+\+Player\+::gdesc\mbox{[}G\+\_\+\+DESC\mbox{]}}
+
+Player\textquotesingle{}s graphic description \Hypertarget{struct__Player_a187de1986ebf1a6122375374fd4a35d6}\label{struct__Player_a187de1986ebf1a6122375374fd4a35d6} 
+\index{\_Player@{\_Player}!health@{health}}
+\index{health@{health}!\_Player@{\_Player}}
+\doxysubsubsection{\texorpdfstring{health}{health}}
+{\footnotesize\ttfamily long \+\_\+\+Player\+::health}
+
+Player\textquotesingle{}s healthpoints \Hypertarget{struct__Player_a60d635cd063816a9c1bd873f4868bb90}\label{struct__Player_a60d635cd063816a9c1bd873f4868bb90} 
+\index{\_Player@{\_Player}!id@{id}}
+\index{id@{id}!\_Player@{\_Player}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily Id \+\_\+\+Player\+::id}
+
+The identification for the player \Hypertarget{struct__Player_adbb6195d15b88f3f658e74274eff52d8}\label{struct__Player_adbb6195d15b88f3f658e74274eff52d8} 
+\index{\_Player@{\_Player}!location@{location}}
+\index{location@{location}!\_Player@{\_Player}}
+\doxysubsubsection{\texorpdfstring{location}{location}}
+{\footnotesize\ttfamily Id \+\_\+\+Player\+::location}
+
+Player\textquotesingle{}s location (stored as an Id) \Hypertarget{struct__Player_adda99df91c28eb58d392f2b43fc6898f}\label{struct__Player_adda99df91c28eb58d392f2b43fc6898f} 
+\index{\_Player@{\_Player}!name@{name}}
+\index{name@{name}!\_Player@{\_Player}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char \+\_\+\+Player\+::name\mbox{[}WORD\+\_\+\+SIZE\mbox{]}}
+
+Player\textquotesingle{}s name 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+player.\+c\end{DoxyCompactItemize}

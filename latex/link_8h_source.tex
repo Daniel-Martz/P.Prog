@@ -1,0 +1,46 @@
+\doxysection{link.\+h}
+\hypertarget{link_8h_source}{}\label{link_8h_source}\mbox{\hyperlink{link_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ LINK\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ LINK\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ MAX\_NAME\ 50}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct__Link}{\_Link}}\ \mbox{\hyperlink{struct__Link}{Link}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00033\ \mbox{\hyperlink{struct__Link}{Link}}\ *\mbox{\hyperlink{link_8h_a1e662c55d1ea0191b66372f0fa57ac1c}{link\_create}}(Id\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00044\ Status\ \mbox{\hyperlink{link_8h_a9db25e3b95dbce3ccd993329e103ef0f}{link\_destroy}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{link_8h_a83e4213e55c22889d0aa441d1d2c24aa}{link\_get\_name}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00067\ Status\ \mbox{\hyperlink{link_8h_ab56e0464805b4bb827b9e35219853fa9}{link\_set\_name}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link,\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct__Link_a4af790a3cc583bdc48eca59559f7b71c}{name}});}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00078\ Id\ \mbox{\hyperlink{link_8h_a07dbaa47c78e51d9d70e42611725eaae}{link\_get\_origin}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00090\ Status\ \mbox{\hyperlink{link_8h_a8f3228cb8881f397d4bb77dc1bc8a75b}{link\_set\_origin}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link,\ Id\ \mbox{\hyperlink{struct__Link_af039079d7500b5ab11ae21ef672cbf5f}{origin}});}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00101\ Id\ \mbox{\hyperlink{link_8h_a4a010cecfbeb45a964a4a10bac0e1904}{link\_get\_destination}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00113\ Status\ \mbox{\hyperlink{link_8h_ab10582ff2392fae7138a6be5deac27ce}{link\_set\_destination}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link,\ Id\ \mbox{\hyperlink{struct__Link_aae5a495d4f85697715abe75da7c59cd0}{destination}});}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00124\ Direction\ \mbox{\hyperlink{link_8h_a45c192f1efaa9863a150e51d1a0f2756}{link\_get\_direction}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00136\ Status\ \mbox{\hyperlink{link_8h_ae8acb2f221c7484c5ffcc8e32cd08b81}{link\_set\_direction}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link,\ Direction\ \mbox{\hyperlink{struct__Link_a46b56d4039e8287a5564e5950d66ca74}{direction}});}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00147\ Bool\ \mbox{\hyperlink{link_8h_a1edd9bfd5e282b2d150858dcfaba868b}{link\_get\_open}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00159\ Status\ \mbox{\hyperlink{link_8h_a3d8624ed833e4c2322045da446b53e30}{link\_set\_open}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link,\ Bool\ status);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00170\ Status\ \mbox{\hyperlink{link_8h_a63adc8ec3b6a842f6e2dee947ae0d15b}{link\_print}}(\mbox{\hyperlink{struct__Link}{Link}}\ *link);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

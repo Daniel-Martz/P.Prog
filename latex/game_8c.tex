@@ -1,0 +1,1291 @@
+\doxysection{game.\+c File Reference}
+\hypertarget{game_8c}{}\label{game_8c}\index{game.c@{game.c}}
+
+
+It implements the game structure.  
+
+
+{\ttfamily \#include "{}game.\+h"{}}\newline
+{\ttfamily \#include "{}game\+\_\+reader.\+h"{}}\newline
+{\ttfamily \#include "{}character.\+h"{}}\newline
+{\ttfamily \#include "{}link.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for game.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__Game}{\+\_\+\+Game}}
+\begin{DoxyCompactList}\small\item\em This struct stores all the information of the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{game_8c_a60c4f73d78cb83926e82d8775906b121}\label{game_8c_a60c4f73d78cb83926e82d8775906b121} 
+\#define {\bfseries INIT\+\_\+\+ID}~1 /\texorpdfstring{$\ast$}{*}Constant that refers to the starting id of a player and object \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Id \mbox{\hyperlink{game_8c_ad2dfd865e2bd2c545a15d33f4d1cf3ae}{game\+\_\+get\+\_\+space\+\_\+id\+\_\+at}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, int position)
+\begin{DoxyCompactList}\small\item\em Determines the space where the player is. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_a4c63edcd5208bea5cb694d99df6d76d5}{game\+\_\+create}} (void)
+\begin{DoxyCompactList}\small\item\em It initialices every variable of Game to default values (0, NULL, NO\+\_\+\+ID...) \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_afff2609612cb1b1a6049e538d219e244}{game\+\_\+add\+\_\+space}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, \mbox{\hyperlink{struct__Space}{Space}} \texorpdfstring{$\ast$}{*}space)
+\begin{DoxyCompactList}\small\item\em It adds a new space to the game. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a612a5e67878efd67e34e1447464a2a3c}{game\+\_\+add\+\_\+object}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, \mbox{\hyperlink{struct__Object}{Object}} \texorpdfstring{$\ast$}{*}object)
+\begin{DoxyCompactList}\small\item\em It adds a new object to the game. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a1e3126615586a6a66e304aae00d6fe35}{game\+\_\+add\+\_\+character}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, \mbox{\hyperlink{struct__Character}{Character}} \texorpdfstring{$\ast$}{*}character)
+\begin{DoxyCompactList}\small\item\em It adds a new character to the game. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_ae60231f9c7fe9ede847e1d10366f1808}{game\+\_\+add\+\_\+link}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, \mbox{\hyperlink{struct__Link}{Link}} \texorpdfstring{$\ast$}{*}link)
+\begin{DoxyCompactList}\small\item\em It adds a new link to the game. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a8460d4135806f650eed4545be196776a}{game\+\_\+add\+\_\+player}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, \mbox{\hyperlink{struct__Player}{Player}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em It adds a new player to the game. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_a16ba3100833395307f0d6d23331355db}{game\+\_\+create\+\_\+from\+\_\+file}} (char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em It assigns a value from a file to every Game parameter, controling the errors. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a59ccc668c2549c02771bdbf98103ca71}{game\+\_\+destroy}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It destroys all the spaces and commands. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Space}{Space}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_a34242ac78c87036f8194fee3e92c7fb7}{game\+\_\+get\+\_\+space}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id id)
+\begin{DoxyCompactList}\small\item\em It searches a certain space where an Id passed by argument is. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_ab29d511b003d82a1285f0bbb59dde3cc}{game\+\_\+get\+\_\+last\+\_\+cmd\+\_\+status}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It get the status of the last command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Object}{Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_acc758a4f28d6a97c8adbd978a5133248}{game\+\_\+get\+\_\+object}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id id)
+\begin{DoxyCompactList}\small\item\em It looks for an object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Character}{Character}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_a3357a5bfe6a6271c3c14d4ffba405bad}{game\+\_\+get\+\_\+character}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id id)
+\begin{DoxyCompactList}\small\item\em It looks for a character. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Player}{Player}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_aeb1858561791db670b4083ff657fb584}{game\+\_\+get\+\_\+player}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It searches for the player of the game. \end{DoxyCompactList}\item 
+Id \mbox{\hyperlink{game_8c_ac6a628f2106f81c37d0e83c67920615f}{game\+\_\+get\+\_\+player\+\_\+location}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It just returns the id of the space where the player is. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_aaef1830fff1ce5028b72435f145e98e8}{game\+\_\+get\+\_\+message}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It says if the game is finished or not. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a53a40a8051320f26fe896451444e601d}{game\+\_\+set\+\_\+message}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, const char \texorpdfstring{$\ast$}{*}message)
+\begin{DoxyCompactList}\small\item\em It says if the game is finished or not. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a0ec7d29072700a481ff32e5817267902}{game\+\_\+set\+\_\+last\+\_\+cmd\+\_\+status}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Status cmd\+\_\+status)
+\begin{DoxyCompactList}\small\item\em It set the status of the command executed. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a3361be57402662b75ba0bb91cef1fd95}{game\+\_\+set\+\_\+player\+\_\+location}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id location)
+\begin{DoxyCompactList}\small\item\em It sets the player location as the id passed as an argument. \end{DoxyCompactList}\item 
+Id \mbox{\hyperlink{game_8c_aa84eca5a1131daafd7acbf74263b6f82}{game\+\_\+get\+\_\+object\+\_\+location}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id id)
+\begin{DoxyCompactList}\small\item\em It just returns the id of the space where an object is. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Object}{Object}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_ac857fa7eb6ac44bb8f5e1f12987fca77}{game\+\_\+get\+\_\+objects\+\_\+discovered}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It gets all the objects in the discovered spaces. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8c_a82523e21e7419e9ed1a766287a02ec76}{game\+\_\+get\+\_\+n\+\_\+objects\+\_\+discovered}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It gets the number of all the objects in the discovered spaces. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Character}{Character}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_ac859f918d2c676f590cba063ba0a1c63}{game\+\_\+get\+\_\+characters\+\_\+discovered}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It gets all the characters in the discovered spaces. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8c_ae8b50d7099e6f04bef8b4da39ed0764c}{game\+\_\+get\+\_\+n\+\_\+characters\+\_\+discovered}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It gets the number of all the characters in the discovered spaces. \end{DoxyCompactList}\item 
+Id \mbox{\hyperlink{game_8c_ad97bcaad42ede2d19470248b06619364}{game\+\_\+object\+\_\+in\+\_\+the\+\_\+space}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id space\+\_\+id)
+\begin{DoxyCompactList}\small\item\em This function is used to get the object of a certain space which id is passed by argument. \end{DoxyCompactList}\item 
+Id \mbox{\hyperlink{game_8c_acec3892b0b53c952422a10699e2c4b71}{game\+\_\+get\+\_\+character\+\_\+location}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id id)
+\begin{DoxyCompactList}\small\item\em It just returns the id of the space where a character is. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a04ade1f57806b2e0e9e00aa6496c757b}{game\+\_\+set\+\_\+object\+\_\+location}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id space\+\_\+id, Id object\+\_\+id)
+\begin{DoxyCompactList}\small\item\em It sets to an object a location. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a3367c42869e5fc01739dc6435ab68af3}{game\+\_\+set\+\_\+character\+\_\+location}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id space\+\_\+id, Id character\+\_\+id)
+\begin{DoxyCompactList}\small\item\em It sets to a character a location. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Command}{Command}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_ac8d90fcffcb96d380650d5c3820ef505}{game\+\_\+get\+\_\+last\+\_\+command}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It returns the las command received. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a0b9b4b011b49c44928c047188ebb099d}{game\+\_\+set\+\_\+last\+\_\+command}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, \mbox{\hyperlink{struct__Command}{Command}} \texorpdfstring{$\ast$}{*}command)
+\begin{DoxyCompactList}\small\item\em It sets as the last command executed a command passed by argument. \end{DoxyCompactList}\item 
+Bool \mbox{\hyperlink{game_8c_a7def4a688e3db8aa7261b677b79943c4}{game\+\_\+get\+\_\+finished}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It says if the game is finished or not. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_aaeb153fbe0298a054b6b29ed0b7debae}{game\+\_\+set\+\_\+finished}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Bool finished)
+\begin{DoxyCompactList}\small\item\em It sets the game to "{}finished"{} if the boolean variable gotten by the last function is 1. \end{DoxyCompactList}\item 
+Id \mbox{\hyperlink{game_8c_aa6f36105ac175ee70b9eaf608d1db78e}{game\+\_\+get\+\_\+object\+\_\+from\+\_\+name}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, char \texorpdfstring{$\ast$}{*}objname)
+\begin{DoxyCompactList}\small\item\em It gets the id of the object which name is passed by argument. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8c_aa0c23fc889c3938912e10b942660bf7a}{game\+\_\+get\+\_\+nobjects}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It returns the number of objects in the game. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a5a2aa32475a82b01fac9cd03a9cb244c}{game\+\_\+set\+\_\+nobjects}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, int n\+\_\+objects)
+\begin{DoxyCompactList}\small\item\em It set the number of objects in the game. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8c_afc688748e04ef4eded86427f26dacb0a}{game\+\_\+get\+\_\+ncharacters}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It returns the number of characters in the game. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a3ceeb7671aba06edfbd1f86ff4276184}{game\+\_\+set\+\_\+ncharacters}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, int n\+\_\+characters)
+\begin{DoxyCompactList}\small\item\em It set the number of characters in the game. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8c_abd7f4f22f50a6c5bf71843d05fdd6c36}{game\+\_\+get\+\_\+nplayers}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It returns the number of players in the game. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a18734f7d41f50d3cbc711890ae5e91ee}{game\+\_\+set\+\_\+nplayers}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, int n\+\_\+players)
+\begin{DoxyCompactList}\small\item\em It set the number of players in the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8c_a6a00b3f5db99150d9180e439d400e083}{game\+\_\+print}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It prints all the spaces and the player and object\textquotesingle{}s location. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Object}{Object}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_a1e5618643ace06d3f3ecfd69c4aa6335}{game\+\_\+get\+\_\+objects}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It gets the array of objects in the game. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Character}{Character}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_a0e28a7951f77f092e940f263a7260522}{game\+\_\+get\+\_\+characters}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It get sthe array of characters in the game. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Player}{Player}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_ad05bca6677447557583a90e564f4c586}{game\+\_\+get\+\_\+players}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It gets the array of players in the game. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8c_a497358715aee2eb09b32ebacdeb12232}{game\+\_\+get\+\_\+nlinks}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It returns the number of links in the game. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a13da617ad9d6ff8d16a301d129fc40e9}{game\+\_\+set\+\_\+nlinks}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, int n\+\_\+links)
+\begin{DoxyCompactList}\small\item\em It set the number of links in the game. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Link}{Link}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game_8c_a588b17f5ec8eb878c3123095dc00677b}{game\+\_\+get\+\_\+links}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It get the array of links in the game. \end{DoxyCompactList}\item 
+Id \mbox{\hyperlink{game_8c_a1cbe192a3f586790750a954233442ea9}{game\+\_\+get\+\_\+connection}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id id\+\_\+act, Direction direction)
+\begin{DoxyCompactList}\small\item\em It get the connection id of the space to move. \end{DoxyCompactList}\item 
+Bool \mbox{\hyperlink{game_8c_a8f10f5c3363026b685f2d4f69a82eef6}{game\+\_\+connection\+\_\+is\+\_\+open}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, Id id\+\_\+act, Direction direction)
+\begin{DoxyCompactList}\small\item\em It gets the connection open state of the space to move. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8c_aa09e1df33f2417cc314eca6a5ae822f3}{game\+\_\+get\+\_\+turn}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It gets the player\textquotesingle{}s turn. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a7e73029af4a81214bceba63f2defb013}{game\+\_\+set\+\_\+turn}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, int turn)
+\begin{DoxyCompactList}\small\item\em It establishes the player\textquotesingle{}s turn. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{game_8c_a538daf6cad2c591f9fe47396b284944c}{game\+\_\+next\+\_\+turn}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\begin{DoxyCompactList}\small\item\em It changes the turn to the next one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+It implements the game structure. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero, Daniel Martínez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+27-\/01-\/2025 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+GNU Public License 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{game_8c_a1e3126615586a6a66e304aae00d6fe35}\label{game_8c_a1e3126615586a6a66e304aae00d6fe35} 
+\index{game.c@{game.c}!game\_add\_character@{game\_add\_character}}
+\index{game\_add\_character@{game\_add\_character}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_add\_character()}{game\_add\_character()}}
+{\footnotesize\ttfamily Status game\+\_\+add\+\_\+character (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{\mbox{\hyperlink{struct__Character}{Character}} \texorpdfstring{$\ast$}{*}}]{character }\end{DoxyParamCaption})}
+
+
+
+It adds a new character to the game. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em character} & A pointer to Character\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything went good, ERROR if not 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ae60231f9c7fe9ede847e1d10366f1808}\label{game_8c_ae60231f9c7fe9ede847e1d10366f1808} 
+\index{game.c@{game.c}!game\_add\_link@{game\_add\_link}}
+\index{game\_add\_link@{game\_add\_link}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_add\_link()}{game\_add\_link()}}
+{\footnotesize\ttfamily Status game\+\_\+add\+\_\+link (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{\mbox{\hyperlink{struct__Link}{Link}} \texorpdfstring{$\ast$}{*}}]{link }\end{DoxyParamCaption})}
+
+
+
+It adds a new link to the game. 
+
+\begin{DoxyAuthor}{Author}
+Jorge Martín
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em link} & A pointer to Link\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything went good, ERROR if not 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a612a5e67878efd67e34e1447464a2a3c}\label{game_8c_a612a5e67878efd67e34e1447464a2a3c} 
+\index{game.c@{game.c}!game\_add\_object@{game\_add\_object}}
+\index{game\_add\_object@{game\_add\_object}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_add\_object()}{game\_add\_object()}}
+{\footnotesize\ttfamily Status game\+\_\+add\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{\mbox{\hyperlink{struct__Object}{Object}} \texorpdfstring{$\ast$}{*}}]{object }\end{DoxyParamCaption})}
+
+
+
+It adds a new object to the game. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em object} & A pointer to Object\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything went good, ERROR if not 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a8460d4135806f650eed4545be196776a}\label{game_8c_a8460d4135806f650eed4545be196776a} 
+\index{game.c@{game.c}!game\_add\_player@{game\_add\_player}}
+\index{game\_add\_player@{game\_add\_player}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_add\_player()}{game\_add\_player()}}
+{\footnotesize\ttfamily Status game\+\_\+add\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{\mbox{\hyperlink{struct__Player}{Player}} \texorpdfstring{$\ast$}{*}}]{player }\end{DoxyParamCaption})}
+
+
+
+It adds a new player to the game. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em player} & A pointer to Player\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything went good, ERROR if not 
+\end{DoxyReturn}
+\Hypertarget{game_8c_afff2609612cb1b1a6049e538d219e244}\label{game_8c_afff2609612cb1b1a6049e538d219e244} 
+\index{game.c@{game.c}!game\_add\_space@{game\_add\_space}}
+\index{game\_add\_space@{game\_add\_space}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_add\_space()}{game\_add\_space()}}
+{\footnotesize\ttfamily Status game\+\_\+add\+\_\+space (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{\mbox{\hyperlink{struct__Space}{Space}} \texorpdfstring{$\ast$}{*}}]{space }\end{DoxyParamCaption})}
+
+
+
+It adds a new space to the game. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em space} & A pointer to Space\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything went good, ERROR if not 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a8f10f5c3363026b685f2d4f69a82eef6}\label{game_8c_a8f10f5c3363026b685f2d4f69a82eef6} 
+\index{game.c@{game.c}!game\_connection\_is\_open@{game\_connection\_is\_open}}
+\index{game\_connection\_is\_open@{game\_connection\_is\_open}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_connection\_is\_open()}{game\_connection\_is\_open()}}
+{\footnotesize\ttfamily Bool game\+\_\+connection\+\_\+is\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{id\+\_\+act,  }\item[{Direction}]{direction }\end{DoxyParamCaption})}
+
+
+
+It gets the connection open state of the space to move. 
+
+\begin{DoxyAuthor}{Author}
+Jorge Martin 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em id\+\_\+act} & The id of the space that the player is located \\
+\hline
+{\em direction} & The direction the player wants to move to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns if the link between spaces is open (FALSE if there is no link) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a4c63edcd5208bea5cb694d99df6d76d5}\label{game_8c_a4c63edcd5208bea5cb694d99df6d76d5} 
+\index{game.c@{game.c}!game\_create@{game\_create}}
+\index{game\_create@{game\_create}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_create()}{game\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*} game\+\_\+create (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+It initialices every variable of Game to default values (0, NULL, NO\+\_\+\+ID...) 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a16ba3100833395307f0d6d23331355db}\label{game_8c_a16ba3100833395307f0d6d23331355db} 
+\index{game.c@{game.c}!game\_create\_from\_file@{game\_create\_from\_file}}
+\index{game\_create\_from\_file@{game\_create\_from\_file}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_create\_from\_file()}{game\_create\_from\_file()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*} game\+\_\+create\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+It assigns a value from a file to every Game parameter, controling the errors. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em filename} & A string with the name of the file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked correctly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a59ccc668c2549c02771bdbf98103ca71}\label{game_8c_a59ccc668c2549c02771bdbf98103ca71} 
+\index{game.c@{game.c}!game\_destroy@{game\_destroy}}
+\index{game\_destroy@{game\_destroy}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_destroy()}{game\_destroy()}}
+{\footnotesize\ttfamily Status game\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It destroys all the spaces and commands. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a3357a5bfe6a6271c3c14d4ffba405bad}\label{game_8c_a3357a5bfe6a6271c3c14d4ffba405bad} 
+\index{game.c@{game.c}!game\_get\_character@{game\_get\_character}}
+\index{game\_get\_character@{game\_get\_character}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_character()}{game\_get\_character()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Character}{Character}} \texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+character (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{id }\end{DoxyParamCaption})}
+
+
+
+It looks for a character. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+{\em id} & The id of the character\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Character 
+\end{DoxyReturn}
+\Hypertarget{game_8c_acec3892b0b53c952422a10699e2c4b71}\label{game_8c_acec3892b0b53c952422a10699e2c4b71} 
+\index{game.c@{game.c}!game\_get\_character\_location@{game\_get\_character\_location}}
+\index{game\_get\_character\_location@{game\_get\_character\_location}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_character\_location()}{game\_get\_character\_location()}}
+{\footnotesize\ttfamily Id game\+\_\+get\+\_\+character\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{id }\end{DoxyParamCaption})}
+
+
+
+It just returns the id of the space where a character is. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+{\em id} & The id of the character which location are searching \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id (character location) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a0e28a7951f77f092e940f263a7260522}\label{game_8c_a0e28a7951f77f092e940f263a7260522} 
+\index{game.c@{game.c}!game\_get\_characters@{game\_get\_characters}}
+\index{game\_get\_characters@{game\_get\_characters}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_characters()}{game\_get\_characters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Character}{Character}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+characters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It get sthe array of characters in the game. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an array of characters 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ac859f918d2c676f590cba063ba0a1c63}\label{game_8c_ac859f918d2c676f590cba063ba0a1c63} 
+\index{game.c@{game.c}!game\_get\_characters\_discovered@{game\_get\_characters\_discovered}}
+\index{game\_get\_characters\_discovered@{game\_get\_characters\_discovered}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_characters\_discovered()}{game\_get\_characters\_discovered()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Character}{Character}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+characters\+\_\+discovered (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It gets all the characters in the discovered spaces. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of the characters in the discovered spaces 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a1cbe192a3f586790750a954233442ea9}\label{game_8c_a1cbe192a3f586790750a954233442ea9} 
+\index{game.c@{game.c}!game\_get\_connection@{game\_get\_connection}}
+\index{game\_get\_connection@{game\_get\_connection}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_connection()}{game\_get\_connection()}}
+{\footnotesize\ttfamily Id game\+\_\+get\+\_\+connection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{id\+\_\+act,  }\item[{Direction}]{direction }\end{DoxyParamCaption})}
+
+
+
+It get the connection id of the space to move. 
+
+\begin{DoxyAuthor}{Author}
+Jorge Martin 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em id\+\_\+act} & The id of the space that the player is located \\
+\hline
+{\em direction} & The direction the player wants to move to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the Id of the space in set direction (NO\+\_\+\+ID if there is not) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a7def4a688e3db8aa7261b677b79943c4}\label{game_8c_a7def4a688e3db8aa7261b677b79943c4} 
+\index{game.c@{game.c}!game\_get\_finished@{game\_get\_finished}}
+\index{game\_get\_finished@{game\_get\_finished}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_finished()}{game\_get\_finished()}}
+{\footnotesize\ttfamily Bool game\+\_\+get\+\_\+finished (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It says if the game is finished or not. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True(1) or False(0) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ab29d511b003d82a1285f0bbb59dde3cc}\label{game_8c_ab29d511b003d82a1285f0bbb59dde3cc} 
+\index{game.c@{game.c}!game\_get\_last\_cmd\_status@{game\_get\_last\_cmd\_status}}
+\index{game\_get\_last\_cmd\_status@{game\_get\_last\_cmd\_status}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_last\_cmd\_status()}{game\_get\_last\_cmd\_status()}}
+{\footnotesize\ttfamily Status game\+\_\+get\+\_\+last\+\_\+cmd\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It get the status of the last command. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns OK or ERROR 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ac8d90fcffcb96d380650d5c3820ef505}\label{game_8c_ac8d90fcffcb96d380650d5c3820ef505} 
+\index{game.c@{game.c}!game\_get\_last\_command@{game\_get\_last\_command}}
+\index{game\_get\_last\_command@{game\_get\_last\_command}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_last\_command()}{game\_get\_last\_command()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Command}{Command}} \texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+last\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It returns the las command received. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the structure "{}command"{} 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a588b17f5ec8eb878c3123095dc00677b}\label{game_8c_a588b17f5ec8eb878c3123095dc00677b} 
+\index{game.c@{game.c}!game\_get\_links@{game\_get\_links}}
+\index{game\_get\_links@{game\_get\_links}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_links()}{game\_get\_links()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Link}{Link}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+links (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It get the array of links in the game. 
+
+\begin{DoxyAuthor}{Author}
+Jorge Martín 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an array of links 
+\end{DoxyReturn}
+\Hypertarget{game_8c_aaef1830fff1ce5028b72435f145e98e8}\label{game_8c_aaef1830fff1ce5028b72435f145e98e8} 
+\index{game.c@{game.c}!game\_get\_message@{game\_get\_message}}
+\index{game\_get\_message@{game\_get\_message}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_message()}{game\_get\_message()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It says if the game is finished or not. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True(1) or False(0) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ae8b50d7099e6f04bef8b4da39ed0764c}\label{game_8c_ae8b50d7099e6f04bef8b4da39ed0764c} 
+\index{game.c@{game.c}!game\_get\_n\_characters\_discovered@{game\_get\_n\_characters\_discovered}}
+\index{game\_get\_n\_characters\_discovered@{game\_get\_n\_characters\_discovered}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_n\_characters\_discovered()}{game\_get\_n\_characters\_discovered()}}
+{\footnotesize\ttfamily int game\+\_\+get\+\_\+n\+\_\+characters\+\_\+discovered (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It gets the number of all the characters in the discovered spaces. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of characters in discovered spaces 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a82523e21e7419e9ed1a766287a02ec76}\label{game_8c_a82523e21e7419e9ed1a766287a02ec76} 
+\index{game.c@{game.c}!game\_get\_n\_objects\_discovered@{game\_get\_n\_objects\_discovered}}
+\index{game\_get\_n\_objects\_discovered@{game\_get\_n\_objects\_discovered}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_n\_objects\_discovered()}{game\_get\_n\_objects\_discovered()}}
+{\footnotesize\ttfamily int game\+\_\+get\+\_\+n\+\_\+objects\+\_\+discovered (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It gets the number of all the objects in the discovered spaces. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of objects in discovered spaces 
+\end{DoxyReturn}
+\Hypertarget{game_8c_afc688748e04ef4eded86427f26dacb0a}\label{game_8c_afc688748e04ef4eded86427f26dacb0a} 
+\index{game.c@{game.c}!game\_get\_ncharacters@{game\_get\_ncharacters}}
+\index{game\_get\_ncharacters@{game\_get\_ncharacters}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_ncharacters()}{game\_get\_ncharacters()}}
+{\footnotesize\ttfamily int game\+\_\+get\+\_\+ncharacters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It returns the number of characters in the game. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an integer (NO\+\_\+\+ID if there was a problem) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a497358715aee2eb09b32ebacdeb12232}\label{game_8c_a497358715aee2eb09b32ebacdeb12232} 
+\index{game.c@{game.c}!game\_get\_nlinks@{game\_get\_nlinks}}
+\index{game\_get\_nlinks@{game\_get\_nlinks}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_nlinks()}{game\_get\_nlinks()}}
+{\footnotesize\ttfamily int game\+\_\+get\+\_\+nlinks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It returns the number of links in the game. 
+
+\begin{DoxyAuthor}{Author}
+Jorge Martin 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an integer (NO\+\_\+\+ID if there was a problem) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_aa0c23fc889c3938912e10b942660bf7a}\label{game_8c_aa0c23fc889c3938912e10b942660bf7a} 
+\index{game.c@{game.c}!game\_get\_nobjects@{game\_get\_nobjects}}
+\index{game\_get\_nobjects@{game\_get\_nobjects}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_nobjects()}{game\_get\_nobjects()}}
+{\footnotesize\ttfamily int game\+\_\+get\+\_\+nobjects (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It returns the number of objects in the game. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an integer (NO\+\_\+\+ID if there was a problem) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_abd7f4f22f50a6c5bf71843d05fdd6c36}\label{game_8c_abd7f4f22f50a6c5bf71843d05fdd6c36} 
+\index{game.c@{game.c}!game\_get\_nplayers@{game\_get\_nplayers}}
+\index{game\_get\_nplayers@{game\_get\_nplayers}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_nplayers()}{game\_get\_nplayers()}}
+{\footnotesize\ttfamily int game\+\_\+get\+\_\+nplayers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It returns the number of players in the game. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an integer with the nimber of players in the game (NO\+\_\+\+ID if there was a problem) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_acc758a4f28d6a97c8adbd978a5133248}\label{game_8c_acc758a4f28d6a97c8adbd978a5133248} 
+\index{game.c@{game.c}!game\_get\_object@{game\_get\_object}}
+\index{game\_get\_object@{game\_get\_object}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_object()}{game\_get\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Object}{Object}} \texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{id }\end{DoxyParamCaption})}
+
+
+
+It looks for an object. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+{\em id} & The id of the object\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An Object 
+\end{DoxyReturn}
+\Hypertarget{game_8c_aa6f36105ac175ee70b9eaf608d1db78e}\label{game_8c_aa6f36105ac175ee70b9eaf608d1db78e} 
+\index{game.c@{game.c}!game\_get\_object\_from\_name@{game\_get\_object\_from\_name}}
+\index{game\_get\_object\_from\_name@{game\_get\_object\_from\_name}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_object\_from\_name()}{game\_get\_object\_from\_name()}}
+{\footnotesize\ttfamily Id game\+\_\+get\+\_\+object\+\_\+from\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{char \texorpdfstring{$\ast$}{*}}]{objname }\end{DoxyParamCaption})}
+
+
+
+It gets the id of the object which name is passed by argument. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em objname} & The name of the object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+NO\+\_\+\+ID if there was a problem, or the id of the object if everyithing was OK. 
+\end{DoxyReturn}
+\Hypertarget{game_8c_aa84eca5a1131daafd7acbf74263b6f82}\label{game_8c_aa84eca5a1131daafd7acbf74263b6f82} 
+\index{game.c@{game.c}!game\_get\_object\_location@{game\_get\_object\_location}}
+\index{game\_get\_object\_location@{game\_get\_object\_location}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_object\_location()}{game\_get\_object\_location()}}
+{\footnotesize\ttfamily Id game\+\_\+get\+\_\+object\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{id }\end{DoxyParamCaption})}
+
+
+
+It just returns the id of the space where an object is. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+{\em id} & The id of the object which location are searching \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id (object location) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a1e5618643ace06d3f3ecfd69c4aa6335}\label{game_8c_a1e5618643ace06d3f3ecfd69c4aa6335} 
+\index{game.c@{game.c}!game\_get\_objects@{game\_get\_objects}}
+\index{game\_get\_objects@{game\_get\_objects}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_objects()}{game\_get\_objects()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Object}{Object}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+objects (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It gets the array of objects in the game. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an array of objects 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ac857fa7eb6ac44bb8f5e1f12987fca77}\label{game_8c_ac857fa7eb6ac44bb8f5e1f12987fca77} 
+\index{game.c@{game.c}!game\_get\_objects\_discovered@{game\_get\_objects\_discovered}}
+\index{game\_get\_objects\_discovered@{game\_get\_objects\_discovered}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_objects\_discovered()}{game\_get\_objects\_discovered()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Object}{Object}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+objects\+\_\+discovered (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It gets all the objects in the discovered spaces. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of the objects in the discovered spaces 
+\end{DoxyReturn}
+\Hypertarget{game_8c_aeb1858561791db670b4083ff657fb584}\label{game_8c_aeb1858561791db670b4083ff657fb584} 
+\index{game.c@{game.c}!game\_get\_player@{game\_get\_player}}
+\index{game\_get\_player@{game\_get\_player}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_player()}{game\_get\_player()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Player}{Player}} \texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It searches for the player of the game. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Player 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ac6a628f2106f81c37d0e83c67920615f}\label{game_8c_ac6a628f2106f81c37d0e83c67920615f} 
+\index{game.c@{game.c}!game\_get\_player\_location@{game\_get\_player\_location}}
+\index{game\_get\_player\_location@{game\_get\_player\_location}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_player\_location()}{game\_get\_player\_location()}}
+{\footnotesize\ttfamily Id game\+\_\+get\+\_\+player\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It just returns the id of the space where the player is. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id (player location) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ad05bca6677447557583a90e564f4c586}\label{game_8c_ad05bca6677447557583a90e564f4c586} 
+\index{game.c@{game.c}!game\_get\_players@{game\_get\_players}}
+\index{game\_get\_players@{game\_get\_players}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_players()}{game\_get\_players()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Player}{Player}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+players (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It gets the array of players in the game. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an array of players 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a34242ac78c87036f8194fee3e92c7fb7}\label{game_8c_a34242ac78c87036f8194fee3e92c7fb7} 
+\index{game.c@{game.c}!game\_get\_space@{game\_get\_space}}
+\index{game\_get\_space@{game\_get\_space}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_space()}{game\_get\_space()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Space}{Space}} \texorpdfstring{$\ast$}{*} game\+\_\+get\+\_\+space (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{id }\end{DoxyParamCaption})}
+
+
+
+It searches a certain space where an Id passed by argument is. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to the game \\
+\hline
+{\em id} & The id we are looking for\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Space 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ad2dfd865e2bd2c545a15d33f4d1cf3ae}\label{game_8c_ad2dfd865e2bd2c545a15d33f4d1cf3ae} 
+\index{game.c@{game.c}!game\_get\_space\_id\_at@{game\_get\_space\_id\_at}}
+\index{game\_get\_space\_id\_at@{game\_get\_space\_id\_at}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_space\_id\_at()}{game\_get\_space\_id\_at()}}
+{\footnotesize\ttfamily Id game\+\_\+get\+\_\+space\+\_\+id\+\_\+at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{position }\end{DoxyParamCaption})}
+
+
+
+Determines the space where the player is. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em position} & A number with the position\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return NO\+\_\+\+ID if the position is negative or higher than the number of spaces available if it\textquotesingle{}s correct, it returns the id of the space in that position 
+\end{DoxyReturn}
+\Hypertarget{game_8c_aa09e1df33f2417cc314eca6a5ae822f3}\label{game_8c_aa09e1df33f2417cc314eca6a5ae822f3} 
+\index{game.c@{game.c}!game\_get\_turn@{game\_get\_turn}}
+\index{game\_get\_turn@{game\_get\_turn}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_get\_turn()}{game\_get\_turn()}}
+{\footnotesize\ttfamily int game\+\_\+get\+\_\+turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It gets the player\textquotesingle{}s turn. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number indicating each player\textquotesingle{}s turn 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a538daf6cad2c591f9fe47396b284944c}\label{game_8c_a538daf6cad2c591f9fe47396b284944c} 
+\index{game.c@{game.c}!game\_next\_turn@{game\_next\_turn}}
+\index{game\_next\_turn@{game\_next\_turn}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_next\_turn()}{game\_next\_turn()}}
+{\footnotesize\ttfamily Status game\+\_\+next\+\_\+turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It changes the turn to the next one. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ad97bcaad42ede2d19470248b06619364}\label{game_8c_ad97bcaad42ede2d19470248b06619364} 
+\index{game.c@{game.c}!game\_object\_in\_the\_space@{game\_object\_in\_the\_space}}
+\index{game\_object\_in\_the\_space@{game\_object\_in\_the\_space}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_object\_in\_the\_space()}{game\_object\_in\_the\_space()}}
+{\footnotesize\ttfamily Id game\+\_\+object\+\_\+in\+\_\+the\+\_\+space (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{space\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+This function is used to get the object of a certain space which id is passed by argument. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em space\+\_\+id} & Id of the space \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+NO\+\_\+\+ID if there is no object in the space, or the Id of the object if it is there 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a6a00b3f5db99150d9180e439d400e083}\label{game_8c_a6a00b3f5db99150d9180e439d400e083} 
+\index{game.c@{game.c}!game\_print@{game\_print}}
+\index{game\_print@{game\_print}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_print()}{game\_print()}}
+{\footnotesize\ttfamily void game\+\_\+print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game }\end{DoxyParamCaption})}
+
+
+
+It prints all the spaces and the player and object\textquotesingle{}s location. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+VOID (Nothing) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a3367c42869e5fc01739dc6435ab68af3}\label{game_8c_a3367c42869e5fc01739dc6435ab68af3} 
+\index{game.c@{game.c}!game\_set\_character\_location@{game\_set\_character\_location}}
+\index{game\_set\_character\_location@{game\_set\_character\_location}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_character\_location()}{game\_set\_character\_location()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+character\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{space\+\_\+id,  }\item[{Id}]{character\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+It sets to a character a location. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em character\+\_\+id} & The id of the character whose location will be setted \\
+\hline
+{\em space\+\_\+id} & The id of the location\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything was good, or ERROR if there was any issue 
+\end{DoxyReturn}
+\Hypertarget{game_8c_aaeb153fbe0298a054b6b29ed0b7debae}\label{game_8c_aaeb153fbe0298a054b6b29ed0b7debae} 
+\index{game.c@{game.c}!game\_set\_finished@{game\_set\_finished}}
+\index{game\_set\_finished@{game\_set\_finished}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_finished()}{game\_set\_finished()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+finished (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Bool}]{finished }\end{DoxyParamCaption})}
+
+
+
+It sets the game to "{}finished"{} if the boolean variable gotten by the last function is 1. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em finished} & It refers to a boolean value (1 if the game is finished 0 if not) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a0ec7d29072700a481ff32e5817267902}\label{game_8c_a0ec7d29072700a481ff32e5817267902} 
+\index{game.c@{game.c}!game\_set\_last\_cmd\_status@{game\_set\_last\_cmd\_status}}
+\index{game\_set\_last\_cmd\_status@{game\_set\_last\_cmd\_status}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_last\_cmd\_status()}{game\_set\_last\_cmd\_status()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+last\+\_\+cmd\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Status}]{cmd\+\_\+status }\end{DoxyParamCaption})}
+
+
+
+It set the status of the command executed. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em cmd\+\_\+status} & A command \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns OK or ERROR 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a0b9b4b011b49c44928c047188ebb099d}\label{game_8c_a0b9b4b011b49c44928c047188ebb099d} 
+\index{game.c@{game.c}!game\_set\_last\_command@{game\_set\_last\_command}}
+\index{game\_set\_last\_command@{game\_set\_last\_command}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_last\_command()}{game\_set\_last\_command()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+last\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{\mbox{\hyperlink{struct__Command}{Command}} \texorpdfstring{$\ast$}{*}}]{command }\end{DoxyParamCaption})}
+
+
+
+It sets as the last command executed a command passed by argument. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em command} & The respective command which will be established as the last command used \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a53a40a8051320f26fe896451444e601d}\label{game_8c_a53a40a8051320f26fe896451444e601d} 
+\index{game.c@{game.c}!game\_set\_message@{game\_set\_message}}
+\index{game\_set\_message@{game\_set\_message}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_message()}{game\_set\_message()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{message }\end{DoxyParamCaption})}
+
+
+
+It says if the game is finished or not. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True(1) or False(0) 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a3ceeb7671aba06edfbd1f86ff4276184}\label{game_8c_a3ceeb7671aba06edfbd1f86ff4276184} 
+\index{game.c@{game.c}!game\_set\_ncharacters@{game\_set\_ncharacters}}
+\index{game\_set\_ncharacters@{game\_set\_ncharacters}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_ncharacters()}{game\_set\_ncharacters()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+ncharacters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{n\+\_\+characters }\end{DoxyParamCaption})}
+
+
+
+It set the number of characters in the game. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em n\+\_\+objects} & an integuer with the number of characters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a13da617ad9d6ff8d16a301d129fc40e9}\label{game_8c_a13da617ad9d6ff8d16a301d129fc40e9} 
+\index{game.c@{game.c}!game\_set\_nlinks@{game\_set\_nlinks}}
+\index{game\_set\_nlinks@{game\_set\_nlinks}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_nlinks()}{game\_set\_nlinks()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+nlinks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{n\+\_\+links }\end{DoxyParamCaption})}
+
+
+
+It set the number of links in the game. 
+
+\begin{DoxyAuthor}{Author}
+Jorge Martin 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em n\+\_\+objects} & an integer with the number of links \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a5a2aa32475a82b01fac9cd03a9cb244c}\label{game_8c_a5a2aa32475a82b01fac9cd03a9cb244c} 
+\index{game.c@{game.c}!game\_set\_nobjects@{game\_set\_nobjects}}
+\index{game\_set\_nobjects@{game\_set\_nobjects}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_nobjects()}{game\_set\_nobjects()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+nobjects (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{n\+\_\+objects }\end{DoxyParamCaption})}
+
+
+
+It set the number of objects in the game. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em n\+\_\+objects} & an integuer with the number of objects \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a18734f7d41f50d3cbc711890ae5e91ee}\label{game_8c_a18734f7d41f50d3cbc711890ae5e91ee} 
+\index{game.c@{game.c}!game\_set\_nplayers@{game\_set\_nplayers}}
+\index{game\_set\_nplayers@{game\_set\_nplayers}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_nplayers()}{game\_set\_nplayers()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+nplayers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{n\+\_\+players }\end{DoxyParamCaption})}
+
+
+
+It set the number of players in the game. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em n\+\_\+players} & an integuer with the number of players \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a04ade1f57806b2e0e9e00aa6496c757b}\label{game_8c_a04ade1f57806b2e0e9e00aa6496c757b} 
+\index{game.c@{game.c}!game\_set\_object\_location@{game\_set\_object\_location}}
+\index{game\_set\_object\_location@{game\_set\_object\_location}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_object\_location()}{game\_set\_object\_location()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+object\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{space\+\_\+id,  }\item[{Id}]{object\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+It sets to an object a location. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em object\+\_\+id} & The id of the object whose location will be setted \\
+\hline
+{\em space\+\_\+id} & The id of the location\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything was good, or ERROR if there was any issue 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a3361be57402662b75ba0bb91cef1fd95}\label{game_8c_a3361be57402662b75ba0bb91cef1fd95} 
+\index{game.c@{game.c}!game\_set\_player\_location@{game\_set\_player\_location}}
+\index{game\_set\_player\_location@{game\_set\_player\_location}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_player\_location()}{game\_set\_player\_location()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+player\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{Id}]{location }\end{DoxyParamCaption})}
+
+
+
+It sets the player location as the id passed as an argument. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to game \\
+\hline
+{\em id} & The Id of the space \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a7e73029af4a81214bceba63f2defb013}\label{game_8c_a7e73029af4a81214bceba63f2defb013} 
+\index{game.c@{game.c}!game\_set\_turn@{game\_set\_turn}}
+\index{game\_set\_turn@{game\_set\_turn}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_set\_turn()}{game\_set\_turn()}}
+{\footnotesize\ttfamily Status game\+\_\+set\+\_\+turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{int}]{turn }\end{DoxyParamCaption})}
+
+
+
+It establishes the player\textquotesingle{}s turn. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em turn} & An integrer with the player\textquotesingle{}s turn \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked properly or ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}

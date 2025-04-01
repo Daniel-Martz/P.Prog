@@ -1,0 +1,128 @@
+\doxysection{game.\+h}
+\hypertarget{game_8h_source}{}\label{game_8h_source}\mbox{\hyperlink{game_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ GAME\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ GAME\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{command_8h}{command.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{space_8h}{space.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{inventory_8h}{inventory.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{player_8h}{player.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{object_8h}{object.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{character_8h}{character.h}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{link_8h}{link.h}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ MAX\_SPACES\ 100\ }\textcolor{comment}{/*\ Constant\ that\ estabilshes\ the\ maximum\ number\ of\ spaces\ as\ 100*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ MAX\_OBJECTS\ 100\ }\textcolor{comment}{/*\ Constant\ that\ estabilshes\ the\ maximum\ number\ of\ objects\ as\ 100*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ MAX\_CHARACTERS\ 100\ }\textcolor{comment}{/*\ Constant\ that\ estabilshes\ the\ maximum\ number\ of\ characters\ as\ 100*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ MAX\_LINKS\ 100\ }\textcolor{comment}{/*\ Constant\ that\ estabilshes\ the\ maximum\ number\ of\ links\ as\ 100*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ MAX\_PLAYERS\ 8\ }\textcolor{comment}{/*\ Constant\ that\ estabilshes\ the\ maximum\ number\ of\ players\ as\ 8*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct__Game}{\_Game}}\ \mbox{\hyperlink{struct__Game}{Game}};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00038\ \mbox{\hyperlink{struct__Game}{Game}}\ *\mbox{\hyperlink{game_8h_a4c63edcd5208bea5cb694d99df6d76d5}{game\_create}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00049\ Status\ \mbox{\hyperlink{game_8h_afff2609612cb1b1a6049e538d219e244}{game\_add\_space}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \mbox{\hyperlink{struct__Space}{Space}}\ *space);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00060\ Status\ \mbox{\hyperlink{game_8h_a612a5e67878efd67e34e1447464a2a3c}{game\_add\_object}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \mbox{\hyperlink{struct__Object}{Object}}\ *\textcolor{keywordtype}{object});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00071\ Status\ \mbox{\hyperlink{game_8h_a1e3126615586a6a66e304aae00d6fe35}{game\_add\_character}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \mbox{\hyperlink{struct__Character}{Character}}\ *character);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00082\ Status\ \mbox{\hyperlink{game_8h_ae60231f9c7fe9ede847e1d10366f1808}{game\_add\_link}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \mbox{\hyperlink{struct__Link}{Link}}*\ link);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00093\ Status\ \mbox{\hyperlink{game_8h_a8460d4135806f650eed4545be196776a}{game\_add\_player}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \mbox{\hyperlink{struct__Player}{Player}}\ *player);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00104\ \mbox{\hyperlink{struct__Game}{Game}}\ *\mbox{\hyperlink{game_8h_a16ba3100833395307f0d6d23331355db}{game\_create\_from\_file}}(\textcolor{keywordtype}{char}\ *filename);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00113\ Status\ \mbox{\hyperlink{game_8h_a59ccc668c2549c02771bdbf98103ca71}{game\_destroy}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00125\ \mbox{\hyperlink{struct__Space}{Space}}\ *\mbox{\hyperlink{game_8h_a34242ac78c87036f8194fee3e92c7fb7}{game\_get\_space}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00137\ \mbox{\hyperlink{struct__Object}{Object}}\ *\mbox{\hyperlink{game_8h_acc758a4f28d6a97c8adbd978a5133248}{game\_get\_object}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00149\ \mbox{\hyperlink{struct__Character}{Character}}\ *\mbox{\hyperlink{game_8h_a3357a5bfe6a6271c3c14d4ffba405bad}{game\_get\_character}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00160\ \mbox{\hyperlink{struct__Player}{Player}}\ *\mbox{\hyperlink{game_8h_aeb1858561791db670b4083ff657fb584}{game\_get\_player}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00170\ Id\ \mbox{\hyperlink{game_8h_ac6a628f2106f81c37d0e83c67920615f}{game\_get\_player\_location}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00180\ Id\ \mbox{\hyperlink{game_8h_aa84eca5a1131daafd7acbf74263b6f82}{game\_get\_object\_location}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00190\ Status\ \mbox{\hyperlink{game_8h_a3361be57402662b75ba0bb91cef1fd95}{game\_set\_player\_location}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ location);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00200\ Id\ \mbox{\hyperlink{game_8h_acec3892b0b53c952422a10699e2c4b71}{game\_get\_character\_location}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00209\ \mbox{\hyperlink{struct__Object}{Object}}\ **\mbox{\hyperlink{game_8h_ac857fa7eb6ac44bb8f5e1f12987fca77}{game\_get\_objects\_discovered}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00218\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game_8h_a82523e21e7419e9ed1a766287a02ec76}{game\_get\_n\_objects\_discovered}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00227\ \mbox{\hyperlink{struct__Character}{Character}}\ **\mbox{\hyperlink{game_8h_ac859f918d2c676f590cba063ba0a1c63}{game\_get\_characters\_discovered}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00236\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game_8h_ae8b50d7099e6f04bef8b4da39ed0764c}{game\_get\_n\_characters\_discovered}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00248\ Status\ \mbox{\hyperlink{game_8h_a04ade1f57806b2e0e9e00aa6496c757b}{game\_set\_object\_location}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ space\_id,\ Id\ object\_id);}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00260\ Status\ \mbox{\hyperlink{game_8h_a3367c42869e5fc01739dc6435ab68af3}{game\_set\_character\_location}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ space\_id,\ Id\ character\_id);}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00269\ \mbox{\hyperlink{struct__Command}{Command}}*\ \mbox{\hyperlink{game_8h_ac8d90fcffcb96d380650d5c3820ef505}{game\_get\_last\_command}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00279\ Id\ \mbox{\hyperlink{game_8h_aa6f36105ac175ee70b9eaf608d1db78e}{game\_get\_object\_from\_name}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \textcolor{keywordtype}{char}\ *objname);}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00289\ Status\ \mbox{\hyperlink{game_8h_a0b9b4b011b49c44928c047188ebb099d}{game\_set\_last\_command}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \mbox{\hyperlink{struct__Command}{Command}}\ *command);}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00298\ Bool\ \mbox{\hyperlink{game_8h_a7def4a688e3db8aa7261b677b79943c4}{game\_get\_finished}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00308\ Status\ \mbox{\hyperlink{game_8h_aaeb153fbe0298a054b6b29ed0b7debae}{game\_set\_finished}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Bool\ \mbox{\hyperlink{struct__Game_a2718393f54af772d89a41047d8d26682}{finished}});}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00318\ Id\ \mbox{\hyperlink{game_8h_ad97bcaad42ede2d19470248b06619364}{game\_object\_in\_the\_space}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ space\_id);}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00327\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{game_8h_a6a00b3f5db99150d9180e439d400e083}{game\_print}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00336\ Status\ \mbox{\hyperlink{game_8h_a53a40a8051320f26fe896451444e601d}{game\_set\_message}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct__Game_ab8d03cb9180ddd6d8f17fe3633a1159f}{message}});}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00345\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game_8h_aa0c23fc889c3938912e10b942660bf7a}{game\_get\_nobjects}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00355\ Status\ \mbox{\hyperlink{game_8h_a5a2aa32475a82b01fac9cd03a9cb244c}{game\_set\_nobjects}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct__Game_afb42dc6613851a59029787af6ca28aa6}{n\_objects}});}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00364\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game_8h_afc688748e04ef4eded86427f26dacb0a}{game\_get\_ncharacters}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00374\ Status\ \mbox{\hyperlink{game_8h_a3ceeb7671aba06edfbd1f86ff4276184}{game\_set\_ncharacters}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct__Game_a2980ef5670fb746630cbcfd7e65a4098}{n\_characters}});}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00383\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game_8h_abd7f4f22f50a6c5bf71843d05fdd6c36}{game\_get\_nplayers}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00393\ Status\ \mbox{\hyperlink{game_8h_a18734f7d41f50d3cbc711890ae5e91ee}{game\_set\_nplayers}}(\mbox{\hyperlink{struct__Game}{Game}}*game,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct__Game_ada91dbe872248188499a2cfb14542f9f}{n\_players}});}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00402\ \mbox{\hyperlink{struct__Object}{Object}}\ **\mbox{\hyperlink{game_8h_a1e5618643ace06d3f3ecfd69c4aa6335}{game\_get\_objects}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00411\ \mbox{\hyperlink{struct__Character}{Character}}\ **\mbox{\hyperlink{game_8h_a0e28a7951f77f092e940f263a7260522}{game\_get\_characters}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00420\ \mbox{\hyperlink{struct__Player}{Player}}\ **\mbox{\hyperlink{game_8h_ad05bca6677447557583a90e564f4c586}{game\_get\_players}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00429\ Status\ \mbox{\hyperlink{game_8h_ab29d511b003d82a1285f0bbb59dde3cc}{game\_get\_last\_cmd\_status}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00439\ Status\ \mbox{\hyperlink{game_8h_a0ec7d29072700a481ff32e5817267902}{game\_set\_last\_cmd\_status}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Status\ cmd\_status);}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00448\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{game_8h_aaef1830fff1ce5028b72435f145e98e8}{game\_get\_message}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00457\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game_8h_a497358715aee2eb09b32ebacdeb12232}{game\_get\_nlinks}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00467\ Status\ \mbox{\hyperlink{game_8h_a13da617ad9d6ff8d16a301d129fc40e9}{game\_set\_nlinks}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct__Game_ae7f86ec86a503598a4b8932658218f69}{n\_links}});}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00476\ \mbox{\hyperlink{struct__Link}{Link}}\ **\mbox{\hyperlink{game_8h_a588b17f5ec8eb878c3123095dc00677b}{game\_get\_links}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00487\ Id\ \mbox{\hyperlink{game_8h_a1cbe192a3f586790750a954233442ea9}{game\_get\_connection}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ id\_act,\ Direction\ direction);}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00498\ Bool\ \mbox{\hyperlink{game_8h_a8f10f5c3363026b685f2d4f69a82eef6}{game\_connection\_is\_open}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ Id\ id\_act,\ Direction\ direction);}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00507\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game_8h_aa09e1df33f2417cc314eca6a5ae822f3}{game\_get\_turn}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00517\ Status\ \mbox{\hyperlink{game_8h_a7e73029af4a81214bceba63f2defb013}{game\_set\_turn}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct__Game_a2a01590499ec911a85a61cd2eb945a99}{turn}});}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00526\ Status\ \mbox{\hyperlink{game_8h_a538daf6cad2c591f9fe47396b284944c}{game\_next\_turn}}(\mbox{\hyperlink{struct__Game}{Game}}\ *game);}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

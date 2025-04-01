@@ -1,0 +1,31 @@
+<map id="test.h" name="test.h">
+<area shape="rect" id="Node000001" title="It defines the general tests interface." alt="" coords="447,5,506,31"/>
+<area shape="rect" id="Node000002" href="$character__test_8h.html" title="It declares the tests for the character module." alt="" coords="5,79,132,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="434,29,133,82,132,76,434,24"/>
+<area shape="rect" id="Node000004" href="$inventory__test_8h.html" title="It declares the tests for the inventory module." alt="" coords="157,79,285,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="435,34,263,81,261,76,433,29"/>
+<area shape="rect" id="Node000006" href="$link__test_8h.html" title="It declares the tests for the link module." alt="" coords="309,79,399,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="447,40,375,81,373,76,444,35"/>
+<area shape="rect" id="Node000008" href="$object__test_8h.html" title="It declares the tests for the object module." alt="" coords="423,79,530,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="479,44,479,79,474,79,474,44"/>
+<area shape="rect" id="Node000010" href="$player__test_8h.html" title="It declares the tests for the player module." alt="" coords="554,79,661,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="511,35,587,76,585,81,509,40"/>
+<area shape="rect" id="Node000012" href="$set__test_8h.html" title="It declares the tests for the set module." alt="" coords="685,79,772,104"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="520,29,689,76,688,81,518,34"/>
+<area shape="rect" id="Node000014" href="$space__test_8h.html" title="It declares the tests for the space module." alt="" coords="797,79,901,104"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="520,25,797,77,796,83,519,30"/>
+<area shape="rect" id="Node000003" href="$character__test_8c.html" title="It tests character module." alt="" coords="5,152,132,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="71,118,71,152,66,152,66,118"/>
+<area shape="rect" id="Node000005" href="$inventory__test_8c.html" title="It tests the inventory module." alt="" coords="157,152,284,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="223,118,223,152,218,152,218,118"/>
+<area shape="rect" id="Node000007" href="$link__test_8c.html" title="It tests link module." alt="" coords="309,152,399,177"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="357,118,357,152,351,152,351,118"/>
+<area shape="rect" id="Node000009" href="$object__test_8c.html" title="It tests the object module." alt="" coords="424,152,529,177"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="479,118,479,152,474,152,474,118"/>
+<area shape="rect" id="Node000011" href="$player__test_8c.html" title="It tests player module." alt="" coords="554,152,661,177"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="610,118,610,152,605,152,605,118"/>
+<area shape="rect" id="Node000013" href="$set__test_8c.html" title="It tests set module." alt="" coords="686,152,771,177"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="731,118,731,152,726,152,726,118"/>
+<area shape="rect" id="Node000015" href="$space__test_8c.html" title="It tests space module." alt="" coords="797,152,900,177"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="851,118,851,152,846,152,846,118"/>
+</map>

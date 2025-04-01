@@ -1,0 +1,61 @@
+\doxysection{space.\+h}
+\hypertarget{space_8h_source}{}\label{space_8h_source}\mbox{\hyperlink{space_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ SPACE\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ SPACE\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{set_8h}{set.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ N\_ROWS\ 5\ \ }\textcolor{comment}{/*Number\ of\ rows\ in\ the\ description*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ N\_COLUMNS\ 10\ }\textcolor{comment}{/*9\ plus\ a\ space\ for\ '\(\backslash\)0'*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ MAX\_DESC\ 9\ }\textcolor{comment}{/*the\ maximum\ size\ for\ gdesc*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct__Space}{\_Space}}\ \mbox{\hyperlink{struct__Space}{Space}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{/*=======================Create\ and\ Destroy========================*/}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00032\ \mbox{\hyperlink{struct__Space}{Space}}*\ \mbox{\hyperlink{space_8h_ad3a5834be733066e8a7d8586be0ac610}{space\_create}}(Id\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00041\ Status\ \mbox{\hyperlink{space_8h_a278763d4b530df17823ef9e4f9db2896}{space\_destroy}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/*============================Set============================*/}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00053\ Status\ \mbox{\hyperlink{space_8h_a03ae5d9d7a842346d89e56409c3cb3e1}{space\_set\_name}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space,\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{struct__Space_aa1c9c994c2d16ecf3ef46138685fdfdc}{name}});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00065\ Status\ \mbox{\hyperlink{space_8h_aa4dce872dc290841edb6806d3d86abb8}{space\_set\_character}}(\mbox{\hyperlink{struct__Space}{Space}}\ *space,\ Id\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00077\ Status\ \mbox{\hyperlink{space_8h_a70a6bb9941e483066dad26a5bc1082e0}{space\_set\_new\_object}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space,\ Id\ object\_id);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00088\ Status\ \mbox{\hyperlink{space_8h_a16a4eb20e8fa860b0e3f37b3dfd63163}{space\_set\_gdesc}}\ (\mbox{\hyperlink{struct__Space}{Space}}*\ space,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ new\_gdesc[N\_ROWS][N\_COLUMNS]);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00100\ Status\ \mbox{\hyperlink{space_8h_a128662317c47263d0d46ea3cb287011d}{space\_object\_del}}(\mbox{\hyperlink{struct__Space}{Space}}\ *space,\ Id\ object\_id);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00112\ Status\ \mbox{\hyperlink{space_8h_ad184783dc62e61c9b3c0c2879f3277e3}{space\_set\_discovered}}(\mbox{\hyperlink{struct__Space}{Space}}\ *space,\ Bool\ discovered);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{comment}{/*============================Get============================*/}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00123\ Id\ \mbox{\hyperlink{space_8h_ac8ddfd0d8692fd852ee49698c446cb50}{space\_get\_id}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{space_8h_ae2006c76eb167f71c7fd7614e0edd37a}{space\_get\_name}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00143\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{space_8h_a1d03b36d7b6a32927eca2d4dea251d9c}{space\_get\_nobjects}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00155\ Status\ \mbox{\hyperlink{space_8h_a6dcf24b96238fb910635f4df64210bde}{space\_object\_is\_there}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space,\ Id\ object\_id);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00166\ Id*\ \mbox{\hyperlink{space_8h_a1d9deee7ee0db9cadc37692988cbfedc}{space\_get\_objects\_ids}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00177\ Id\ \mbox{\hyperlink{space_8h_a2b1d65484b8f7241c56cb2ca9bb1fdcd}{space\_get\_character}}(\mbox{\hyperlink{struct__Space}{Space}}\ *space);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{space_8h_ab9c8e2690db10cef45ed44871adec935}{space\_get\_gdesc}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space,\ \textcolor{keywordtype}{int}\ row);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00196\ Bool\ \mbox{\hyperlink{space_8h_ad5849ae1901586f6f8a7fdad6bbaea0f}{space\_get\_discovered}}(\mbox{\hyperlink{struct__Space}{Space}}\ *space);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{comment}{/*============================Print============================*/}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00208\ Status\ \mbox{\hyperlink{space_8h_a013d3166ac751f717612c5b0d6510c2c}{space\_print}}(\mbox{\hyperlink{struct__Space}{Space}}*\ space);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

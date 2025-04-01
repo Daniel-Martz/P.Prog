@@ -345,9 +345,15 @@
  Object **game_get_objects_discovered(Game *game) {
   int i, j, n = 0; 
   Id space_id;
-  Object *objects_discovered[MAX_OBJECTS];
+  Object **objects_discovered;
    
   if (!(game)) {
+    return NULL;
+  }
+
+  objects_discovered = (Object **) malloc (game_get_n_objects_discovered(game) * sizeof(Object *));
+
+  if(objects_discovered == NULL) {
     return NULL;
   }
 
@@ -389,11 +395,17 @@
  }
 
  Character **game_get_characters_discovered(Game *game) {
-  int i, j, n = 0; 
+  int i, j, k = 0; 
   Id space_id;
-  Character *characters_discovered[MAX_CHARACTERS];
+  Character **characters_discovered;
    
   if (!(game)) {
+    return NULL;
+  }
+
+  characters_discovered = (Character **) malloc (game_get_n_characters_discovered(game) * sizeof(Character *));
+
+  if(characters_discovered == NULL) {
     return NULL;
   }
 
@@ -402,8 +414,8 @@
     for(j=0; j<game->n_spaces; j++) {
       if(space_get_id(game->spaces[j]) == space_id) {
         if(space_get_discovered(game->spaces[j]) == TRUE) {
-          characters_discovered[n] = game->characters[i];
-          n++;
+          characters_discovered[k] = game->characters[i];
+          k++;
         }
         break;
       }

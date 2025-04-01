@@ -1,0 +1,9 @@
+<map id="game_reader.h" name="game_reader.h">
+<area shape="rect" id="Node000001" title="It defines the functions in charge of creating the spaces" alt="" coords="93,5,212,31"/>
+<area shape="rect" id="Node000002" href="$game_8c.html" title="It implements the game structure." alt="" coords="5,79,76,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,40,60,81,58,76,121,36"/>
+<area shape="rect" id="Node000003" href="$game__loop_8c.html" title="It defines the game loop." alt="" coords="100,79,205,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,44,155,79,150,79,150,44"/>
+<area shape="rect" id="Node000004" href="$game__reader_8c.html" title="It creates and adds the spaces." alt="" coords="229,79,348,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="188,34,268,76,265,81,185,39"/>
+</map>

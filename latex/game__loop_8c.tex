@@ -1,0 +1,162 @@
+\doxysection{game\+\_\+loop.\+c File Reference}
+\hypertarget{game__loop_8c}{}\label{game__loop_8c}\index{game\_loop.c@{game\_loop.c}}
+
+
+It defines the game loop.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}command.\+h"{}}\newline
+{\ttfamily \#include "{}game.\+h"{}}\newline
+{\ttfamily \#include "{}game\+\_\+actions.\+h"{}}\newline
+{\ttfamily \#include "{}graphic\+\_\+engine.\+h"{}}\newline
+{\ttfamily \#include "{}game\+\_\+reader.\+h"{}}\newline
+{\ttfamily \#include "{}types.\+h"{}}\newline
+Include dependency graph for game\+\_\+loop.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game__loop_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{game__loop_8c_a2b1bd24d2eddf8081d8c541e4cc4fd4b}\label{game__loop_8c_a2b1bd24d2eddf8081d8c541e4cc4fd4b} 
+\#define {\bfseries CMD\+\_\+\+LENGHT}~30 /\texorpdfstring{$\ast$}{*} It denotes the length needed for the string that stores the introduced command \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{game__loop_8c_a827dc7e4d68683cf3a0bd879f20ec240}{game\+\_\+loop\+\_\+init}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}game, \mbox{\hyperlink{struct__Graphic__engine}{Graphic\+\_\+engine}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}gengine, char \texorpdfstring{$\ast$}{*}file\+\_\+name, Status log\+\_\+status)
+\begin{DoxyCompactList}\small\item\em It initialices the game and the graphic engine controlling the errors (printing the reason of the failure) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__loop_8c_a187cdeef93a0acfd49b9a2c1cd3d391e}{game\+\_\+loop\+\_\+run}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, \mbox{\hyperlink{struct__Graphic__engine}{Graphic\+\_\+engine}} \texorpdfstring{$\ast$}{*}gengine, Status log\+\_\+status, char \texorpdfstring{$\ast$}{*}log\+\_\+name, char \texorpdfstring{$\ast$}{*}output\+\_\+name)
+\begin{DoxyCompactList}\small\item\em It initiates the graphic engine and do the action of the last command selected. It will keep on going (nothing will change) until it recives the next command. It won´t stop until the command introduced says so or the game finishes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__loop_8c_a395965726eadd591bc6c02fed4709a4e}{game\+\_\+loop\+\_\+cleanup}} (\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}game, \mbox{\hyperlink{struct__Graphic__engine}{Graphic\+\_\+engine}} \texorpdfstring{$\ast$}{*}gengine)
+\begin{DoxyCompactList}\small\item\em It destroys the game and the graphic engine. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__loop_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Checks if the user has provided a game data file and initializes it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+It defines the game loop. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+27-\/01-\/2025 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+GNU Public License 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{game__loop_8c_a395965726eadd591bc6c02fed4709a4e}\label{game__loop_8c_a395965726eadd591bc6c02fed4709a4e} 
+\index{game\_loop.c@{game\_loop.c}!game\_loop\_cleanup@{game\_loop\_cleanup}}
+\index{game\_loop\_cleanup@{game\_loop\_cleanup}!game\_loop.c@{game\_loop.c}}
+\doxysubsubsection{\texorpdfstring{game\_loop\_cleanup()}{game\_loop\_cleanup()}}
+{\footnotesize\ttfamily void game\+\_\+loop\+\_\+cleanup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{\mbox{\hyperlink{struct__Graphic__engine}{Graphic\+\_\+engine}} \texorpdfstring{$\ast$}{*}}]{gengine }\end{DoxyParamCaption})}
+
+
+
+It destroys the game and the graphic engine. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em gengine} & A pointer to the grafic engine \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void (nothing) 
+\end{DoxyReturn}
+\Hypertarget{game__loop_8c_a827dc7e4d68683cf3a0bd879f20ec240}\label{game__loop_8c_a827dc7e4d68683cf3a0bd879f20ec240} 
+\index{game\_loop.c@{game\_loop.c}!game\_loop\_init@{game\_loop\_init}}
+\index{game\_loop\_init@{game\_loop\_init}!game\_loop.c@{game\_loop.c}}
+\doxysubsubsection{\texorpdfstring{game\_loop\_init()}{game\_loop\_init()}}
+{\footnotesize\ttfamily int game\+\_\+loop\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{game,  }\item[{\mbox{\hyperlink{struct__Graphic__engine}{Graphic\+\_\+engine}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{gengine,  }\item[{char \texorpdfstring{$\ast$}{*}}]{file\+\_\+name,  }\item[{Status}]{log\+\_\+status }\end{DoxyParamCaption})}
+
+
+
+It initialices the game and the graphic engine controlling the errors (printing the reason of the failure) 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & a pointer to game \\
+\hline
+{\em gengine} & a double pointer to the graphic engine \\
+\hline
+{\em file\+\_\+name} & a string with the name of the file \\
+\hline
+{\em log\+\_\+status} & a boolean that indicates if the log is active or not\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything was good and 0 if not 
+\end{DoxyReturn}
+\Hypertarget{game__loop_8c_a187cdeef93a0acfd49b9a2c1cd3d391e}\label{game__loop_8c_a187cdeef93a0acfd49b9a2c1cd3d391e} 
+\index{game\_loop.c@{game\_loop.c}!game\_loop\_run@{game\_loop\_run}}
+\index{game\_loop\_run@{game\_loop\_run}!game\_loop.c@{game\_loop.c}}
+\doxysubsubsection{\texorpdfstring{game\_loop\_run()}{game\_loop\_run()}}
+{\footnotesize\ttfamily void game\+\_\+loop\+\_\+run (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} \texorpdfstring{$\ast$}{*}}]{game,  }\item[{\mbox{\hyperlink{struct__Graphic__engine}{Graphic\+\_\+engine}} \texorpdfstring{$\ast$}{*}}]{gengine,  }\item[{Status}]{log\+\_\+status,  }\item[{char \texorpdfstring{$\ast$}{*}}]{log\+\_\+name,  }\item[{char \texorpdfstring{$\ast$}{*}}]{output\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+It initiates the graphic engine and do the action of the last command selected. It will keep on going (nothing will change) until it recives the next command. It won´t stop until the command introduced says so or the game finishes. 
+
+\begin{DoxyAuthor}{Author}
+Jaime Romero
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & A pointer to Game \\
+\hline
+{\em engine} & A pointer to the grafic engine \\
+\hline
+{\em log\+\_\+status} & a boolean that indicates if the log is active or not \\
+\hline
+{\em log\+\_\+name} & a string with the name of the log input file \\
+\hline
+{\em output\+\_\+name} & a string with the name of the log output file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void (nothing) 
+\end{DoxyReturn}
+\Hypertarget{game__loop_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{game__loop_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{game\_loop.c@{game\_loop.c}!main@{main}}
+\index{main@{main}!game\_loop.c@{game\_loop.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Checks if the user has provided a game data file and initializes it. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Martínez
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & It refers to the number of arguments passed to the program \\
+\hline
+{\em argv} & An array of strings with the aruments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything was correct and 0 if not 
+\end{DoxyReturn}

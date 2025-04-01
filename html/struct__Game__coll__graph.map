@@ -1,0 +1,20 @@
+<map id="_Game" name="_Game">
+<area shape="rect" id="Node000001" title="This struct stores all the information of the game." alt="" coords="269,280,337,305"/>
+<area shape="rect" id="Node000002" href="$struct__Player.html" title="This struct stores all the information of a player." alt="" coords="15,192,86,217"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,230,61,243,70,254,84,262,105,269,158,279,269,288,268,293,158,284,103,274,82,267,66,258,57,246,51,232"/>
+<area shape="rect" id="Node000003" href="$struct__Inventory.html" title=" " alt="" coords="5,93,96,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="40,132,36,143,36,167,46,190,41,192,31,169,31,142,35,131"/>
+<area shape="rect" id="Node000004" href="$struct__Set.html" title="This struct stores all the information of a set." alt="" coords="73,5,124,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="88,44,81,56,59,94,55,92,76,53,83,42"/>
+<area shape="rect" id="Node000006" href="$struct__Space.html" title="This struct stores all the information of a space." alt="" coords="113,143,181,168"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="110,43,145,142,140,143,105,44"/>
+<area shape="rect" id="Node000005" href="$struct__Object.html" title="This struct stores all the information of an object." alt="" coords="214,192,285,217"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="263,228,278,255,295,278,291,281,274,257,259,231"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="147,181,149,199,156,216,179,241,209,260,240,273,269,282,268,287,239,278,207,264,176,245,151,219,143,201,141,182"/>
+<area shape="rect" id="Node000007" href="$struct__Command.html" title="This struct stores all the information of a command." alt="" coords="309,192,405,217"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="346,231,330,257,314,281,309,278,326,255,342,228"/>
+<area shape="rect" id="Node000008" href="$struct__Character.html" title="This struct stores all the information of a character." alt="" coords="430,192,522,217"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="453,228,407,258,338,285,336,280,404,254,450,224"/>
+<area shape="rect" id="Node000009" href="$struct__Link.html" title="This struct stores all the information of a link." alt="" coords="549,192,605,217"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="557,228,535,245,509,258,464,274,417,284,337,293,336,288,416,278,462,269,507,254,532,240,553,224"/>
+</map>

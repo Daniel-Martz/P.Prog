@@ -1,0 +1,265 @@
+\doxysection{inventory.\+h File Reference}
+\hypertarget{inventory_8h}{}\label{inventory_8h}\index{inventory.h@{inventory.h}}
+
+
+It defines the Inventory module.  
+
+
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}set.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for inventory.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{inventory_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inventory_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}\label{inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3} 
+typedef struct \mbox{\hyperlink{struct__Inventory}{\+\_\+\+Inventory}} {\bfseries Inventory}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{inventory_8h_a21084df415242116205e60d348c148fb}{inventory\+\_\+create}} ()
+\begin{DoxyCompactList}\small\item\em Creates the strcuture \textquotesingle{}Inventory\textquotesingle{}, allocating memory and initializing its arguments. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{inventory_8h_ae23961749b6ed45fd5fe1c18941fe586}{inventory\+\_\+destroy}} (\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}inventory)
+\begin{DoxyCompactList}\small\item\em "{}\+Destroys"{} the inventory\textquotesingle{}s elements and frees its memory \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{inventory_8h_a0cc61d58ac7f8314b9cbb92cc5fb8271}{inventory\+\_\+add\+\_\+obj\+\_\+id}} (\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}inventory, Id obj\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Adds a new object id to the array of elements in inventory. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{inventory_8h_ac617746c9cbd173c5b964e581f3b12be}{inventory\+\_\+delete\+\_\+obj\+\_\+id}} (\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}inventory, Id obj\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Deletes an element from the array of ids in inventory. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{inventory_8h_afbc17d32dc40107e199661c958e878d2}{inventory\+\_\+set\+\_\+max\+\_\+objs}} (\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}inventory, int max\+\_\+objs)
+\begin{DoxyCompactList}\small\item\em This function sets the maximum number of objects ids in the inventory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inventory_8h_ab30db4ebeaa40ecf25d54c632fe4aa35}{inventory\+\_\+get\+\_\+max\+\_\+objs}} (\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}inventory)
+\begin{DoxyCompactList}\small\item\em This function gets the maximum number of objects ids in the inventory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inventory_8h_ae7f40bb7c12b599b2e9337f2d7988f73}{inventory\+\_\+get\+\_\+n\+\_\+objs}} (\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}inventory)
+\begin{DoxyCompactList}\small\item\em This function gets the number of objects ids in the inventory. \end{DoxyCompactList}\item 
+Id \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{inventory_8h_ad84c96da400cbef1433e572fcb8a88d0}{inventory\+\_\+get\+\_\+obj\+\_\+ids}} (\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}inventory)
+\begin{DoxyCompactList}\small\item\em This function gets the array of objects ids in the inventory. \end{DoxyCompactList}\item 
+Status \mbox{\hyperlink{inventory_8h_a18eb07c76bbe3f6e6e1b69621b566bf7}{inventory\+\_\+print}} (\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}inventory)
+\begin{DoxyCompactList}\small\item\em Prints the elements of the inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+It defines the Inventory module. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/03-\/18
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{inventory_8h_a0cc61d58ac7f8314b9cbb92cc5fb8271}\label{inventory_8h_a0cc61d58ac7f8314b9cbb92cc5fb8271} 
+\index{inventory.h@{inventory.h}!inventory\_add\_obj\_id@{inventory\_add\_obj\_id}}
+\index{inventory\_add\_obj\_id@{inventory\_add\_obj\_id}!inventory.h@{inventory.h}}
+\doxysubsubsection{\texorpdfstring{inventory\_add\_obj\_id()}{inventory\_add\_obj\_id()}}
+{\footnotesize\ttfamily Status inventory\+\_\+add\+\_\+obj\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}}]{inventory,  }\item[{Id}]{obj\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Adds a new object id to the array of elements in inventory. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sancbiz
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & A pointer to Inventory structure \\
+\hline
+{\em obj\+\_\+id} & The new id which is going to be added\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked correctly, ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{inventory_8h_a21084df415242116205e60d348c148fb}\label{inventory_8h_a21084df415242116205e60d348c148fb} 
+\index{inventory.h@{inventory.h}!inventory\_create@{inventory\_create}}
+\index{inventory\_create@{inventory\_create}!inventory.h@{inventory.h}}
+\doxysubsubsection{\texorpdfstring{inventory\_create()}{inventory\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*} inventory\+\_\+create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates the strcuture \textquotesingle{}Inventory\textquotesingle{}, allocating memory and initializing its arguments. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+A pointer to inventory with the structure (and its arguments) created 
+\end{DoxyReturn}
+\Hypertarget{inventory_8h_ac617746c9cbd173c5b964e581f3b12be}\label{inventory_8h_ac617746c9cbd173c5b964e581f3b12be} 
+\index{inventory.h@{inventory.h}!inventory\_delete\_obj\_id@{inventory\_delete\_obj\_id}}
+\index{inventory\_delete\_obj\_id@{inventory\_delete\_obj\_id}!inventory.h@{inventory.h}}
+\doxysubsubsection{\texorpdfstring{inventory\_delete\_obj\_id()}{inventory\_delete\_obj\_id()}}
+{\footnotesize\ttfamily Status inventory\+\_\+delete\+\_\+obj\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}}]{inventory,  }\item[{Id}]{obj\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Deletes an element from the array of ids in inventory. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & A pointer to Inventor structure \\
+\hline
+{\em obj\+\_\+id} & The new id which is going to be deleted\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked correctly, ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{inventory_8h_ae23961749b6ed45fd5fe1c18941fe586}\label{inventory_8h_ae23961749b6ed45fd5fe1c18941fe586} 
+\index{inventory.h@{inventory.h}!inventory\_destroy@{inventory\_destroy}}
+\index{inventory\_destroy@{inventory\_destroy}!inventory.h@{inventory.h}}
+\doxysubsubsection{\texorpdfstring{inventory\_destroy()}{inventory\_destroy()}}
+{\footnotesize\ttfamily Status inventory\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}}]{inventory }\end{DoxyParamCaption})}
+
+
+
+"{}\+Destroys"{} the inventory\textquotesingle{}s elements and frees its memory 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & A pointer to the structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked correctly, ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{inventory_8h_ab30db4ebeaa40ecf25d54c632fe4aa35}\label{inventory_8h_ab30db4ebeaa40ecf25d54c632fe4aa35} 
+\index{inventory.h@{inventory.h}!inventory\_get\_max\_objs@{inventory\_get\_max\_objs}}
+\index{inventory\_get\_max\_objs@{inventory\_get\_max\_objs}!inventory.h@{inventory.h}}
+\doxysubsubsection{\texorpdfstring{inventory\_get\_max\_objs()}{inventory\_get\_max\_objs()}}
+{\footnotesize\ttfamily int inventory\+\_\+get\+\_\+max\+\_\+objs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}}]{inventory }\end{DoxyParamCaption})}
+
+
+
+This function gets the maximum number of objects ids in the inventory. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & A pointer to Inventory structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if there was a problem, and the number of max\+\_\+obj in the inventory if everything was OK. 
+\end{DoxyReturn}
+\Hypertarget{inventory_8h_ae7f40bb7c12b599b2e9337f2d7988f73}\label{inventory_8h_ae7f40bb7c12b599b2e9337f2d7988f73} 
+\index{inventory.h@{inventory.h}!inventory\_get\_n\_objs@{inventory\_get\_n\_objs}}
+\index{inventory\_get\_n\_objs@{inventory\_get\_n\_objs}!inventory.h@{inventory.h}}
+\doxysubsubsection{\texorpdfstring{inventory\_get\_n\_objs()}{inventory\_get\_n\_objs()}}
+{\footnotesize\ttfamily int inventory\+\_\+get\+\_\+n\+\_\+objs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}}]{inventory }\end{DoxyParamCaption})}
+
+
+
+This function gets the number of objects ids in the inventory. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & A pointer to Inventory structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if there was a problem, and the number of objects ids in the inventory if everything was OK. 
+\end{DoxyReturn}
+\Hypertarget{inventory_8h_ad84c96da400cbef1433e572fcb8a88d0}\label{inventory_8h_ad84c96da400cbef1433e572fcb8a88d0} 
+\index{inventory.h@{inventory.h}!inventory\_get\_obj\_ids@{inventory\_get\_obj\_ids}}
+\index{inventory\_get\_obj\_ids@{inventory\_get\_obj\_ids}!inventory.h@{inventory.h}}
+\doxysubsubsection{\texorpdfstring{inventory\_get\_obj\_ids()}{inventory\_get\_obj\_ids()}}
+{\footnotesize\ttfamily Id \texorpdfstring{$\ast$}{*} inventory\+\_\+get\+\_\+obj\+\_\+ids (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}}]{inventory }\end{DoxyParamCaption})}
+
+
+
+This function gets the array of objects ids in the inventory. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & A pointer to Inventory structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+NULL if there was a problem, and the array of objects ids in the inventory if everything was OK. 
+\end{DoxyReturn}
+\Hypertarget{inventory_8h_a18eb07c76bbe3f6e6e1b69621b566bf7}\label{inventory_8h_a18eb07c76bbe3f6e6e1b69621b566bf7} 
+\index{inventory.h@{inventory.h}!inventory\_print@{inventory\_print}}
+\index{inventory\_print@{inventory\_print}!inventory.h@{inventory.h}}
+\doxysubsubsection{\texorpdfstring{inventory\_print()}{inventory\_print()}}
+{\footnotesize\ttfamily Status inventory\+\_\+print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}}]{inventory }\end{DoxyParamCaption})}
+
+
+
+Prints the elements of the inventory. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & A pointer to Inventory structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked correctly, ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{inventory_8h_afbc17d32dc40107e199661c958e878d2}\label{inventory_8h_afbc17d32dc40107e199661c958e878d2} 
+\index{inventory.h@{inventory.h}!inventory\_set\_max\_objs@{inventory\_set\_max\_objs}}
+\index{inventory\_set\_max\_objs@{inventory\_set\_max\_objs}!inventory.h@{inventory.h}}
+\doxysubsubsection{\texorpdfstring{inventory\_set\_max\_objs()}{inventory\_set\_max\_objs()}}
+{\footnotesize\ttfamily Status inventory\+\_\+set\+\_\+max\+\_\+objs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Inventory}{Inventory}} \texorpdfstring{$\ast$}{*}}]{inventory,  }\item[{int}]{max\+\_\+objs }\end{DoxyParamCaption})}
+
+
+
+This function sets the maximum number of objects ids in the inventory. 
+
+\begin{DoxyAuthor}{Author}
+Jimena Sanchiz
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & A pointer to Inventory structure \\
+\hline
+{\em max\+\_\+objs} & The maximum number of objects ids in the inventory\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if everything worked correctly, ERROR if it didn\textquotesingle{}t 
+\end{DoxyReturn}
