@@ -209,6 +209,33 @@ Id game_get_character_location(Game *game, Id id);
 Object **game_get_objects_discovered(Game *game);
 
 /**
+ * @brief It gets the number of all the objects in the discovered spaces
+ * 
+ * @author Jimena Sanchiz
+ * @param game A pointer to the game
+ * @return The number of objects in discovered spaces
+ */
+int game_get_n_objects_discovered(Game *game);
+
+/**
+ * @brief It gets all the characters in the discovered spaces
+ * 
+ * @author Jimena Sanchiz
+ * @param game A pointer to the game
+ * @return An array of the characters in the discovered spaces
+ */
+Character **game_get_characters_discovered(Game *game);
+
+/**
+ * @brief It gets the number of all the characters in the discovered spaces
+ * 
+ * @author Jimena Sanchiz
+ * @param game A pointer to the game
+ * @return The number of characters in discovered spaces
+ */
+int game_get_n_characters_discovered(Game *game);
+
+/**
  * @brief It sets to an object a location
  * 
  * @author Daniel Martínez
