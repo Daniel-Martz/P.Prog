@@ -336,9 +336,8 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     /* Paint in the description area */
     screen_area_clear(ge->descript);
     /*PASAMOS ARRAY DE OBJETOS A IDS*/
-    if(!(objects = game_get_characters_discovered(game))){
-      fprintf(" There are no objects discovered", str);
-      screen_area_puts(ge->descript, str);
+    if(!(objects = game_get_objects_discovered(game))){
+      screen_area_puts(ge->descript, "There are no objects discovered");
     }
     else{
       if(!(objects_location =(Id*)calloc(game_get_n_objects_discovered(game),sizeof(Id)))){
@@ -362,8 +361,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /*PASAMOS ARRAY DE CHARACTERS A IDS*/
     if(!(characters = game_get_characters_discovered(game))){
-      fprintf(" There are no characters discovered", str);
-      screen_area_puts(ge->descript, str);
+      screen_area_puts(ge->descript, "There are no characters discovered");
     }
 
     else{
