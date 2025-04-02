@@ -296,6 +296,10 @@ Status game_actions_drop(Game *game){
     return ERROR;
   }
 
+  if (inventory_get_n_objs(player_get_backpack(game_get_player(game))) <= 0){
+    return ERROR;
+  }
+
   for(i=0; i<inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++){
     if(!(strcasecmp(objname, object_get_name(game_get_object(game,objsinvent[i]))))){
       object_id = objsinvent[i];
@@ -372,4 +376,5 @@ Status game_actions_chat(Game *game) {
 
   return OK;
 }
+
 
