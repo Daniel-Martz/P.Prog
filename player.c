@@ -55,6 +55,7 @@ Status player_destroy (Player* player){
 
     if (!player) return ERROR;
 
+    inventory_destroy(player->backpack);
     free(player);
     return OK;
 }

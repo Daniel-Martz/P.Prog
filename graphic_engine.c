@@ -19,7 +19,7 @@
 #include "types.h"
 
 #define MAX_STR 255 /*Comnstant assigned fpr the maximum length of a string*/
-#define WIDTH_MAP 57 /*Constant asignated for the width of the map*/
+#define WIDTH_MAP 60 /*Constant asignated for the width of the map*/
 #define WIDTH_DES 31 /*Constant asignated for the width of the description*/
 #define WIDTH_BAN 89 /*Constant asignated for the width of the banner*/
 #define HEIGHT_MAP 29 /*Constant asignated for the height of the map*/
@@ -150,7 +150,7 @@ char **graphic_engine_print_space(Id space_id, Game *game){
   if(space_get_discovered(space) == FALSE){
     sprintf(strspace[1], "|             %3d|", (int)space_id);
     for(i = 2; i < HEIGHT_SPACE-1; i++){
-      sprintf(strspace[i],"|                 |");
+      sprintf(strspace[i],"|                |");
     }
   }
   /*PRIMERA LINEA CON EL CHARACTER*/
@@ -351,7 +351,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       if (objects_location != NULL) {
         sprintf(str, "  Objects: ");
         screen_area_puts(ge->descript, str);
-        for(i=0; i< game_get_nobjects(game); i++){
+        for(i=0; i< game_get_n_objects_discovered(game); i++){
           sprintf(str, " %s: %i",object_get_name(game_get_object(game,object_get_id(objects[i]))), (int)objects_location[i]);
           screen_area_puts(ge->descript, str);
         }
@@ -369,7 +369,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         return;
       }
       
-      for(i=0; i< game_get_ncharacters(game) ; i++){
+      for(i=0; i< game_get_n_characters_discovered(game) ; i++){
         characters_location[i] = game_get_character_location(game, character_get_id(characters[i]));
       }
       /*IMPRESION*/

@@ -218,7 +218,7 @@ Status game_actions_inspect(Game *game){
   }
 
   for(i = 0; i < space_get_nobjects(game_get_space(game, player_location)); i++){
-    if(!(strcasecmp(object_get_name(game_get_object(game, ids_aux[i])), objname))){
+    if(!(strcmp(object_get_name(game_get_object(game, ids_aux[i])), objname))){
       return game_set_message(game, object_get_description(game_get_object(game, ids_aux[i])));      
     }
   }

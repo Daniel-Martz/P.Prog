@@ -312,7 +312,7 @@ Status game_set_last_cmd_status(Game *game, Status cmd_status){
 }
 
 Status game_set_player_location(Game *game, Id location) {
-Space *space = NULL;
+  Space *space = NULL;
   if (!game || location == NO_ID) {
     return ERROR;
   }
@@ -514,7 +514,7 @@ Id game_get_object_from_name(Game *game, char *objname){
   }
 
   for(i=0; i<game->n_objects; i++){
-    if(!strcasecmp(object_get_name(game->objects[i]),objname)){
+    if(!strcmp(object_get_name(game->objects[i]),objname)){
       return object_get_id(game->objects[i]);
     }
   }
@@ -688,18 +688,17 @@ Status game_set_turn(Game *game, int turn){
   return OK;
 }
 
-Status game_next_turn(Game *game){
-  int next_turn = -1;
-  if(!game) return ERROR;
-
-  if(game->turn < game->n_players){
-    next_turn++;
-  } else if (game->turn == game->n_players - 1)
-  {
-    next_turn = 0;
+Status game_next_turn(Game *game) {
+  if (!game) {
+      return ERROR;
   }
-
-  game->turn = next_turn;
-  return OK;
+  
+  if (game->finished) {
+      return ERROR; 
+  }
+  
+  game->turn = (game->turn + 1) % game->n_players;
+  
+  return OK; 
 }
 
