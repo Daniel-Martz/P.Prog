@@ -79,8 +79,15 @@ CommandCode command_get_code(Command* command) {
 }
 
 Status command_set_objname(Command *command, const char *objname){
-  if(!command || !objname){
+  if(!command){
     return ERROR;
+  }
+
+  if(!objname){
+    if(!strcpy(command->objname," \0")){
+      return ERROR;
+    }
+    return OK;
   }
 
   if(!strcpy(command->objname,objname)){
@@ -141,9 +148,16 @@ Status command_get_user_input(Command* command) {
       token = strtok(NULL, "0 \n");
       command_set_objname(command, token);
     }
+    if(cmd == DROP){
+      token = strtok(NULL, "0 \n");
+      command_set_objname(command, token);
+    }
     if(cmd == MOVE){
       token = strtok(NULL, "0 \n");
-      if (!strcasecmp(token, "North") || !strcasecmp(token, "n")) {
+      if (token == NULL) {
+        command_set_direction(command, U);
+      }
+      else if (!strcasecmp(token, "North") || !strcasecmp(token, "n")) {
         command_set_direction(command, N);
       }
       else if (!strcasecmp(token, "East") || !strcasecmp(token, "e")) {
@@ -158,6 +172,10 @@ Status command_get_user_input(Command* command) {
       else {
         command_set_direction(command, U);
       }
+    }
+    if(cmd == INSPECT){
+      token = strtok(NULL, "0 \n");
+      command_set_objname(command, token);
     }
     return command_set_code(command, cmd);
   }
