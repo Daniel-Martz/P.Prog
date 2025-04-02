@@ -100,6 +100,7 @@ void free_gengine_paint_game(char **space) {
     space = NULL;
   }
 }
+
 void graphic_engine_destroy(Graphic_engine *ge) {
   if (!ge) return;
 
@@ -223,6 +224,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   extern char *cmd_to_str[N_CMD][N_CMDT];
   Object **objects;
   Character **characters;
+  Player **players;
   char right = '>', left = '<', back = '^', next = 'v';
 
   /*INITIALIZES SOME VARIABLES*/
@@ -382,9 +384,9 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         }
       }
     }
-
     screen_area_puts(ge->descript, "       ");
-
+    
+    /*IMPRESION*/
     sprintf(str,"  Player: %i (%i)",(int)id_act,player_get_health(game_get_player(game)));
     screen_area_puts(ge->descript, str);
     if(player_objects != NULL){
@@ -405,7 +407,6 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       sprintf(str," Message: %s",game_get_message(game));
       screen_area_puts(ge->descript, str);
     }
-    
 
     /* Paint in the banner area */
     screen_area_puts(ge->banner,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -429,7 +430,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     sprintf(str, " %s (%s): %s", cmd_to_str[last_cmd - NO_CMD][CMDL], cmd_to_str[last_cmd - NO_CMD][CMDS], cmd_result);
     screen_area_puts(ge->feedback, str);
 
-    /* Dump to the terminal */    
+    /* PAINT THE COLOR */    
     screen_paint(game_get_turn(game));
     printf("prompt:> ");
 

@@ -135,13 +135,10 @@ testlink: link_test
 testinventory: inventory_test
 	./inventory_test
 
-# Ejecutar el valgrind con castle
-crunv :
-	valgrind --leak-check=full ./$(EXEC) castle.dat
-
-# Ejecutar el programa con castle
-crun: $(EXEC)
-	./$(EXEC) castle.dat
-
+# Ejecutar doxygen
 doxyfile: 
 	Doxygen -g
+
+# Depuración con anthill.dat
+debug: $(EXEC)
+	gdb -q --args ./$(EXEC) anthill.dat

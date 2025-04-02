@@ -181,8 +181,10 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Status log_status, char 
       }
     }
 
-    if (game_get_nplayers(game) > 1) {sleep(1.5);}
+    if (game_get_nplayers(game) > 1){
     game_next_turn(game);
+    sleep(1.5);
+    }
   }
 
   if ((game_get_finished(game)==TRUE) && (player_get_health(game_get_player(game)) == 0))
