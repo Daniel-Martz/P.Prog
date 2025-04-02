@@ -18,7 +18,8 @@
 #include "space.h"
 #include "types.h"
 
-#define MAX_STR 255 /*Comnstant assigned fpr the maximum length of a string*/
+#define MAX_STR 255 /*Constant assigned fpr the maximum length of a string*/
+#define MAX_BUFFER 268 /*Constant assigned for the lenght of an auxiliary buffer*/
 #define WIDTH_MAP 60 /*Constant asignated for the width of the map*/
 #define WIDTH_DES 31 /*Constant asignated for the width of the description*/
 #define WIDTH_BAN 89 /*Constant asignated for the width of the banner*/
@@ -215,6 +216,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   /* Declare de needed local variables of the function */
   Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, id_left = NO_ID, id_right = NO_ID, *objects_location = NULL, *characters_location = NULL, *player_objects = NULL;
   Space *space_act = NULL;
+  char buffer[MAX_BUFFER];
   char str[MAX_STR];
   char **space_empty = NULL;
   char **space_left = NULL ,**space_right = NULL, **space_back = NULL, **space_next = NULL, **space_actual = NULL, **space1 = NULL, **space2 = NULL, **space3 = NULL;
@@ -224,7 +226,6 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   extern char *cmd_to_str[N_CMD][N_CMDT];
   Object **objects;
   Character **characters;
-  Player **players;
   char right = '>', left = '<', back = '^', next = 'v';
 
   /*INITIALIZES SOME VARIABLES*/
@@ -392,7 +393,8 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     if(player_objects != NULL){
       sprintf(str, "  Player object:");
       for(i = 0; i < inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++ ){
-        sprintf(str, "%s %i",str, (int)player_objects[i]);
+        sprintf(buffer, "%s %i", str, (int)player_objects[i]);
+        strcpy(str, buffer);
         screen_area_puts(ge->descript, str);
       }
     }
