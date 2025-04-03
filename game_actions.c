@@ -166,6 +166,7 @@ Status game_actions_exit(Game *game) {
 Status game_actions_move(Game *game) {
   Id current_id = NO_ID;
   Id space_id = NO_ID;
+  Id player_id = NO_ID;
   Direction direction;
 
   if(!game) return ERROR;
@@ -178,11 +179,12 @@ Status game_actions_move(Game *game) {
   }
 
   space_id = game_get_player_location(game);
+  player_id = player_get_id(game_get_player(game));
 
   if (game_connection_is_open(game, space_id, direction)==TRUE) {
     current_id = game_get_connection(game, space_id, direction);
     if (current_id != NO_ID) {
-      game_set_player_location(game, current_id);
+      game_set_player_location(game, player_id, current_id);
     }
     else {
       return ERROR;
