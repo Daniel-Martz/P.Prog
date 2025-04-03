@@ -3,8 +3,8 @@
  * 
  * @file set_test.c
  * @author Jaime Romero
- * @version 0.0 
- * @date 17-02-2025
+ * @version 0.1 
+ * @date 2025-02-18
  * @copyright GNU Public License
  */
 
@@ -13,8 +13,7 @@
 #include <string.h> 
 #include "set_test.h"
 
-#define MAX_TESTS 30
-#define TEST 10
+#define MAX_TESTS 13
 
 /** 
  * @brief Main function for set unit tests. 
@@ -25,19 +24,17 @@
  *       is executed
  *  
  */
-
 int main(int argc, char** argv) {
-
   int test = 0;
   int all = 1;
 
   if (argc < 2) {
-    printf("Running all test for module set:\n");
+    printf("Running all test for module Set:\n");
   } else {
     test = atoi(argv[1]);
     all = 0;
     printf("Running test %d:\t", test);
-    if (test < 1 && test > MAX_TESTS) {
+    if (test < 1 || test > MAX_TESTS) {
       printf("Error: unknown test %d\t", test);
       exit(EXIT_SUCCESS);
     }
@@ -62,128 +59,118 @@ int main(int argc, char** argv) {
   return 0;
 }
 
-void test1_set_create (){
-    int result;
-    Set *s = NULL;
-    s = set_create();
-    result=(s!=NULL);
-    PRINT_TEST_RESULT(result);
+/* CREATE TESTS */
+void test1_set_create() {
+    Set *s = set_create();
+    PRINT_TEST_RESULT(s != NULL);
     set_destroy(s);
 }
 
-void test2_set_create (){
-    int result;
-    Set *s=NULL;
-    s = set_create();
-    result = (set_get_nids(s) == 0);
-    PRINT_TEST_RESULT(result);
-    set_destroy(s);
-}
-
-void test1_set_add (){
-    Set *s;
-    s = set_create();
-    PRINT_TEST_RESULT(set_add(s, TEST) == OK);
-    set_destroy(s);
-}
-
-void test2_set_add (){
-    Set *s = NULL;
-    s = set_create();
-    set_add(s, TEST);
-    PRINT_TEST_RESULT(set_add(s, TEST) == ERROR);
-    set_destroy(s);
-}
-
-void test1_set_del (){
-    Set *s;
-    s = set_create();
-    set_add(s, TEST);
-    PRINT_TEST_RESULT(set_del(s, TEST) == OK);
-    set_destroy(s);
-}
-
-void test2_set_del (){
-    Set *s;
-    s = set_create();
-    PRINT_TEST_RESULT(set_del(s, TEST) == ERROR);
-    set_destroy(s);
-}
-
-void test1_set_get_nids(){
-    Set *s;
-    s = set_create();
+void test2_set_create() {
+    Set *s = set_create();
     PRINT_TEST_RESULT(set_get_nids(s) == 0);
     set_destroy(s);
 }
 
-void test2_set_get_nids(){
-    Set *s=NULL;
-    s = set_create();
-    set_add(s, TEST);
+/* ADD TESTS */
+void test1_set_add() {
+    Set *s = set_create();
+    PRINT_TEST_RESULT(set_add(s, 1) == OK);
+    set_destroy(s);
+}
+
+void test2_set_add() {
+    Set *s = set_create();
+    set_add(s, 1);
+    PRINT_TEST_RESULT(set_add(s, 1) == ERROR); /* Test duplicate addition */
+    set_destroy(s);
+}
+
+/* DELETE TESTS */
+void test1_set_del() {
+    Set *s = set_create();
+    set_add(s, 1);
+    PRINT_TEST_RESULT(set_del(s, 1) == OK);
+    set_destroy(s);
+}
+
+void test2_set_del() {
+    Set *s = set_create();
+    PRINT_TEST_RESULT(set_del(s, 1) == ERROR); /* Test deletion from empty set */
+    set_destroy(s);
+}
+
+/* GET NUMBER OF IDs TESTS */
+void test1_set_get_nids() {
+    Set *s = set_create();
+    PRINT_TEST_RESULT(set_get_nids(s) == 0);
+    set_destroy(s);
+}
+
+void test2_set_get_nids() {
+    Set *s = set_create();
+    set_add(s, 1);
     PRINT_TEST_RESULT(set_get_nids(s) == 1);
     set_destroy(s);
 }
 
-void test3_set_get_nids(){
-    Set *s=NULL;
-    s = set_create();
-    set_add(s, TEST);
-    set_del(s, TEST);
+void test3_set_get_nids() {
+    Set *s = set_create();
+    set_add(s, 1);
+    set_del(s, 1);
     PRINT_TEST_RESULT(set_get_nids(s) == 0);
     set_destroy(s);
 }
 
-void test1_set_id_is_there(){
-    Set *s;
-    s = set_create();
-    set_add(s, TEST);
-    PRINT_TEST_RESULT(set_id_is_there(s, TEST) == OK);
-    set_destroy(s);
-}
-
-void test2_set_id_is_there(){
-    Set *s;
-    s = set_create();
-    PRINT_TEST_RESULT(set_id_is_there(s, TEST) == ERROR);
-    set_destroy(s);
-}
-
-void test1_set_get_ids(){
-    Set *s=NULL;
-    int i, result = 1;
-    Id array[5]={1,2,3,4,5}, *arrayaux=NULL;
-
-    s = set_create();
+/* ID PRESENCE TESTS */
+void test1_set_id_is_there() {
+    Set *s = set_create();
     set_add(s, 1);
-    set_add(s, 2);
-    set_add(s, 3);
-    set_add(s, 4);
-    set_add(s, 5);
-    arrayaux = set_get_ids(s);
-    for(i=0; i< set_get_nids(s); i++){
-        if(arrayaux[i] != array[i]){
+    PRINT_TEST_RESULT(set_id_is_there(s, 1) == OK);
+    set_destroy(s);
+}
+
+void test2_set_id_is_there() {
+    Set *s = set_create();
+    PRINT_TEST_RESULT(set_id_is_there(s, 1) == ERROR);
+    set_destroy(s);
+}
+
+/* GET IDs ARRAY TESTS */
+void test1_set_get_ids() {
+    Set *s = set_create();
+    Id test_ids[5] = {1, 2, 3, 4, 5};
+    Id *retrieved_ids;
+    int i, result = 1;
+    
+    for (i = 0; i < 5; i++) {
+        set_add(s, test_ids[i]);
+    }
+    
+    retrieved_ids = set_get_ids(s);
+    for (i = 0; i < 5; i++) {
+        if (retrieved_ids[i] != test_ids[i]) {
             result = 0;
             break;
         }
     }
+    
     PRINT_TEST_RESULT(result);
     set_destroy(s);
 }
 
-void test2_set_get_ids(){
-    Set *s=NULL;
-    s = set_create();
-    Id *arrayaux = NULL;
+void test2_set_get_ids() {
+    Set *s = set_create();
+    Id *retrieved_ids = set_get_ids(s);
     int i, result = 1;
-
-    arrayaux = set_get_ids(s);
-    for(i=0; i< MAX_SET; i++){
-        if(arrayaux[i] != NO_ID){
+    
+    for (i = 0; i < MAX_SET; i++) {
+        if (retrieved_ids[i] != NO_ID) {
             result = 0;
             break;
         }
     }
+    
     PRINT_TEST_RESULT(result);
     set_destroy(s);
 }

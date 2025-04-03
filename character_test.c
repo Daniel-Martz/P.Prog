@@ -3,8 +3,8 @@
  * 
  * @file character_test.c
  * @author Jaime Romero
- * @version 0.0 
- * @date 17-02-2025
+ * @version 0.1 
+ * @date 2025-02-24
  * @copyright GNU Public License
  */
 
@@ -14,10 +14,9 @@
 #include "character_test.h"
 
 #define MAX_TESTS 30
-#define TEST 10
 
 /** 
- * @brief Main function for set unit tests. 
+ * @brief Main function for character unit tests. 
  * 
  * You may execute ALL or a SINGLE test
  *   1.- No parameter -> ALL test are executed 
@@ -26,12 +25,11 @@
  *  
  */
 int main(int argc, char** argv) {
-
   int test = 0;
   int all = 1;
 
   if (argc < 2) {
-    printf("Running all test for module set:\n");
+    printf("Running all test for module Character:\n");
   } else {
     test = atoi(argv[1]);
     all = 0;
@@ -42,217 +40,223 @@ int main(int argc, char** argv) {
     }
   }
 
-  if (all || test == 1)test1_character_create();
-  if (all || test == 2)test2_character_create();
-  if (all || test == 3)test1_character_get_id ();
-  if (all || test == 4)test2_character_get_id ();
-  if (all || test == 5)test1_character_get_name();
-  if (all || test == 6)test2_character_get_name();
-  if (all || test == 7)test1_character_get_gdesc();
-  if (all || test == 8)test2_character_get_gdesc();
-  if (all || test == 9)test1_character_get_message();
-  if (all || test == 10)test2_character_get_message();
-  if (all || test == 11)test1_character_get_health();
-  if (all || test == 12)test2_character_get_health();
-  if (all || test == 13)test1_character_get_friendly();
-  if (all || test == 14)test2_character_get_friendly();
-  if (all || test == 15)test1_character_set_id ();
-  if (all || test == 16)test2_character_set_id ();
-  if (all || test == 17)test1_character_set_name();
-  if (all || test == 18)test2_character_set_name();
-  if (all || test == 19)test3_character_set_name();
-  if (all || test == 20)test1_character_set_gdesc();
-  if (all || test == 21)test2_character_set_gdesc();
-  if (all || test == 22)test3_character_set_gdesc();
-  if (all || test == 23)test1_character_set_health();
-  if (all || test == 24)test2_character_set_health();
-  if (all || test == 25)test3_character_set_health();
-  if (all || test == 26)test1_character_set_friendly();
-  if (all || test == 27)test2_character_set_friendly();
-  if (all || test == 28)test1_character_set_message();
-  if (all || test == 29)test2_character_set_message();
-  if (all || test == 30)test3_character_set_message();
+  if (all || test == 1) test1_character_create();
+  if (all || test == 2) test2_character_create();
+  if (all || test == 3) test1_character_get_id();
+  if (all || test == 4) test2_character_get_id();
+  if (all || test == 5) test1_character_get_name();
+  if (all || test == 6) test2_character_get_name();
+  if (all || test == 7) test1_character_get_gdesc();
+  if (all || test == 8) test2_character_get_gdesc();
+  if (all || test == 9) test1_character_get_message();
+  if (all || test == 10) test2_character_get_message();
+  if (all || test == 11) test1_character_get_health();
+  if (all || test == 12) test2_character_get_health();
+  if (all || test == 13) test1_character_get_friendly();
+  if (all || test == 14) test2_character_get_friendly();
+  if (all || test == 15) test1_character_set_id();
+  if (all || test == 16) test2_character_set_id();
+  if (all || test == 17) test1_character_set_name();
+  if (all || test == 18) test2_character_set_name();
+  if (all || test == 19) test3_character_set_name();
+  if (all || test == 20) test1_character_set_gdesc();
+  if (all || test == 21) test2_character_set_gdesc();
+  if (all || test == 22) test3_character_set_gdesc();
+  if (all || test == 23) test1_character_set_health();
+  if (all || test == 24) test2_character_set_health();
+  if (all || test == 25) test3_character_set_health();
+  if (all || test == 26) test1_character_set_friendly();
+  if (all || test == 27) test2_character_set_friendly();
+  if (all || test == 28) test1_character_set_message();
+  if (all || test == 29) test2_character_set_message();
+  if (all || test == 30) test3_character_set_message();
   
   PRINT_PASSED_PERCENTAGE;
 
   return 0;
 }
 
-void test1_character_create(){
-    int result;
-    Character* c;
-    c = character_create(3);
-    result = (c!=NULL);
-    PRINT_TEST_RESULT(result);
+/* CREATE & DESTROY */
+void test1_character_create() {
+    Character* c = character_create(1);
+    PRINT_TEST_RESULT(c != NULL);
     character_destroy(c);
-}
-void test2_character_create(){
-    Character* c=NULL;
-    PRINT_TEST_RESULT((c = character_create(NO_ID)) == NULL);
 }
 
-void test1_character_get_id (){
-    Character *c;
-    c = character_create(4);
-    PRINT_TEST_RESULT(character_get_id(c) != NO_ID);
+void test2_character_create() {
+    Character* c = character_create(NO_ID);
+    PRINT_TEST_RESULT(c == NULL);
+}
+
+/* GET ID */
+void test1_character_get_id() {
+    Character* c = character_create(2);
+    PRINT_TEST_RESULT(character_get_id(c) == 2);
     character_destroy(c);
 }
-void test2_character_get_id (){
-    Character *c=NULL;
+
+void test2_character_get_id() {
+    Character* c = NULL;
     PRINT_TEST_RESULT(character_get_id(c) == NO_ID);
 }
 
-
-void test1_character_get_name(){
-    Character *c;
-    c = character_create(5);
-    character_set_name(c, "pepe");
-    PRINT_TEST_RESULT(strcmp(character_get_name(c), "pepe") == 0);
+/* GET NAME */
+void test1_character_get_name() {
+    Character* c = character_create(3);
+    character_set_name(c, "Test");
+    PRINT_TEST_RESULT(strcmp(character_get_name(c), "Test") == 0);
     character_destroy(c);
 }
-void test2_character_get_name(){
-    Character *c=NULL;
+
+void test2_character_get_name() {
+    Character* c = NULL;
     PRINT_TEST_RESULT(character_get_name(c) == NULL);
 }
 
-void test1_character_get_gdesc(){
-    Character *c;
-    const char gdesc[5]={"Pepe"};
-    c=character_create(7);
-    character_set_gdesc(c, gdesc);
-    PRINT_TEST_RESULT(strcmp(character_get_gdesc(c), gdesc)==0);
+/* GET DESCRIPTION */
+void test1_character_get_gdesc() {
+    Character* c = character_create(4);
+    character_set_gdesc(c, "Description");
+    PRINT_TEST_RESULT(strcmp(character_get_gdesc(c), "Description") == 0);
     character_destroy(c);
 }
-void test2_character_get_gdesc(){
-    Character *c=NULL;
+
+void test2_character_get_gdesc() {
+    Character* c = NULL;
     PRINT_TEST_RESULT(character_get_gdesc(c) == NULL);
 }
 
-void test1_character_get_message(){
-    Character *c;
-    const char message[5]={"Pepe"};
-    c=character_create(8);
-    character_set_message(c, message);
-    PRINT_TEST_RESULT(strcmp(character_get_message(c), message)==0);
+/* GET MESSAGE */
+void test1_character_get_message() {
+    Character* c = character_create(5);
+    character_set_message(c, "Hello");
+    PRINT_TEST_RESULT(strcmp(character_get_message(c), "Hello") == 0);
     character_destroy(c);
 }
-void test2_character_get_message(){
-    Character *c=NULL;
+
+void test2_character_get_message() {
+    Character* c = NULL;
     PRINT_TEST_RESULT(character_get_message(c) == NULL);
 }
 
-void test1_character_get_health(){
-    Character *c;
-    int health = 5;
-    c=character_create(9);
-    character_set_health(c, health);
-    PRINT_TEST_RESULT(character_get_health(c) == health);
+/* GET HEALTH */
+void test1_character_get_health() {
+    Character* c = character_create(6);
+    character_set_health(c, 100);
+    PRINT_TEST_RESULT(character_get_health(c) == 100);
     character_destroy(c);
 }
-void test2_character_get_health(){
-    Character *c=NULL;
+
+void test2_character_get_health() {
+    Character* c = NULL;
     PRINT_TEST_RESULT(character_get_health(c) == POINT_ERROR);
 }
 
-void test1_character_get_friendly(){
-    Character *c;
-    Bool friendly=TRUE;
-    c=character_create(10);
-    character_set_friendly(c, friendly);
-    PRINT_TEST_RESULT(character_get_friendly(c) == friendly);
+/* GET FRIENDLY */
+void test1_character_get_friendly() {
+    Character* c = character_create(7);
+    character_set_friendly(c, FALSE);
+    PRINT_TEST_RESULT(character_get_friendly(c) == FALSE);
     character_destroy(c);
 }
-void test2_character_get_friendly(){
-    Character *c=NULL;
+
+void test2_character_get_friendly() {
+    Character* c = NULL;
     PRINT_TEST_RESULT(character_get_friendly(c) == FALSE);
 }
 
-void test1_character_set_id (){
-    Character *c;
-    c=character_create(11);
-    PRINT_TEST_RESULT(character_set_id(c, 13) == OK);
+/* SET ID */
+void test1_character_set_id() {
+    Character* c = character_create(8);
+    PRINT_TEST_RESULT(character_set_id(c, 9) == OK);
     character_destroy(c);
-}
-void test2_character_set_id (){
-    Character *c=NULL;
-    PRINT_TEST_RESULT(character_set_id(c, 23) == FALSE);
 }
 
-void test1_character_set_name(){
-    Character *c; 
-    c = character_create(12);
-    PRINT_TEST_RESULT(character_set_name(c, "pepe") == OK);
+void test2_character_set_id() {
+    Character* c = NULL;
+    PRINT_TEST_RESULT(character_set_id(c, 10) == ERROR);
+}
+
+/* SET NAME */
+void test1_character_set_name() {
+    Character* c = character_create(11);
+    PRINT_TEST_RESULT(character_set_name(c, "NewName") == OK);
     character_destroy(c);
 }
-void test2_character_set_name(){
-    Character *c = NULL;
-    PRINT_TEST_RESULT(character_set_name(c, "hola") == ERROR);
+
+void test2_character_set_name() {
+    Character* c = NULL;
+    PRINT_TEST_RESULT(character_set_name(c, "NewName") == ERROR);
 }
-void test3_character_set_name(){
-    Character *c; 
-    c = character_create(12);
+
+void test3_character_set_name() {
+    Character* c = character_create(12);
     PRINT_TEST_RESULT(character_set_name(c, NULL) == ERROR);
     character_destroy(c);
 }
 
-void test1_character_set_gdesc(){
-    Character *c; 
-    c = character_create(13);
-    PRINT_TEST_RESULT(character_set_gdesc(c, "pepe") == OK);
+/* SET DESCRIPTION */
+void test1_character_set_gdesc() {
+    Character* c = character_create(13);
+    PRINT_TEST_RESULT(character_set_gdesc(c, "NewDesc") == OK);
     character_destroy(c);
 }
-void test2_character_set_gdesc(){
-    Character *c = NULL;
-    PRINT_TEST_RESULT(character_set_gdesc(c, "hola") == ERROR);
+
+void test2_character_set_gdesc() {
+    Character* c = NULL;
+    PRINT_TEST_RESULT(character_set_gdesc(c, "NewDesc") == ERROR);
 }
-void test3_character_set_gdesc(){
-    Character *c; 
-    c = character_create(13);
+
+void test3_character_set_gdesc() {
+    Character* c = character_create(14);
     PRINT_TEST_RESULT(character_set_gdesc(c, NULL) == ERROR);
     character_destroy(c);
 }
 
-void test1_character_set_health(){
-    Character *c; 
-    c = character_create(14);
-    PRINT_TEST_RESULT(character_set_health(c, 5) == OK);
+/* SET HEALTH */
+void test1_character_set_health() {
+    Character* c = character_create(15);
+    PRINT_TEST_RESULT(character_set_health(c, 50) == OK);
     character_destroy(c);
 }
-void test2_character_set_health(){
-    Character *c; 
-    c = character_create(14);
+
+void test2_character_set_health() {
+    Character* c = character_create(16);
     PRINT_TEST_RESULT(character_set_health(c, -5) == ERROR);
     character_destroy(c);
 }
-void test3_character_set_health(){
-    Character *c = NULL;
-    PRINT_TEST_RESULT(character_set_health(c, 5) == ERROR);
+
+void test3_character_set_health() {
+    Character* c = NULL;
+    PRINT_TEST_RESULT(character_set_health(c, 50) == ERROR);
 }
 
-void test1_character_set_friendly(){
-    Character *c; 
-    c = character_create(15);
+/* SET FRIENDLY */
+void test1_character_set_friendly() {
+    Character* c = character_create(17);
     PRINT_TEST_RESULT(character_set_friendly(c, TRUE) == OK);
     character_destroy(c);
 }
-void test2_character_set_friendly(){
-    Character *c = NULL;
+
+void test2_character_set_friendly() {
+    Character* c = NULL;
     PRINT_TEST_RESULT(character_set_friendly(c, TRUE) == ERROR);
 }
 
-void test1_character_set_message(){
-    Character *c; 
-    c = character_create(16);
-    PRINT_TEST_RESULT(character_set_message(c, "HOLA") == OK);
+/* SET MESSAGE */
+void test1_character_set_message() {
+    Character* c = character_create(18);
+    PRINT_TEST_RESULT(character_set_message(c, "NewMsg") == OK);
     character_destroy(c);
 }
-void test2_character_set_message(){
-    Character *c; 
-    c = character_create(16);
+
+void test2_character_set_message() {
+    Character* c = character_create(19);
     PRINT_TEST_RESULT(character_set_message(c, NULL) == ERROR);
     character_destroy(c);
 }
-void test3_character_set_message(){
-    Character *c = NULL;
-    PRINT_TEST_RESULT(character_set_message(c, "HOLA") == ERROR);
+
+void test3_character_set_message() {
+    Character* c = NULL;
+    PRINT_TEST_RESULT(character_set_message(c, "NewMsg") == ERROR);
 }

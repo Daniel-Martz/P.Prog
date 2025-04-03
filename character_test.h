@@ -3,13 +3,13 @@
  * 
  * @file character_test.h
  * @author Jaime Romero
- * @version 0.0 
- * @date 17-02-2025
+ * @version 0.1 
+ * @date 2025-02-24
  * @copyright GNU Public License
  */
 
-#ifndef SET_TEST_H
-#define SET_TEST_H
+#ifndef CHARACTER_TEST_H
+#define CHARACTER_TEST_H
 
 #include "test.h"
 #include "character.h"
@@ -31,7 +31,7 @@ void test2_character_create();
 /**
  * @test Test function for getting character ID
  * @pre Valid character pointer
- * @post Output != NO_ID
+ * @post Output == character's ID
  */
 void test1_character_get_id();
 
@@ -44,7 +44,7 @@ void test2_character_get_id();
 
 /**
  * @test Test function for getting character name
- * @pre Valid character pointer and name set
+ * @pre Valid character pointer with name set
  * @post Output == Expected name
  */
 void test1_character_get_name();
@@ -58,7 +58,7 @@ void test2_character_get_name();
 
 /**
  * @test Test function for getting character graphical description
- * @pre Valid character pointer and graphical description set
+ * @pre Valid character pointer with gdesc set
  * @post Output == Expected graphical description
  */
 void test1_character_get_gdesc();
@@ -72,7 +72,7 @@ void test2_character_get_gdesc();
 
 /**
  * @test Test function for getting character message
- * @pre Valid character pointer and message set
+ * @pre Valid character pointer with message set
  * @post Output == Expected message
  */
 void test1_character_get_message();
@@ -86,7 +86,7 @@ void test2_character_get_message();
 
 /**
  * @test Test function for getting character health
- * @pre Valid character pointer and health set
+ * @pre Valid character pointer with health set
  * @post Output == Expected health value
  */
 void test1_character_get_health();
@@ -94,14 +94,14 @@ void test1_character_get_health();
 /**
  * @test Test function for getting character health
  * @pre NULL character pointer
- * @post Output == POINT_ERROR
+ * @post Output == POINT_ERROR (-1)
  */
 void test2_character_get_health();
 
 /**
  * @test Test function for getting character friendliness
- * @pre Valid character pointer and friendliness set
- * @post Output == Expected friendliness value
+ * @pre Valid character pointer with friendly status set
+ * @post Output == Expected friendly value
  */
 void test1_character_get_friendly();
 
@@ -128,7 +128,7 @@ void test2_character_set_id();
 
 /**
  * @test Test function for setting character name
- * @pre Valid character pointer and name
+ * @pre Valid character pointer and non-NULL name
  * @post Output == OK
  */
 void test1_character_set_name();
@@ -149,7 +149,7 @@ void test3_character_set_name();
 
 /**
  * @test Test function for setting character graphical description
- * @pre Valid character pointer and graphical description
+ * @pre Valid character pointer and non-NULL gdesc
  * @post Output == OK
  */
 void test1_character_set_gdesc();
@@ -163,7 +163,7 @@ void test2_character_set_gdesc();
 
 /**
  * @test Test function for setting character graphical description
- * @pre Valid character pointer and NULL graphical description
+ * @pre Valid character pointer and NULL gdesc
  * @post Output == ERROR
  */
 void test3_character_set_gdesc();
@@ -191,7 +191,7 @@ void test3_character_set_health();
 
 /**
  * @test Test function for setting character friendliness
- * @pre Valid character pointer and friendliness value
+ * @pre Valid character pointer
  * @post Output == OK
  */
 void test1_character_set_friendly();
@@ -205,7 +205,7 @@ void test2_character_set_friendly();
 
 /**
  * @test Test function for setting character message
- * @pre Valid character pointer and message
+ * @pre Valid character pointer and non-NULL message
  * @post Output == OK
  */
 void test1_character_set_message();

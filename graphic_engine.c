@@ -136,19 +136,19 @@ char **graphic_engine_print_space(Id space_id, Game *game){
   if (!strspace) return NULL;
 
   for (i = 0; i < HEIGHT_SPACE; i++) {
-      strspace[i] = (char *)malloc((WIDTH_SPACE + 1) * sizeof(char));
-      if (!strspace[i]) {
-          for (j = 0; j < i; j++) free(strspace[j]);
-          free(strspace);
-          return NULL;
-      }
+    strspace[i] = (char *)malloc((WIDTH_SPACE + 1) * sizeof(char));
+    if (!strspace[i]) {
+      for (j = 0; j < i; j++) free(strspace[j]);
+      free(strspace);
+      return NULL;
+    }
   }
 
   /*COMIENZO*/
   sprintf(strspace[0], "+----------------+");
   character_id = space_get_character(space);
 
-  /*CHECK IF IS DISCOVERED*/
+  /*CHECK IF It'S DISCOVERED*/
   if(space_get_discovered(space) == FALSE){
     sprintf(strspace[1], "|             %3d|", (int)space_id);
     for(i = 2; i < HEIGHT_SPACE-1; i++){
@@ -163,7 +163,7 @@ char **graphic_engine_print_space(Id space_id, Game *game){
       }
       else{
         sprintf(strspace[1], "| %4.4s        %3d|",player_get_gdesc(game_get_player(game)), (int)space_id);
-        }
+      }
     }
     else{
       if(character_id != NO_ID){
