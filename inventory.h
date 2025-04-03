@@ -28,7 +28,7 @@ typedef struct _Inventory Inventory;
  * 
  * @return A pointer to inventory with the structure (and its arguments) created
  */
-Inventory *inventory_create();
+Inventory *inventory_create(void);
 
 /**
  * @brief "Destroys" the inventory's elements and frees its memory
