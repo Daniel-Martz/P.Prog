@@ -184,8 +184,7 @@
      if (game_get_nplayers(game) > 1){
        graphic_engine_paint_game(gengine, game);
        game_next_turn(game);
-       sleep(1.5);
-       graphic_engine_paint_game(gengine, game);
+       sleep(2);
      }
 
    }

@@ -18,7 +18,7 @@ struct _Inventory {
     int max_objs; /*!< The maximum number of object ids */
 };
 
-Inventory *inventory_create() {
+Inventory *inventory_create(void) {
     Inventory *inventory = NULL;
     inventory = (Inventory *) malloc (sizeof(Inventory));
     if(inventory == NULL) {
