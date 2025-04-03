@@ -188,7 +188,7 @@ Id game_get_object_location(Game *game, Id id);
  * @param player_id The id of the player
  * @return OK if everything worked properly or ERROR if it didn't
  */
-Status game_set_player_location(Game *game, Id player_id, Id location);
+Status game_set_player_location(Game *game, Id location);
 
 /**
  * @brief It just returns the id of the space where a character is

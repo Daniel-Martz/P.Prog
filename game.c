@@ -311,40 +311,22 @@ Status game_set_last_cmd_status(Game *game, Status cmd_status){
   return OK;
 }
 
-Status game_set_player_location(Game *game, Id player_id, Id location) {
-  Player *player = NULL;
+Status game_set_player_location(Game *game, Id location) {
   Space *space = NULL;
-  int i;
-  
-  if (!game || player_id == NO_ID || location == NO_ID) {
+  if (!game || location == NO_ID) {
     return ERROR;
   }
 
-  /* Buscar el jugador por su ID */
-  for (i = 0; i < game->n_players; i++) {
-    if (player_get_id(game->players[i]) == player_id) {
-      player = game->players[i];
-      break;
-    }
-  }
-  
-  if (!player) {
-    return ERROR;
-  }
-
-  /* Actualizar ubicación del jugador */
-  if (player_set_location(player, location) == ERROR) {
-    return ERROR;
-  }
-
-  /* Marcar espacio como descubierto si es la primera vez */
+  player_set_location(game->players[game_get_turn(game)], location); 
   space = game_get_space(game, location);
-  if (space && space_get_discovered(space) == FALSE) {
-    space_set_discovered(space, TRUE);
+  
+  if (space_get_discovered(space) == FALSE) {
+  space_set_discovered(space, TRUE);
   }
 
   return OK;
 }
+
 Id game_get_object_location(Game *game, Id id){
   int i;
   
