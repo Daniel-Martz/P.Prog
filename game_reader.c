@@ -203,7 +203,6 @@ Status game_reader_load_players(Game *game, char *filename){
   Id player_id = NO_ID, space_id = NO_ID;
   Player *player = NULL;
   Status status = OK;
-  Inventory* inv;
 
   if (!filename || !game) {
     return ERROR;
@@ -233,13 +232,11 @@ Status game_reader_load_players(Game *game, char *filename){
       /*Create the Player (with its inventory)*/
       player = player_create(player_id);
       if (!player) return ERROR;
-      inv = inventory_create();
-      if (!inv) return ERROR;
       player_set_name(player, name);
       player_set_health(player, health);
       player_set_gdesc(player, gdesc);
       game_set_player_location(game, space_id);
-      inventory_set_max_objs(inv, max_objects);
+      inventory_set_max_objs(player_get_backpack(player), max_objects);
       game_add_player(game, player);
     }
   }
