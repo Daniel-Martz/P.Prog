@@ -1,0 +1,8 @@
+Move OK
+Move OK
+Move OK
+Take OK
+Move OK
+Drop OK
+Inspect OK
+Exit OK

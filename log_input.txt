@@ -1,0 +1,8 @@
+move north
+move north
+move west
+take grain
+move west
+drop grain
+inspect grain
+exit

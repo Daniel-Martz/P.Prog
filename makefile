@@ -103,6 +103,9 @@ clean:
 runv :
 	valgrind --leak-check=full ./$(EXEC) anthill.dat
 
+runlog:
+	$ ./$(EXEC) anthill.dat -l output.txt - log_input.txt
+
 # Ejecutar el programa
 run: $(EXEC)
 	./$(EXEC) anthill.dat
