@@ -190,7 +190,8 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Bool log_status, char *l
       fgets(command, CMD_LENGHT, log_file);
       command_get_input_from_string(last_cmd, command);
     }
-    st = game_actions_update(game, last_cmd);
+    game_actions_update(game, last_cmd);
+    st = game_get_last_cmd_status(game);
     if (log_status == TRUE)
     {
       for (i = 0; i < N_CMD - 1; i++)

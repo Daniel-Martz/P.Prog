@@ -1,8 +1,8 @@
+Move ERROR
 Move OK
-Move OK
-Move OK
+Move ERROR
 Take OK
-Move OK
-Drop OK
+Move ERROR
+Drop ERROR
 Inspect OK
 Exit OK
