@@ -180,6 +180,17 @@ Id game_get_player_location(Game *game);
 Id game_get_object_location(Game *game, Id id);
 
 /**
+ * @brief It sets the player initial location as the id passed as an argument
+ * 
+ * @author Jorge Martin
+ * @param game A pointer to game 
+ * @param location The Id of the space
+ * @param player_id The id of the player
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_player_initial_location(Game *game, Id player_id, Id location);
+
+/**
  * @brief It sets the player location as the id passed as an argument
  * 
  * @author Jaime Romero

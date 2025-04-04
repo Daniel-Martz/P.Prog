@@ -311,6 +311,29 @@ Status game_set_last_cmd_status(Game *game, Status cmd_status){
   return OK;
 }
 
+Status game_set_player_initial_location(Game *game, Id player_id, Id location) {
+  int i;
+  Space *space = NULL;
+
+  if (!game || location == NO_ID || player_id == NO_ID) {
+    return ERROR;
+  }
+
+  for (i = 0; i < game->n_players; i++) {
+    if (player_id == player_get_id(game->players[i])) {
+      player_set_location(game->players[i], location); 
+      space = game_get_space(game, location);
+      
+      if (space_get_discovered(space) == FALSE) {
+      space_set_discovered(space, TRUE);
+      }
+      return OK;
+    }
+  }
+
+  return ERROR;
+}
+
 Status game_set_player_location(Game *game, Id location) {
   Space *space = NULL;
   if (!game || location == NO_ID) {

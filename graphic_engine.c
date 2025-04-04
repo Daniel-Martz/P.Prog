@@ -432,7 +432,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /* PAINT THE COLOR */    
     screen_paint(game_get_turn(game));
-    printf("prompt:> ");
+    printf("prompt turn %i:> ", game_get_turn(game));
 
     /* PONER FREES DE LOS ESPACIOS */
     if (space_back != space_empty) {

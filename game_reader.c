@@ -235,9 +235,9 @@ Status game_reader_load_players(Game *game, char *filename){
       player_set_name(player, name);
       player_set_health(player, health);
       player_set_gdesc(player, gdesc);
-      game_set_player_location(game, space_id);
-      inventory_set_max_objs(player_get_backpack(player), max_objects);
       game_add_player(game, player);
+      game_set_player_initial_location(game, player_id, space_id);
+      inventory_set_max_objs(player_get_backpack(player), max_objects);
     }
   }
 
