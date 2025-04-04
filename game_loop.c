@@ -216,22 +216,30 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Bool log_status, char *l
       if (log_status == FALSE)
       {
         graphic_engine_paint_game(gengine, game);
+        if (command_get_code(last_cmd) == EXIT) {
+          game_set_finished(game, TRUE);
+          break;
+        }
         game_next_turn(game);
         sleep(2);
       }
-      else
+      if (log_status == TRUE)
       {
+        if (command_get_code(last_cmd) == EXIT) {
+          game_set_finished(game, TRUE);
+          break;
+        }
         game_next_turn(game);
       }
     }
   }
 
-  if ((game_get_finished(game) == TRUE) && (player_get_health(game_get_player(game)) == 0))
+  if ((game_get_finished(game) == TRUE) || (player_get_health(game_get_player(game)) == 0))
   {
     if (log_status == FALSE)
     {
       graphic_engine_paint_game(gengine, game);
-      printf("GAME OVER");
+      printf("GAME OVER\n");
     }
     if (log_status == TRUE)
     {
@@ -244,6 +252,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Bool log_status, char *l
   {
     if (log_status == TRUE)
     {
+      fprintf(log_output, "GAME OVER2\n");
       fclose(log_file);
       fclose(log_output);
     }

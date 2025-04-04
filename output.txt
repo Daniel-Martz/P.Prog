@@ -6,3 +6,4 @@ Move ERROR
 Drop ERROR
 Inspect OK
 Exit OK
+GAME OVER
