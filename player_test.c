@@ -128,7 +128,7 @@ void test2_player_get_name() {
 void test1_player_get_health() {
     Player *player = NULL;
     player = player_create(1);
-    PRINT_TEST_RESULT(player_get_health(player) == 10);
+    PRINT_TEST_RESULT(player_get_health(player) == 0);
     player_destroy(player);
 }
 

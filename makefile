@@ -75,8 +75,8 @@ link_test: link_test.o link.o
 link_test.o: link_test.c link_test.h test.h link.h types.h
 	$(CC) $(CFLAGS) -o link_test.o link_test.c
 
-player_test: player_test.o player.o
-	$(CC) -o player_test player_test.o player.o
+player_test: player_test.o player.o inventory.o set.o
+	$(CC) -o player_test player_test.o player.o inventory.o set.o
 
 player_test.o: player_test.c player_test.h player.h test.h types.h
 	$(CC) $(CFLAGS) -o player_test.o player_test.c
