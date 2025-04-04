@@ -257,3 +257,4 @@ void game_loop_cleanup(Game *game, Graphic_engine *gengine)
 }
 
 /*  valgrind --leak-check=full --show-leak-kinds=all ./proyecto anthill.dat   */
+/*  valgrind --leak-check=full --show-leak-kinds=all ./proyecto anthill.dat -l output.txt - log_input.txt   */
