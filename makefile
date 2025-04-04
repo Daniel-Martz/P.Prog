@@ -97,7 +97,7 @@ inventory_test.o: inventory_test.c inventory_test.h inventory.h test.h
 	
 # Limpiar archivos generados
 clean:
-	rm -f $(EXEC) $(OBJS) space_test space_test.o set_test set_test.o character_test character_test.o link_test.o inventory_test inventory_test.o object_test object_test.o player_test player_test.o
+	rm -f $(EXEC) $(OBJS) space_test space_test.o set_test set_test.o character_test character_test.o link_test.o inventory_test inventory_test.o object_test object_test.o player_test player_test.o link_test link_test_o
 
 # Correr valgrind
 runv :
