@@ -4,7 +4,7 @@ CFLAGS = -Wall -ansi -pedantic -g -c
 OBJS = command.o space.o graphic_engine.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o link.o inventory.o
 EXEC = proyecto
 
-.PHONY: all clean runv run testset testcharacter testspace testinventory testplayer testobject testlink crunv crun doxyfile
+.PHONY: all clean runv run runvlog runlog runvcastle runcastle testset testcharacter testspace testinventory testplayer testobject testlink crunv crun doxyfile
 # Regla principal
 all: $(EXEC)
 
@@ -103,12 +103,21 @@ clean:
 runv :
 	valgrind --leak-check=full ./$(EXEC) anthill.dat
 
-runlog:
-	$ ./$(EXEC) anthill.dat -l output.txt - log_input.txt
+runvcastle :
+	valgrind --leak-check=full ./$(EXEC) castle.dat
+
+runvlog : 
+	valgrind --leak-check=full ./$(EXEC) anthill.dat -l output.txt - log_input.txt
 
 # Ejecutar el programa
 run: $(EXEC)
 	./$(EXEC) anthill.dat
+
+runcastle: $(EXEC)
+	./$(EXEC) castle.dat
+
+runlog:
+	$ ./$(EXEC) anthill.dat -l output.txt - log_input.txt
 
 # Ejecutar el archivo de testeo space
 testspace: space_test 
