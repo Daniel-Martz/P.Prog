@@ -1,11 +1,11 @@
-#s:11|Entry|-1|-1|12|-1| _   !#  |[_]--'---|!'!""`""!|! ! /^\ !|!_!_!I!_!|
-#s:12|Corridor|11|14|16|15|
-#s:13|Dinning Room|-1|-1|14|-1| .-===-. | ! . . ! | ! .'. ! |()_____()|II_____II|
-#s:14|Kitchen|13|-1|-1|12|
-#s:15|Backyard|-1|12|18|-1|
-#s:16|Bedroom|12|17|-1|18|
-#s:17|Bathroom|-1|-1|-1|16|      _  |     ! ! |  ___! ! | (    .' |  )  (   |
-#s:18|Garden|15|16|-1|-1| /\ /\ /\|//\\/\\/\|//\\/\\/\| II II II|---------|
+#s:11|Entry| _   !#  |[_]--'---|!'!""`""!|! ! /^\ !|!_!_!I!_!|
+#s:12|Corridor|
+#s:13|Dinning Room| .-===-. | ! . . ! | ! .'. ! |()_____()|II_____II|
+#s:14|Kitchen|
+#s:15|Backyard|
+#s:16|Bedroom|
+#s:17|Bathroom|      _  |     ! ! |  ___! ! | (    .' |  )  (   |
+#s:18|Garden| /\ /\ /\|//\\/\\/\|//\\/\\/\| II II II|---------|
 
 #o:1|Chest|14
 #o:7|Tapestry|13
@@ -13,3 +13,22 @@
 #o:13|Parchment|12
 #o:4|Armor|13
 #o:6|Candelabra|16
+
+#p:1|ant|mO^|11|5|3|
+
+#l:31|Entry-Corridor|11|12|1|1|
+#l:32|Corridor-Entry|12|11|0|1|
+#l:33|Corridor-Bedroom|12|16|1|1|
+#l:34|Corridor-Kitchen|12|14|2|1|
+#l:35|Corridor-Backyard|12|15|3|1|
+#l:36|Dinning Room-Kitchen|13|14|1|1|
+#l:36|Kitchen-Dinning Room|14|13|0|1|
+#l:37|Kitchen-Corridor|14|12|3|1|
+#l:38|Backyard-Corridor|15|12|2|1|
+#l:39|Backyard-Garden|15|18|1|1|
+#l:40|Bedroom-Corridor|16|12|0|1|
+#l:41|Bedroom-Bathroom|16|17|2|1|
+#l:42|Bedroom-Garden|16|18|3|1|
+#l:43|Bathroom-Bedroom|17|16|3|1|
+#l:44|Garden-Backyard|18|15|0|1|
+#l:45|Garden-Bedroom|18|16|2|0|
