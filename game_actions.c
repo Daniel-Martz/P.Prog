@@ -343,8 +343,6 @@ Status game_actions_attack(Game *game) {
   /* If one of them has no health*/
   if(!((player_get_health(game_get_player(game))>0) && (character_get_health(game_get_character(game, character))>0))) return ERROR; 
 
-  srand(time(NULL));
-
   turn = rand()%10;
   if((turn<0)||turn>9) return ERROR;
   if(turn<5){

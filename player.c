@@ -15,6 +15,7 @@
 
 #include "player.h"
 
+#define INIT_HEALTH 0 /* Constant for the initial hp of the player*/
 /**
  * @brief This struct stores all the information of a player
  *
@@ -45,7 +46,7 @@ Player* player_create (Id id){
     newPlayer->name[0] = '\0';
     newPlayer->location = NO_ID;
     if((newPlayer->backpack = inventory_create()) == NULL) return NULL;
-    newPlayer->health = 0;
+    newPlayer->health = INIT_HEALTH;
     newPlayer->gdesc[0] = '\0';
 
     return newPlayer;

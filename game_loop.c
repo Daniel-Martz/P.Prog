@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "command.h"
 #include "game.h"
@@ -72,6 +73,8 @@ int main(int argc, char *argv[])
   Game *game = NULL;
   Graphic_engine *gengine;
   Bool log_status = FALSE;
+
+  srand(time(NULL));
 
   if (argc < 2)
   {

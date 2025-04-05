@@ -50,49 +50,7 @@ void test3_space_set_name();
  * @pre Space ID for north
  * @post Output == OK
  */
-void test1_space_set_north();
-/**
- * @test Test function for setting north space
- * @pre pointer to space = NULL 
- * @post Output == ERROR
- */
-void test2_space_set_north();
-/**
- * @test Test function for setting south space
- * @pre Space ID for south
- * @post Output == OK
- */
-void test1_space_set_south();
-/**
- * @test Test function for setting south space
- * @pre pointer to space = NULL 
- * @post Output == ERROR
- */
-void test2_space_set_south();
-/**
- * @test Test function for setting east space
- * @pre Space ID for east
- * @post Output == OK
- */
-void test1_space_set_east();
-/**
- * @test Test function for setting east space
- * @pre pointer to space = NULL 
- * @post Output == ERROR
- */
-void test2_space_set_east();
-/**
- * @test Test function for setting west space
- * @pre Space ID for west
- * @post Output == OK
- */
-void test1_space_set_west();
-/**
- * @test Test function for setting west space
- * @pre pointer to space = NULL 
- * @post Output == ERROR
- */
-void test2_space_set_west();
+
 /**
  * @test Test function for adding a new object to the space
  * @pre Object ID
@@ -154,54 +112,6 @@ void test1_space_get_name();
  */
 void test2_space_get_name();
 /**
- * @test Test function for getting the north space ID
- * @pre Space pointer is valid
- * @post Output == North space ID
- */
-void test1_space_get_north();
-/**
- * @test Test function for getting the north space ID
- * @pre pointer to space = NULL 
- * @post Output == NO_ID
- */
-void test2_space_get_north();
-/**
- * @test Test function for getting the south space ID
- * @pre Space pointer is valid
- * @post Output == South space ID
- */
-void test1_space_get_south();
-/**
- * @test Test function for getting the south space ID
- * @pre pointer to space = NULL 
- * @post Output == NO_ID
- */
-void test2_space_get_south();
-/**
- * @test Test function for getting the east space ID
- * @pre Space pointer is valid
- * @post Output == East space ID
- */
-void test1_space_get_east();
-/**
- * @test Test function for getting the east space ID
- * @pre pointer to space = NULL 
- * @post Output == NO_ID
- */
-void test2_space_get_east();
-/**
- * @test Test function for getting the west space ID
- * @pre Space pointer is valid
- * @post Output == West space ID
- */
-void test1_space_get_west();
-/**
- * @test Test function for getting the west space ID
- * @pre pointer to space = NULL 
- * @post Output == NO_ID
- */
-void test2_space_get_west();
-/**
  * @test Test function for getting the number of objects in the space
  * @pre Space pointer is valid
  * @post Output == Number of objects
@@ -219,6 +129,11 @@ void test2_space_get_nobjects();
  * @post Output == Pointer to the set of object IDs
  */
 void test1_space_get_objects_ids();
+/**
+ * @test Test function for getting the character in the space
+ * @pre pointer to space = NULL 
+ * @post Output == NO_ID
+ */
 void test1_space_get_character();
 /**
  * @test Test function for getting the character in the space
@@ -250,5 +165,59 @@ void test3_space_get_gdesc();
  * @post Output == NULL
  */
 void test4_space_get_gdesc();
+/**
+ * @test Test getting discovered status from valid space
+ * @pre Space with discovered status set
+ * @post Returns correct discovered status
+ */
+void test1_space_get_discovered();
+/**
+* @test Test getting discovered status from NULL space
+* @pre NULL space pointer
+* @post Returns FALSE
+*/
+void test2_space_get_discovered();
+/**
+* @test Test setting discovered status on valid space
+* @pre Valid space pointer
+* @post Returns OK and status is set
+*/
+void test1_space_set_discovered();
+/**
+* @test Test setting discovered status on NULL space
+* @pre NULL space pointer
+* @post Returns ERROR
+*/
+void test2_space_set_discovered();
+/**
+ * @test Test printing a normal space
+ * @pre Space with all fields populated
+ * @post Output == OK
+ */
+void test1_space_print();
+/**
+* @test Test printing NULL space
+* @pre NULL space pointer
+* @post Output == ERROR
+*/
+void test2_space_print();
+/**
+* @test Test printing space with no objects
+* @pre Space with no objects
+* @post Output == OK
+*/
+void test3_space_print();
+/**
+* @test Test printing space with no character
+* @pre Space with no character
+* @post Output == OK
+*/
+void test4_space_print();
+/**
+* @test Test printing space with empty name
+* @pre Space with empty name
+* @post Output == OK
+*/
+void test5_space_print();
 
 #endif

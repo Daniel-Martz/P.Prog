@@ -30,6 +30,17 @@
 #define WIDTH_SPACE 18 /*Constante asignated for the maximum size of the lines inside the space*/
 #define HEIGHT_SPACE 9 /*Constante asignated for the maximum size of the columns inside the space*/
 #define MAX_RESULT 10 /*Constant fot the maximum size of the result*/
+#define LINE_1 0 /*Constant for the first line of the space*/
+#define LINE_2 1 /*Constant for the second line of the space*/
+#define LINE_3 2 /*Constant for the third line of the space*/
+#define LINE_4 3 /*Constant for the fourth line of the space*/
+#define LINE_5 4 /*Constant for the fifth line of the space*/
+#define LINE_6 5 /*Constant for the sixth line of the space*/
+#define LINE_7 6 /*Constant for the seventh line of the space*/
+#define LINE_8 7 /*Constant for the eighth line of the space*/
+#define LINE_9 8 /*Constant for the ninth line of the space*/
+#define OBJS_FINAL 5 /*Constant to write the final of a space which objects's names are too extense*/
+
 /**
  * @brief This struct stores all the information of the graphic engine (everything showed by screen).
  *
@@ -145,13 +156,13 @@ char **graphic_engine_print_space(Id space_id, Game *game){
   }
 
   /*COMIENZO*/
-  sprintf(strspace[0], "+----------------+");
+  sprintf(strspace[LINE_1], "+----------------+");
   character_id = space_get_character(space);
 
   /*CHECK IF It'S DISCOVERED*/
   if(space_get_discovered(space) == FALSE){
-    sprintf(strspace[1], "|             %3d|", (int)space_id);
-    for(i = 2; i < HEIGHT_SPACE-1; i++){
+    sprintf(strspace[LINE_2], "|             %3d|", (int)space_id);
+    for(i = LINE_3; i < HEIGHT_SPACE-1; i++){
       sprintf(strspace[i],"|                |");
     }
   }
@@ -159,29 +170,29 @@ char **graphic_engine_print_space(Id space_id, Game *game){
   else{
     if(space_id == game_get_player_location(game)){
       if(character_id != NO_ID){
-        sprintf(strspace[1], "| %4.4s %6.6s %3d|",player_get_gdesc(game_get_player(game)), character_get_gdesc(game_get_character(game, character_id)), (int)space_id);
+        sprintf(strspace[LINE_2], "| %4.4s %6.6s %3d|",player_get_gdesc(game_get_player(game)), character_get_gdesc(game_get_character(game, character_id)), (int)space_id);
       }
       else{
-        sprintf(strspace[1], "| %4.4s        %3d|",player_get_gdesc(game_get_player(game)), (int)space_id);
+        sprintf(strspace[LINE_2], "| %4.4s        %3d|",player_get_gdesc(game_get_player(game)), (int)space_id);
       }
     }
     else{
       if(character_id != NO_ID){
-        sprintf(strspace[1], "|      %6.6s %3d|", character_get_gdesc(game_get_character(game, character_id)), (int)space_id);
+        sprintf(strspace[LINE_2], "|      %6.6s %3d|", character_get_gdesc(game_get_character(game, character_id)), (int)space_id);
       }
       else{
-        sprintf(strspace[1], "|             %3d|", (int)space_id);
+        sprintf(strspace[LINE_2], "|             %3d|", (int)space_id);
       }
     }
     /*DESCRIPCION DEL MAPA*/
     if(gdesc[0] != NULL){
       for (i = 0; i < N_ROWS; i++) {
-        sprintf(strspace[i+2], "|%9.9s       |", gdesc[i]);
+        sprintf(strspace[i+LINE_3], "|%9.9s       |", gdesc[i]);
       }
     }
     else{
       for (i = 0; i < N_ROWS; i++) {
-        sprintf(strspace[i+2],"|                 |");
+        sprintf(strspace[i+LINE_3],"|                 |");
       }
     }
       /*OBJETOS*/
@@ -196,18 +207,18 @@ char **graphic_engine_print_space(Id space_id, Game *game){
           }
           names_lenght = strlen(str);
           if (names_lenght > WIDTH_SPACE - 2) { 
-              strncpy(strspace[7], "|", 2);
-              strncat(strspace[7], str, WIDTH_SPACE - 5);
-              strncat(strspace[7], "...|", 5);
+              strncpy(strspace[LINE_8], "|", 2);
+              strncat(strspace[LINE_8], str, WIDTH_SPACE - OBJS_FINAL);
+              strncat(strspace[LINE_8], "...|", OBJS_FINAL);
           } else {
-              sprintf(strspace[7], "|%16.16s|", str);
+              sprintf(strspace[LINE_8], "|%16.16s|", str);
           }
       } else {
-          sprintf(strspace[7], "|                |");
+          sprintf(strspace[LINE_8], "|                |");
         }
   }
     /*CIERRE*/
-    sprintf(strspace[8], "+----------------+");
+    sprintf(strspace[LINE_9], "+----------------+");
 
     return strspace;
 }
@@ -439,27 +450,21 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     /* PONER FREES DE LOS ESPACIOS */
     if (space_back != space_empty) {
       free_gengine_paint_game(space_back);
-      space_back = NULL;
     }
     if (space_next != space_empty) {
       free_gengine_paint_game(space_next);
-      space_next = NULL;
     }
     if (space_right != space_empty) {
       free_gengine_paint_game(space_right);
-      space_right = NULL;
     }
     if (space_left != space_empty) {
       free_gengine_paint_game(space_left);
-      space_left = NULL;
     }
     if (space_actual != space_empty) {
       free_gengine_paint_game(space_actual);
-      space_actual = NULL;
     }
     if (space_empty != NULL) {
       free_gengine_paint_game(space_empty);
-      space_empty = NULL;
     }
 
     free(objects_location);
