@@ -10,7 +10,6 @@
  */
 #include "object.h"
 #include <string.h>
-#define MAX_DESCRIP 100
 
 /**
  * @brief This struct stores all the information of an object

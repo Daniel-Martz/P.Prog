@@ -83,6 +83,7 @@ Status game_reader_load_objects(Game *game, char *filename){
   FILE *file=NULL;
   char line[WORD_SIZE] = "";
   char name[WORD_SIZE] = "";
+  char description[MAX_DESCRIP] = "";
   char *toks = NULL;
   Id object_id = NO_ID, space_id = NO_ID;
   Object *object = NULL;
@@ -106,6 +107,8 @@ Status game_reader_load_objects(Game *game, char *filename){
       strcpy(name, toks);
       toks = strtok(NULL, "|");
       space_id = atol(toks);
+      toks = strtok(NULL, "\n");
+      strncpy(description, toks, MAX_DESCRIP-1);
       
       /*Create the object*/
       object = object_create(object_id);
@@ -113,6 +116,7 @@ Status game_reader_load_objects(Game *game, char *filename){
       object_set_name(object, name);
       game_add_object(game, object);
       space_set_new_object(game_get_space(game, space_id), object_id);
+      object_set_description(object, description);
     }
   }
   

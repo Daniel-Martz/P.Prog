@@ -427,8 +427,10 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     else{
       strcpy(cmd_result, "OK");
     }
-    sprintf(str, " %s (%s): %s", cmd_to_str[last_cmd - NO_CMD][CMDL], cmd_to_str[last_cmd - NO_CMD][CMDS], cmd_result);
-    screen_area_puts(ge->feedback, str);
+    if(last_cmd != NO_CMD){
+      sprintf(str, " %s (%s): %s", cmd_to_str[last_cmd - NO_CMD][CMDL], cmd_to_str[last_cmd - NO_CMD][CMDS], cmd_result);
+      screen_area_puts(ge->feedback, str);
+    }
 
     /* PAINT THE COLOR */    
     screen_paint(game_get_turn(game));

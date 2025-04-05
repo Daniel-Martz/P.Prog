@@ -1,7 +1,7 @@
-#o:21|grain|11
-#o:22|leaf|11
-#o:23|seed|122
-#o:24|crumb|14
+#o:21|grain|11|I'm a grain
+#o:22|leaf|11|I'm a leaf
+#o:23|seed|122|I'm a seed
+#o:24|crumb|14|I'm a crumb
 
 #s:11|Entry|    _    |\  \___  |\   mo'\_|\ @  _   | \__/ \__|
 #s:121|Corridor1|    _    |\  \___  |\   mo'\_|\ @  _   | \__/ \__|   

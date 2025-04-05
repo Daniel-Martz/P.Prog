@@ -18,7 +18,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NAME_SIZE 50
+#define NAME_SIZE 50 /* The maximum size for objects names*/
+#define MAX_DESCRIP 100/* The maximum size for the objects descriptions*/
 
 typedef struct _Object Object;
 
