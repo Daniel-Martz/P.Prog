@@ -242,7 +242,6 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Bool log_status, char *l
   {
     if (log_status == FALSE)
     {
-      graphic_engine_paint_game(gengine, game);
       printf("GAME OVER\n");
     }
     if (log_status == TRUE)
