@@ -20,7 +20,7 @@
 #include "game_reader.h"
 #include "types.h"
 
-#define CMD_LENGHT 30/* It denotes the length needed for the string that stores the introduced command */
+#define CMD_LENGHT 30/*!< It denotes the length needed for the string that stores the introduced command */
 
 /**
  * @brief It initialices the game and the graphic engine controlling the errors (printing the reason of the failure)

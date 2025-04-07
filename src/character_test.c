@@ -13,7 +13,7 @@
 #include <string.h> 
 #include "character_test.h"
 
-#define MAX_TESTS 30 /*It defines the number of tests*/
+#define MAX_TESTS 30 /*!< It defines the number of tests*/
 
 /** 
  * @brief Main function for character unit tests. 

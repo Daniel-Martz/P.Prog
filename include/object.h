@@ -18,8 +18,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NAME_SIZE 50/* The maximum size for objects names*/
-#define MAX_DESCRIP 100/* The maximum size for the objects descriptions*/
+#define NAME_SIZE 50/*!< The maximum size for objects names*/
+#define MAX_DESCRIP 100/*!< The maximum size for the objects descriptions*/
 
 /**
  * @brief Structure of the object

@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define INIT_ID 1/*Constant that refers to the starting id of a player and object */
+#define INIT_ID 1/*!< Constant that refers to the starting id of a player and object */
 
 /**
 * @brief This struct stores all the information of the game

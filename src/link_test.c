@@ -13,8 +13,8 @@
 #include <string.h>
 #include "link_test.h"
 
-#define MAX_TESTS 22/*It defines the number of tests*/
-#define TEST 10/*It defines an arbitrary test number*/
+#define MAX_TESTS 22/*!< It defines the number of tests*/
+#define TEST 10/*!< It defines an arbitrary test number*/
 
 /**
  * @brief Main function for link unit tests.

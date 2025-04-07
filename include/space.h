@@ -14,9 +14,9 @@
 #include "types.h"
 #include "set.h"
 
-#define N_ROWS 5/*Number of rows in the description*/
-#define N_COLUMNS 10/*9 plus a space for '\0'*/
-#define MAX_DESC 9/*the maximum size for gdesc*/
+#define N_ROWS 5/*!< Number of rows in the description*/
+#define N_COLUMNS 10/*!< 9 plus a space for '\0'*/
+#define MAX_DESC 9/*!< The maximum size for gdesc*/
 
 /**
  * @brief Structure of the space

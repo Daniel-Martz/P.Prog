@@ -18,28 +18,28 @@
 #include "space.h"
 #include "types.h"
 
-#define MAX_STR 255/*Constant assigned fpr the maximum length of a string*/
-#define MAX_BUFFER 300/*Constant assigned for the lenght of an auxiliary buffer*/
-#define WIDTH_MAP 60/*Constant asignated for the width of the map*/
-#define WIDTH_DES 31/*Constant asignated for the width of the description*/
-#define WIDTH_BAN 89/*Constant asignated for the width of the banner*/
-#define HEIGHT_MAP 29/*Constant asignated for the height of the map*/
-#define HEIGHT_BAN 1/*Constant asignated for the height of the banner*/
-#define HEIGHT_HLP 3/*Constant asignated for the height of help interface*/
-#define HEIGHT_FDB 3/*Constant asignated for the height of feedback interface*/
-#define WIDTH_SPACE 18/*Constante asignated for the maximum size of the lines inside the space*/
-#define HEIGHT_SPACE 9/*Constante asignated for the maximum size of the columns inside the space*/
-#define MAX_RESULT 10/*Constant fot the maximum size of the result*/
-#define LINE_1 0/*Constant for the first line of the space*/
-#define LINE_2 1/*Constant for the second line of the space*/
-#define LINE_3 2/*Constant for the third line of the space*/
-#define LINE_4 3/*Constant for the fourth line of the space*/
-#define LINE_5 4/*Constant for the fifth line of the space*/
-#define LINE_6 5/*Constant for the sixth line of the space*/
-#define LINE_7 6/*Constant for the seventh line of the space*/
-#define LINE_8 7/*Constant for the eighth line of the space*/
-#define LINE_9 8/*Constant for the ninth line of the space*/
-#define OBJS_FINAL 5/*Constant to write the final of a space which objects's names are too extense*/
+#define MAX_STR 255/*!< Constant assigned fpr the maximum length of a string*/
+#define MAX_BUFFER 300/*!< Constant assigned for the lenght of an auxiliary buffer*/
+#define WIDTH_MAP 60/*!< Constant asignated for the width of the map*/
+#define WIDTH_DES 31/*!< Constant asignated for the width of the description*/
+#define WIDTH_BAN 89/*!< Constant asignated for the width of the banner*/
+#define HEIGHT_MAP 29/*!< Constant asignated for the height of the map*/
+#define HEIGHT_BAN 1/*!< Constant asignated for the height of the banner*/
+#define HEIGHT_HLP 3/*!< Constant asignated for the height of help interface*/
+#define HEIGHT_FDB 3/*!< Constant asignated for the height of feedback interface*/
+#define WIDTH_SPACE 18/*!< Constante asignated for the maximum size of the lines inside the space*/
+#define HEIGHT_SPACE 9/*!< Constante asignated for the maximum size of the columns inside the space*/
+#define MAX_RESULT 10/*!< Constant fot the maximum size of the result*/
+#define LINE_1 0/*!< Constant for the first line of the space*/
+#define LINE_2 1/*!< Constant for the second line of the space*/
+#define LINE_3 2/*!< Constant for the third line of the space*/
+#define LINE_4 3/*!< Constant for the fourth line of the space*/
+#define LINE_5 4/*!< Constant for the fifth line of the space*/
+#define LINE_6 5/*!< Constant for the sixth line of the space*/
+#define LINE_7 6/*!< Constant for the seventh line of the space*/
+#define LINE_8 7/*!< Constant for the eighth line of the space*/
+#define LINE_9 8/*!< Constant for the ninth line of the space*/
+#define OBJS_FINAL 5/*!< Constant to write the final of a space which objects's names are too extense*/
 
 /**
  * @brief This struct stores all the information of the graphic engine (everything showed by screen).

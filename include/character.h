@@ -15,8 +15,8 @@
 
 #include "types.h"
 
-#define G_DESC 7/* It establishes the maximum size for gdesc*/
-#define MAX_MESSAGE 100 /* It establishes the maximum length of the character message*/
+#define G_DESC 7 /*!< It establishes the maximum size for gdesc*/
+#define MAX_MESSAGE 100/*!< It establishes the maximum length of the character message*/
 
 /**
  * @brief Struct of the character

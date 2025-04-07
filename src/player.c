@@ -15,8 +15,8 @@
 
 #include "player.h"
 
-#define INIT_HEALTH 0/* Constant for the initial hp of the player*/
-#define MAX_NAME 20/*It defines the maximum length of the player name*/
+#define INIT_HEALTH 0/*!< Constant for the initial hp of the player*/
+#define MAX_NAME 20/*!< It defines the maximum length of the player name*/
 /**
  * @brief This struct stores all the information of a player
  *

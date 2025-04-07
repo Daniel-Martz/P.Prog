@@ -13,8 +13,8 @@
 
 #include "types.h"
 
-#define N_CMDT 2/* It defines a constant for the the abreviature of the command and the command*/
-#define N_CMD 9/* It defines a constant for the number of commands */
+#define N_CMDT 2/*!< It defines a constant for the the abreviature of the command and the command*/
+#define N_CMD 9/*!< It defines a constant for the number of commands */
 
 /**
  * @brief It establishes a data type for the two posible ways to refer to a command

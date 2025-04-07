@@ -19,7 +19,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_NAME 50/* It dedfines the maximum lenght of the link name*/
+#define MAX_NAME 50/*!< It dedfines the maximum lenght of the link name*/
 
 /**
  * @brief Structure of the link

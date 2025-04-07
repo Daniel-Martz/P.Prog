@@ -10,9 +10,13 @@
  * @copyright Copyright (c) 2025
  */
 #include "inventory.h"
-#define MAX_OBJ 10/*It defines the maximum capacity for the bagpack*/
+#define MAX_OBJ 10/*!< It defines the maximum capacity for the bagpack*/
 
-
+/**
+ * @brief This struct stores all the information of an inventory.
+ *
+ * @author Daniel Martinez
+ */
 struct _Inventory {
     Set *objs; /*!< A set of object ids */
     int max_objs; /*!< The maximum number of object ids */

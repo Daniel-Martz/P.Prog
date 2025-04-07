@@ -16,7 +16,7 @@
 #include "types.h"
 #include "inventory.h"
 
-#define G_DESC 7/* It defines the size of the player gdesc*/
+#define G_DESC 7/*!< It defines the size of the player gdesc*/
 
 /**
  * @brief Structure of the player

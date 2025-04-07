@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_SET 100/* Maximum number of sets*/
+#define MAX_SET 100/*!< Maximum number of sets*/
 
 /**
  * @brief Structure of the set

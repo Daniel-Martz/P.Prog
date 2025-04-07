@@ -12,7 +12,7 @@ LDFLAGS = -L$(LIB_DIR) -lscreen
 OBJS = $(addprefix $(OBJ_DIR)/, command.o space.o graphic_engine.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o link.o inventory.o)
 EXEC = proyecto
 
-.PHONY: all clean runv run runvloganthill runloganthill runvlogcastle runlogcastle runvcastle runcastle testset testcharacter testspace testinventory testplayer testobject testlink crunv crun doxyfile docs debug
+.PHONY: all clean runv run runvloganthill runloganthill runvlogcastle runlogcastle runvcastle runcastle testset testcharacter testspace testinventory testplayer testobject testlink crunv crun doxyfile docs debug cleandocs
 
 # Regla principal
 all: $(EXEC)
@@ -90,6 +90,8 @@ inventory_test: $(OBJ_DIR)/inventory_test.o $(OBJ_DIR)/inventory.o
 clean:
 	rm -f $(EXEC) $(OBJS) $(OBJ_DIR)/*.o space_test set_test character_test link_test inventory_test object_test player_test
 
+cleandocs:
+	rm -rf $(DOC_DIR)/html $(DOC_DIR)/latex
 # Reglas de ejecución
 runv:
 	valgrind --leak-check=full ./$(EXEC) anthill.dat
