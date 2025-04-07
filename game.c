@@ -239,10 +239,6 @@ Space *game_get_space(Game *game, Id id) {
   return NULL;
 }
 
-Status game_get_last_cmd_status(Game *game){
-  if(!game) return ERROR;
-  return game->last_cmd_status;
-}
 
 Object *game_get_object(Game *game, Id id) {
   int i = 0;
@@ -300,14 +296,6 @@ Status game_set_message(Game *game, const char *message){
   if(!strcpy(game->message, message)){
     return ERROR;
   }
-  return OK;
-}
-
-Status game_set_last_cmd_status(Game *game, Status cmd_status){
-  if(!game) return ERROR;
-
-  game->last_cmd_status = cmd_status;
-
   return OK;
 }
 

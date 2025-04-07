@@ -432,7 +432,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /* Paint in the feedback area */
     last_cmd = command_get_code(game_get_last_command(game));
-    if(game_get_last_cmd_status(game) == ERROR){
+    if(command_get_last_cmd_status(game_get_last_command(game)) == ERROR){
       strcpy(cmd_result, "ERROR");
     }
     else{

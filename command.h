@@ -120,4 +120,24 @@ Status command_get_user_input(Command* command);
 */
 Status command_get_input_from_string(Command* command, char* str);
 
+/**
+ * @brief It get the status of the last command
+ * 
+ * @author Daniel Martínez
+ * @param cmd A pointer to Command
+ * @return Returns OK or ERROR
+ */
+Status command_get_last_cmd_status(Command *cmd);
+
+/**
+ * @brief It set the status of the command executed
+ * 
+ * @author Daniel Martínez
+ * @param cmd A pointer to command
+ * @param cmd_status A command
+ * @return Returns OK or ERROR
+ */
+Status command_set_last_cmd_status(Command *cmd, Status cmd_status);
+
+
 #endif
