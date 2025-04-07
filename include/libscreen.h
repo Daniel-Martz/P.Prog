@@ -43,7 +43,7 @@ void screen_init(int rows, int columns);
  * As it frees the screen, it must be called at the end of the program,
  *  once the areas created have been freed.
  */
-void screen_destroy();
+void screen_destroy(void);
 
 /**
  * @brief It paints in the terminal the actual screen composition
