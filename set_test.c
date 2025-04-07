@@ -13,7 +13,7 @@
 #include <string.h> 
 #include "set_test.h"
 
-#define MAX_TESTS 13
+#define MAX_TESTS 13 /*It defines the number of tests*/
 
 /** 
  * @brief Main function for set unit tests. 

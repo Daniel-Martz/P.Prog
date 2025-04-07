@@ -13,9 +13,8 @@
  #include <string.h>
  #include "player_test.h"
  
- #define MAX_TESTS 28
- #define TEST 10
- 
+ #define MAX_TESTS 28 /*It defines the number of tests*/
+
  /**
   * @brief Main function for player unit tests.
   *

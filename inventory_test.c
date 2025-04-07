@@ -13,7 +13,7 @@
 #include <string.h> 
 #include "inventory_test.h"
 
-#define MAX_TESTS 14
+#define MAX_TESTS 14/*It defines the number of tests*/
 #define TEST 10
 
 /** 

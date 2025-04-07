@@ -13,7 +13,7 @@
  #include <string.h> 
  #include "object_test.h"
  
- #define MAX_TESTS 10
+ #define MAX_TESTS 14/*It defines the number of tests*/
  #define TEST 10
  
  /** 
@@ -52,6 +52,11 @@
    if (all || test == 8)test2_object_set_name();
    if (all || test == 9)test1_object_get_name();
    if (all || test == 10)test2_object_get_name();
+   if (all || test == 11)test1_object_set_description();
+   if (all || test == 12)test2_object_set_description();
+   if (all || test == 13)test1_object_get_description();
+   if (all || test == 14)test2_object_get_description();
+
    
    PRINT_PASSED_PERCENTAGE;
  
@@ -122,3 +127,29 @@
     object_set_name(o, "hola");
     PRINT_TEST_RESULT(object_get_name(o) == NULL);
  }
+
+ void test1_object_set_description() {
+   Object *o;
+   o = object_create(TEST);
+   PRINT_TEST_RESULT(object_set_description(o, "hola") == OK);
+   object_destroy(o);
+}
+
+void test2_object_set_description() {
+   Object *o=NULL;
+   PRINT_TEST_RESULT(object_set_description(o, "hola") == ERROR);
+}
+
+ void test1_object_get_description() {
+   Object *o;
+   o = object_create(TEST);
+   object_set_description(o, "hola");
+   PRINT_TEST_RESULT(strcmp(object_get_description(o), "hola") == 0);
+   object_destroy(o);
+}
+
+void test2_object_get_description() {
+   Object *o = NULL;
+   object_set_description(o, "hola");
+   PRINT_TEST_RESULT(object_get_description(o) == NULL);
+}
