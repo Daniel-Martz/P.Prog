@@ -432,25 +432,6 @@ Character **game_get_characters(Game *game);
 Player **game_get_players(Game *game);
 
 /**
- * @brief It get the status of the last command
- * 
- * @author Daniel Martínez
- * @param game A pointer to game
- * @return Returns OK or ERROR
- */
-Status game_get_last_cmd_status(Game *game);
-
-/**
- * @brief It set the status of the command executed
- * 
- * @author Daniel Martínez
- * @param game A pointer to game
- * @param cmd_status A command
- * @return Returns OK or ERROR
- */
-Status game_set_last_cmd_status(Game *game, Status cmd_status);
-
-/**
  * @brief It says if the game is finished or not
  * 
  * @author Jaime Romero

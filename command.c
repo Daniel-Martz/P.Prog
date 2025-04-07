@@ -30,6 +30,7 @@ struct _Command {
   CommandCode code; /*!< Name of the command */
   char objname[MAX_SIZE]; /*!< Name of the object to take */
   Direction direction; /*!< Direction to move */
+  Status last_cmd_status; /*!< It contains the status of the last command*/
 };
 
 /** space_create allocates memory for a new space
@@ -47,6 +48,7 @@ Command* command_create(void) {
   newCommand->code = NO_CMD;
   newCommand->objname[0] = '\0';
   newCommand->direction = U;
+  newCommand->last_cmd_status = ERROR;
 
   return newCommand;
 }
@@ -182,6 +184,19 @@ Status command_get_user_input(Command* command) {
   else
     return command_set_code(command, EXIT);
   
+}
+
+Status command_get_last_cmd_status(Command *cmd){
+  if(!cmd) return ERROR;
+  return cmd->last_cmd_status;
+}
+
+Status command_set_last_cmd_status(Command *cmd, Status cmd_status){
+  if(!cmd) return ERROR;
+
+  cmd->last_cmd_status = cmd_status;
+
+  return OK;
 }
 
 Status command_get_input_from_string(Command* command, char* str) {

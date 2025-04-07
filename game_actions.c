@@ -113,35 +113,35 @@ Status game_actions_update(Game *game, Command *command) {
 
   switch (cmd) {
     case UNKNOWN:
-      game_set_last_cmd_status(game, game_actions_unknown(game));
+      command_set_last_cmd_status(game_get_last_command(game), game_actions_unknown(game));
       break;
 
     case EXIT:
-    game_set_last_cmd_status(game, game_actions_exit(game));
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_exit(game));
       break;
 
     case MOVE:
-    game_set_last_cmd_status(game, game_actions_move(game));
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_move(game));
       break;
     
     case INSPECT:
-    game_set_last_cmd_status(game, game_actions_inspect(game));
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_inspect(game));
       break;
       
     case TAKE:
-    game_set_last_cmd_status(game, game_actions_take(game));
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_take(game));
       break;
     
     case DROP:
-    game_set_last_cmd_status(game, game_actions_drop(game));
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_drop(game));
       break;
 
     case ATTACK:
-    game_set_last_cmd_status(game, game_actions_attack(game));
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_attack(game));
       break;
 
     case CHAT:
-    game_set_last_cmd_status(game, game_actions_chat(game));
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_chat(game));
       break;
 
     default:
