@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['main_0',['main',['../character__test_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;character_test.c'],['../game__loop_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;game_loop.c'],['../inventory__test_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;inventory_test.c'],['../link__test_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;link_test.c'],['../object__test_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;object_test.c'],['../player__test_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;player_test.c'],['../set__test_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;set_test.c'],['../space__test_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;space_test.c']]],
-  ['max_5fobjs_1',['max_objs',['../struct__Inventory.html#a70f18f9e6066021ced37dab1aebbbea8',1,'_Inventory']]],
-  ['message_2',['message',['../struct__Character.html#a2dc9b8dfb8fe9e9bf0c06d2e741570fb',1,'_Character::message'],['../struct__Game.html#ab8d03cb9180ddd6d8f17fe3633a1159f',1,'_Game::message']]]
-];

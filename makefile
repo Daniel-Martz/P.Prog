@@ -1,118 +1,108 @@
+# Directorios
+SRC_DIR = src
+INC_DIR = include
+OBJ_DIR = obj
+LIB_DIR = lib
+DOC_DIR = doc
+
 # Variables
 CC = gcc
-CFLAGS = -Wall -ansi -pedantic -g -c
-OBJS = command.o space.o graphic_engine.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o link.o inventory.o
+CFLAGS = -Wall -ansi -pedantic -g -I$(INC_DIR)
+LDFLAGS = -L$(LIB_DIR) -lscreen
+OBJS = $(addprefix $(OBJ_DIR)/, command.o space.o graphic_engine.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o link.o inventory.o)
 EXEC = proyecto
 
-.PHONY: all clean runv run runvloganthill runloganthill runvlogcastle runlogcastle runvcastle runcastle testset testcharacter testspace testinventory testplayer testobject testlink crunv crun doxyfile
+.PHONY: all clean runv run runvloganthill runloganthill runvlogcastle runlogcastle runvcastle runcastle testset testcharacter testspace testinventory testplayer testobject testlink crunv crun doxyfile docs debug
+
 # Regla principal
 all: $(EXEC)
 
+# Crear directorios si no existen
+$(shell mkdir -p $(OBJ_DIR) $(LIB_DIR) $(DOC_DIR))
+
+# Enlazado del ejecutable
 $(EXEC): $(OBJS)
-	$(CC) -o $(EXEC) $(OBJS) -L. -lscreen
+	$(CC) -o $@ $(OBJS) $(LDFLAGS)
 
-# Compilacion de archivos individuales
-space.o: space.c space.h types.h set.h
-	$(CC) $(CFLAGS) -o space.o space.c
+# Reglas de compilación para cada objeto
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-command.o: command.c command.h types.h
-	$(CC) $(CFLAGS) -o command.o command.c
+# Dependencias específicas para cada objeto
+$(OBJ_DIR)/space.o: $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h
+$(OBJ_DIR)/command.o: $(INC_DIR)/command.h $(INC_DIR)/types.h
+$(OBJ_DIR)/graphic_engine.o: $(INC_DIR)/graphic_engine.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/libscreen.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+$(OBJ_DIR)/game_loop.o: $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_actions.h $(INC_DIR)/graphic_engine.h $(INC_DIR)/game_reader.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+$(OBJ_DIR)/game_actions.o: $(INC_DIR)/game_actions.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/character.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+$(OBJ_DIR)/game.o: $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_reader.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+$(OBJ_DIR)/game_reader.o: $(INC_DIR)/game_reader.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+$(OBJ_DIR)/object.o: $(INC_DIR)/object.h $(INC_DIR)/types.h
+$(OBJ_DIR)/player.o: $(INC_DIR)/player.h $(INC_DIR)/types.h $(INC_DIR)/inventory.h
+$(OBJ_DIR)/set.o: $(INC_DIR)/set.h $(INC_DIR)/types.h
+$(OBJ_DIR)/character.o: $(INC_DIR)/character.h $(INC_DIR)/types.h
+$(OBJ_DIR)/link.o: $(INC_DIR)/link.h $(INC_DIR)/types.h
+$(OBJ_DIR)/inventory.o: $(INC_DIR)/inventory.h $(INC_DIR)/types.h $(INC_DIR)/set.h
 
-graphic_engine.o: graphic_engine.c graphic_engine.h game.h command.h types.h space.h set.h player.h object.h character.h libscreen.h link.h inventory.h
-	$(CC) $(CFLAGS) -o graphic_engine.o graphic_engine.c
+# Reglas para tests
+$(OBJ_DIR)/space_test.o: $(SRC_DIR)/space_test.c $(INC_DIR)/space_test.h $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h $(INC_DIR)/test.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-game_loop.o: game_loop.c command.h types.h game.h space.h set.h player.h object.h character.h game_actions.h graphic_engine.h game_reader.h link.h inventory.h
-	$(CC) $(CFLAGS) -o game_loop.o game_loop.c
+space_test: $(OBJ_DIR)/space_test.o $(OBJ_DIR)/space.o $(OBJ_DIR)/set.o
+	$(CC) -o $@ $^
 
-game_actions.o: game_actions.c game_actions.h command.h types.h character.h game.h space.h set.h player.h object.h link.h inventory.h
-	$(CC) $(CFLAGS) -o game_actions.o game_actions.c
+$(OBJ_DIR)/set_test.o: $(SRC_DIR)/set_test.c $(INC_DIR)/set_test.h $(INC_DIR)/test.h $(INC_DIR)/set.h $(INC_DIR)/types.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-game.o: game.c game.h command.h types.h space.h set.h player.h object.h character.h game_reader.h link.h inventory.h
-	$(CC) $(CFLAGS) -o game.o game.c
+set_test: $(OBJ_DIR)/set_test.o $(OBJ_DIR)/set.o
+	$(CC) -o $@ $^
 
-game_reader.o: game_reader.c game_reader.h game.h command.h types.h space.h set.h player.h object.h character.h link.h inventory.h
-	$(CC) $(CFLAGS) -o game_reader.o game_reader.c
+$(OBJ_DIR)/character_test.o: $(SRC_DIR)/character_test.c $(INC_DIR)/character_test.h $(INC_DIR)/character.h $(INC_DIR)/test.h $(INC_DIR)/types.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-object.o: object.h types.h object.c 
-	$(CC) $(CFLAGS) -o object.o object.c
+character_test: $(OBJ_DIR)/character_test.o $(OBJ_DIR)/character.o
+	$(CC) -o $@ $^
 
-player.o: player.h types.h player.c inventory.h
-	$(CC) $(CFLAGS) -o player.o player.c
+$(OBJ_DIR)/link_test.o: $(SRC_DIR)/link_test.c $(INC_DIR)/link_test.h $(INC_DIR)/test.h $(INC_DIR)/link.h $(INC_DIR)/types.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-set.o: set.c set.h types.h
-	$(CC) $(CFLAGS) -o set.o set.c
+link_test: $(OBJ_DIR)/link_test.o $(OBJ_DIR)/link.o
+	$(CC) -o $@ $^
 
-character.o: character.c character.h types.h
-	$(CC) $(CFLAGS) -o character.o character.c
+$(OBJ_DIR)/player_test.o: $(SRC_DIR)/player_test.c $(INC_DIR)/player_test.h $(INC_DIR)/player.h $(INC_DIR)/test.h $(INC_DIR)/types.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-link.o: link.c link.h types.h
-	$(CC) $(CFLAGS) -o link.o link.c
+player_test: $(OBJ_DIR)/player_test.o $(OBJ_DIR)/player.o $(OBJ_DIR)/inventory.o $(OBJ_DIR)/set.o
+	$(CC) -o $@ $^
 
-inventory.o: inventory.c inventory.h types.h set.h
-	$(CC) $(CFLAGS) -o inventory.o inventory.c
+$(OBJ_DIR)/object_test.o: $(SRC_DIR)/object_test.c $(INC_DIR)/object_test.h $(INC_DIR)/object.h $(INC_DIR)/test.h $(INC_DIR)/types.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-space_test: space_test.o space.o set.o
-	$(CC) -o space_test space_test.o space.o set.o
+object_test: $(OBJ_DIR)/object_test.o $(OBJ_DIR)/object.o
+	$(CC) -o $@ $^
 
-space_test.o: space_test.c space_test.h space.h types.h set.h test.h
-	$(CC) $(CFLAGS) -o space_test.o space_test.c
+$(OBJ_DIR)/inventory_test.o: $(SRC_DIR)/inventory_test.c $(INC_DIR)/inventory_test.h $(INC_DIR)/inventory.h $(INC_DIR)/test.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-set_test: set_test.o set.o
-	$(CC) -o set_test set_test.o set.o
+inventory_test: $(OBJ_DIR)/inventory_test.o $(OBJ_DIR)/inventory.o
+	$(CC) -o $@ $^
 
-set_test.o: set_test.c set_test.h test.h set.h types.h
-	$(CC) $(CFLAGS) -o set_test.o set_test.c
-
-character_test: character_test.o character.o
-	$(CC) -o character_test character_test.o character.o
-
-character_test.o: character_test.c character_test.h character.h test.h types.h
-	$(CC) $(CFLAGS) -o character_test.o character_test.c
-
-link_test: link_test.o link.o
-	$(CC) -o link_test link_test.o link.o
-
-link_test.o: link_test.c link_test.h test.h link.h types.h
-	$(CC) $(CFLAGS) -o link_test.o link_test.c
-
-player_test: player_test.o player.o inventory.o set.o
-	$(CC) -o player_test player_test.o player.o inventory.o set.o
-
-player_test.o: player_test.c player_test.h player.h test.h types.h
-	$(CC) $(CFLAGS) -o player_test.o player_test.c
-
-object_test: object_test.o object.o
-	$(CC) -o object_test object_test.o object.o
-
-object_test.o: object_test.c object_test.h object.h test.h types.h
-	$(CC) $(CFLAGS) -o object_test.o object_test.c
-
-inventory_test: inventory_test.o inventory.o
-	$(CC) -o inventory_test inventory_test.o inventory.o
-
-inventory_test.o: inventory_test.c inventory_test.h inventory.h test.h
-	$(CC) $(CFLAGS) -o inventory_test.o inventory_test.c
-
-
-	
 # Limpiar archivos generados
 clean:
-	rm -f $(EXEC) $(OBJS) space_test space_test.o set_test set_test.o character_test character_test.o link_test.o inventory_test inventory_test.o object_test object_test.o player_test player_test.o link_test link_test_o
+	rm -f $(EXEC) $(OBJS) $(OBJ_DIR)/*.o space_test set_test character_test link_test inventory_test object_test player_test
 
-# Correr valgrind
-runv :
+# Reglas de ejecución
+runv:
 	valgrind --leak-check=full ./$(EXEC) anthill.dat
 
-runvcastle :
+runvcastle:
 	valgrind --leak-check=full ./$(EXEC) castle.dat
 
-runvloganthill : 
+runvloganthill:
 	valgrind --leak-check=full ./$(EXEC) anthill.dat -l output.txt - log_input.txt
 
-runvlogcastle : 
+runvlogcastle:
 	valgrind --leak-check=full ./$(EXEC) castle.dat -l output.txt - log_input_castle.txt
 
-# Ejecutar el programa
 run: $(EXEC)
 	./$(EXEC) anthill.dat
 
@@ -120,43 +110,40 @@ runcastle: $(EXEC)
 	./$(EXEC) castle.dat
 
 runloganthill:
-	$ ./$(EXEC) anthill.dat -l output.txt - log_input.txt
+	./$(EXEC) anthill.dat -l output.txt - log_input.txt
 
 runlogcastle:
-	$ ./$(EXEC) castle.dat -l output.txt - log_input_castle.txt
+	./$(EXEC) castle.dat -l output.txt - log_input_castle.txt
 
-# Ejecutar el archivo de testeo space
+# Reglas de test
 testspace: space_test 
 	./space_test 
 
-# Ejecutar el archivo de testeo set
 testset: set_test 
 	./set_test 
 
-# Ejecutar el archivo de testeo player
 testplayer: player_test
 	./player_test
 
-# Ejecutar el archivo de testeo character
 testcharacter: character_test
 	./character_test
 
-# Ejecutar el archivo de testeo object
 testobject: object_test
 	./object_test
 
-# Ejecutar el archivo de testeo link
 testlink: link_test
 	./link_test
 
-# Ejecutar el archivo de testeo inventory
 testinventory: inventory_test
 	./inventory_test
 
-# Ejecutar doxygen
-doxyfile: 
-	Doxygen -g
+# Documentación
+doxyfile:
+	doxygen -g $(DOC_DIR)/Doxyfile
 
-# Depuración con anthill.dat
+docs:
+	doxygen $(DOC_DIR)/Doxyfile
+
+# Depuración
 debug: $(EXEC)
 	gdb -q --args ./$(EXEC) anthill.dat
