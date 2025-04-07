@@ -7,12 +7,12 @@
 #s:17|Bathroom|      _  |     ! ! |  ___! ! | (    .' |  )  (   |
 #s:18|Garden| /\ /\ /\|//\\/\\/\|//\\/\\/\| II II II|---------|
 
-#o:1|Chest|14
-#o:7|Tapestry|13
-#o:2|Sword|18
-#o:13|Parchment|12
-#o:4|Armor|13
-#o:6|Candelabra|16
+#o:1|Chest|14|I'm a Chest
+#o:7|Tapestry|13|I'm a Tapestry
+#o:2|Sword|18|I'm a Sword
+#o:13|Parchment|12|I'm a Parchment
+#o:4|Armor|13|I'm an Armor
+#o:6|Candelabra|16|I'm a Candelabra
 
 #p:1|ant|mO^|11|5|3|
 
