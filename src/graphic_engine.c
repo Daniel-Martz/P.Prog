@@ -19,7 +19,7 @@
 #include "types.h"
 
 #define MAX_STR 255/*Constant assigned fpr the maximum length of a string*/
-#define MAX_BUFFER 268/*Constant assigned for the lenght of an auxiliary buffer*/
+#define MAX_BUFFER 300/*Constant assigned for the lenght of an auxiliary buffer*/
 #define WIDTH_MAP 60/*Constant asignated for the width of the map*/
 #define WIDTH_DES 31/*Constant asignated for the width of the description*/
 #define WIDTH_BAN 89/*Constant asignated for the width of the banner*/
@@ -247,6 +247,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   extern char *cmd_to_str[N_CMD][N_CMDT];
   Object **objects;
   Character **characters;
+  Player **players;
   char right = '>', left = '<', back = '^', next = 'v';
 
   /*INITIALIZES SOME VARIABLES*/
@@ -400,27 +401,43 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         sprintf(str, "  Characters: ");
         screen_area_puts(ge->descript, str);
         for(i=0; i< game_get_n_characters_discovered(game); i++){
-          sprintf(str, " %6.6s : %i (%i)",character_get_gdesc(characters[i]), (int)characters_location[i],character_get_health(characters[i]));
+          sprintf(str, "    %6.6s : %i (%i)",character_get_gdesc(characters[i]), (int)characters_location[i],character_get_health(characters[i]));
           screen_area_puts(ge->descript, str);
         }
       }
     }
     screen_area_puts(ge->descript, "       ");
     
+    players = game_get_players(game);
     /*IMPRESION*/
-    sprintf(str,"  Player: %i (%i)",(int)id_act,player_get_health(game_get_player(game)));
+    sprintf(str,"  Players: " );
     screen_area_puts(ge->descript, str);
-    if(player_objects != NULL){
-      sprintf(str, "  Player object:");
-      for(i = 0; i < inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++ ){
-        sprintf(buffer, "%s %i", str, (int)player_objects[i]);
-        strcpy(str, buffer);
+    for(i=0; i< game_get_nplayers(game); i++){
+      sprintf(str, "    %6.6s : %i (%i)",player_get_name(players[i]), (int)player_get_location(players[i]),player_get_health(players[i]));
+      screen_area_puts(ge->descript, str);
+    }
+
+    screen_area_puts(ge->descript, "       ");
+    
+    if(player_objects[0]!= NO_ID){
+      sprintf(str, "  Player objects:");
+      screen_area_puts(ge->descript, str);
+      if(inventory_get_n_objs(player_get_backpack(game_get_player(game)))==1){
+        sprintf(str,"      %s", object_get_name(game_get_object(game, player_objects[0])));
         screen_area_puts(ge->descript, str);
+      }
+      if(inventory_get_n_objs(player_get_backpack(game_get_player(game)))>1){
+        sprintf(str,"      %s", object_get_name(game_get_object(game, player_objects[0])));
+        for(i = 1; i < inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++ ){
+          sprintf(buffer, "%s, %s", str, object_get_name(game_get_object(game, player_objects[i])));
+          strcpy(str, buffer);
+          screen_area_puts(ge->descript, str);
+        }
       }
     }
 
     else{
-      screen_area_puts(ge->descript, "  Player has no object");
+      screen_area_puts(ge->descript, "  Player has no objects");
     }
 
     screen_area_puts(ge->descript, "        ");

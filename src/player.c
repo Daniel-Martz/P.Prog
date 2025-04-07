@@ -15,7 +15,8 @@
 
 #include "player.h"
 
-#define INIT_HEALTH 0 /* Constant for the initial hp of the player*/
+#define INIT_HEALTH 0/* Constant for the initial hp of the player*/
+#define MAX_NAME 20/*It defines the maximum length of the player name*/
 /**
  * @brief This struct stores all the information of a player
  *
@@ -23,7 +24,7 @@
  */
 struct _Player {
     Id id; /*!<The identification for the player*/
-    char name[WORD_SIZE]; /*!<Player's name*/
+    char name[MAX_NAME]; /*!<Player's name*/
     Id location; /*!<Player's location (stored as an Id)*/
     Inventory *backpack; /*!<IInventory of the objects carried by the player*/
     long health; /*!<Player's healthpoints*/
