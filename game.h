@@ -20,19 +20,23 @@
 #include "character.h"
 #include "link.h"
 
-#define MAX_SPACES 100 /* Constant that estabilshes the maximum number of spaces as 100*/
-#define MAX_OBJECTS 100 /* Constant that estabilshes the maximum number of objects as 100*/
-#define MAX_CHARACTERS 100 /* Constant that estabilshes the maximum number of characters as 100*/
-#define MAX_LINKS 100 /* Constant that estabilshes the maximum number of links as 100*/
-#define MAX_PLAYERS 8 /* Constant that estabilshes the maximum number of players as 8*/
+#define MAX_SPACES 100/* Constant that estabilshes the maximum number of spaces as 100*/
+#define MAX_OBJECTS 100/* Constant that estabilshes the maximum number of objects as 100*/
+#define MAX_CHARACTERS 100/* Constant that estabilshes the maximum number of characters as 100*/
+#define MAX_LINKS 100/* Constant that estabilshes the maximum number of links as 100*/
+#define MAX_PLAYERS 8/* Constant that estabilshes the maximum number of players as 8*/
 
+/**
+ * @brief Structure of the Game
+ * 
+ */
 typedef struct _Game Game;
 
 /**
  * @brief It initialices every variable of Game to default values (0, NULL, NO_ID...)
  * 
  * @author Jaime Romero
- * @param game 
+ * 
  * @return OK if everything worked properly or ERROR if it didn't
  */
 Game *game_create(void);
@@ -96,7 +100,7 @@ Status game_add_player(Game *game, Player *player);
  * @brief It assigns a value from a file to every Game parameter, controling the errors
  * 
  * @author Daniel Martínez
- * @param game A pointer to Game
+ * 
  * @param filename A string with the name of the file
  * 
  * @return OK if everything worked correctly or ERROR if it didn't
@@ -196,7 +200,6 @@ Status game_set_player_initial_location(Game *game, Id player_id, Id location);
  * @author Jaime Romero
  * @param game A pointer to game 
  * @param location The Id of the space
- * @param player_id The id of the player
  * @return OK if everything worked properly or ERROR if it didn't
  */
 Status game_set_player_location(Game *game, Id location);
@@ -334,7 +337,6 @@ Id game_object_in_the_space(Game *game, Id space_id);
  * 
  * @author Jaime Romero
  * @param  game A pointer to Game
- * @return VOID (Nothing)
  */
 void game_print(Game *game);
 
@@ -343,6 +345,7 @@ void game_print(Game *game);
  * 
  * @author Jaime Romero
  * @param game A pointer to game
+ * @param message A const string with the message
  * @return True(1) or False(0)
  */
 Status game_set_message(Game *game, const char *message);
@@ -380,7 +383,7 @@ int game_get_ncharacters(Game *game);
  * 
  * @author Daniel Martínez
  * @param game A pointer to game
- * @param n_objects an integuer with the number of characters
+ * @param n_characters an integuer with the number of characters
  * @return OK if everything worked properly or ERROR if it didn't
  */
 Status game_set_ncharacters(Game *game, int n_characters);
@@ -454,7 +457,7 @@ int game_get_nlinks(Game *game);
  * 
  * @author Jorge Martin
  * @param game A pointer to game
- * @param n_objects an integer with the number of links
+ * @param n_links an integer with the number of links
  * @return OK if everything worked properly or ERROR if it didn't
  */
 Status game_set_nlinks(Game *game, int n_links);

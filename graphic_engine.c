@@ -18,28 +18,28 @@
 #include "space.h"
 #include "types.h"
 
-#define MAX_STR 255 /*Constant assigned fpr the maximum length of a string*/
-#define MAX_BUFFER 268 /*Constant assigned for the lenght of an auxiliary buffer*/
-#define WIDTH_MAP 60 /*Constant asignated for the width of the map*/
-#define WIDTH_DES 31 /*Constant asignated for the width of the description*/
-#define WIDTH_BAN 89 /*Constant asignated for the width of the banner*/
-#define HEIGHT_MAP 29 /*Constant asignated for the height of the map*/
-#define HEIGHT_BAN 1 /*Constant asignated for the height of the banner*/
-#define HEIGHT_HLP 3 /*Constant asignated for the height of help interface*/
-#define HEIGHT_FDB 3 /*Constant asignated for the height of feedback interface*/
-#define WIDTH_SPACE 18 /*Constante asignated for the maximum size of the lines inside the space*/
-#define HEIGHT_SPACE 9 /*Constante asignated for the maximum size of the columns inside the space*/
-#define MAX_RESULT 10 /*Constant fot the maximum size of the result*/
-#define LINE_1 0 /*Constant for the first line of the space*/
-#define LINE_2 1 /*Constant for the second line of the space*/
-#define LINE_3 2 /*Constant for the third line of the space*/
-#define LINE_4 3 /*Constant for the fourth line of the space*/
-#define LINE_5 4 /*Constant for the fifth line of the space*/
-#define LINE_6 5 /*Constant for the sixth line of the space*/
-#define LINE_7 6 /*Constant for the seventh line of the space*/
-#define LINE_8 7 /*Constant for the eighth line of the space*/
-#define LINE_9 8 /*Constant for the ninth line of the space*/
-#define OBJS_FINAL 5 /*Constant to write the final of a space which objects's names are too extense*/
+#define MAX_STR 255/*Constant assigned fpr the maximum length of a string*/
+#define MAX_BUFFER 268/*Constant assigned for the lenght of an auxiliary buffer*/
+#define WIDTH_MAP 60/*Constant asignated for the width of the map*/
+#define WIDTH_DES 31/*Constant asignated for the width of the description*/
+#define WIDTH_BAN 89/*Constant asignated for the width of the banner*/
+#define HEIGHT_MAP 29/*Constant asignated for the height of the map*/
+#define HEIGHT_BAN 1/*Constant asignated for the height of the banner*/
+#define HEIGHT_HLP 3/*Constant asignated for the height of help interface*/
+#define HEIGHT_FDB 3/*Constant asignated for the height of feedback interface*/
+#define WIDTH_SPACE 18/*Constante asignated for the maximum size of the lines inside the space*/
+#define HEIGHT_SPACE 9/*Constante asignated for the maximum size of the columns inside the space*/
+#define MAX_RESULT 10/*Constant fot the maximum size of the result*/
+#define LINE_1 0/*Constant for the first line of the space*/
+#define LINE_2 1/*Constant for the second line of the space*/
+#define LINE_3 2/*Constant for the third line of the space*/
+#define LINE_4 3/*Constant for the fourth line of the space*/
+#define LINE_5 4/*Constant for the fifth line of the space*/
+#define LINE_6 5/*Constant for the sixth line of the space*/
+#define LINE_7 6/*Constant for the seventh line of the space*/
+#define LINE_8 7/*Constant for the eighth line of the space*/
+#define LINE_9 8/*Constant for the ninth line of the space*/
+#define OBJS_FINAL 5/*Constant to write the final of a space which objects's names are too extense*/
 
 /**
  * @brief This struct stores all the information of the graphic engine (everything showed by screen).
@@ -60,72 +60,13 @@ struct _Graphic_engine {
  */
 void free_gengine_paint_game(char**space);
 
-/*--------------------------------------PUBLIC FUNCTIONS--------------------------------------*/
-
-
-Graphic_engine *graphic_engine_create(void) {
-  static Graphic_engine *ge = NULL; /* Assign NULL to *ge only the first time*/
-
-  if (ge) {/* Avoid errors if the function is called multiple times and the graphic engine has already been created. */
-    return ge;
-  }
-
-  /* Initializates the screen areaa */
-  screen_init(HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + HEIGHT_FDB + 4, WIDTH_MAP + WIDTH_DES + 3);
-  ge = (Graphic_engine *)malloc(sizeof(Graphic_engine));
-  if (ge == NULL) {
-    return NULL;
-  }
-
-  /* Initializates the map window area */
-  ge->map = screen_area_init(1, 1, WIDTH_MAP, HEIGHT_MAP);
-  if (!ge->map) {
-      free(ge);
-      return NULL;
-  }
-
-  /* Initializates the descript window area */
-  ge->descript = screen_area_init(WIDTH_MAP + 2, 1, WIDTH_DES, HEIGHT_MAP);
-
-  /* Initializates the banner window  area */
-  ge->banner = screen_area_init((int)((WIDTH_MAP + WIDTH_DES + 1 - WIDTH_BAN) / 2), HEIGHT_MAP + 1, WIDTH_BAN + 3, HEIGHT_BAN);
-
-  /* Initializates the help window area */
-  ge->help = screen_area_init(1, HEIGHT_MAP + HEIGHT_BAN + 2, WIDTH_MAP + WIDTH_DES + 1, HEIGHT_HLP);
-
-  /* Initializates the feedback window area */
-  ge->feedback = screen_area_init(1, HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + 3, WIDTH_MAP + WIDTH_DES + 1, HEIGHT_FDB);
-
-  return ge;
-}
-
-void free_gengine_paint_game(char **space) {
-  int i = 0;
-  if (space != NULL) {
-    for (i = 0; i < HEIGHT_SPACE; i++) {
-      if (space[i] != NULL) { 
-        free(space[i]);
-        space[i] = NULL;
-      }
-    }
-    free(space);
-    space = NULL;
-  }
-}
-
-void graphic_engine_destroy(Graphic_engine *ge) {
-  if (!ge) return;
-
-  screen_area_destroy(ge->map);
-  screen_area_destroy(ge->descript);
-  screen_area_destroy(ge->banner);
-  screen_area_destroy(ge->help);
-  screen_area_destroy(ge->feedback);
-
-  screen_destroy();
-  free(ge);
-}
-
+/**
+ * @brief This private function prints in a matrix of characters a space
+ * 
+ * @param space_id The id of the space to print
+ * @param game Pointer to game structure
+ * @return The column of strings of the space
+ */
 char **graphic_engine_print_space(Id space_id, Game *game){
   char str[MAX_STR];
   char **strspace;
@@ -221,6 +162,72 @@ char **graphic_engine_print_space(Id space_id, Game *game){
     sprintf(strspace[LINE_9], "+----------------+");
 
     return strspace;
+}
+
+/*--------------------------------------PUBLIC FUNCTIONS--------------------------------------*/
+
+
+Graphic_engine *graphic_engine_create(void) {
+  static Graphic_engine *ge = NULL; /* Assign NULL to *ge only the first time*/
+
+  if (ge) {/* Avoid errors if the function is called multiple times and the graphic engine has already been created. */
+    return ge;
+  }
+
+  /* Initializates the screen areaa */
+  screen_init(HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + HEIGHT_FDB + 4, WIDTH_MAP + WIDTH_DES + 3);
+  ge = (Graphic_engine *)malloc(sizeof(Graphic_engine));
+  if (ge == NULL) {
+    return NULL;
+  }
+
+  /* Initializates the map window area */
+  ge->map = screen_area_init(1, 1, WIDTH_MAP, HEIGHT_MAP);
+  if (!ge->map) {
+      free(ge);
+      return NULL;
+  }
+
+  /* Initializates the descript window area */
+  ge->descript = screen_area_init(WIDTH_MAP + 2, 1, WIDTH_DES, HEIGHT_MAP);
+
+  /* Initializates the banner window  area */
+  ge->banner = screen_area_init((int)((WIDTH_MAP + WIDTH_DES + 1 - WIDTH_BAN) / 2), HEIGHT_MAP + 1, WIDTH_BAN + 3, HEIGHT_BAN);
+
+  /* Initializates the help window area */
+  ge->help = screen_area_init(1, HEIGHT_MAP + HEIGHT_BAN + 2, WIDTH_MAP + WIDTH_DES + 1, HEIGHT_HLP);
+
+  /* Initializates the feedback window area */
+  ge->feedback = screen_area_init(1, HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + 3, WIDTH_MAP + WIDTH_DES + 1, HEIGHT_FDB);
+
+  return ge;
+}
+
+void free_gengine_paint_game(char **space) {
+  int i = 0;
+  if (space != NULL) {
+    for (i = 0; i < HEIGHT_SPACE; i++) {
+      if (space[i] != NULL) { 
+        free(space[i]);
+        space[i] = NULL;
+      }
+    }
+    free(space);
+    space = NULL;
+  }
+}
+
+void graphic_engine_destroy(Graphic_engine *ge) {
+  if (!ge) return;
+
+  screen_area_destroy(ge->map);
+  screen_area_destroy(ge->descript);
+  screen_area_destroy(ge->banner);
+  screen_area_destroy(ge->help);
+  screen_area_destroy(ge->feedback);
+
+  screen_destroy();
+  free(ge);
 }
 
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {

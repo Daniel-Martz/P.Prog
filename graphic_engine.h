@@ -13,13 +13,16 @@
 
 #include "game.h"
 
+/**
+ * @brief Structure of the graphic engine
+ * 
+ */
 typedef struct _Graphic_engine Graphic_engine; 
 
 /**
  * @brief It creates the graphic engine doing the allocation of space and establishes to every graphic object it dimension
  * @author Daniel Martínez
  * 
- * @param void nothing is passed as an argument
  * @return It returns a pointer to the graphic engine or NULL if there is a problem during the allocation
 */
 Graphic_engine *graphic_engine_create(void);
@@ -29,7 +32,6 @@ Graphic_engine *graphic_engine_create(void);
  * @author Daniel Martínez
  * 
  * @param ge a pointer to a graphic engine
- * @return void (Nothing)
 */
 void graphic_engine_destroy(Graphic_engine *ge);
 
@@ -42,7 +44,6 @@ void graphic_engine_destroy(Graphic_engine *ge);
  * 
  * @param ge A pointer to Grafic_engine
  * @param game A pointer to Game
- * @return Nothing
 */
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game);
 

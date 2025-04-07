@@ -16,8 +16,12 @@
 #include "types.h"
 #include "inventory.h"
 
-#define G_DESC 7
+#define G_DESC 7/* It defines the size of the player gdesc*/
 
+/**
+ * @brief Structure of the player
+ * 
+ */
 typedef struct _Player Player;
 
 /*============================Init============================*/
@@ -114,6 +118,7 @@ const char* player_get_gdesc(Player *player);
  * @author Daniel Martinez
  *
  * @param player a pointer to the player
+ * @param id The id of the player
  * @return OK, if everything goes well or ERROR if there was some mistake
  */
 Status player_set_id (Player* player, Id id);
@@ -123,15 +128,17 @@ Status player_set_id (Player* player, Id id);
  * @author Jimena Sanchiz
  *
  * @param player a pointer to the player
+ * @param obj_id The id of the object
  * @return OK, if everything goes well or ERROR if there was some mistake
  */
-Status player_add_object (Player* player, Id object);
+Status player_add_object (Player* player, Id obj_id);
 
 /**
  * @brief Assigns a name to a player
  * @author Daniel Martinez
  *
  * @param player a pointer to the player
+ * @param name cont string of the player name
  * @return OK, if everything goes well or ERROR if there was some mistake
  */
 Status player_set_name (Player* player, const char* name);
@@ -152,6 +159,7 @@ Status player_set_health(Player* player, int health);
  * @author Daniel Martinez
  *
  * @param player a pointer to the player
+ * @param location The id of the location
  * @return OK, if everything goes well or ERROR if there was some mistake
  */
 Status player_set_location (Player* player, Id location);
@@ -160,7 +168,7 @@ Status player_set_location (Player* player, Id location);
  * @brief Defines the player's description
  * @author Jaime Romero
  *
- * @param Player A pointer to player
+ * @param player A pointer to player
  * @param gdesc Character's description
  * 
  * @return OK if everything goes well, ERROR if anything goes wrong
@@ -172,6 +180,7 @@ Status player_set_gdesc(Player *player, const char* gdesc);
  * @author Jimena Sanchiz
  *
  * @param player a pointer to the player
+ * @param obj_id Object id
  * @return OK, if everything goes well or ERROR if there was some mistake
  */
 Status player_delete_object(Player *player, Id obj_id);

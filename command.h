@@ -13,16 +13,28 @@
 
 #include "types.h"
 
-#define N_CMDT 2 /* It defines a constant for the the abreviature of the command and the command*/
-#define N_CMD 9 /* It defines a constant for the number of commands */
+#define N_CMDT 2/* It defines a constant for the the abreviature of the command and the command*/
+#define N_CMD 9/* It defines a constant for the number of commands */
 
-/* It establishes a data type for the two posible ways to refer to a command */
+/**
+ * @brief It establishes a data type for the two posible ways to refer to a command
+ * 
+ * @author Daniel Martínez
+ */
 typedef enum { CMDS, CMDL } CommandType;
 
-/*It establishses a data type for the posible 7 commands*/
+/**
+ * @brief It establishses a data type for the posible 7 commands
+ * 
+ * @author Daniel Martínez
+ */
 typedef enum { NO_CMD = -1, UNKNOWN, EXIT, MOVE, INSPECT, TAKE, DROP, ATTACK, CHAT } CommandCode;
 
-/*It estiblishes a structure that will contain the name of the command*/
+/**
+ * @brief It estiblishes a structure that will contain the name of the command
+ * 
+ * @author Daniel Martínez
+ */
 typedef struct _Command Command;
 
 /**
@@ -30,7 +42,6 @@ typedef struct _Command Command;
     needed and initializates it and returns it
  * @author Daniel Martinez
  *
- * @param void There is noargument passed to the function
  * @return a new command created
  */
 Command* command_create(void);

@@ -15,10 +15,14 @@
 #include <string.h>
 #include <strings.h>
 
-#define CMD_LENGHT 30 /* It denotes the length needed for the string that stores the introduced command */
-#define MAX_SIZE 30  /* It denotes the maximum sizez for an array*/
+#define CMD_LENGHT 30/* It denotes the length needed for the string that stores the introduced command */
+#define MAX_SIZE 30/* It denotes the maximum sizez for an array*/
 
-/* Store commands and it significate */
+/**
+ * @brief Store commands and it significate
+ * 
+ * @author Daniel Martínez
+ */
 char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}};
 
 /**

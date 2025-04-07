@@ -20,7 +20,7 @@
 #include "game_reader.h"
 #include "types.h"
 
-#define CMD_LENGHT 30 /* It denotes the length needed for the string that stores the introduced command */
+#define CMD_LENGHT 30/* It denotes the length needed for the string that stores the introduced command */
 
 /**
  * @brief It initialices the game and the graphic engine controlling the errors (printing the reason of the failure)
@@ -41,12 +41,10 @@ int game_loop_init(Game **game, Graphic_engine **gengine, char *file_name, Bool 
  * @author Jaime Romero
  *
  * @param game A pointer to Game
- * @param engine A pointer to the grafic engine
+ * @param gengine A pointer to the grafic engine
  * @param log_status a boolean that indicates if the log is active or not
  * @param log_name a string with the name of the log input file
  * @param output_name a string with the name of the log output file
- *
- * @return void (nothing)
  */
 void game_loop_run(Game *game, Graphic_engine *gengine, Bool log_status, char *log_name, char *output_name);
 
@@ -56,7 +54,6 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Bool log_status, char *l
  *
  * @param game A pointer to Game
  * @param gengine A pointer to the grafic engine
- * @return void (nothing)
  */
 void game_loop_cleanup(Game *game, Graphic_engine *gengine);
 

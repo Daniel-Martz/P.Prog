@@ -13,8 +13,8 @@
 #include <string.h> 
 #include "object_test.h"
 
-#define MAX_TESTS 15
-#define TEST 10
+#define MAX_TESTS 15 /*It defines the number of tests*/
+#define TEST 10 /*It defines an arbitrary test number*/
 
 /** 
  * @brief Main function for object unit tests. 

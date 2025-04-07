@@ -18,9 +18,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NAME_SIZE 50 /* The maximum size for objects names*/
+#define NAME_SIZE 50/* The maximum size for objects names*/
 #define MAX_DESCRIP 100/* The maximum size for the objects descriptions*/
 
+/**
+ * @brief Structure of the object
+ * 
+ */
 typedef struct _Object Object;
 
 /**
@@ -29,7 +33,6 @@ typedef struct _Object Object;
  * @author Jaime Romero
  * 
  * @param id Object identifier
- * @param name Object name
  * 
  * @return The created object
  */
@@ -110,7 +113,7 @@ Status object_print (Object* obj);
  * @author Jaime Romero
  *
  * @param obj A pointer to the object
- * @return A string with the object's name
+ * @return A string with the object's description
  */
 const char* object_get_description(Object *obj);
 
@@ -120,7 +123,7 @@ const char* object_get_description(Object *obj);
  * @author Jaime Romero
  * 
  * @param obj A pointer to the object
- * @param name A string with the object's name
+ * @param objdes A string with the object's description
  * 
  * @return OK if everything goes well, ERROR if there is a failure
  */

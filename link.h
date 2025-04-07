@@ -19,8 +19,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_NAME 50
+#define MAX_NAME 50/* It dedfines the maximum lenght of the link name*/
 
+/**
+ * @brief Structure of the link
+ * 
+ */
 typedef struct _Link Link;
 
 /**
@@ -59,7 +63,7 @@ char *link_get_name(Link *link);
  * 
  * @author Jorge Martín
  * 
- * @param obj A pointer to the link
+ * @param link A pointer to the link
  * @param name A string with the link's name
  * 
  * @return OK if everything goes well, ERROR if there is a failure

@@ -109,9 +109,9 @@ Status player_set_id (Player* player, Id id){
     return OK;
 }
 
-Status player_add_object (Player* player, Id object){
+Status player_add_object (Player* player, Id obj_id){
     if (!player) return ERROR;
-    return inventory_add_obj_id(player->backpack, object);
+    return inventory_add_obj_id(player->backpack, obj_id);
 }
 
 Status player_set_name (Player* player, const char* name){

@@ -10,7 +10,7 @@
  * @copyright Copyright (c) 2025
  */
 #include "inventory.h"
-#define MAX_OBJ 10
+#define MAX_OBJ 10/*It defines the maximum capacity for the bagpack*/
 
 
 struct _Inventory {

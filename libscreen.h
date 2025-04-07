@@ -11,7 +11,16 @@
 #ifndef LIBSCREEN_H
 #define LIBSCREEN_H
 
+/**
+ * @brief Structure of the Area
+ * 
+ */
 typedef struct _Area Area;
+
+/**
+ * @brief list with the colors to use
+ * 
+ */
 typedef enum {BLUE, GREEN, BLACK, RED, YELLOW, PURPLE, CYAN, WHITE} Frame_color;
 
 

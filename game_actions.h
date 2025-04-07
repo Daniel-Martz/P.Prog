@@ -21,14 +21,18 @@
  * then it does an action depending on the command:
  *  UNKNOWN: Do nothing
  *  EXIT: Abort game
- *  NEXT: Moves to the north
- *  BACK: Moves to the south
+ *  MOVES: Moves to somewhere
+ *  INSPECT: Inspect an object
+ *  CHAT: Chat with a friendly character
+ *  ATTACK: Attack a non-friendly character
+ *  TAKE: Pick up an object in the space
+ *  DROP: Drop to the space an object
  * @author Daniel Martínez
  * 
  * @param game pointer to Game structure
- * @param cmd  Pointer to the command that contains the action
+ * @param command  Pointer to the command that contains the action
  * @return OK if everything was correct, ERROR if not
 */
-Status game_actions_update(Game *game, Command *cmd);
+Status game_actions_update(Game *game, Command *command);
 
 #endif

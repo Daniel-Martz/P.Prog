@@ -15,11 +15,14 @@
 
 #include "types.h"
 
-#define G_DESC 7
-#define MAX_MESSAGE 100
+#define G_DESC 7/* It establishes the maximum size for gdesc*/
+#define MAX_MESSAGE 100 /* It establishes the maximum length of the character message*/
 
+/**
+ * @brief Struct of the character
+ * 
+ */
 typedef struct _Character Character;
-
 
 /*============================Init============================*/
 
@@ -104,6 +107,7 @@ Bool character_get_friendly(Character* character);
  * @author Jaime Romero
  *
  * @param character a pointer to the character
+ * @param id The id of the character
  * @return OK, if everything goes well or ERROR if there was some mistake
  */
 Status character_set_id (Character* character, Id id);

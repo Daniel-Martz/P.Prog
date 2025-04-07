@@ -19,6 +19,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * @brief Structure of the inventory
+ * 
+ */
 typedef struct _Inventory Inventory;
 
 /**
