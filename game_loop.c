@@ -256,7 +256,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Bool log_status, char *l
   {
     if (log_status == TRUE)
     {
-      fprintf(log_output, "GAME OVER2\n");
+      fprintf(log_output, "GAME OVER\n");
       fclose(log_file);
       fclose(log_output);
     }

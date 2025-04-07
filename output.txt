@@ -1,9 +1,10 @@
-Move ERROR
+Move OK
+Inspect OK
+Take OK
+Move OK
+Drop OK
 Move OK
 Move ERROR
-Take OK
-Move ERROR
-Drop ERROR
-Inspect OK
+Move OK
 Exit OK
 GAME OVER

@@ -1,0 +1,9 @@
+move south
+inspect Parchment
+take Parchment
+move south
+drop Parchment
+move west
+move east
+move north
+exit
