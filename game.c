@@ -39,7 +39,6 @@ struct _Game {
   Bool finished; /*!< It defines if the game finished or not */
   Character *characters[MAX_CHARACTERS]; /*!< It contains all the characters of the game*/
   char message[MAX_MESSAGE]; /*!< It contains the message of the chat*/
-  Status last_cmd_status; /*!< It contains the status of the last command*/
   Link *links[MAX_LINKS]; /*!< It contains all the links of the game*/
 };
 
@@ -96,7 +95,6 @@ Game *game_create(void){
   game->turn = 0;
   game->last_cmd = command_create();
   game->finished = FALSE;
-  game ->last_cmd_status = ERROR;
 
 
   if (!game->last_cmd) {

@@ -48,6 +48,7 @@ Command* command_create(void) {
   newCommand->code = NO_CMD;
   newCommand->objname[0] = '\0';
   newCommand->direction = U;
+  newCommand->last_cmd_status = ERROR;
 
   return newCommand;
 }
