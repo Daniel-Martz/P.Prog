@@ -1,7 +1,9 @@
-#o:21|grain|11|I'm a grain
-#o:22|leaf|11|I'm a leaf
-#o:23|seed|122|I'm a seed
-#o:24|crumb|14|I'm a crumb
+#o:21|grain|11|0|1|-1|-1|I'm a grain
+#o:22|leaf|11|0|1|26|-1|I'm a leaf
+#o:23|seed|122|2|1|0|-1|I'm a seed
+#o:24|crumb|14|-1|1|-1|-1|I'm a crumb
+#o:25|rock|125|0|0|-1|-1|You can't move me
+#o:26|hook|127|0|1|-1|-1|I move certain things
 
 #s:11|Entry|    _    |\  \___  |\   mo'\_|\ @  _   | \__/ \__|
 #s:121|Corridor1|    _    |\  \___  |\   mo'\_|\ @  _   | \__/ \__|   

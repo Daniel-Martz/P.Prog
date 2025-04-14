@@ -85,9 +85,11 @@ Status game_reader_load_objects(Game *game, char *filename){
   char name[WORD_SIZE] = "";
   char description[MAX_DESCRIP] = "";
   char *toks = NULL;
-  Id object_id = NO_ID, space_id = NO_ID;
+  int health;
+  Id object_id = NO_ID, space_id = NO_ID, dependency = NO_ID;
   Object *object = NULL;
   Status status = OK;
+  Bool movable, open;
 
   if (!filename || !game) {
     return ERROR;
@@ -107,6 +109,14 @@ Status game_reader_load_objects(Game *game, char *filename){
       strcpy(name, toks);
       toks = strtok(NULL, "|");
       space_id = atol(toks);
+      toks = strtok(NULL, "|");
+      health = atol(toks);
+      toks = strtok(NULL, "|");
+      movable = atol(toks);
+      toks = strtok(NULL, "|");
+      dependency = atol(toks);
+      toks = strtok(NULL, "|");
+      open = atol(toks);
       toks = strtok(NULL, "\n");
       strncpy(description, toks, MAX_DESCRIP-1);
       
@@ -117,6 +127,10 @@ Status game_reader_load_objects(Game *game, char *filename){
       game_add_object(game, object);
       space_set_new_object(game_get_space(game, space_id), object_id);
       object_set_description(object, description);
+      object_set_health(object, health);
+      object_set_movable(object, movable);
+      object_set_dependency(object, dependency);
+      object_set_open(object, open);
     }
   }
   
