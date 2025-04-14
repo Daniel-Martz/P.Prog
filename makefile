@@ -41,7 +41,7 @@ $(OBJ_DIR)/player.o: $(INC_DIR)/player.h $(INC_DIR)/types.h $(INC_DIR)/inventory
 $(OBJ_DIR)/set.o: $(INC_DIR)/set.h $(INC_DIR)/types.h
 $(OBJ_DIR)/character.o: $(INC_DIR)/character.h $(INC_DIR)/types.h
 $(OBJ_DIR)/link.o: $(INC_DIR)/link.h $(INC_DIR)/types.h
-$(OBJ_DIR)/inventory.o: $(INC_DIR)/inventory.h $(INC_DIR)/types.h $(INC_DIR)/set.h
+$(OBJ_DIR)/inventory.o: $(INC_DIR)/inventory.h $(INC_DIR)/types.h $(INC_DIR)/set.h $(INC_DIR)/object.h
 
 # Reglas para tests
 $(OBJ_DIR)/space_test.o: $(SRC_DIR)/space_test.c $(INC_DIR)/space_test.h $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h $(INC_DIR)/test.h

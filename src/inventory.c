@@ -111,7 +111,7 @@ Bool object_is_in_inventory(Inventory *inv, Id id){
     if (id == NO_ID) return TRUE;
 
     ids = set_get_ids(inv->objs);  
-    n_ids = set_get_n_ids(inv->objs);
+    n_ids = set_get_nids(inv->objs);
 
     for (i = 0; i < n_ids; i++) {
         if (ids[i] == id) {
