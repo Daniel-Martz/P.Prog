@@ -15,6 +15,7 @@
 #include "character.h"
 #include "game.h"
 #include "types.h"
+#include "object.h"
 
 /**
  * @brief First of all it establishes the command passed as an argument as the last command of the game

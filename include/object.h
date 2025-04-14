@@ -169,7 +169,7 @@ Status object_set_movable(Object *obj, Bool mov);
  * @param obj A pointer to Object
  * @return TRUE if it's movable, FALSE if not
  */
-Bool object_is_movalble(Object *obj);
+Bool object_is_movable(Object *obj);
 
 /**
  * @brief Sets if the object depends on other objects

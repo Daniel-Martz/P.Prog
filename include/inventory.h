@@ -124,5 +124,15 @@ Id *inventory_get_obj_ids(Inventory *inventory);
  */
 Status inventory_print(Inventory *inventory);
 
+/**
+ * @brief Checks if a given object is already in the inventory
+ * 
+ * @author Jaime Romero
+ * 
+ * @param inv A pointer to Inventory structure
+ * 
+ * @return TRUE if it is already in the inventory an FALSE if not
+ */
+Bool object_is_in_inventory(Inventory *inv, Id id);
 
 #endif

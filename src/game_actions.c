@@ -252,7 +252,6 @@ Status game_actions_take(Game *game){
   }
   /* Take the player*/
   if(!(player = game_get_player(game))) return ERROR;
-  /* Make sure that the player has no objects*/
 
   player_location = game_get_player_location(game);/* Initializate player_location*/
   if(player_location == NO_ID){
@@ -263,6 +262,20 @@ Status game_actions_take(Game *game){
   if((object = game_get_object_from_name(game, objname)) == NO_ID){
     return ERROR;
   }
+
+  /*check if the object is movable*/
+  if (object_is_movable(game_get_object(game, object)) == FALSE)
+  {
+    return ERROR;
+  }
+
+  /*Check if the object depends on other object*/
+  if ((object_is_in_inventory(player_get_backpack(player), object_get_dependency(game_get_object(game, object)))) == FALSE)
+  {
+    return ERROR;
+  }
+  
+  
   /* object location and player location must be the same*/
   if(game_get_object_location(game, object) != player_location){
     return ERROR;
@@ -272,6 +285,11 @@ Status game_actions_take(Game *game){
     return ERROR;
   }
 
+  if (!(player_set_health(player, player_get_health(player) + object_get_health(game_get_object(game, object)))))
+  {
+    return ERROR;
+  }
+  
   return space_object_del(game_get_space(game, player_location), object); /*Delete the object from the sapce*/
 }
 

@@ -116,7 +116,7 @@ Status object_set_movable(Object *obj, Bool mov){
     return OK;
 }
 
-Bool object_is_movalble(Object *obj){
+Bool object_is_movable(Object *obj){
     if(!obj) return FALSE;
     return obj->movable;
 }
