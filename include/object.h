@@ -129,5 +129,89 @@ const char* object_get_description(Object *obj);
  */
 Status object_set_description(Object *obj, const char *objdes);
 
+/**
+ * @brief Assigns health to an object
+ * 
+ * @author Jaime Romero
+ * 
+ * @param obj A pointer to the object
+ * @param health The amount of health taken o given to the player
+ * 
+ * @return OK if everything goes well, ERROR if there is a failure
+ */
+Status object_set_health(Object *obj, int health);
+
+/**
+ * @brief Gets the health managed by the object
+ * @author Jaime Romero
+ * 
+ * @param obj A pointer to Object
+ * @return The amount of health the object takes or gives
+ */
+int object_get_health(Object *obj);
+
+/**
+ * @brief Sets if the object is movable or not
+ * 
+ * @author Jaime Romero
+ * 
+ * @param obj A pointer to the object
+ * @param mov A boolean variable indicating if the object can be moved
+ * 
+ * @return OK if everything goes well, ERROR if there is a failure
+ */
+Status object_set_movable(Object *obj, Bool mov);
+
+/**
+ * @brief Gets if the object is movable or not
+ * @author Jaime Romero
+ * 
+ * @param obj A pointer to Object
+ * @return TRUE if it's movable, FALSE if not
+ */
+Bool object_is_movalble(Object *obj);
+
+/**
+ * @brief Sets if the object depends on other objects
+ * 
+ * @author Jaime Romero
+ * 
+ * @param obj A pointer to the object
+ * @param dependency An id of the object it depends on (NO_ID if it odesn't depend on anything)
+ * 
+ * @return OK if everything goes well, ERROR if there is a failure
+ */
+Status object_set_dependency(Object *obj, Id dependency);
+
+/**
+ * @brief Gets if the object is depends on anything
+ * @author Jaime Romero
+ * 
+ * @param obj A pointer to Object
+ * @return The id of the object id depends on
+ */
+Id object_get_dependency(Object *obj);
+
+/**
+ * @brief Sets if the object can open other links
+ * 
+ * @author Jaime Romero
+ * 
+ * @param obj A pointer to the object
+ * @param open An id of the link it opens (NO_ID if it odesn't open anything)
+ * 
+ * @return OK if everything goes well, ERROR if there is a failure
+ */
+Status object_set_open(Object *obj, Id open);
+
+/**
+ * @brief Gets the link that can be opened by the object
+ * @author Jaime Romero
+ * 
+ * @param obj A pointer to Object
+ * @return An id of the link it can open
+ */
+Id object_get_open(Object *obj);
+
 #endif
 
