@@ -93,6 +93,24 @@ Status game_actions_attack(Game *game);
  */
 Status game_actions_chat(Game *game);
 
+/**
+ * @brief It allows the player to recruit a friendly character
+ * @author Jorge Martín
+ * 
+ * @param game a pointer to Game
+ * @return Status indicating the result of the action
+ */
+Status game_actions_recruit(Game *game);
+
+/**
+ * @brief It allows the abandon to recruit a friendly character
+ * @author Jorge Martín
+ * 
+ * @param game a pointer to Game
+ * @return Status indicating the result of the action
+ */
+Status game_actions_abandon(Game *game);
+
 
 
 /**
@@ -144,6 +162,14 @@ Status game_actions_update(Game *game, Command *command) {
     command_set_last_cmd_status(game_get_last_command(game), game_actions_chat(game));
       break;
 
+    case RECRUIT:
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_recruit(game));
+      break;
+
+    case ABANDON:
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_abandon(game));
+      break;
+
     default:
       break;
   }
@@ -167,10 +193,13 @@ Status game_actions_move(Game *game) {
   Id current_id = NO_ID;
   Id space_id = NO_ID;
   Direction direction;
+  Character **characters = NULL;
+  int i=0;
 
   if(!game) return ERROR;
 
   command_set_objname(game_get_last_command(game), "");
+  command_set_character_name(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if ((direction = command_get_direction(game_get_last_command(game))) == U) {
@@ -182,7 +211,16 @@ Status game_actions_move(Game *game) {
   if (game_connection_is_open(game, space_id, direction)==TRUE) {
     current_id = game_get_connection(game, space_id, direction);
     if (current_id != NO_ID) {
+      /*Mover al jugador*/
       game_set_player_location(game, current_id);
+
+      /*Mover a los personajes que le están siguiendo*/
+      characters = game_get_characters(game);
+      for(i=0; i<game_get_ncharacters(game); i++){
+        if(character_get_following(characters[i]) == player_get_id(game_get_player(game))){
+          character_set_location(characters[i], current_id);
+        }
+      }
     }
     else {
       return ERROR;
@@ -204,6 +242,7 @@ Status game_actions_inspect(Game *game){
     return ERROR;
   }
   command_set_direction(game_get_last_command(game), U);
+  command_set_character_name(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if(!(objname = command_get_objname(game_get_last_command(game)))){
@@ -245,6 +284,7 @@ Status game_actions_take(Game *game){
 
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
+  command_set_character_name(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if(!(objname = command_get_objname(game_get_last_command(game)))){
@@ -305,6 +345,7 @@ Status game_actions_drop(Game *game){
   if(!(player = game_get_player(game))) return ERROR;
 
   command_set_direction(game_get_last_command(game), U);
+  command_set_character_name(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if(!(objsinvent = player_get_objects_ids(player))){
@@ -343,13 +384,15 @@ Status game_actions_drop(Game *game){
 }
 
 Status game_actions_attack(Game *game) {
-  int turn = -1;
+  int turn = -1, turn2 = -1, following = 0, i=0, count = 1;
   Id character = NO_ID;
   Id player_location = NO_ID;
+  Character **characters = NULL;
 
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
   command_set_objname(game_get_last_command(game), "");
+  command_set_character_name(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;
@@ -364,10 +407,40 @@ Status game_actions_attack(Game *game) {
   turn = rand()%10;
   if((turn<0)||turn>9) return ERROR;
   if(turn<5){
-    player_set_health(game_get_player(game), player_get_health(game_get_player(game))-1);
+    /* If the attacking player loses a new random variable determines who loses a hitpoint (it goes from 0 up to the number of following characters)*/
+    following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));
+    if (following < 0) {
+      return ERROR;
+    }
+    turn2 = rand()%following;
+    /* If the random number is 0 (will always be if the player has no following characters) the player loses a hitpoint */
+    if (turn2 == 0) {
+      player_set_health(game_get_player(game), player_get_health(game_get_player(game))-1);
+    }
+    /* If the random number is not 0 (lets say is X) the X character that follows the player (in the order of the game X=1 first, X=2 second, etc) will lose a hitpoint */
+    else {
+      characters = game_get_characters(game);
+      for(i=0; i<game_get_ncharacters(game); i++){
+        if(character_get_following(characters[i]) == player_get_id(game_get_player(game))){
+          if (count == turn2) {
+            character_set_health(game_get_character(game, characters[i]), character_get_health(game_get_character(game, characters[i]))-1);
+            break;
+          }
+          else {
+            count++;
+          }
+        }
+      }
+    }
   }
   else
-    character_set_health(game_get_character(game, character),character_get_health(game_get_character(game, character))-1);
+    following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));
+    if (following < 0) {
+     return ERROR;
+    }
+    else {
+    character_set_health(game_get_character(game, character),character_get_health(game_get_character(game, character))- (1 + following));
+    }
   
   if(player_get_health(game_get_player(game))<=0){
     game_set_finished(game, TRUE);
@@ -381,6 +454,7 @@ Status game_actions_chat(Game *game) {
   Id player_location = NO_ID;
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
+  command_set_character_name(game_get_last_command(game), "");
   command_set_objname(game_get_last_command(game), "");
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;
@@ -392,6 +466,76 @@ Status game_actions_chat(Game *game) {
   game_set_message(game,character_get_message(game_get_character(game, character)));
 
   return OK;
+}
+
+Status game_actions_recruit(Game *game) {
+  Character *character = NULL;
+  char *character_name = NULL;
+
+
+  if (!game) return ERROR;
+  command_set_direction(game_get_last_command(game), U);
+  command_set_objname(game_get_last_command(game), "");
+  game_set_message(game, "");
+
+  if (!(character_name = command_get_character_name(game_get_last_command(game)))) {
+    return ERROR;
+  }
+
+  if (!(character = game_get_character_from_name(game, character_name))) {
+    return ERROR;
+  }
+
+  /*Checks if the character is friendly*/
+  if (character_get_friendly(character) == FALSE) {
+    return ERROR;
+  }
+
+  /*Checks if the character is already following another player*/
+  if (character_get_following(character) != NO_ID) {
+    return ERROR;
+  }
+
+  if (character_set_following(character, player_get_id(game_get_player(game))) == ERROR) {
+    return ERROR;
+  }
+
+  return OK;
+}
+
+Status game_actions_abandon(Game *game) {
+  Character *character = NULL;
+  char *character_name = NULL;
+
+
+  if (!game) return ERROR;
+  command_set_direction(game_get_last_command(game), U);
+  command_set_objname(game_get_last_command(game), "");
+  game_set_message(game, "");
+
+  if (!(character_name = command_get_character_name(game_get_last_command(game)))) {
+    return ERROR;
+  }
+
+  if (!(character = game_get_character_from_name(game, character_name))) {
+    return ERROR;
+  }
+
+    /*Checks if the character is friendly*/
+    if (character_get_friendly(character) == FALSE) {
+      return ERROR;
+    }
+  
+    /*Checks if the character is following the player*/
+    if (character_get_following(character) != player_get_id(game_get_player(game))) {
+      return ERROR;
+    }
+    else {
+      if (character_set_following(character, NO_ID) == ERROR) {
+        return ERROR;
+      }
+      return OK;
+    }
 }
 
 

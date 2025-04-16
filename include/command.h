@@ -14,7 +14,7 @@
 #include "types.h"
 
 #define N_CMDT 2/*!< It defines a constant for the the abreviature of the command and the command*/
-#define N_CMD 9/*!< It defines a constant for the number of commands */
+#define N_CMD 11/*!< It defines a constant for the number of commands */
 
 /**
  * @brief It establishes a data type for the two posible ways to refer to a command
@@ -28,7 +28,7 @@ typedef enum { CMDS, CMDL } CommandType;
  * 
  * @author Daniel Martínez
  */
-typedef enum { NO_CMD = -1, UNKNOWN, EXIT, MOVE, INSPECT, TAKE, DROP, ATTACK, CHAT } CommandCode;
+typedef enum { NO_CMD = -1, UNKNOWN, EXIT, MOVE, INSPECT, TAKE, DROP, ATTACK, CHAT, RECRUIT, ABANDON} CommandCode;
 
 /**
  * @brief It estiblishes a structure that will contain the name of the command
@@ -111,6 +111,25 @@ Status command_set_direction(Command *command, Direction direction);
  * @return A direction
 */
 Direction command_get_direction(Command *command);
+
+/**
+ * @brief It asignates the character name as an argument to the command and control errors
+ * @author Jorge Martín
+ * 
+ * @param command a pointer to a command structure
+ * @param character_name the name of the character
+ * @return OK if everything was correct, ERROR if not
+*/
+Status command_set_character_name(Command *command, char *character_name);
+
+/**
+ * @brief It returns the name of the character stored in the command passed by argument and control errors
+ * @author Jorge Martín
+ * 
+ * @param command a pointer to a command structure
+ * @return A character name
+*/
+char *command_get_charcacter_name(Command *command);
 
 /**
  * @brief The users introduces a command and it is asigned to a variable command, controlling erors 

@@ -270,6 +270,22 @@ Character *game_get_character(Game *game, Id id) {
   return NULL;
 }
 
+Character *game_get_character_from_name(Game *game, char *name) {
+  int i = 0;
+
+  if (name == NULL) {
+    return NULL;
+  }
+
+  for (i = 0; i < game->n_characters; i++) {
+    if (!strcmp(name, character_get_name(game->characters[i]))) {
+      return game->characters[i];
+    }
+  }
+
+  return NULL;
+}
+
 Player *game_get_player(Game *game){
   if(!game){
     return NULL;
@@ -684,6 +700,22 @@ Bool game_connection_is_open(Game *game, Id id_act, Direction direction) {
   }
 
   return FALSE;
+}
+
+int game_get_nfollowingcharacters(Game *game, Id player_id) {
+  int i, n = 0;
+
+  if (!game || player_id == NO_ID) {
+    return POINT_ERROR;
+  }
+
+  for (i = 0; i < game->n_characters; i++) {
+    if (character_get_following(game->characters[i]) == player_id) {
+      n++;
+    }
+  }
+
+  return n;
 }
 
 int game_get_turn(Game *game){

@@ -28,6 +28,8 @@
  *  ATTACK: Attack a non-friendly character
  *  TAKE: Pick up an object in the space
  *  DROP: Drop to the space an object
+ *  RECRUIT: Recruit a friendly character
+ *  ABANDON: Abandon a friendly character
  * @author Daniel Martínez
  * 
  * @param game pointer to Game structure

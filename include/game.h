@@ -153,6 +153,18 @@ Object *game_get_object(Game *game, Id id);
 Character *game_get_character(Game *game, Id id);
 
 /**
+ * @brief It looks for a character from name
+ * 
+ * @author Jorge Martín
+ * 
+ * @param game A pointer to the game
+ * @param name The name of the character
+ * 
+ * @return A Character
+ */
+Character *game_get_character_from_name(Game *game, char *name);
+
+/**
  * @brief It searches for the player of the game
  * 
  * @author Daniel Martínez
@@ -492,6 +504,16 @@ Id game_get_connection(Game *game, Id id_act, Direction direction);
  * @return Returns if the link between spaces is open (FALSE if there is no link)
  */
 Bool game_connection_is_open(Game *game, Id id_act, Direction direction);
+
+/**
+ * @brief It gets the number of characters that are following the player
+ * 
+ * @author Jorge Martin
+ * @param game A pointer to game
+ * @param player_id The id of the player
+ * @return The number of characters that are following the player
+ */
+int game_get_nfollowingcharacters(Game *game, Id player_id);
 
 /**
  * @brief It gets the player's turn

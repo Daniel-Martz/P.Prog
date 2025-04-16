@@ -23,7 +23,7 @@
  * 
  * @author Daniel Martínez
  */
-char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}};
+char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}, {"r", "Recruit"}, {"ab", "Abandon"}};
 
 /**
  * @brief This struct stores all the information of a command
@@ -34,6 +34,7 @@ struct _Command {
   CommandCode code; /*!< Name of the command */
   char objname[MAX_SIZE]; /*!< Name of the object to take */
   Direction direction; /*!< Direction to move */
+  char character_name[MAX_SIZE];  /*!< Name of the character to recruit */
   Status last_cmd_status; /*!< It contains the status of the last command*/
 };
 
@@ -52,6 +53,7 @@ Command* command_create(void) {
   newCommand->code = NO_CMD;
   newCommand->objname[0] = '\0';
   newCommand->direction = U;
+  newCommand->character_name[0] = '\0';
   newCommand->last_cmd_status = ERROR;
 
   return newCommand;
@@ -126,6 +128,31 @@ Direction command_get_direction(Command *command) {
   return command->direction;
 }
 
+Status command_set_character_name(Command *command, char *character_name) {
+  if(!command) {
+    return ERROR;
+  }
+
+  if(!character_name){
+    if(!strcpy(command->character_name," \0")){
+      return ERROR;
+    }
+    return OK;
+  }
+
+  if(!strcpy(command->character_name,character_name)){
+    return ERROR;
+  }
+  return OK;
+}
+
+char *command_get_character_name(Command *command) {
+  if(!command) {
+    return NULL;
+  }
+
+  return command->character_name;
+}
 
 Status command_get_user_input(Command* command) {
   char input[CMD_LENGHT] = "", *token = NULL;
@@ -182,6 +209,11 @@ Status command_get_user_input(Command* command) {
     if(cmd == INSPECT){
       token = strtok(NULL, "0 \n");
       command_set_objname(command, token);
+    }
+
+    if(cmd == RECRUIT || cmd == ABANDON){
+      token = strtok(NULL, "0 \n");
+      command_set_character_name(command, token);
     }
     return command_set_code(command, cmd);
   }
