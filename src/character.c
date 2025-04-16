@@ -29,6 +29,7 @@ struct _Character
     long health;/*!<character's healthpoints*/
     Bool friendly;/*!<Boolean value indicating if the character is friendly or not*/
     char message[MAX_MESSAGE];/*!<Message delivered by the Character*/
+    Id following;/*!<Id of the character that is being followed*/
 };
 
 /*============================Init============================*/
@@ -48,6 +49,7 @@ Character* character_create(Id id){
     character->health = 0;
     character->friendly= TRUE; /*Initialized to True, it will be changed later*/
     character->message[0]='\0';
+    character->following = NO_ID; /*Initialized to NO_ID, it will be changed later*/
 
     return character;
 }
@@ -90,6 +92,11 @@ int character_get_health(Character* character){
 Bool character_get_friendly(Character *character){
     if(!character) return FALSE;
     return character->friendly;
+}
+
+Id character_get_following(Character* character){
+    if(!character) return NO_ID;
+    return character->following;
 }
 
 /*============================Set============================*/
@@ -147,12 +154,25 @@ Status character_set_message(Character* character, const char* message){
     return OK;    
 }
 
+Status character_set_following(Character* character, Id following){
+    if (!character) return ERROR;
+
+    character->following = following;
+    return OK;
+}
+
 /*============================Print============================*/
 Status character_print (Character* character){
     if (!character) return ERROR;
 
     fprintf(stdout, " Character Id: %ld\n Name: %s\n Description: %s\n", character->id, character->name, character->gdesc);
     fprintf(stdout, " Health: %ld\n Friendly: %u\n Message: %s\n", character->health, character->friendly, character->message);
+    if(character->following != NO_ID){
+        fprintf(stdout, " Following: %ld\n", character->following);
+    }
+    else{
+        fprintf(stdout, " Not following anyone\n");
+    }
 
     return OK;
 }
