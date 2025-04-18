@@ -491,6 +491,16 @@ Status game_actions_recruit(Game *game) {
     return ERROR;
   }
 
+  /*Checks if the character is dead*/
+  if (character_get_health(character) <= 0) {
+    return ERROR;
+  }
+
+  /*Checks if the character is in the same location as the player*/
+  if (character_get_location(character) != game_get_player_location(game)) {
+    return ERROR;
+  }
+
   /*Checks if the character is already following another player*/
   if (character_get_following(character) != NO_ID) {
     return ERROR;
