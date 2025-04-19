@@ -419,7 +419,14 @@ Status game_actions_attack(Game *game) {
     }
     /* If the random number is not 0 (lets say is X) the X character that follows the player (in the order of the game X=1 first, X=2 second, etc) will lose a hitpoint */
     else {
+      characters = game_get_followingcharacters(game, player_get_id(game_get_player(game)));
+      if (characters == NULL) {
+        return ERROR;
+      }
       characters = game_get_characters(game);
+      character_set_health(characters[turn2 - 1], (character_get_health(characters[turn2 - 1])-1));
+      free(characters);
+      /*
       for(i=0; i<game_get_ncharacters(game); i++){
         if(character_get_following(characters[i]) == player_get_id(game_get_player(game))){
           if (count == turn2) {
@@ -431,6 +438,7 @@ Status game_actions_attack(Game *game) {
           }
         }
       }
+      */
     }
   }
   else

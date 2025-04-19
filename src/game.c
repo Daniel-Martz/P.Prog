@@ -718,6 +718,35 @@ int game_get_nfollowingcharacters(Game *game, Id player_id) {
   return n;
 }
 
+Character **game_get_followingcharacters(Game *game, Id player_id) {
+  int i, n = 0, following = -1;
+  Character **following_characters = NULL;
+
+  if (!game || player_id == NO_ID) {
+    return NULL;
+  }
+
+  following = game_get_nfollowingcharacters(game, player_id);
+  if (following <= 0) {
+    return NULL;
+  }
+
+  following_characters = (Character **) malloc (following * sizeof(Character *));
+
+  if(following_characters == NULL) {
+    return NULL;
+  }
+
+  for (i = 0; i < game->n_characters; i++) {
+    if (character_get_following(game->characters[i]) == player_id) {
+      following_characters[n] = game->characters[i];
+      n++;
+    }
+  }
+
+  return following_characters;
+}
+
 int game_get_turn(Game *game){
   if (!game) return POINT_ERROR;
   return game->turn;
