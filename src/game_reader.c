@@ -327,3 +327,107 @@ Status game_reader_load_links(Game *game, char *filename){
   return status;
 
 }
+
+Status game_management_save(Game *game, char *filename) {
+  FILE *file = NULL;
+  Status status = OK;
+  Space *space = NULL;
+  Object *object = NULL;
+  Character *character = NULL;
+  Player *player = NULL;
+  Link *link = NULL;
+  Id id = NO_ID;
+  int i = 0;
+  int row = 0; 
+  const char* row_data = NULL;
+  
+  if (!filename || !game) {
+    return ERROR;
+  }
+
+  file = fopen(filename, "w");
+  if (file == NULL) {
+    return ERROR;
+  }
+
+  /*Guardar espacios*/
+  for (i = 0; i < MAX_SPACES && game_get_space_id_at(game, i) != NO_ID; i++) {
+    id = game_get_space_id_at(game, i);
+    space = game_get_space(game, id);
+    
+    fprintf(file, "#s:%ld|%s", id, space_get_name(space));
+    
+    /*Guardar gdesc*/
+    for (row = 0; row < N_ROWS; row++) {
+      row_data = space_get_gdesc(space, row);
+      fprintf(file, "|%s", row_data ? row_data : "     "); /*Si row_data no existe se imprimen cinco espacios*/
+    }
+    fprintf(file, "\n");
+  }
+
+  /*Guardar objetos*/
+  for (i = 0; i < MAX_OBJECTS && game_get_object_id_at(game, i) != NO_ID; i++) {
+    id = game_get_object_id_at(game, i);
+    object = game_get_object(game, id);
+    
+    fprintf(file, "#o:%ld|%s|%ld|%ld|%ld|%ld|%ld|%ld\n", id, object_get_name(object), object_get_location(object), object_get_health(object), object_get_movable(object), object_get_dependency(object), object_get_open(object), object_get_description(object));
+  }
+
+  /*Guardar personajes*/
+  for (i = 0; i < MAX_CHARACTERS && game_get_character_id_at(game, i) != NO_ID; i++) {
+    id = game_get_character_id_at(game, i);
+    character = game_get_character(game, id);
+    
+    fprintf(file, "#c:%ld|%s|%ld|%ld|%ld|%s|%s\n", id, character_get_name(character), character_get_health(character), character_get_friendly(character), character_get_location(character), character_get_gdesc(character), character_get_message(character));
+  }
+
+  /*Guardar jugadores*/
+  for (i = 0; i < MAX_PLAYERS && game_get_player_id_at(game, i) != NO_ID; i++) {
+    id = game_get_player_id_at(game, i);
+    player = game_get_player_by_id(game, id);
+    
+    fprintf(file, "#p:%ld|%s|%s|%ld|%ld|%ld\n", id, player_get_name(player), player_get_gdesc(player), player_get_location(player), player_get_health(player), inventory_get_max_objs(player_get_backpack(player)));
+  }
+
+  /*Guardar enlaces*/
+  for (i = 0; i < MAX_LINKS && game_get_link_id_at(game, i) != NO_ID; i++) {
+    id = game_get_link_id_at(game, i);
+    link = game_get_link_by_id(game, id);
+    
+    fprintf(file, "#l:%ld|%s|%ld|%ld|%ld|%ld\n", id, link_get_name(link), link_get_origin(link), link_get_destination(link), link_get_direction(link), link_get_open(link));
+  }
+  
+  fclose(file);
+  return status;
+}
+
+Game *game_management_load(char *filename) {
+  Game *game = NULL;
+  game = game_create();
+  if (!game) {
+    return NULL;
+  }
+
+  if (game_reader_load_spaces(game, filename) == ERROR) {
+    game_destroy(game);
+    return NULL;
+  }
+  if (game_reader_load_objects(game, filename) == ERROR) {
+    game_destroy(game);
+    return NULL;
+  }
+  if (game_reader_load_characters(game, filename) == ERROR) {
+    game_destroy(game);
+    return NULL;
+  }
+  if (game_reader_load_players(game, filename) == ERROR) {
+    game_destroy(game);
+    return NULL;
+  }
+  if (game_reader_load_links(game, filename) == ERROR) {
+    game_destroy(game);
+    return NULL;
+  }
+
+  return game;
+}
