@@ -370,7 +370,7 @@ Status game_management_save(Game *game, char *filename) {
     id = game_get_object_id_at(game, i);
     object = game_get_object(game, id);
     
-    fprintf(file, "#o:%ld|%s|%ld|%ld|%ld|%ld|%ld|%ld\n", id, object_get_name(object), object_get_location(object), object_get_health(object), object_get_movable(object), object_get_dependency(object), object_get_open(object), object_get_description(object));
+    fprintf(file, "#o:%ld|%s|%d|%d|%d|%ld|%ld|%s\n", id, object_get_name(object), object_get_location(object), object_get_health(object), object_is_movable(object), object_get_dependency(object), object_get_open(object), object_get_description(object));
   }
 
   /*Guardar personajes*/
@@ -378,7 +378,7 @@ Status game_management_save(Game *game, char *filename) {
     id = game_get_character_id_at(game, i);
     character = game_get_character(game, id);
     
-    fprintf(file, "#c:%ld|%s|%ld|%ld|%ld|%s|%s\n", id, character_get_name(character), character_get_health(character), character_get_friendly(character), character_get_location(character), character_get_gdesc(character), character_get_message(character));
+    fprintf(file, "#c:%ld|%s|%d|%d|%d|%s|%s\n", id, character_get_name(character), character_get_health(character), character_get_friendly(character), character_get_location(character), character_get_gdesc(character), character_get_message(character));
   }
 
   /*Guardar jugadores*/
@@ -386,7 +386,7 @@ Status game_management_save(Game *game, char *filename) {
     id = game_get_player_id_at(game, i);
     player = game_get_player_by_id(game, id);
     
-    fprintf(file, "#p:%ld|%s|%s|%ld|%ld|%ld\n", id, player_get_name(player), player_get_gdesc(player), player_get_location(player), player_get_health(player), inventory_get_max_objs(player_get_backpack(player)));
+    fprintf(file, "#p:%ld|%s|%s|%ld|%d|%d\n", id, player_get_name(player), player_get_gdesc(player), player_get_location(player), player_get_health(player), inventory_get_max_objs(player_get_backpack(player)));
   }
 
   /*Guardar enlaces*/
@@ -394,7 +394,7 @@ Status game_management_save(Game *game, char *filename) {
     id = game_get_link_id_at(game, i);
     link = game_get_link_by_id(game, id);
     
-    fprintf(file, "#l:%ld|%s|%ld|%ld|%ld|%ld\n", id, link_get_name(link), link_get_origin(link), link_get_destination(link), link_get_direction(link), link_get_open(link));
+    fprintf(file, "#l:%ld|%s|%ld|%ld|%d|%d\n", id, link_get_name(link), link_get_origin(link), link_get_destination(link), link_get_direction(link), link_get_open(link));
   }
   
   fclose(file);

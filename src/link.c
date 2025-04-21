@@ -201,3 +201,13 @@ Status link_print(Link *link) {
 
     return OK;
 }
+
+Id link_get_id(Link *link)
+{
+    if (!link)
+    {
+        return NO_ID;
+    }
+
+    return link->id;
+}
