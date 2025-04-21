@@ -9,7 +9,7 @@ DOC_DIR = doc
 CC = gcc
 CFLAGS = -Wall -ansi -pedantic -g -I$(INC_DIR)
 LDFLAGS = -L$(LIB_DIR) -lscreen
-OBJS = $(addprefix $(OBJ_DIR)/, command.o space.o graphic_engine.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o link.o inventory.o)
+OBJS = $(addprefix $(OBJ_DIR)/, command.o space.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o link.o inventory.o graphic_engine.o)
 EXEC = proyecto
 
 .PHONY: all clean runv run runvloganthill runloganthill runvlogcastle runlogcastle runvcastle runcastle testset testcharacter testspace testinventory testplayer testobject testlink crunv crun doxyfile docs debug cleandocs
@@ -31,7 +31,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 # Dependencias específicas para cada objeto
 $(OBJ_DIR)/space.o: $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h
 $(OBJ_DIR)/command.o: $(INC_DIR)/command.h $(INC_DIR)/types.h
-$(OBJ_DIR)/graphic_engine.o: $(INC_DIR)/graphic_engine.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/libscreen.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
 $(OBJ_DIR)/game_loop.o: $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_actions.h $(INC_DIR)/graphic_engine.h $(INC_DIR)/game_reader.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
 $(OBJ_DIR)/game_actions.o: $(INC_DIR)/game_actions.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/character.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
 $(OBJ_DIR)/game.o: $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_reader.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
@@ -42,6 +41,7 @@ $(OBJ_DIR)/set.o: $(INC_DIR)/set.h $(INC_DIR)/types.h
 $(OBJ_DIR)/character.o: $(INC_DIR)/character.h $(INC_DIR)/types.h
 $(OBJ_DIR)/link.o: $(INC_DIR)/link.h $(INC_DIR)/types.h
 $(OBJ_DIR)/inventory.o: $(INC_DIR)/inventory.h $(INC_DIR)/types.h $(INC_DIR)/set.h $(INC_DIR)/object.h
+$(OBJ_DIR)/graphic_engine.o: $(INC_DIR)/graphic_engine.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/libscreen.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
 
 # Reglas para tests
 $(OBJ_DIR)/space_test.o: $(SRC_DIR)/space_test.c $(INC_DIR)/space_test.h $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h $(INC_DIR)/test.h

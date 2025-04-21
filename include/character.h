@@ -101,11 +101,11 @@ int character_get_health(Character* character);
 Bool character_get_friendly(Character* character);
 
 /**
- * @brief Gets the id of the character that the character is following
+ * @brief Gets the id of the player that the character is following
  * @author Jimena Sanchíz
  *
  * @param character A pointer to Character
- * @return The id of the character that the character is following
+ * @return The id of the player that the character is following
  */
 Id character_get_following(Character* character);
 
@@ -177,11 +177,11 @@ Status character_set_friendly(Character* character, Bool friendly);
 Status character_set_message(Character* character, const char* message);
 
 /**
- * @brief Sets the id of the character that the character is following
+ * @brief Sets the id of the player that the character is following
  * @author Jimena Sanchíz
  *
  * @param character A pointer to Character
- * @param id The id of the character that the character is following
+ * @param id The id of the player that the character is following
  * @return OK if everything goes well, ERROR if anything goes wrong
  */
 Status character_set_following(Character* character, Id id);

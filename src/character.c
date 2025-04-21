@@ -29,7 +29,7 @@ struct _Character
     long health;/*!<character's healthpoints*/
     Bool friendly;/*!<Boolean value indicating if the character is friendly or not*/
     char message[MAX_MESSAGE];/*!<Message delivered by the Character*/
-    Id following;/*!<Id of the character that is being followed*/
+    Id following;/*!<Id of the player that is being followed*/
 };
 
 /*============================Init============================*/

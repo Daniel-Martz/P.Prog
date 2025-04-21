@@ -218,7 +218,7 @@ Status game_actions_move(Game *game) {
       characters = game_get_characters(game);
       for(i=0; i<game_get_ncharacters(game); i++){
         if(character_get_following(characters[i]) == player_get_id(game_get_player(game))){
-           character_set_location(characters[i], current_id);
+           game_set_character_location(game, current_id, character_get_id(characters[i]));
         }
       }
     }
@@ -505,7 +505,7 @@ Status game_actions_recruit(Game *game) {
   }
 
   /*Checks if the character is in the same location as the player*/
-  if (character_get_location(character) != game_get_player_location(game)) {
+  if (game_get_character_location(game, character_get_id(character)) != game_get_player_location(game)) {
     return ERROR;
   }
 
