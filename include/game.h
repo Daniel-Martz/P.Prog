@@ -516,6 +516,16 @@ Bool game_connection_is_open(Game *game, Id id_act, Direction direction);
 int game_get_nfollowingcharacters(Game *game, Id player_id);
 
 /**
+ * @brief It gets the characters that are following the player
+ * 
+ * @author Jorge Martin
+ * @param game A pointer to game
+ * @param player_id The id of the player
+ * @return An array with the characters that are following the player
+ */
+Character **game_get_followingcharacters(Game *game, Id player_id);
+
+/**
  * @brief It gets the player's turn
  * @author Jaime Romero
  * 
