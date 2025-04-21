@@ -511,7 +511,7 @@ Status game_set_character_location(Game *game, Id space_id, Id character_id){
     return ERROR;
   }
 
-  space_set_character(game_get_space(game,space_id),character_id);
+  space_set_newCharacter(game_get_space(game,space_id),character_id);
   
   return OK;
 }

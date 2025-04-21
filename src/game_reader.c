@@ -195,7 +195,7 @@ Status game_reader_load_characters(Game *game, char *filename){
       character_set_gdesc(character, gdesc);
       game_add_character(game, character);
       game_set_character_location(game, space_id, character_id);
-      space_set_character(game_get_space(game, space_id), character_id);
+      space_set_newCharacter(game_get_space(game, space_id), character_id);
     }
   }
   

@@ -32,9 +32,8 @@ char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "E
  */
 struct _Command {
   CommandCode code; /*!< Name of the command */
-  char objname[MAX_SIZE]; /*!< Name of the object to take */
+  char strin[MAX_SIZE]; /*!< Name of the object to take */
   Direction direction; /*!< Direction to move */
-  char character_name[MAX_SIZE];  /*!< Name of the character to recruit */
   Status last_cmd_status; /*!< It contains the status of the last command*/
 };
 
@@ -51,9 +50,8 @@ Command* command_create(void) {
 
   /* Initialization of an empty command*/
   newCommand->code = NO_CMD;
-  newCommand->objname[0] = '\0';
+  newCommand->strin[0] = '\0';
   newCommand->direction = U;
-  newCommand->character_name[0] = '\0';
   newCommand->last_cmd_status = ERROR;
 
   return newCommand;
@@ -86,29 +84,29 @@ CommandCode command_get_code(Command* command) {
   return command->code;
 }
 
-Status command_set_objname(Command *command, const char *objname){
+Status command_set_strin(Command *command, const char *strin){
   if(!command){
     return ERROR;
   }
 
-  if(!objname){
-    if(!strcpy(command->objname," \0")){
+  if(!strin){
+    if(!strcpy(command->strin," \0")){
       return ERROR;
     }
     return OK;
   }
 
-  if(!strcpy(command->objname,objname)){
+  if(!strcpy(command->strin,strin)){
     return ERROR;
   }
   return OK;
 }
 
-char *command_get_objname(Command *command){
+char *command_get_strin(Command *command){
   if(!command){
   return NULL;
   }
-  return command->objname;
+  return command->strin;
 }
 
 Status command_set_direction(Command *command, Direction direction) {
@@ -126,32 +124,6 @@ Direction command_get_direction(Command *command) {
   }
 
   return command->direction;
-}
-
-Status command_set_character_name(Command *command, char *character_name) {
-  if(!command) {
-    return ERROR;
-  }
-
-  if(!character_name){
-    if(!strcpy(command->character_name," \0")){
-      return ERROR;
-    }
-    return OK;
-  }
-
-  if(!strcpy(command->character_name,character_name)){
-    return ERROR;
-  }
-  return OK;
-}
-
-char *command_get_character_name(Command *command) {
-  if(!command) {
-    return NULL;
-  }
-
-  return command->character_name;
 }
 
 Status command_get_user_input(Command* command) {
@@ -179,11 +151,11 @@ Status command_get_user_input(Command* command) {
     }
     if(cmd == TAKE){
       token = strtok(NULL, "0 \n");
-      command_set_objname(command, token);
+      command_set_strin(command, token);
     }
     if(cmd == DROP){
       token = strtok(NULL, "0 \n");
-      command_set_objname(command, token);
+      command_set_strin(command, token);
     }
     if(cmd == MOVE){
       token = strtok(NULL, "0 \n");
@@ -208,12 +180,12 @@ Status command_get_user_input(Command* command) {
     }
     if(cmd == INSPECT){
       token = strtok(NULL, "0 \n");
-      command_set_objname(command, token);
+      command_set_strin(command, token);
     }
 
     if(cmd == RECRUIT || cmd == ABANDON){
       token = strtok(NULL, "0 \n");
-      command_set_character_name(command, token);
+      command_set_strin(command, token);
     }
     return command_set_code(command, cmd);
   }
@@ -260,12 +232,12 @@ Status command_get_input_from_string(Command* command, char* str) {
     }
     if(cmd == TAKE){
       token = strtok(NULL, "0 \n");
-      command_set_objname(command, token);
+      command_set_strin(command, token);
     }
 
     if(cmd == DROP){
       token = strtok(NULL, "0 \n");
-      command_set_objname(command, token);
+      command_set_strin(command, token);
     }
 
     if(cmd == MOVE){
@@ -289,7 +261,7 @@ Status command_get_input_from_string(Command* command, char* str) {
 
     if(cmd == INSPECT){
       token = strtok(NULL, "0 \n");
-      command_set_objname(command, token);
+      command_set_strin(command, token);
     }
     
     return command_set_code(command, cmd);

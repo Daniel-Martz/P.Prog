@@ -198,8 +198,8 @@ Status game_actions_move(Game *game) {
 
   if(!game) return ERROR;
 
-  command_set_objname(game_get_last_command(game), "");
-  command_set_character_name(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if ((direction = command_get_direction(game_get_last_command(game))) == U) {
@@ -218,7 +218,7 @@ Status game_actions_move(Game *game) {
       characters = game_get_characters(game);
       for(i=0; i<game_get_ncharacters(game); i++){
         if(character_get_following(characters[i]) == player_get_id(game_get_player(game))){
-          character_set_location(characters[i], current_id);
+           character_set_location(characters[i], current_id);
         }
       }
     }
@@ -242,10 +242,10 @@ Status game_actions_inspect(Game *game){
     return ERROR;
   }
   command_set_direction(game_get_last_command(game), U);
-  command_set_character_name(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
-  if(!(objname = command_get_objname(game_get_last_command(game)))){
+  if(!(objname = command_get_strin(game_get_last_command(game)))){
     return ERROR;
   }
 
@@ -284,10 +284,10 @@ Status game_actions_take(Game *game){
 
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_character_name(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
-  if(!(objname = command_get_objname(game_get_last_command(game)))){
+  if(!(objname = command_get_strin(game_get_last_command(game)))){
     return ERROR;
   }
   /* Take the player*/
@@ -345,14 +345,14 @@ Status game_actions_drop(Game *game){
   if(!(player = game_get_player(game))) return ERROR;
 
   command_set_direction(game_get_last_command(game), U);
-  command_set_character_name(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if(!(objsinvent = player_get_objects_ids(player))){
     return ERROR;
   }
 
-  if(!(objname = command_get_objname(game_get_last_command(game)))){
+  if(!(objname = command_get_strin(game_get_last_command(game)))){
     return ERROR;
   }
 
@@ -391,8 +391,8 @@ Status game_actions_attack(Game *game) {
 
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_objname(game_get_last_command(game), "");
-  command_set_character_name(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;
@@ -454,8 +454,8 @@ Status game_actions_chat(Game *game) {
   Id player_location = NO_ID;
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_character_name(game_get_last_command(game), "");
-  command_set_objname(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;
 
@@ -475,10 +475,10 @@ Status game_actions_recruit(Game *game) {
 
   if (!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_objname(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
-  if (!(character_name = command_get_character_name(game_get_last_command(game)))) {
+  if (!(character_name = command_get_strin(game_get_last_command(game)))) {
     return ERROR;
   }
 
@@ -510,10 +510,10 @@ Status game_actions_abandon(Game *game) {
 
   if (!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_objname(game_get_last_command(game), "");
+  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
-  if (!(character_name = command_get_character_name(game_get_last_command(game)))) {
+  if (!(character_name = command_get_strin(game_get_last_command(game)))) {
     return ERROR;
   }
 

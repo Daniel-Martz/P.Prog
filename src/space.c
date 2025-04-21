@@ -23,7 +23,7 @@ struct _Space {
   Id id;                    /*!< Id number of the space, it must be unique */
   char name[WORD_SIZE + 1]; /*!< Name of the space */
   Set *objects;              /*!< It contains the set of the arrays of object */
-  Id character;              /*!< It contains the id of the character */
+  Set *characters;              /*!< It contains the id of the character */
   char gdesc[N_ROWS][N_COLUMNS]; /*!< An array of five strings, with 9 characters each (+1 for the '\0')*/
   Bool discovered;/*!< It contains if the space is discovered or not*/
 };
@@ -44,12 +44,17 @@ Space* space_create(Id id) {
   /* Initialization of an empty space*/
   newSpace->id = id;
   newSpace->name[0] = '\0';
-  newSpace->character = NO_ID;
+
+  if(!(newSpace->characters = set_create())){
+    return NULL;
+  }
   for (i = 0; i < 5; i++)
   {
     newSpace->gdesc[i][0] = '\0';
   }
-  newSpace->objects = set_create();
+  if(!(newSpace->objects = set_create())){
+    return NULL;
+  }
   newSpace->discovered = FALSE;
 
   return newSpace;
@@ -60,7 +65,8 @@ Status space_destroy(Space* space) {
     return ERROR;
   }
 
-  set_destroy(space->objects);
+  if(set_destroy(space->objects) == ERROR) return ERROR;
+  if(set_destroy(space->characters) == ERROR) return ERROR;
   free(space);
   
   return OK;
@@ -89,12 +95,13 @@ Status space_set_new_object(Space* space, Id object_id) {
   return OK;
 }
 
-Status space_set_character(Space* space, Id id) {
+Status space_set_newCharacter(Space* space, Id id) {
+  Status state = ERROR;
   if (!space || id == NO_ID) {
-    return ERROR;
+    return state;
   }
-  space->character = id;
-  return OK;
+  state = set_add(space->characters, id);
+  return state;
 }
 
 Status space_set_gdesc (Space* space, const char new_gdesc[N_ROWS][N_COLUMNS]){
@@ -118,11 +125,21 @@ Status space_set_gdesc (Space* space, const char new_gdesc[N_ROWS][N_COLUMNS]){
 }
 
 Status space_object_del(Space *space, Id object_id){
+  Status state = ERROR;
   if(!space || (object_id == NO_ID)){
-    return ERROR;
+    return state;
   }
-  set_del(space->objects, object_id);
-  return OK;
+  state = set_del(space->objects, object_id);
+  return state;
+}
+
+Status space_character_del(Space *space, Id character_id){
+  Status state = ERROR;
+  if(!space || (character_id == NO_ID)){
+    return state;
+  }
+  state = set_del(space->characters, character_id);
+  return state;
 }
 
 Status space_set_discovered(Space *space, Bool discovered) {
@@ -157,10 +174,24 @@ Status space_object_is_there(Space* space, Id object_id) {
   return set_id_is_there(space->objects, object_id);
 }
 
+Status space_character_is_there(Space* space, Id character_id) {
+  if (!space) {
+    return ERROR;
+  }
+
+  return set_id_is_there(space->characters, character_id);
+}
+
 long space_get_nobjects(Space* space){
   if(!space) return POINT_ERROR;
   
   return set_get_nids(space->objects);
+}
+
+long space_get_ncharacters(Space* space){
+  if(!space) return POINT_ERROR;
+  
+  return set_get_nids(space->characters);
 }
 
 Id* space_get_objects_ids(Space* space){
@@ -169,11 +200,10 @@ Id* space_get_objects_ids(Space* space){
   return set_get_ids(space->objects);
 }
 
-Id space_get_character(Space* space) {
-  if (!space) {
-    return NO_ID;
-  }
-  return space->character;
+Id* space_get_characters_ids(Space* space){
+  if(!space) return NULL;
+
+  return set_get_ids(space->characters);
 }
 
 const char* space_get_gdesc(Space* space, int row){
@@ -208,17 +238,17 @@ Status space_print(Space* space) {
   }
 
   /* 4. Print if there is an object in the space or not */
-  if (space_get_nobjects(space)) {
-    fprintf(stdout, "---> There is an object in the space.\n");
-  } else {
+  if (space_get_nobjects(space) == POINT_ERROR) {
     fprintf(stdout, "---> No object in the space.\n");
+  } else {
+    fprintf(stdout, "---> There are %ld objects in the space.\n", space_get_nobjects(space));
   }
 
   /* 5. Print if there is a character in the space or not */
-  if (space_get_character(space) != NO_ID) {
-    fprintf(stdout, "---> There is a character in the space.\n");
-  } else {
+  if (space_get_ncharacters(space) == POINT_ERROR) {
     fprintf(stdout, "---> No character in the space.\n");
+  } else {
+    fprintf(stdout, "---> There are %ld characters in the space.\n", space_get_ncharacters(space));
   }
 
    /* 6. Prints if the space was discovered or not */

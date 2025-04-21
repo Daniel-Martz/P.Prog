@@ -82,7 +82,7 @@ CommandCode command_get_code(Command* command);
  * @param objname the name of the object
  * @return OK if everything was correct, ERROR if not
 */
-Status command_set_objname(Command *command, const char *objname);
+Status command_set_strin(Command *command, const char *objname);
 
 /**
  * @brief It returns the object name stored in the command passed by argument and control errors
@@ -91,7 +91,7 @@ Status command_set_objname(Command *command, const char *objname);
  * @param command a pointer to a command structure
  * @return A string
 */
-char *command_get_objname(Command *command);
+char *command_get_strin(Command *command);
 
 /**
  * @brief It asignates the command direction as an argument to the command and control errors
@@ -111,25 +111,6 @@ Status command_set_direction(Command *command, Direction direction);
  * @return A direction
 */
 Direction command_get_direction(Command *command);
-
-/**
- * @brief It asignates the character name as an argument to the command and control errors
- * @author Jorge Martín
- * 
- * @param command a pointer to a command structure
- * @param character_name the name of the character
- * @return OK if everything was correct, ERROR if not
-*/
-Status command_set_character_name(Command *command, char *character_name);
-
-/**
- * @brief It returns the name of the character stored in the command passed by argument and control errors
- * @author Jorge Martín
- * 
- * @param command a pointer to a command structure
- * @return A character name
-*/
-char *command_get_charcacter_name(Command *command);
 
 /**
  * @brief The users introduces a command and it is asigned to a variable command, controlling erors 

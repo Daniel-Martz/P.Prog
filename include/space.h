@@ -57,7 +57,7 @@ Status space_destroy(Space* space);
 Status space_set_name(Space* space, char* name);
 
 /**
- * @brief This set the character of the space
+ * @brief This set a new character to the space
  * 
  * @author Daniel Martínez
  * 
@@ -66,7 +66,7 @@ Status space_set_name(Space* space, char* name);
  * 
  * @return ERROR if there was a problem, OK if everything was good
  */
-Status space_set_character(Space *space, Id id);
+Status space_set_newCharacter(Space *space, Id id);
 
 /**
  * @brief This set a new object to the space
@@ -104,6 +104,18 @@ Status space_set_gdesc (Space* space, const char new_gdesc[N_ROWS][N_COLUMNS]);
 Status space_object_del(Space *space, Id object_id);
 
 /**
+ * @brief This delete a character from the space
+ * 
+ * @author Daniel Martínez
+ * 
+ * @param space A pointer to Space structure
+ * @param character_id The id of the character
+ * 
+ * @return ERROR if there was a problem, OK if everything was good
+ */
+Status space_character_del(Space *space, Id character_id);
+
+/**
  * @brief It sets if the space was discovered or not
  * 
  * @author Jimena Sanchiz
@@ -136,15 +148,26 @@ Id space_get_id(Space* space);
 const char* space_get_name(Space* space);
 
 /**
- * @brief This function gets the number of ids that there are in the space
+ * @brief This function gets the number of objects that there are in the space
  * 
  * @author Daniel Martínez
  * 
  * @param space A pointer to the space
  * 
- * @return 0 if there was a problem or no objects, and the number of objects in the space if everything was OK.
+ * @return -1 if there was a problem, and the number of objects in the space if everything was OK.
  */
 long space_get_nobjects(Space* space);
+
+/**
+ * @brief This function gets the number of characters that there are in the space
+ * 
+ * @author Daniel Martínez
+ * 
+ * @param space A pointer to the space
+ * 
+ * @return -1 if there was a problem, and the number of objects in the space if everything was OK.
+ */
+long space_get_ncharacters(Space* space);
 
 /**
  * @brief This function check if an object is in the space
@@ -159,6 +182,18 @@ long space_get_nobjects(Space* space);
 Status space_object_is_there(Space* space, Id object_id);
 
 /**
+ * @brief This function check if a character is in the space
+ * 
+ * @author Daniel Martínez
+ * 
+ * @param space A pointer to Space structure
+ * @param character_id The object id we want to check
+ * 
+ * @return ERROR if there was a problem or id is not in the space, OK if the object is in the space
+ */
+Status space_character_is_there(Space* space, Id character_id);
+
+/**
  * @brief This get the array of objects ids in the space
  * 
  * @author Daniel Martínez
@@ -170,15 +205,16 @@ Status space_object_is_there(Space* space, Id object_id);
 Id* space_get_objects_ids(Space* space);
 
 /**
- * @brief This get the id of the character in the space
+ * @brief This get the array of characters ids in the space
  * 
  * @author Daniel Martínez
  * 
- * @param space A pointer to Space structure
+ * @param space A pointer to space
  * 
- * @return NO_ID if there was a problem or there is no caharacter in the sapce, or the character id of the space.
+ * @return NULL if there was a problem, or the array of objects ids if everything was OK.
  */
-Id space_get_character(Space *space);
+Id* space_get_characters_ids(Space* space);
+
 
 /**
  * @brief Gets the game's description (game's interface)
