@@ -784,7 +784,7 @@ Id game_get_character_id_at(Game* game, int index) {
 
 Id game_get_object_id_at(Game* game, int index) {
   if (!game || index < 0 || index >= MAX_OBJECTS) {
-      return NO_ID;
+    return NO_ID;
   }
   
   if (!game->objects[index]) return NO_ID;
@@ -794,7 +794,7 @@ Id game_get_object_id_at(Game* game, int index) {
 
 Id game_get_player_id_at(Game* game, int index) {
   if (!game || index < 0 || index >= MAX_PLAYERS) {
-      return NO_ID;
+    return NO_ID;
   }
   
   if (!game->players[index]) return NO_ID;
@@ -804,7 +804,7 @@ Id game_get_player_id_at(Game* game, int index) {
 
 Id game_get_link_id_at(Game* game, int index) {
   if (!game || index < 0 || index >= MAX_LINKS) {
-      return NO_ID;
+    return NO_ID;
   }
   
   if (!game->links[index]) return NO_ID;
@@ -814,7 +814,7 @@ Id game_get_link_id_at(Game* game, int index) {
 
 Player *game_get_player_by_id(Game* game, int index) {
   if (!game || index < 0 || index >= MAX_PLAYERS) {
-      return NULL;
+    return NULL;
   }
   
   if (!game->players[index]) return NULL;
