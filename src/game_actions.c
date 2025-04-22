@@ -445,7 +445,8 @@ Status game_actions_attack(Game *game) {
 }
 
 Status game_actions_chat(Game *game) {
-  Id character = NO_ID;
+  Id *characters = NULL, character = NO_ID;
+  int i;
   Id player_location = NO_ID;
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
@@ -453,7 +454,14 @@ Status game_actions_chat(Game *game) {
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;
 
-  character = space_get_character(game_get_space(game, player_location));
+  if(!(characters = space_get_characters_ids(game_get_space(game, player_location)))) return ERROR;
+
+  for(i = 0; i < space_get_ncharacters(game_get_space(game, player_location)); i ++){
+    if(!strcmp(character_get_name(game_get_character(game, characters[i])), command_get_strin(game_get_last_command(game)))){
+      character = characters[i];
+      break;
+    }
+  }
 
   if((character == NO_ID) || (character_get_friendly(game_get_character(game,character)) == FALSE)) return ERROR; 
   

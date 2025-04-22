@@ -471,13 +471,16 @@ Id game_object_in_the_space(Game *game, Id space_id){
 
 Id game_get_character_location(Game *game, Id id){
   int i;
+  
+  if(id == NO_ID){
+    return NO_ID;
+  }
 
   for(i=0; i<game->n_spaces; i++){
-    if(space_get_character(game->spaces[i]) == id){
+    if(space_character_is_there(game->spaces[i],id) == OK){
       return space_get_id(game->spaces[i]);
     }
   }
-
   return NO_ID;
 }
 
