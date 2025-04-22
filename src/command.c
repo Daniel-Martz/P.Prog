@@ -187,6 +187,14 @@ Status command_get_user_input(Command* command) {
       token = strtok(NULL, "0 \n");
       command_set_strin(command, token);
     }
+    if(cmd == CHAT){
+      token = strtok(NULL, "0 \n");
+      command_set_strin(command, token);
+    }
+    if(cmd == ATTACK){
+      token = strtok(NULL, "0 \n");
+      command_set_strin(command, token);
+    }
     return command_set_code(command, cmd);
   }
   else

@@ -386,7 +386,7 @@ Status game_actions_drop(Game *game){
 Status game_actions_attack(Game *game) {
   int turn = -1, turn2 = -1, following = 0, i=0, count = 1;
   Id player_location = NO_ID;
-  Character **characters = NULL;
+  Character *character = NULL, **characters = NULL;
 
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
@@ -394,8 +394,11 @@ Status game_actions_attack(Game *game) {
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;
 
-  /* If one of them has no health*/
-  if(!((player_get_health(game_get_player(game))>0) && (character_get_health(game_get_character(game, character))>0))) return ERROR; 
+  character = game_get_character_from_name(game, command_get_strin(game_get_last_command(game)));
+  if(character == NULL) return ERROR;
+  if(character_get_friendly(character) == TRUE) return ERROR;
+  if(character_get_health(character) <= 0) return ERROR;
+  if(game_get_character_location(game, character_get_id(character)) != player_location) return ERROR;
 
   turn = rand()%10;
   if((turn<0)||turn>9) return ERROR;
@@ -416,8 +419,12 @@ Status game_actions_attack(Game *game) {
       if (characters == NULL) {
         return ERROR;
       }
-      characters = game_get_characters(game);
       character_set_health(characters[turn2 - 1], (character_get_health(characters[turn2 - 1])-1));
+      for (i=0; i<game_get_ncharacters(game); i++){
+        if (character_get_health(characters[i]) <= 0) {
+          character_set_following(characters[i], NO_ID);
+        }
+      }
       free(characters);
       /*
       for(i=0; i<game_get_ncharacters(game); i++){
@@ -434,15 +441,15 @@ Status game_actions_attack(Game *game) {
       */
     }
   }
-  else
-    following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));
-    if (following < 0) {
-     return ERROR;
+  else {
+    /* If the attacking player wins the attacked charcater loses a hitpoint*/
+    if ((character, character_get_health(character)-(game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)))+1)) <= 0) {
+      character_set_health(character, 0);
     }
     else {
-    character_set_health(game_get_character(game, character),character_get_health(game_get_character(game, character))- (1 + following));
+    character_set_health(character, character_get_health(character)-(game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)))+1));
     }
-  
+  }
   if(player_get_health(game_get_player(game))<=0){
     game_set_finished(game, TRUE);
     return OK;
@@ -455,7 +462,6 @@ Status game_actions_chat(Game *game) {
   Id player_location = NO_ID;
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_strin(game_get_last_command(game), "");
   command_set_strin(game_get_last_command(game), "");
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;
