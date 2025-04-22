@@ -18,6 +18,7 @@
 #include "game_actions.h"
 #include "graphic_engine.h"
 #include "game_reader.h"
+#include "game_rules.h"
 #include "types.h"
 
 #define CMD_LENGHT 30/*!< It denotes the length needed for the string that stores the introduced command */
@@ -220,7 +221,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Bool log_status, char *l
           game_set_finished(game, TRUE);
           break;
         }
-        game_next_turn(game);
+        game_rules_run_all(game);
         game_set_last_command(game, NULL);
         sleep(2);
       }
@@ -230,7 +231,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, Bool log_status, char *l
           game_set_finished(game, TRUE);
           break;
         }
-        game_next_turn(game);
+        game_rules_run_all(game);
       }
     }
   }
