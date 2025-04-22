@@ -174,6 +174,12 @@ Status command_get_user_input(Command* command) {
       else if (!strcasecmp(token, "West") || !strcasecmp(token, "w")) {
         command_set_direction(command, W);
       }
+      else if (!strcasecmp(token, "Up") || !strcasecmp(token, "u")) {
+        command_set_direction(command, W);
+      }
+      else if (!strcasecmp(token, "Down") || !strcasecmp(token, "d")) {
+        command_set_direction(command, W);
+      }
       else {
         command_set_direction(command, U);
       }
@@ -191,7 +197,6 @@ Status command_get_user_input(Command* command) {
   }
   else
     return command_set_code(command, EXIT);
-  
 }
 
 Status command_get_last_cmd_status(Command *cmd){
@@ -252,6 +257,12 @@ Status command_get_input_from_string(Command* command, char* str) {
         command_set_direction(command, S);
       }
       else if (!strcasecmp(token, "West") || !strcasecmp(token, "w")) {
+        command_set_direction(command, W);
+      }
+      else if (!strcasecmp(token, "Up") || !strcasecmp(token, "u")) {
+        command_set_direction(command, W);
+      }
+      else if (!strcasecmp(token, "Down") || !strcasecmp(token, "d")) {
         command_set_direction(command, W);
       }
       else {
