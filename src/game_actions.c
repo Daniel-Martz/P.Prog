@@ -554,5 +554,3 @@ Status game_actions_abandon(Game *game) {
       return OK;
     }
 }
-
-
