@@ -42,21 +42,6 @@ struct _Game {
   Link *links[MAX_LINKS]; /*!< It contains all the links of the game*/
 };
 
-
-/**
-* @brief Determines the space where the player is
-* @author Jaime Romero
-* 
-* @param game A pointer to Game
-* @param position A number with the position
-* 
-* @return Return NO_ID if the position is negative or higher than the number of spaces available
-* if it's correct, it returns the id of the space in that position
-*/
-Id game_get_space_id_at(Game *game, int position);
-/*Private function*/
-
-
 Game *game_create(void){
   int i;
   Game *game = NULL;
@@ -633,7 +618,7 @@ Player **game_get_players(Game *game){
 }
 
 /*Declaration of the function*/
-Id game_get_space_id_at(Game *game, int position) {
+Id game_get_player_space_id_at(Game *game, int position) {
   if (position < 0 || position >= game->n_spaces) {
     return NO_ID;
   }
@@ -772,3 +757,83 @@ Status game_next_turn(Game *game) {
   return OK; 
 }
 
+int game_get_nspaces(Game *game){
+  if(!game) return NO_ID;
+  return game->n_spaces;
+}
+
+Id game_get_space_id_at(Game* game, int index) {
+  if (!game || index < 0 || index >= MAX_SPACES) {
+      return NO_ID;
+  }
+  
+  if (!game->spaces[index]) return NO_ID;
+  
+  return space_get_id(game->spaces[index]);
+}
+
+Id game_get_character_id_at(Game* game, int index) {
+  if (!game || index < 0 || index >= MAX_CHARACTERS) {
+      return NO_ID;
+  }
+  
+  if (!game->characters[index]) return NO_ID;
+  
+  return character_get_id(game->characters[index]);
+}
+
+Id game_get_object_id_at(Game* game, int index) {
+  if (!game || index < 0 || index >= MAX_OBJECTS) {
+      return NO_ID;
+  }
+  
+  if (!game->objects[index]) return NO_ID;
+  
+  return object_get_id(game->objects[index]);
+}
+
+Id game_get_player_id_at(Game* game, int index) {
+  if (!game || index < 0 || index >= MAX_PLAYERS) {
+      return NO_ID;
+  }
+  
+  if (!game->players[index]) return NO_ID;
+  
+  return player_get_id(game->players[index]);
+}
+
+Id game_get_link_id_at(Game* game, int index) {
+  if (!game || index < 0 || index >= MAX_LINKS) {
+      return NO_ID;
+  }
+  
+  if (!game->links[index]) return NO_ID;
+  
+  return link_get_id(game->links[index]);
+}
+
+Player *game_get_player_by_id(Game* game, int index) {
+  if (!game || index < 0 || index >= MAX_PLAYERS) {
+      return NULL;
+  }
+  
+  if (!game->players[index]) return NULL;
+  
+  return game->players[index];
+}
+
+Link *game_get_link_by_id(Game* game, Id id) {
+  int i = 0;
+
+  if (id == NO_ID) {
+    return NULL;
+  }
+
+  for (i = 0; i < game->n_links; i++) {
+    if (id == link_get_id(game->links[i])) {
+      return game->links[i];
+    }
+  }
+
+  return NULL;
+}

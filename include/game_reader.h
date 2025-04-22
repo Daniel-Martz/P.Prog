@@ -71,4 +71,26 @@ Status game_reader_load_players(Game *game, char *filename);
  */
 Status game_reader_load_links(Game *game, char *filename);
 
+/**
+ * @brief It loads the information from a file to the game
+ * 
+ * @author Jaime Romero
+ * @param game A pointer to Game
+ * @param filename A string with the name of the file
+ * 
+ * @return Game with all the information loaded
+ */
+Game *game_management_load(char *filename);
+
+/**
+ * @brief It saves the game in a file
+ * 
+ * @author Jaime Romero
+ * @param game A pointer to Game
+ * @param filename A string with the name of the file
+ * 
+ * @return OK if everything worked correctly or ERROR if it didn't
+ */
+Status game_management_save(Game *game, char *filename);
+
 #endif

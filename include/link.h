@@ -173,4 +173,12 @@ Status link_set_open(Link *link, Bool status);
  */
 Status link_print(Link *link);
 
+/**
+ * @brief Gets the id of the link
+ * @author Jaime Romero
+ * @param link A pointer to the link
+ * @return The id of the link (NO_ID if there's an error)
+ */
+Id link_get_id(Link *link);
+
 #endif

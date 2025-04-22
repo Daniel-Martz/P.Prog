@@ -553,4 +553,83 @@ Status game_set_turn(Game *game, int turn);
  */
 Status game_next_turn(Game *game);
 
+/**
+ * @brief It gets the number of spaces in the game
+ * @author Jaime Romero
+ * @param game A pointer to game
+ * @return The number of spaces in the game (NO_ID if there was a problem)
+ */
+int game_get_nspaces(Game *game);
+
+/**
+* @brief Determines the space where the player is
+* @author Jaime Romero
+* 
+* @param game A pointer to Game
+* @param position A number with the position
+* 
+* @return Return NO_ID if the position is negative or higher than the number of spaces available
+* if it's correct, it returns the id of the space in that position
+*/
+Id game_get_player_space_id_at(Game *game, int position);
+
+/**
+ * @brief Obtiene el ID del espacio en una posición específica del array
+ * @author Jaime Romero
+ * @param game Pointer to Game
+ * @param index Índice del array de espacios
+ * @return Id of the space or NO_ID if it doesn't exist or there is an error
+ */
+Id game_get_space_id_at(Game* game, int index);
+
+/**
+ * @brief Obtiene el ID de un objeto en una posición específica del array
+ * @param game Pointer to Game
+ * @param index Índice del array de objetos
+ * @return Id of the object or NO_ID if it doesn't exist or there is an error
+ */
+Id game_get_object_id_at(Game* game, int index);
+
+/**
+ * @brief Obtiene el ID de un personaje en una posición específica del array
+ * @param game Pointer to Game
+ * @param index Índice del array de personajes
+ * @return Id of the character or NO_ID if it doesn't exist or there is an error
+ */
+Id game_get_character_id_at(Game* game, int index);
+
+/**
+ * @brief Obtiene el ID de un jugador en una posición específica del array
+ * @param game Pointer to Game
+ * @param index Índice del array de jugadores
+ * @return Id of the player or NO_ID if it doesn't exist or there is an error
+ */
+Id game_get_player_id_at(Game* game, int index);
+
+/**
+ * @brief Obtiene el ID de un enlace en una posición específica del array
+ * @param game Pointer to Game
+ * @param index Índice del array de enlaces
+ * @return Id of the link or NO_ID if it doesn't exist or there is an error
+ */
+Id game_get_link_id_at(Game* game, int index);
+
+/**
+ * @brief Obtains a player by its id
+ * @author Jaime Romero
+ * @param game Pointer to Game
+ * @param index Índice del array de enlaces
+ * @return Pointer to the player or NULL if it doesn't exist or there is an error
+ */
+Player *game_get_player_by_id(Game* game, int index);
+
+/**
+ * @brief Obtains a link by its id
+ * @author Jaime Romero
+ * @param game Pointer to Game
+ * @param id The id of the link
+ * @return Pointer to the link or NULL if it doesn't exist or there is an error
+ */
+Link *game_get_link_by_id(Game* game, Id id);
+
 #endif
