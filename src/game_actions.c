@@ -111,6 +111,15 @@ Status game_actions_recruit(Game *game);
  */
 Status game_actions_abandon(Game *game);
 
+/**
+ * @brief It allows the player to open a link with an object
+ * @author Jorge Martín
+ * 
+ * @param game a pointer to Game
+ * @return Status indicating the result of the action
+ */
+Status game_actions_open(Game *game);
+
 
 
 /**
@@ -170,6 +179,14 @@ Status game_actions_update(Game *game, Command *command) {
     command_set_last_cmd_status(game_get_last_command(game), game_actions_abandon(game));
       break;
 
+    case OPEN:
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_open(game));
+      break;
+
+    case USE:
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_use(game));
+      break;
+
     default:
       break;
   }
@@ -198,7 +215,6 @@ Status game_actions_move(Game *game) {
 
   if(!game) return ERROR;
 
-  command_set_strin(game_get_last_command(game), "");
   command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
@@ -242,7 +258,6 @@ Status game_actions_inspect(Game *game){
     return ERROR;
   }
   command_set_direction(game_get_last_command(game), U);
-  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if(!(objname = command_get_strin(game_get_last_command(game)))){
@@ -284,7 +299,6 @@ Status game_actions_take(Game *game){
 
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if(!(objname = command_get_strin(game_get_last_command(game)))){
@@ -345,7 +359,6 @@ Status game_actions_drop(Game *game){
   if(!(player = game_get_player(game))) return ERROR;
 
   command_set_direction(game_get_last_command(game), U);
-  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if(!(objsinvent = player_get_objects_ids(player))){
@@ -469,7 +482,6 @@ Status game_actions_recruit(Game *game) {
 
   if (!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if (!(character_name = command_get_strin(game_get_last_command(game)))) {
@@ -514,7 +526,6 @@ Status game_actions_abandon(Game *game) {
 
   if (!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if (!(character_name = command_get_strin(game_get_last_command(game)))) {
@@ -540,4 +551,69 @@ Status game_actions_abandon(Game *game) {
       }
       return OK;
     }
+}
+
+Status game_actions_open(Game *game) {
+  Object *object = NULL;
+  Link **links = NULL, *link = NULL;
+  int i = 0;
+
+  if(!game) return ERROR;
+  command_set_direction(game_get_last_command(game), U);
+  game_set_message(game, "");
+
+  object = game_get_object_from_name(game, command_get_strin(game_get_last_command(game)));
+  if(object == NULL) return ERROR;
+
+  if(object_get_open(object) == NO_ID) return ERROR;
+
+  links = game_get_links(game);
+
+  for (i = 0; i < game_get_nlinks(game); i++) {
+    if (link_get_id(links[i]) == object_get_open(object)) {
+      link = links[i];
+      break;
+    }
+  }
+
+  if (link == NULL) return ERROR;
+  
+  if (link_get_open(link) == TRUE) {
+    return ERROR;
+  }
+
+  if (link_get_origin(link) == game_get_player_location(game)) {
+    link_set_open(link, TRUE);
+  }
+  else {
+    return ERROR;
+  }
+
+  return OK;
+}
+Status game_actions_use(Game *game) {
+
+  Object *object = NULL;
+
+
+  if(!game) return ERROR;
+  command_set_direction(game_get_last_command(game), U);
+  game_set_message(game, "");
+
+  object = game_get_object_from_name(game, command_get_strin(game_get_last_command(game)));
+  if(object == NULL) return ERROR;
+
+  if(object_get_health(object) == 0) {
+    return ERROR;
+  }
+  else {
+    if (player_get_health(game_get_player(game)) + object_get_health(object) <= 0) {
+      player_set_health(game_get_player(game), 0);
+    }
+    else {
+      player_set_health(game_get_player(game), player_get_health(game_get_player(game)) + object_get_health(object));
+    }
+  }
+
+  return OK;
 }

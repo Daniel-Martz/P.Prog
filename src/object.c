@@ -41,7 +41,7 @@ Object* object_create (Id id){
     obj->health = 0;
     obj->movable = FALSE;
     obj->dependency = NO_ID;
-    obj->id = NO_ID;
+    obj->open = NO_ID;
 
     return obj;
 }

@@ -23,7 +23,7 @@
  * 
  * @author Daniel Martínez
  */
-char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}, {"r", "Recruit"}, {"ab", "Abandon"}};
+char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}, {"r", "Recruit"}, {"ab", "Abandon"}, {"u", "Use"}, {"o", "Open"}};
 
 /**
  * @brief This struct stores all the information of a command
@@ -201,6 +201,11 @@ Status command_get_user_input(Command* command) {
       token = strtok(NULL, "0 \n");
       command_set_strin(command, token);
     }
+    if(cmd == USE || cmd == OPEN){
+      token = strtok(NULL, "0 \n");
+      command_set_strin(command, token);
+    }
+
     return command_set_code(command, cmd);
   }
   else
