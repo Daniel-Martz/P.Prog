@@ -385,21 +385,14 @@ Status game_actions_drop(Game *game){
 
 Status game_actions_attack(Game *game) {
   int turn = -1, turn2 = -1, following = 0, i=0, count = 1;
-  Id character = NO_ID;
   Id player_location = NO_ID;
   Character **characters = NULL;
 
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_strin(game_get_last_command(game), "");
-  command_set_strin(game_get_last_command(game), "");
   game_set_message(game, "");
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;
-
-  character = space_get_character(game_get_space(game, player_location));
-
-  if(character == NO_ID || character_get_friendly(game_get_character(game, character)) == TRUE) return ERROR;
 
   /* If one of them has no health*/
   if(!((player_get_health(game_get_player(game))>0) && (character_get_health(game_get_character(game, character))>0))) return ERROR; 
