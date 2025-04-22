@@ -426,19 +426,6 @@ Status game_actions_attack(Game *game) {
         }
       }
       free(characters);
-      /*
-      for(i=0; i<game_get_ncharacters(game); i++){
-        if(character_get_following(characters[i]) == player_get_id(game_get_player(game))){
-          if (count == turn2) {
-            character_set_health(game_get_character(game, characters[i]), character_get_health(game_get_character(game, characters[i]))-1);
-            break;
-          }
-          else {
-            count++;
-          }
-        }
-      }
-      */
     }
   }
   else {
