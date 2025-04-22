@@ -384,7 +384,7 @@ Status game_actions_drop(Game *game){
 }
 
 Status game_actions_attack(Game *game) {
-  int turn = -1, turn2 = -1, following = 0, i=0, count = 1;
+  int turn = -1, turn2 = -1, following = 0, i=0;
   Id player_location = NO_ID;
   Character *character = NULL, **characters = NULL;
 
@@ -430,7 +430,7 @@ Status game_actions_attack(Game *game) {
   }
   else {
     /* If the attacking player wins the attacked charcater loses a hitpoint*/
-    if ((character, character_get_health(character)-(game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)))+1)) <= 0) {
+    if ((character_get_health(character)-(game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)))+1)) <= 0) {
       character_set_health(character, 0);
     }
     else {
