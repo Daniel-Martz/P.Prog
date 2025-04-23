@@ -120,6 +120,15 @@ Status game_actions_abandon(Game *game);
  */
 Status game_actions_open(Game *game);
 
+/**
+ * @brief It allows the player to use an object
+ * @author Daniel Martínez
+ * 
+ * @param game a pointer to Game
+ * @return Status indicating the result of the action
+ */
+Status game_actions_use(Game *game);
+
 
 
 /**
@@ -599,6 +608,7 @@ Status game_actions_open(Game *game) {
 
   return OK;
 }
+
 Status game_actions_use(Game *game) {
 
   Object *object = NULL;
