@@ -51,7 +51,9 @@ void game_rules_random_attack(Game *game) {
     }
 }
 
-void game_rules_open_final_door(Game *game);
+void game_rules_open_final_door(Game *game){
+
+}
 
 void game_rules_check_boss_defeat(Game *game) {
     char *boss_name = "Boss";

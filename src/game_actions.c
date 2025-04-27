@@ -579,7 +579,7 @@ Status game_actions_open(Game *game) {
   command_set_direction(game_get_last_command(game), U);
   game_set_message(game, "");
 
-  object = game_get_object_from_name(game, command_get_strin(game_get_last_command(game)));
+  object = game_get_object(game, game_get_object_from_name(game, command_get_strin(game_get_last_command(game))));
   if(object == NULL) return ERROR;
 
   if(object_get_open(object) == NO_ID) return ERROR;
@@ -618,7 +618,7 @@ Status game_actions_use(Game *game) {
   command_set_direction(game_get_last_command(game), U);
   game_set_message(game, "");
 
-  object = game_get_object_from_name(game, command_get_strin(game_get_last_command(game)));
+  object = game_get_object(game, game_get_object_from_name(game, command_get_strin(game_get_last_command(game))));
   if(object == NULL) return ERROR;
 
   if(object_get_health(object) == 0) {

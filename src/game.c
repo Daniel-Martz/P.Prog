@@ -690,51 +690,6 @@ Bool game_connection_is_open(Game *game, Id id_act, Direction direction) {
   return FALSE;
 }
 
-int game_get_nfollowingcharacters(Game *game, Id player_id) {
-  int i, n = 0;
-
-  if (!game || player_id == NO_ID) {
-    return POINT_ERROR;
-  }
-
-  for (i = 0; i < game->n_characters; i++) {
-    if (character_get_following(game->characters[i]) == player_id) {
-      n++;
-    }
-  }
-
-  return n;
-}
-
-Character **game_get_followingcharacters(Game *game, Id player_id) {
-  int i, n = 0, following = -1;
-  Character **following_characters = NULL;
-
-  if (!game || player_id == NO_ID) {
-    return NULL;
-  }
-
-  following = game_get_nfollowingcharacters(game, player_id);
-  if (following <= 0) {
-    return NULL;
-  }
-
-  following_characters = (Character **) malloc (following * sizeof(Character *));
-
-  if(following_characters == NULL) {
-    return NULL;
-  }
-
-  for (i = 0; i < game->n_characters; i++) {
-    if (character_get_following(game->characters[i]) == player_id) {
-      following_characters[n] = game->characters[i];
-      n++;
-    }
-  }
-
-  return following_characters;
-}
-
 int game_get_turn(Game *game){
   if (!game) return POINT_ERROR;
   return game->turn;
@@ -839,4 +794,103 @@ Link *game_get_link_by_id(Game* game, Id id) {
   }
 
   return NULL;
+}
+
+int game_get_nfollowingcharacters(Game *game, Id player_id) {
+  int i, n = 0;
+
+  if (!game || player_id == NO_ID) {
+    return POINT_ERROR;
+  }
+
+  for (i = 0; i < game->n_characters; i++) {
+    if (character_get_following(game->characters[i]) == player_id) {
+      n++;
+    }
+  }
+
+  return n;
+}
+
+Character **game_get_followingcharacters(Game *game, Id player_id) {
+  int i, n = 0, following = -1;
+  Character **following_characters = NULL;
+
+  if (!game || player_id == NO_ID) {
+    return NULL;
+  }
+
+  following = game_get_nfollowingcharacters(game, player_id);
+  if (following <= 0) {
+    return NULL;
+  }
+
+  following_characters = (Character **) malloc (following * sizeof(Character *));
+
+  if(following_characters == NULL) {
+    return NULL;
+  }
+
+  for (i = 0; i < game->n_characters; i++) {
+    if (character_get_following(game->characters[i]) == player_id) {
+      following_characters[n] = game->characters[i];
+      n++;
+    }
+  }
+
+  return following_characters;
+}
+
+int game_get_space_n_nonfollowingcharacters(Game *game, Space *space, Id player_id) {
+  int i, n = 0;
+  Id *characters_ids = NULL;
+  if (!game || player_id == NO_ID ||!space) {
+    return POINT_ERROR;
+  }
+
+  if(!(characters_ids = space_get_characters_ids(space))){
+    return 0;
+  }
+
+  for (i = 0; i < space_get_ncharacters(space); i++) {
+    if (character_get_following(game_get_character(game,characters_ids[i])) != player_id) {
+      n++;
+    }
+  }
+
+  return n;
+}
+
+Character **game_get_space_nonfollowingcharacters(Game *game, Space *space, Id player_id) {
+  int i, n = 0, nonfollowing = -1;
+  Character **nonfollowing_characters = NULL;
+  Id *characters_ids = NULL;
+
+  if (!game || player_id == NO_ID || !space) {
+    return NULL;
+  }
+
+  if(!(characters_ids = space_get_characters_ids(space))){
+    return NULL;
+  }
+
+  nonfollowing = space_get_ncharacters(space) - game_get_space_n_nonfollowingcharacters(game, space, player_id);
+  if (nonfollowing <= 0) {
+    return NULL;
+  }
+
+  nonfollowing_characters = (Character **) malloc (nonfollowing * sizeof(Character *));
+
+  if(nonfollowing_characters == NULL) {
+    return NULL;
+  }
+
+  for (i = 0; i < space_get_ncharacters(space); i++) {
+    if (character_get_following(game_get_character(game,characters_ids[i])) != player_id) {
+      nonfollowing_characters[n] = game_get_character(game, characters_ids[i]);
+      n++;
+    }
+  }
+
+  return nonfollowing_characters;
 }

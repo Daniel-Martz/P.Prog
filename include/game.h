@@ -506,26 +506,6 @@ Id game_get_connection(Game *game, Id id_act, Direction direction);
 Bool game_connection_is_open(Game *game, Id id_act, Direction direction);
 
 /**
- * @brief It gets the number of characters that are following the player
- * 
- * @author Jorge Martin
- * @param game A pointer to game
- * @param player_id The id of the player
- * @return The number of characters that are following the player
- */
-int game_get_nfollowingcharacters(Game *game, Id player_id);
-
-/**
- * @brief It gets the characters that are following the player
- * 
- * @author Jorge Martin
- * @param game A pointer to game
- * @param player_id The id of the player
- * @return An array with the characters that are following the player
- */
-Character **game_get_followingcharacters(Game *game, Id player_id);
-
-/**
  * @brief It gets the player's turn
  * @author Jaime Romero
  * 
@@ -631,5 +611,49 @@ Player *game_get_player_by_id(Game* game, int index);
  * @return Pointer to the link or NULL if it doesn't exist or there is an error
  */
 Link *game_get_link_by_id(Game* game, Id id);
+
+
+/**
+ * @brief It gets the number of characters that are following the player
+ * 
+ * @author Jorge Martin
+ * @param game A pointer to game
+ * @param player_id The id of the player
+ * @return The number of characters that are following the player
+ */
+int game_get_nfollowingcharacters(Game *game, Id player_id);
+
+/**
+ * @brief It gets the characters that are following the player
+ * 
+ * @author Jorge Martin
+ * @param game A pointer to game
+ * @param player_id The id of the player
+ * @return An array with the characters that are following the player
+ */
+Character **game_get_followingcharacters(Game *game, Id player_id);
+
+/**
+ * @brief It gets the number of characters that are in the space but not following the player
+ * 
+ * @author Daniel Martínez
+ * @param space A pointer to the space 
+ * @param game A pointer to game
+ * @param player_id The id of the player
+ * @return The number of characters that are following the player or -1 if there was an error
+ */
+int game_get_space_n_nonfollowingcharacters(Game *game, Space *space, Id player_id);
+
+/**
+ * @brief It gets the characters that are in the space but not following the player
+ * 
+ * @author Daniel Martínez
+ * @param space A pointer to the space 
+ * @param game A pointer to game
+ * @param player_id The id of the player
+ * @return An array with the characters that are following the player or NULL if there are no characters or error
+ */
+Character **game_get_space_nonfollowingcharacters(Game *game, Space *space, Id player_id);
+
 
 #endif
