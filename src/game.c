@@ -842,20 +842,17 @@ Character **game_get_followingcharacters(Game *game, Id player_id) {
 }
 
 int game_get_space_n_nonfollowingcharacters(Game *game, Space *space, Id player_id) {
-  int i, n = 0;
-  Id *characters_ids = NULL;
+  int n = 0;
   if (!game || player_id == NO_ID ||!space) {
     return POINT_ERROR;
   }
 
-  if(!(characters_ids = space_get_characters_ids(space))){
-    return 0;
+  if(game_get_player_location(game) == space_get_id(space)){
+    n = space_get_ncharacters(space) - game_get_nfollowingcharacters(game, player_id);
   }
 
-  for (i = 0; i < space_get_ncharacters(space); i++) {
-    if (character_get_following(game_get_character(game,characters_ids[i])) != player_id) {
-      n++;
-    }
+  else{
+    n = space_get_ncharacters(space);
   }
 
   return n;
@@ -874,7 +871,7 @@ Character **game_get_space_nonfollowingcharacters(Game *game, Space *space, Id p
     return NULL;
   }
 
-  nonfollowing = space_get_ncharacters(space) - game_get_space_n_nonfollowingcharacters(game, space, player_id);
+  nonfollowing = game_get_space_n_nonfollowingcharacters(game, space, player_id);
   if (nonfollowing <= 0) {
     return NULL;
   }

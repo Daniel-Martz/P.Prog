@@ -23,12 +23,12 @@
 #define WIDTH_MAP 100/*!< Constant asignated for the width of the map*/
 #define WIDTH_DES 31/*!< Constant asignated for the width of the description*/
 #define WIDTH_BAN 89/*!< Constant asignated for the width of the banner*/
-#define HEIGHT_MAP 50/*!< Constant asignated for the height of the map*/
+#define HEIGHT_MAP 60/*!< Constant asignated for the height of the map*/
 #define HEIGHT_BAN 1/*!< Constant asignated for the height of the banner*/
 #define HEIGHT_HLP 3/*!< Constant asignated for the height of help interface*/
 #define HEIGHT_FDB 3/*!< Constant asignated for the height of feedback interface*/
 #define WIDTH_SPACE 22/*!< Constante asignated for the maximum size of the lines inside the space*/
-#define HEIGHT_SPACE 10/*!< Constante asignated for the maximum size of the columns inside the space*/
+#define HEIGHT_SPACE 19/*!< Constante asignated for the maximum size of the columns inside the space*/
 #define MAX_RESULT 10/*!< Constant fot the maximum size of the result*/
 #define LINE_1 0/*!< Constant for the first line of the space*/
 #define LINE_2 1/*!< Constant for the second line of the space*/
@@ -40,7 +40,17 @@
 #define LINE_8 7/*!< Constant for the eighth line of the space*/
 #define LINE_9 8/*!< Constant for the ninth line of the space*/
 #define LINE_10 9/*!< Constant for the tenth line of the space*/
+#define LINE_11 10/*!< Constant for the tenth line of the space*/
+#define LINE_12 11/*!< Constant for the tenth line of the space*/
+#define LINE_13 12/*!< Constant for the tenth line of the space*/
+#define LINE_14 13/*!< Constant for the tenth line of the space*/
+#define LINE_15 14/*!< Constant for the tenth line of the space*/
+#define LINE_16 15/*!< Constant for the tenth line of the space*/
+#define LINE_17 16/*!< Constant for the tenth line of the space*/
+#define LINE_18 17/*!< Constant for the tenth line of the space*/
+#define LINE_19 18/*!< Constant for the tenth line of the space*/
 #define FINAL 5/*!< Constant to write the final of a space which names are too extense*/
+#define LIMIT 21/*!< Constant for the limit to write in a line*/
 
 /**
  * @brief This struct stores all the information of the graphic engine (everything showed by screen).
@@ -122,99 +132,101 @@ char **graphic_engine_print_space(Id space_id, Game *game){
   charact_space = game_get_space_nonfollowingcharacters(game, space, player_get_id(player));
 
   /*CHECK IF It'S DISCOVERED*/
-    sprintf(strspace[LINE_1], "|%-10.10s       %3d|", space_get_name(space), (int)space_id);
+  sprintf(strspace[LINE_1], "      __-/-^-\\-__      ");
+  sprintf(strspace[LINE_2], "    _/__--/*\\--__\\_    ");
+  sprintf(strspace[LINE_3], "  _/---^/     \\^---\\_  ");
+  sprintf(strspace[LINE_4], " /---             ---\\ ");
+  sprintf(strspace[LINE_5], "|%-10.10s        %3d|", space_get_name(space), (int)space_id);
 
     if(space_get_discovered(space) == FALSE){
-      sprintf(strspace[LINE_2], "|       ######       |");
-      sprintf(strspace[LINE_3], "|     #########      |");
-      sprintf(strspace[LINE_4], "|    ###     ###     |");
-      sprintf(strspace[LINE_5], "|            ###     |");
-      sprintf(strspace[LINE_6], "|          ####      |");
-      sprintf(strspace[LINE_7], "|         ###        |");
-      sprintf(strspace[LINE_8], "|        ###         |");
-      sprintf(strspace[LINE_9], "|                    |");
-      sprintf(strspace[LINE_10],"|        ###         |");
-      
+      sprintf(strspace[LINE_6], "|        ######       |");
+      sprintf(strspace[LINE_7], "|      #########      |");
+      sprintf(strspace[LINE_8], "|     ###     ###     |");
+      sprintf(strspace[LINE_9], "|             ###     |");
+      sprintf(strspace[LINE_10],"|           ####      |");
+      sprintf(strspace[LINE_11],"|          ###        |");
+      sprintf(strspace[LINE_12],"|         ###         |");
+      sprintf(strspace[LINE_13],"|                     |");
+      sprintf(strspace[LINE_14],"|         ###         |");
+      sprintf(strspace[LINE_15]," \\__               __/ ");
+      sprintf(strspace[LINE_16],"   \\__\\--_   _--/__/   ");
+      sprintf(strspace[LINE_17],"      \\-__\\*/__-/      ");
+      sprintf(strspace[LINE_18],"         -\\v/-         ");
+      return strspace;
     }
-  /*LINEA CON LOS FOLLOWERS*/
-  else {
-    if(!followers){
-      sprintf(strspace[LINE_1],"|                    |");
-     }
-  else{
+/* LINEA CON LOS FOLLOWERS */ 
+else {
+  if (!followers || (space_id != player_get_location(player))) {
+      sprintf(strspace[LINE_6], "|                     |");
+  } else {
+      str[0] = '\0';
       for (i = 0; i < game_get_nfollowingcharacters(game, player_get_id(player)); i++) {
-        sprintf(str, " ");
-        strncat(str, character_get_gdesc(followers[i]), MAX_STR - strlen(str) - 1);
+          strncat(str, " ", MAX_STR - strlen(str) - 1);
+          strncat(str, character_get_gdesc(followers[i]), MAX_STR - strlen(str) - 1);
       }
-
       line_lenght = strlen(str);
-      if (line_lenght > WIDTH_SPACE - 2) { 
-        strncpy(strspace[LINE_2], "|", 2);
-        strncat(strspace[LINE_2], str, WIDTH_SPACE - FINAL);
-        strncat(strspace[LINE_2], "...|", FINAL);
-    } else {
-        sprintf(strspace[LINE_2], "|%-20.20s|", str);
-    }
-    }
-
-  /*LINEA CON EL PLAYER Y LOS CHARACTERS*/
-
-    if(space_id == game_get_player_location(game)){
-      sprintf(strspace[LINE_3], "| %4.4s",player_get_gdesc(game_get_player(game)));
-      if(charact_space != NULL){
-        for (i = 0; i < game_get_space_n_nonfollowingcharacters(game, game_get_space(game, space_id), player_get_id(player)); i++) {
-          sprintf(str, " ");
-          strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
-        }
-  
-        line_lenght = strlen(str);
-        if (line_lenght > WIDTH_SPACE - 7) { 
-          strncat(strspace[LINE_3], str, WIDTH_SPACE - FINAL);
-          strncat(strspace[LINE_3], "...|", FINAL);
+      if (line_lenght > LIMIT) { 
+          snprintf(strspace[LINE_6], WIDTH_SPACE + 2, "|%-18.18s...|", str);
       } else {
-          strncat(strspace[LINE_3], str, WIDTH_SPACE - 1);
-          sprintf(strspace[LINE_3], "|%20.20s|", str);
-        }
+          snprintf(strspace[LINE_6], WIDTH_SPACE + 2, "|%-21.21s|", str);
       }
-      else{
-        strncat(strspace[LINE_3], "              |", WIDTH_SPACE - 7);
-      }
-    }
+  }
 
-    else{
-      sprintf(strspace[LINE_3], "|     ");
-      if(charact_space != NULL){
-        for (i = 0; i < game_get_space_n_nonfollowingcharacters(game, game_get_space(game, space_id), player_get_id(player)); i++) {
-          sprintf(str, " ");
-          strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
-        }
-  
-        line_lenght = strlen(str);
-        if (line_lenght > WIDTH_SPACE - 7) { 
-          strncat(strspace[LINE_3], str, WIDTH_SPACE - FINAL);
-          strncat(strspace[LINE_3], "...|", FINAL);
+/* LINEA CON EL PLAYER Y LOS CHARACTERS */
+  str[0] = '\0';
+
+  if (space_id == game_get_player_location(game)) {
+      snprintf(strspace[LINE_7], WIDTH_SPACE , "|%-4.4s", player_get_gdesc(game_get_player(game)));
+      if (charact_space != NULL) {
+          int nonfollowing = game_get_space_n_nonfollowingcharacters(game, game_get_space(game, space_id), player_get_id(player));
+          for (i = 0; i < nonfollowing; i++) {
+              strncat(str, " ", MAX_STR - strlen(str) - 1);
+              strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
+          }
+          line_lenght = strlen(str);
+          if (line_lenght > LIMIT) {
+              strncat(strspace[LINE_7], str, WIDTH_SPACE - FINAL);
+              strncat(strspace[LINE_7], "...|", FINAL);
+          } else {
+            snprintf(strspace[LINE_7], WIDTH_SPACE +2 , "|%-4.4s %16.16s|", player_get_gdesc(game_get_player(game)), str);
+          }
       } else {
-          strncat(strspace[LINE_3], str, WIDTH_SPACE - 1);
-          sprintf(strspace[LINE_3], "|%20.20s|", str);
-        }
-      }
-
-      else{
-        strncat(strspace[LINE_3], "              |", WIDTH_SPACE - 7);
-      }
+          strcat(strspace[LINE_7], "                 |"); 
     }
+  }
+  else {
+      snprintf(strspace[LINE_7], WIDTH_SPACE + 2, "|     ");
+      if (charact_space != NULL) {
+          int nonfollowing = game_get_space_n_nonfollowingcharacters(game, game_get_space(game, space_id), player_get_id(player));
+          for (i = 0; i < nonfollowing; i++) {
+              strncat(str, " ", MAX_STR - strlen(str) - 1);
+              strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
+          }
+          line_lenght = strlen(str);
+          if (line_lenght > LIMIT) {
+            snprintf(strspace[LINE_7], WIDTH_SPACE +2, "|  %16.16s...|", str);
+          } else {
+            snprintf(strspace[LINE_7], WIDTH_SPACE +2, "|     %16.16s|", str);
+          }
+      } else {
+        sprintf(strspace[LINE_7], "|                     |");
+      }
+  }
+}
       
     /*DESCRIPCION DEL MAPA*/
     if(gdesc[0] != NULL){
       for (i = 0; i < N_ROWS; i++) {
-        sprintf(strspace[i+LINE_4], "|%9.9s             |", gdesc[i]);
+        sprintf(strspace[i+LINE_8], "|%9.9s            |", gdesc[i]);
       }
     }
     else{
       for (i = 0; i < N_ROWS; i++) {
-        sprintf(strspace[i+LINE_4],"|                  |");
+        sprintf(strspace[i+LINE_8],"|                     |");
       }
     }
+
+    sprintf(strspace[LINE_13], "|                     |");
       /*OBJETOS*/
       objects_id = space_get_objects_ids(space);
       if (objects_id != NULL) {
@@ -226,17 +238,19 @@ char **graphic_engine_print_space(Id space_id, Game *game){
               strncat(str, object_get_name(game_get_object(game, objects_id[i])), MAX_STR - strlen(str) - 1);
           }
           line_lenght= strlen(str);
-          if (line_lenght > WIDTH_SPACE - 2) { 
-              strncpy(strspace[LINE_9], "|", 2);
-              strncat(strspace[LINE_9], str, WIDTH_SPACE - FINAL);
-              strncat(strspace[LINE_9], "...|", FINAL);
+          if (line_lenght > LIMIT) { 
+            snprintf(strspace[LINE_14], WIDTH_SPACE +1 , "|%18.18s...|", str);
           } else {
-              sprintf(strspace[LINE_9], "|%20.20s|", str);
+              sprintf(strspace[LINE_14], "|%21.21s|", str);
           }
       } else {
-          sprintf(strspace[LINE_9], "|                |");
+          sprintf(strspace[LINE_14], "|                      |");
         }
-  }
+
+    sprintf(strspace[LINE_15]," \\__               __/ ");
+    sprintf(strspace[LINE_16],"   \\__\\--_   _--/__/   ");
+    sprintf(strspace[LINE_17],"      \\-__\\*/__-/      ");
+    sprintf(strspace[LINE_18],"         -\\v/-         ");
 
     free(followers);
     free(charact_space);
