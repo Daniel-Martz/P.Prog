@@ -39,6 +39,7 @@ struct _Game {
   Bool finished; /*!< It defines if the game finished or not */
   Character *characters[MAX_CHARACTERS]; /*!< It contains all the characters of the game*/
   char message[MAX_MESSAGE]; /*!< It contains the message of the chat*/
+  char *missions[MAX_MESSAGE]; /*!< It contains the message for the missions*/
   Link *links[MAX_LINKS]; /*!< It contains all the links of the game*/
 };
 

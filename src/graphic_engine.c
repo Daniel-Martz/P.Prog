@@ -28,7 +28,7 @@
 #define HEIGHT_HLP 3/*!< Constant asignated for the height of help interface*/
 #define HEIGHT_FDB 3/*!< Constant asignated for the height of feedback interface*/
 #define WIDTH_SPACE 22/*!< Constante asignated for the maximum size of the lines inside the space*/
-#define HEIGHT_SPACE 19/*!< Constante asignated for the maximum size of the columns inside the space*/
+#define HEIGHT_SPACE 18/*!< Constante asignated for the maximum size of the columns inside the space*/
 #define MAX_RESULT 10/*!< Constant fot the maximum size of the result*/
 #define LINE_1 0/*!< Constant for the first line of the space*/
 #define LINE_2 1/*!< Constant for the second line of the space*/
