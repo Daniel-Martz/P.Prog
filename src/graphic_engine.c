@@ -48,7 +48,6 @@
 #define LINE_16 15/*!< Constant for the tenth line of the space*/
 #define LINE_17 16/*!< Constant for the tenth line of the space*/
 #define LINE_18 17/*!< Constant for the tenth line of the space*/
-#define LINE_19 18/*!< Constant for the tenth line of the space*/
 #define FINAL 5/*!< Constant to write the final of a space which names are too extense*/
 #define LIMIT 21/*!< Constant for the limit to write in a line*/
 
