@@ -41,6 +41,8 @@ struct _Game {
   char message[MAX_MESSAGE]; /*!< It contains the message of the chat*/
   char *missions[MAX_MESSAGE]; /*!< It contains the message for the missions*/
   Link *links[MAX_LINKS]; /*!< It contains all the links of the game*/
+  Bool log_status; /*!< It defines if the log is active or not */
+  Bool determinst_status; /*!< It defines if the game is deterministic or not */
 };
 
 Game *game_create(void){
@@ -81,6 +83,9 @@ Game *game_create(void){
   game->turn = 0;
   game->last_cmd = command_create();
   game->finished = FALSE;
+  game->log_status = FALSE;
+  game->determinst_status = FALSE;
+
 
 
   if (!game->last_cmd) {
@@ -891,4 +896,32 @@ Character **game_get_space_nonfollowingcharacters(Game *game, Space *space, Id p
   }
 
   return nonfollowing_characters;
+}
+
+Bool game_get_log_status(Game *game) {
+  if(!game) return FALSE;
+
+  return game->log_status;
+}
+
+Status game_set_log_status(Game *game, Bool log_status) {
+  if(!game) return ERROR;
+
+  game->log_status = log_status;
+
+  return OK;
+}
+
+Bool game_get_determinist_status(Game *game) {
+  if(!game) return FALSE;
+
+  return game->determinst_status;
+}
+
+Status game_set_determinist_status(Game *game, Bool determinst_status) {
+  if(!game) return ERROR;
+
+  game->determinst_status = determinst_status;
+
+  return OK;
 }
