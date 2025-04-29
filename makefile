@@ -12,7 +12,7 @@ LDFLAGS = -L$(LIB_DIR) -lscreen
 OBJS = $(addprefix $(OBJ_DIR)/, command.o space.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o link.o inventory.o graphic_engine.o game_rules.o)
 EXEC = proyecto
 
-.PHONY: all clean runv run runvloganthill runloganthill runvlogcastle runlogcastle runvcastle runcastle testset testcharacter testspace testinventory testplayer testobject testlink crunv crun doxyfile docs debug cleandocs
+.PHONY: all clean runv run runvloganthill runloganthill runvlogcastle runlogcastle runvcastle runcastle set_test character_test space_test inventory_test player_test object_test link_test crunv crun doxyfile docs debug cleandocs
 
 # Regla principal
 all: $(EXEC)
@@ -120,25 +120,25 @@ runlogcastle:
 	./$(EXEC) castle.dat -l output.txt - log_input_castle.txt
 
 # Reglas de test
-testspace: space_test 
+space_test: space_test 
 	./space_test 
 
-testset: set_test 
+set_test: set_test 
 	./set_test 
 
-testplayer: player_test
+player_test: player_test
 	./player_test
 
-testcharacter: character_test
+character_test: character_test
 	./character_test
 
-testobject: object_test
+object_test: object_test
 	./object_test
 
-testlink: link_test
+link_test: link_test
 	./link_test
 
-testinventory: inventory_test
+inventory_test: inventory_test
 	./inventory_test
 
 # Documentación
