@@ -98,6 +98,9 @@ cleandocs:
 runv:
 	valgrind --leak-check=full ./$(EXEC) anthill.dat
 
+runvcluedo:
+	valgrind --leak-check=full ./$(EXEC) cluedo.dat
+
 runvcastle:
 	valgrind --leak-check=full ./$(EXEC) castle.dat
 
