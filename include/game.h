@@ -655,5 +655,42 @@ int game_get_space_n_nonfollowingcharacters(Game *game, Space *space, Id player_
  */
 Character **game_get_space_nonfollowingcharacters(Game *game, Space *space, Id player_id);
 
+/**
+ * @brief It gets the log status of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @return True(1) if the log is active or False(0) if it isn't
+ */
+Bool game_get_log_status(Game *game);
+
+/**
+ * @brief It sets the log status of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @param log_status The status of the game
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_log_status(Game *game, Bool log_status);
+
+/**
+ * @brief It gets the determinist status of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @return True(1) if the log is active or False(0) if it isn't
+ */
+Bool game_get_determinist_status(Game *game);
+
+/**
+ * @brief It sets the determinist status of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @param determinst_status The status of the game
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_determinist_status(Game *game, Bool determinst_status);
 
 #endif
