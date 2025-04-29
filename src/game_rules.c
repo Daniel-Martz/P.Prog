@@ -20,6 +20,11 @@ void game_rules_random_heal(Game *game) {
 
     if (!game) return;
 
+    /*If the game is in determinist mode, we don't want to use random functions*/
+    if (game_get_determinist_status(game) == TRUE) {
+        return;
+    }
+
     random = rand() % 5;
 
     /*It has a 20% chance of healing the player*/
@@ -33,6 +38,10 @@ void game_rules_random_attack(Game *game) {
     int i = 0, random = 0;
     Id *characters_in_space = NULL;
     
+    /*If the game is in determinist mode, we don't want to use random functions*/
+    if (game_get_determinist_status(game) == TRUE) {
+        return;
+    }
 
     if (!game) return;
 
