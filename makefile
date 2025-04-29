@@ -110,6 +110,9 @@ runvlogcastle:
 run: $(EXEC)
 	./$(EXEC) anthill.dat
 
+runc: $(EXEC)
+	./$(EXEC) cluedo.dat
+
 runcastle: $(EXEC)
 	./$(EXEC) castle.dat
 

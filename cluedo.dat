@@ -1,0 +1,110 @@
+#o:21|Pistola|108|0|1|-1|-1|desc
+#o:22|Tubería de Plomo|104|0|1|-1|-1|desc
+#o:23|Puñal|103|0|1|-1|-1|desc
+#o:24|Cuerda|106|0|1|-1|-1|desc
+#o:25|Candelabro|105|0|1|-1|-1|desc
+#o:26|Herramienta|107|0|1|-1|-1|desc
+
+#s:10|Spawn
+#s:11|Escaleras de Entrada
+#s:101|Vestíbulo
+#s:102|Salón   
+#s:103|Comedor
+#s:104|Cocina
+#s:105|Sala de Baile
+#s:106|Invernadero
+#s:107|Sala de billar
+#s:108|Estudio
+#s:109|Centro
+#s:201|Biblioteca
+
+#s:|111|Corridor1
+#s:|112|Corridor2
+#s:|113|Corridor3
+#s:|114|Corridor4
+#s:|115|Corridor5
+#s:|116|Corridor6
+#s:|117|Corridor7
+#s:|118|Corridor8
+#s:|119|Corridor9
+#s:|120|Corridor10
+#s:|121|Corridor11
+#s:|122|Corridor12
+#s:|123|Corridor13
+#s:|124|Corridor14
+#s:|125|Corridor15
+#s:|126|Corridor16
+
+
+#c:31|Coronel Rubio|10|1|113|Rubio|message
+#c:32|Sra. Celeste|10|1|125|Celeste|message
+#c:33|Padre Prado|10|1|126|Prado|message
+#c:34|Profesor Mora|10|1|117|Mora|message
+#c:35|Dra. Orquídea|10|1|124|Orquídea|message
+#c:36|Señorita Amapola|10|1|111|Amapola|message
+
+#c:37|Perro guarda|3|0|10|000|¡Guau!
+
+#p:1|Detective|MmM|10|5|3|
+
+#l:40|Spawn-Escaleras|10|11|2|0|
+#l:41|Escaleras-Spawn|11|10|3|1|
+#l:42|Escaleras-Vestíbulo|11|101|4|1|
+#l:43|Vestíbulo-Escaleras|101|11|5|1|
+#l:44|Vestíbulo-Corridor5|101|105|2|1|
+#l:45|Corridor1-Corridor4|111|114|2|1|
+#l:46|Corridor2-Corridor6|112|116|2|1|
+#l:47|Corridor3-Corridor4|113|114|1|1|
+#l:48|Corridor3-Salón|113|102|3|1|
+#l:49|Corridor3-Comedor|113|103|2|1|
+#l:50|Corridor4-Corridor3|114|113|0|1|
+#l:51|Corridor4-Corridor1|114|111|3|1|
+#l:52|Corridor4-Corridor5|114|115|1|1|
+#l:53|Corridor4-Corridor8|114|118|2|1|
+#l:54|Corridor5-Corridor4|105|114|0|1|
+#l:55|Corridor5-Corridor6|105|116|1|1|
+#l:56|Corridor6-Corridor5|116|115|0|1|
+#l:57|Corridor6-Corridor2|116|112|3|1|
+#l:58|Corridor6-Corridor7|116|117|1|1|
+#l:59|Corridor6-Corridor9|116|119|2|1|
+#l:60|Corridor7-Corridor6|117|116|0|1|
+#l:61|Corridor7-Estudio|117|108|3|1|
+#l:62|Corridor7-Billar|117|107|2|1|
+#l:63|Corridor8-Corridor4|118|114|3|1|
+#l:64|Corridor8-Corridor11|118|121|2|1|
+#l:65|Corridor8-Comedor|118|103|0|1|
+#l:66|Corridor9-Corridor6|119|116|3|1|
+#l:67|Corridor9-Corridor13|119|123|2|1|
+#l:68|Corridor9-Billar|119|107|1|1|
+#l:69|Corridor10-Corridor11|120|121|3|1|
+#l:70|Corridor10-Cocina|120|104|1|1|
+#l:71|Corridor11-Corridor10|121|120|0|1|
+#l:72|Corridor11-Corridor8|121|118|3|1|
+#l:73|Corridor11-Corridor15|121|125|2|1|
+#l:74|Corridor11-Corridor12|121|122|1|1|
+#l:75|Corridor12-Corridor11|122|121|0|1|
+#l:76|Corridor12-centro|122|109|3|1|
+#l:77|Corridor12-Baile|122|105|2|1|
+#l:78|Corridor12-Corridor13|122|123|1|1|
+#l:79|Corridor13-Corridor12|123|122|0|1|
+#l:80|Corridor13-Corridor9|123|119|3|1|
+#l:81|Corridor13-Corridor16|123|126|2|1|
+#l:82|Corridor13-Corridor14|123|124|1|1|
+#l:83|Corridor14-Corridor13|124|123|0|1|
+#l:84|Corridor14-Invernadero|124|106|2|1|
+#l:85|Corridor15-Corridor11|125|121|3|1|
+#l:86|Corridor15-Baile|125|105|1|1|
+#l:87|Corridor16-Corridor13|126|123|3|1|
+#l:88|Corridor16-Baile|126|105|0|1|
+#l:89|Salon-Corridor3|102|113|2|1|
+#l:90|Comedor-Corridor8|103|118|1|1|
+#l:91|Comedor-Corridor3|103|113|3|1|
+#l:92|Cocina-Corridor10|104|120|3|1|
+#l:93|Baile-Corridor12|105|122|3|1|
+#l:94|Baile-Corridor15|105|125|0|1|
+#l:95|Baile-Corridor16|105|126|1|1|
+#l:96|Invernadero-Corridor14|106|124|3|1|
+#l:97|Billar-Corridor9|107|119|0|1|
+#l:98|Billar-Corridor7|107|117|3|1|
+#l:99|Estudio-Corridor7|108|117|2|1|
+
