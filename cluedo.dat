@@ -108,3 +108,8 @@
 #l:98|Billar-Corridor7|107|117|3|1|
 #l:99|Estudio-Corridor7|108|117|2|1|
 
+#l:100|Invernadero-Salon|106|102|5|1|
+#l:101|Salón-Invernadero|102|106|5|1|
+#l:102|Cocina-Estudio|104|108|5|1|
+#l:103|Estudio-Cocina|108|104|5|1|
+#l:104|Centro-Corridor12|104|122|2|1|
