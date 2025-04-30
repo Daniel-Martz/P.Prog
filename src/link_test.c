@@ -13,7 +13,7 @@
 #include <string.h>
 #include "link_test.h"
 
-#define MAX_TESTS 22/*!< It defines the number of tests*/
+#define MAX_TESTS 24/*!< It defines the number of tests*/
 #define TEST 10/*!< It defines an arbitrary test number*/
 
 /**
@@ -64,6 +64,8 @@ int main(int argc, char **argv)
   if (all || test == 20) test2_link_get_open();
   if (all || test == 21) test1_link_set_open();
   if (all || test == 22) test2_link_set_open();
+  if (all || test == 23) test1_link_get_id();
+  if (all || test == 24) test2_link_get_id();
   
   PRINT_PASSED_PERCENTAGE;
 
@@ -223,5 +225,17 @@ void test2_link_set_open() {
     PRINT_TEST_RESULT(link_get_open(link) != FALSE);
     link_destroy(link);
 }
+
+void test1_link_get_id() {
+    Link *link;
+    link = link_create(2);
+    PRINT_TEST_RESULT(link_get_id(link) == 2);
+    link_destroy(link);
+ }
+ 
+ void test2_link_get_id() {
+    Link *link = NULL;
+    PRINT_TEST_RESULT(link_get_id(link) == NO_ID);
+ }
 
 

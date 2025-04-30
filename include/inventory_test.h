@@ -112,4 +112,18 @@ void test1_inventory_get_obj_ids();
  */
 void test2_inventory_get_obj_ids();
 
+/**
+ * @test Test function for getting if the object is in the inventory
+ * @pre Valid inventory pointer
+ * @post Output == Expected value
+ */
+void test1_object_is_in_inventory();
+
+/**
+ * @test Test function for getting if the object is in the inventory
+ * @pre NULL inventory pointer
+ * @post Output == FALSE
+ */
+void test2_object_is_in_inventory();
+
  #endif

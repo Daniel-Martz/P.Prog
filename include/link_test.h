@@ -168,4 +168,18 @@
  */
  void test2_link_set_open();
 
+/**
+ * @test Test function for getting links ID
+ * @pre Valid link pointer
+ * @post Output != NO_ID
+ */
+ void test1_link_get_id();
+
+/**
+ * @test Test function for getting links ID
+ * @pre NULL link pointer
+ * @post Output == NO_ID
+ */
+ void test2_link_get_id();
+
  #endif

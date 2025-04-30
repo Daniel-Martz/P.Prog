@@ -13,7 +13,7 @@
 #include <string.h> 
 #include "inventory_test.h"
 
-#define MAX_TESTS 14/*!< It defines the number of tests*/
+#define MAX_TESTS 16/*!< It defines the number of tests*/
 #define TEST 10/*!< It defines an arbitrary test number*/
 
 /** 
@@ -56,6 +56,8 @@ int main(int argc, char** argv) {
   if (all || test == 12)test2_inventory_get_n_objs();
   if (all || test == 13)test1_inventory_get_obj_ids();
   if (all || test == 14)test2_inventory_get_obj_ids();
+  if (all || test == 15)test1_object_is_in_inventory();
+  if (all || test == 16)test2_object_is_in_inventory();
   
   PRINT_PASSED_PERCENTAGE;
 
@@ -173,3 +175,17 @@ void test2_inventory_get_obj_ids() {
     inventory_add_obj_id(i, TEST);
     PRINT_TEST_RESULT(inventory_get_obj_ids(i) == NULL);
 }
+
+void test1_object_is_in_inventory() {
+    Inventory *i;
+    i = inventory_create();
+    inventory_add_obj_id(i, TEST);
+    PRINT_TEST_RESULT(object_is_in_inventory(i, TEST) == TRUE);
+    inventory_destroy(i);
+}
+
+void test2_object_is_in_inventory() {
+    Inventory *i = NULL;
+    PRINT_TEST_RESULT(object_is_in_inventory(i, TEST) == FALSE);
+}
+

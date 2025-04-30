@@ -13,7 +13,7 @@
 #include <string.h> 
 #include "character_test.h"
 
-#define MAX_TESTS 30 /*!< It defines the number of tests*/
+#define MAX_TESTS 34 /*!< It defines the number of tests*/
 
 /** 
  * @brief Main function for character unit tests. 
@@ -54,22 +54,26 @@ int main(int argc, char** argv) {
   if (all || test == 12) test2_character_get_health();
   if (all || test == 13) test1_character_get_friendly();
   if (all || test == 14) test2_character_get_friendly();
-  if (all || test == 15) test1_character_set_id();
-  if (all || test == 16) test2_character_set_id();
-  if (all || test == 17) test1_character_set_name();
-  if (all || test == 18) test2_character_set_name();
-  if (all || test == 19) test3_character_set_name();
-  if (all || test == 20) test1_character_set_gdesc();
-  if (all || test == 21) test2_character_set_gdesc();
-  if (all || test == 22) test3_character_set_gdesc();
-  if (all || test == 23) test1_character_set_health();
-  if (all || test == 24) test2_character_set_health();
-  if (all || test == 25) test3_character_set_health();
-  if (all || test == 26) test1_character_set_friendly();
-  if (all || test == 27) test2_character_set_friendly();
-  if (all || test == 28) test1_character_set_message();
-  if (all || test == 29) test2_character_set_message();
-  if (all || test == 30) test3_character_set_message();
+  if (all || test == 15) test1_character_get_following();
+  if (all || test == 16) test2_character_get_following();
+  if (all || test == 17) test1_character_set_id();
+  if (all || test == 18) test2_character_set_id();
+  if (all || test == 19) test1_character_set_name();
+  if (all || test == 20) test2_character_set_name();
+  if (all || test == 21) test3_character_set_name();
+  if (all || test == 22) test1_character_set_gdesc();
+  if (all || test == 23) test2_character_set_gdesc();
+  if (all || test == 24) test3_character_set_gdesc();
+  if (all || test == 25) test1_character_set_health();
+  if (all || test == 26) test2_character_set_health();
+  if (all || test == 27) test3_character_set_health();
+  if (all || test == 28) test1_character_set_friendly();
+  if (all || test == 29) test2_character_set_friendly();
+  if (all || test == 30) test1_character_set_message();
+  if (all || test == 31) test2_character_set_message();
+  if (all || test == 32) test3_character_set_message();
+  if (all || test == 33) test1_character_set_following();
+  if (all || test == 34) test2_character_set_following();
   
   PRINT_PASSED_PERCENTAGE;
 
@@ -155,14 +159,27 @@ void test2_character_get_health() {
 /* GET FRIENDLY */
 void test1_character_get_friendly() {
     Character* c = character_create(7);
-    character_set_friendly(c, FALSE);
-    PRINT_TEST_RESULT(character_get_friendly(c) == FALSE);
+    character_set_friendly(c, TRUE);
+    PRINT_TEST_RESULT(character_get_friendly(c) == TRUE);
     character_destroy(c);
 }
 
 void test2_character_get_friendly() {
     Character* c = NULL;
     PRINT_TEST_RESULT(character_get_friendly(c) == FALSE);
+}
+
+/* GET FOLLOWING */
+void test1_character_get_following() {
+    Character* c = character_create(8);
+    character_set_following(c, 1);
+    PRINT_TEST_RESULT(character_get_following(c) == 1);
+    character_destroy(c);
+}
+
+void test2_character_get_following() {
+    Character* c = NULL;
+    PRINT_TEST_RESULT(character_get_following(c) == NO_ID);
 }
 
 /* SET ID */
@@ -259,4 +276,16 @@ void test2_character_set_message() {
 void test3_character_set_message() {
     Character* c = NULL;
     PRINT_TEST_RESULT(character_set_message(c, "NewMsg") == ERROR);
+}
+
+/* SET FOLLOWING */
+void test1_character_set_following() {
+    Character* c = character_create(19);
+    PRINT_TEST_RESULT(character_set_following(c, 1) == OK);
+    character_destroy(c);
+}
+
+void test2_character_set_following() {
+    Character* c = NULL;
+    PRINT_TEST_RESULT(character_set_following(c, 1) == ERROR);
 }

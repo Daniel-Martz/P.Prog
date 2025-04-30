@@ -113,6 +113,20 @@ void test1_character_get_friendly();
 void test2_character_get_friendly();
 
 /**
+ * @test Test function for getting the id of the player that the character is following
+ * @pre Valid character pointer with the id of the followed character
+ * @post Output == Expected player id
+ */
+void test1_character_get_following();
+
+/**
+ * @test Test function for getting characters followed player
+ * @pre NULL character pointer
+ * @post Output == FALSE
+ */
+void test2_character_get_following();
+
+/**
  * @test Test function for setting character ID
  * @pre Valid character pointer and ID
  * @post Output == OK
@@ -223,5 +237,19 @@ void test2_character_set_message();
  * @post Output == ERROR
  */
 void test3_character_set_message();
+
+/**
+ * @test Test function for setting the id of the player that the character is following
+ * @pre Valid character pointer
+ * @post Output == OK
+ */
+void test1_character_set_following();
+
+/**
+ * @test Test function for setting the id of the player that the character is following
+ * @pre NULL character pointer
+ * @post Output == ERROR
+ */
+void test2_character_set_following();
 
 #endif
