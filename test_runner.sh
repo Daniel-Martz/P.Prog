@@ -1,94 +1,57 @@
-bash
-
 #!/bin/bash
 
 # Script to run the tests
-# ./test_runner.sh 0/1 [testname]_test
+#   ./test_runner.sh 0 [testname]_test     -> Run tests normally
+#   ./test_runner.sh 1 [testname]_test     -> Run tests with valgrind
+
+# if no test argument is provided, it will run all tests normally (./test_runner.sh 0) or with valgrind (./test_runner.sh 1)
+
+# Argument checking
+if [ $# -lt 1 ] || [ $# -gt 2 ]; then
+    echo "Error: The number of arguments must be 1 or 2"
+    exit 1
+fi
 
 valgrind="$1"
 test="$2"
-TESTS=$(ls src/*_test.c)
 
-
-#Checking the number of arguments
-if [ $# -lt 1 ] || [ $# -gt 2 ]; then
-    echo "Error, the number of arguments must be 1 or 2"
+# Validate first argument
+if [ "$valgrind" != "0" ] && ["$valgrind" != "1" ]; then
+    echo "Error: The first argument must be 0 or 1"
     exit 1
 fi
 
-#Checking if the first argument is 0 or 1
-if [ "$valgrind" != "1" ] && [ "$valgrind" != "0" ]; then
-    echo "Error, the first argument must be 0 or 1"
-    exit 1
-fi
-
-
-#Running all tests
+# Run all tests
 if [ -z "$test" ]; then
+    echo "Running all tests:"
 
-    if [ "$valgrind" -eq 0 ]; then 
-        echo "Running all tests:"
+    for test_file in src/*_test.c; do
+        base_name=$(basename "$test_file" .c)
 
-        for test_file in $TESTS
-        do
-            base_name=$(basename "$test_file" .c)
-            prefix=${base_name%_test}
-            test_name="test${prefix}" 
+        echo "Compiling $base_name..."
+        make "$base_name"
 
-            # Compile each test
-            make "$test_name"
+        echo "Executing $base_name..."
+        if [ "$valgrind" -eq "1" ]; then
+            valgrind --leak-check=full "./$base_name"
+        else
+            "./$base_name"
+        fi
+        echo
+    done
 
-            # Execute the test
-            echo "Executing $test_name..."
-            ./"$test_name"
-
-        done
-
-    else
-        echo "Running all tests with valgrind:"
-
-        for test_file in $TESTS
-        do
-            base_name=$(basename "$test_file" .c)
-            prefix=${base_name%_test}
-            test_name="test${prefix}" 
-
-            # Compile each test
-            make "$test_name"
-
-            # Execute the test
-            echo "Executing $test_name..."
-            valgrind --leak-check=full ./"$test_name"
-
-        done
-
-    
-    fi
-
-#Running the given test
+# Run a specific test
 else
+    echo "Running $test:"
+    make "$test"
 
-    prefix=${test%_test}
-    test_name="test${prefix}" 
-
-    if [ "$valgrind" -eq 0 ]; then 
-        echo "Running $test:"
-        make "$test_name"
-        ./$test_name
-
-        
-
+    if [ "$valgrind" -eq "1" ]; then
+        valgrind --leak-check=full "./$test"
     else
-        echo "Running $test with valgrind:"
-        make "$test_name"
-        valgrind --leak-check=full ./$test_name
-    
+        "./$test"
     fi
-
-
-
 fi
 
-echo "--- runned with success ---"
-
+echo "--- ran successfully ---"
 exit 0
+

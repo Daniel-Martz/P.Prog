@@ -13,7 +13,7 @@
 #include <string.h> 
 #include "space_test.h"
 
-#define MAX_TESTS 33/*!< It defines the number of tests*/
+#define MAX_TESTS 31/*!< It defines the number of tests*/
 
 /** 
  * @brief Main function for SPACE unit tests. 
@@ -49,8 +49,8 @@ int main(int argc, char** argv) {
   if (all || test == 5) test3_space_set_name();
   if (all || test == 6) test1_space_set_new_object();
   if (all || test == 7) test2_space_set_new_object();
-  if (all || test == 8) test1_space_set_character();
-  if (all || test == 9) test2_space_set_character();
+  if (all || test == 8) test1_space_set_newCharacter();
+  if (all || test == 9) test2_space_set_newCharacter();
   if (all || test == 10) test1_space_set_gdesc();
   if (all || test == 11) test2_space_set_gdesc();
 
@@ -62,22 +62,20 @@ int main(int argc, char** argv) {
   if (all || test == 17) test2_space_get_nobjects();
 
   if (all || test == 18) test1_space_get_objects_ids();
-  if (all || test == 19) test1_space_get_character();
-  if (all || test == 20) test2_space_get_character();
 
-  if (all || test == 21) test1_space_get_gdesc();
-  if (all || test == 22) test2_space_get_gdesc();
-  if (all || test == 23) test3_space_get_gdesc();
-  if (all || test == 24) test4_space_get_gdesc();
-  if (all || test == 25) test1_space_get_discovered();
-  if (all || test == 26) test2_space_get_discovered();
-  if (all || test == 27) test1_space_set_discovered();
-  if (all || test == 28) test2_space_set_discovered();
-  if (all || test == 29) test1_space_print();
-  if (all || test == 30) test2_space_print();
-  if (all || test == 31) test3_space_print();
-  if (all || test == 32) test4_space_print();
-  if (all || test == 33) test5_space_print();
+  if (all || test == 13) test1_space_get_gdesc();
+  if (all || test == 20) test2_space_get_gdesc();
+  if (all || test == 21) test3_space_get_gdesc();
+  if (all || test == 22) test4_space_get_gdesc();
+  if (all || test == 23) test1_space_get_discovered();
+  if (all || test == 24) test2_space_get_discovered();
+  if (all || test == 25) test1_space_set_discovered();
+  if (all || test == 26) test2_space_set_discovered();
+  if (all || test == 27) test1_space_print();
+  if (all || test == 28) test2_space_print();
+  if (all || test == 29) test3_space_print();
+  if (all || test == 30) test4_space_print();
+  if (all || test == 31) test5_space_print();
 
 
   PRINT_PASSED_PERCENTAGE;
@@ -132,16 +130,16 @@ void test2_space_set_new_object() {
   PRINT_TEST_RESULT(space_set_new_object(s, 3) == ERROR);
 }
 
-void test1_space_set_character(){
+void test1_space_set_newCharacter(){
   Space *s;
   s = space_create(5);
-  PRINT_TEST_RESULT(space_set_character(s, 6) == OK);
+  PRINT_TEST_RESULT(space_set_newCharacter(s, 6) == OK);
   space_destroy(s);
 }
 
-void test2_space_set_character(){
+void test2_space_set_newCharacter(){
   Space* s = NULL;
-  PRINT_TEST_RESULT(space_set_character(s, 4) == ERROR);
+  PRINT_TEST_RESULT(space_set_newCharacter(s, 4) == ERROR);
 }
 
 void test1_space_set_gdesc(){
@@ -210,19 +208,6 @@ void test2_space_get_id() {
 void test1_space_get_objects_ids(){
   Space *s=NULL;
   PRINT_TEST_RESULT(space_get_objects_ids(s) == NULL);
-}
-
-void test1_space_get_character(){
-  Space *s;
-  s = space_create(21);
-  space_set_character(s, 33);
-  PRINT_TEST_RESULT(space_get_character(s) == 33);
-  space_destroy(s);
-}
-
-void test2_space_get_character(){
-  Space *s=NULL;
-  PRINT_TEST_RESULT(space_get_character(s) == NO_ID);
 }
 
 void test1_space_get_gdesc(){
@@ -320,7 +305,7 @@ void test2_space_set_discovered() {
 void test1_space_print() {
   Space *s = space_create(1);
   space_set_name(s, "Test Space");
-  space_set_character(s, 5);
+  space_set_newCharacter(s, 5);
   
   const char gdesc[5][10] = {
       "Graphic1  ",

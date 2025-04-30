@@ -46,10 +46,10 @@ $(OBJ_DIR)/game_rules.o: $(INC_DIR)/game_rules.h $(INC_DIR)/game.h $(INC_DIR)/co
  
 
 # Reglas para tests
-$(OBJ_DIR)/space_test.o: $(SRC_DIR)/space_test.c $(INC_DIR)/space_test.h $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h $(INC_DIR)/test.h
+$(OBJ_DIR)/space_test.o: $(SRC_DIR)/space_test.c $(INC_DIR)/space_test.h $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h $(INC_DIR)/character.h $(INC_DIR)/test.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-space_test: $(OBJ_DIR)/space_test.o $(OBJ_DIR)/space.o $(OBJ_DIR)/set.o
+space_test: $(OBJ_DIR)/space_test.o $(OBJ_DIR)/space.o $(OBJ_DIR)/set.o $(OBJ_DIR)/character.o
 	$(CC) -o $@ $^
 
 $(OBJ_DIR)/set_test.o: $(SRC_DIR)/set_test.c $(INC_DIR)/set_test.h $(INC_DIR)/test.h $(INC_DIR)/set.h $(INC_DIR)/types.h
@@ -82,10 +82,10 @@ $(OBJ_DIR)/object_test.o: $(SRC_DIR)/object_test.c $(INC_DIR)/object_test.h $(IN
 object_test: $(OBJ_DIR)/object_test.o $(OBJ_DIR)/object.o
 	$(CC) -o $@ $^
 
-$(OBJ_DIR)/inventory_test.o: $(SRC_DIR)/inventory_test.c $(INC_DIR)/inventory_test.h $(INC_DIR)/inventory.h $(INC_DIR)/test.h
+$(OBJ_DIR)/inventory_test.o: $(SRC_DIR)/inventory_test.c $(INC_DIR)/inventory_test.h $(INC_DIR)/inventory.h $(INC_DIR)/test.h $(INC_DIR)/set.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-inventory_test: $(OBJ_DIR)/inventory_test.o $(OBJ_DIR)/inventory.o
+inventory_test: $(OBJ_DIR)/inventory_test.o $(OBJ_DIR)/inventory.o $(OBJ_DIR)/set.o
 	$(CC) -o $@ $^
 
 # Limpiar archivos generados
@@ -126,25 +126,25 @@ runlogcastle:
 	./$(EXEC) castle.dat -l output.txt - log_input_castle.txt
 
 # Reglas de test
-space_test: space_test 
+testspace: space_test 
 	./space_test 
-
-set_test: set_test 
+	
+testset: set_test 
 	./set_test 
 
-player_test: player_test
+testplayer: player_test
 	./player_test
 
-character_test: character_test
+testcharacter: character_test
 	./character_test
 
-object_test: object_test
+testobject: object_test
 	./object_test
 
-link_test: link_test
+testlink: link_test
 	./link_test
 
-inventory_test: inventory_test
+testinventory: inventory_test
 	./inventory_test
 
 # Documentación

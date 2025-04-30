@@ -58,17 +58,17 @@ void test1_space_set_new_object();
  */
 void test2_space_set_new_object();
 /**
- * @test Test function for setting a character in the space
+ * @test Test function for setting a new character in the space
  * @pre Character ID
  * @post Output == OK
  */
-void test1_space_set_character();
+void test1_space_set_newCharacter();
 /**
- * @test Test function for setting a character in the space
+ * @test Test function for setting a new character in the space
  * @pre pointer to space = NULL 
  * @post Output == ERROR
  */
-void test2_space_set_character();
+void test2_space_set_newCharacter();
 /**
  * @test Test function for setting the graphic description of the space
  * @pre String with graphic description
@@ -123,18 +123,7 @@ void test2_space_get_nobjects();
  * @post Output == Pointer to the set of object IDs
  */
 void test1_space_get_objects_ids();
-/**
- * @test Test function for getting the character in the space
- * @pre pointer to space = NULL 
- * @post Output == NO_ID
- */
-void test1_space_get_character();
-/**
- * @test Test function for getting the character in the space
- * @pre pointer to space = NULL 
- * @post Output == NO_ID
- */
-void test2_space_get_character();
+
 /**
  * @test Test function for getting the graphic description of the space
  * @pre Space pointer is valid
