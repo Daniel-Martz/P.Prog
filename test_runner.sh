@@ -42,7 +42,7 @@ if [ -z "$test" ]; then
 
 # Run a specific test
 else
-    echo "Running $test:"
+    echo "Running $test"
     make "$test"
 
     if [ "$valgrind" -eq "1" ]; then
