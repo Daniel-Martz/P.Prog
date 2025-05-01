@@ -413,7 +413,7 @@ Status game_actions_drop(Game *game){
 }
 
 Status game_actions_attack(Game *game) {
-  int turn = -1, turn2 = -1, following = 0, i=0;
+  int turn = -1, turn2 = -1, following = 0, i=0, new_health = 0;
   Id player_location = NO_ID;
   Character *character = NULL, **characters = NULL;
 
@@ -440,7 +440,10 @@ Status game_actions_attack(Game *game) {
     turn2 = rand()%following;
     /* If the random number is 0 (will always be if the player has no following characters) the player loses a hitpoint */
     if (turn2 == 0) {
-      player_set_health(game_get_player(game), player_get_health(game_get_player(game))-1);
+      if((new_health = player_get_health(game_get_player(game))-1) < 0){
+        new_health = 0;
+      }
+      player_set_health(game_get_player(game), new_health);
     }
     /* If the random number is not 0 (lets say is X) the X character that follows the player (in the order of the game X=1 first, X=2 second, etc) will lose a hitpoint */
     else {
@@ -448,7 +451,12 @@ Status game_actions_attack(Game *game) {
       if (characters == NULL) {
         return ERROR;
       }
-      character_set_health(characters[turn2 - 1], (character_get_health(characters[turn2 - 1])-1));
+
+      if((new_health = character_get_health(characters[turn2 - 1])-1) < 0){
+        new_health = 0;
+      }
+
+      character_set_health(characters[turn2 - 1], new_health);
       for (i=0; i<game_get_ncharacters(game); i++){
         if (character_get_health(characters[i]) <= 0) {
           character_set_following(characters[i], NO_ID);
@@ -588,6 +596,10 @@ Status game_actions_open(Game *game) {
   object = game_get_object(game, game_get_object_from_name(game, command_get_strin(game_get_last_command(game))));
   if(object == NULL) return ERROR;
 
+  if (inventory_object_is_there(player_get_backpack(game_get_player(game)), object_get_id(object)) == ERROR) {
+    return ERROR;
+  }
+
   if(object_get_open(object) == NO_ID) return ERROR;
 
   links = game_get_links(game);
@@ -628,9 +640,14 @@ Status game_actions_use(Game *game) {
   object = game_get_object(game, game_get_object_from_name(game, command_get_strin(game_get_last_command(game))));
   if(object == NULL) return ERROR;
 
+  if (inventory_object_is_there(player_get_backpack(game_get_player(game)), object_get_id(object)) == ERROR) {
+    return ERROR;
+  }
+
   if(object_get_health(object) == 0) {
     return ERROR;
   }
+
   else {
     if (player_get_health(game_get_player(game)) + object_get_health(object) <= 0) {
       player_set_health(game_get_player(game), 0);
@@ -640,5 +657,6 @@ Status game_actions_use(Game *game) {
     }
   }
 
+  inventory_delete_obj_id(player_get_backpack(game_get_player(game)),object_get_id(object));
   return OK;
 }
