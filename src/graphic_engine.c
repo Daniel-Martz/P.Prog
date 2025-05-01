@@ -518,8 +518,8 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         for(i = 1; i < inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++ ){
           sprintf(buffer, "%s, %s", str, object_get_name(game_get_object(game, player_objects[i])));
           strcpy(str, buffer);
-          screen_area_puts(ge->descript, str);
         }
+          screen_area_puts(ge->descript, str);
       }
     }
 

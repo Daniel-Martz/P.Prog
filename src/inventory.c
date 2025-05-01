@@ -104,6 +104,11 @@ Status inventory_print(Inventory *inventory) {
 }
 
 Status inventory_object_is_there(Inventory *inv, Id id){
+    if(!inv){
+        return ERROR;
+    }
+    if(id == NO_ID) return OK;
+    
     return set_id_is_there(inv->objs, id);
 }
 
