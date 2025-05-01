@@ -322,47 +322,41 @@ Status game_actions_take(Game *game){
   }
 
   /* We get the object id from the name*/
-  if((object = game_get_object_from_name(game, objname)) == NO_ID){
-    fprintf(stderr,"1");
+  if((object = game_get_object_from_name(game, objname)) == NO_ID)
+  {
     return ERROR;
   }
 
   /*check if the object is in the inventory*/
   if (inventory_object_is_there(player_get_backpack(player), object) == OK)
   {
-    fprintf(stderr,"2");
     return ERROR;
   }
 
   /*check if the object is movable*/
   if (object_is_movable(game_get_object(game, object)) == FALSE)
   {
-    fprintf(stderr,"3");
     return ERROR;
   }
 
   /*Check if the object depends on other object*/
   if ((inventory_object_is_there(player_get_backpack(player), object_get_dependency(game_get_object(game, object)))) == ERROR)
   {
-    fprintf(stderr,"4");
     return ERROR;
   }
   
   
   /* object location and player location must be the same*/
   if(game_get_object_location(game, object) != player_location){
-    fprintf(stderr,"5");
     return ERROR;
   }
 
   if(inventory_add_obj_id(player_get_backpack(player), object) == ERROR){
-    fprintf(stderr, "6");
     return ERROR;
   }
 
   if (!(player_set_health(player, player_get_health(player) + object_get_health(game_get_object(game, object)))))
   {
-    fprintf(stderr,"7");
     return ERROR;
   }
   
