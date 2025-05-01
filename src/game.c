@@ -9,7 +9,7 @@
  */
 
 #include "game.h"
-#include "game_reader.h"
+#include "game_management.h"
 #include "character.h"
 #include "link.h"
 
@@ -154,26 +154,7 @@ Game *game_create_from_file(char *filename) {
   if (!(game = game_create())) {
     return NULL;
   }
-
-  if (game_reader_load_spaces(game, filename) == ERROR) {
-    return NULL;
-  }
-
-  if (game_reader_load_objects(game, filename) == ERROR) {
-    return NULL;
-  }
-
-  if (game_reader_load_characters(game, filename) == ERROR) {
-    return NULL;
-  }
-
-  if (game_reader_load_links(game, filename) == ERROR) {
-    return NULL;
-  }
-
-  if (game_reader_load_players(game, filename) == ERROR) {
-    return NULL;
-  }
+  game = game_management_load(filename);
 
   return game;
 }

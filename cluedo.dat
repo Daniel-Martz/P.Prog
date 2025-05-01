@@ -5,18 +5,18 @@
 #o:25|Candelabro|105|0|1|-1|-1|desc
 #o:26|Herramienta|107|0|1|-1|-1|desc
 
-#s:10|Spawn
-#s:11|Escaleras de Entrada
-#s:101|Vestíbulo
-#s:102|Salón   
-#s:103|Comedor
-#s:104|Cocina
-#s:105|Sala de Baile
-#s:106|Invernadero
-#s:107|Sala de billar
-#s:108|Estudio
-#s:109|Centro
-#s:201|Biblioteca
+#s:10|Spawn|
+#s:11|Escaleras de Entrada|
+#s:101|Vestíbulo|
+#s:102|Salón|   
+#s:103|Comedor|
+#s:104|Cocina|
+#s:105|Sala de Baile|
+#s:106|Invernadero|
+#s:107|Sala de billar|
+#s:108|Estudio|
+#s:109|Centro|
+#s:201|Biblioteca|
 
 #s:|111|Corridor1
 #s:|112|Corridor2
@@ -112,3 +112,14 @@
 #l:102|Cocina-Estudio|104|108|5|1|
 #l:103|Estudio-Cocina|108|104|5|1|
 #l:104|Centro-Corridor12|104|122|2|1|
+
+
+_——------___
+\ _—————___ \
+ /          \ \
+| [*]   [*]  | |
+|	  |      /_/
+(-   _0__    |) 
+\__/_____\--_|
+|           / 
+ \_________/      

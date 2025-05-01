@@ -103,7 +103,7 @@ Status game_actions_chat(Game *game);
 Status game_actions_recruit(Game *game);
 
 /**
- * @brief It allows the abandon to recruit a friendly character
+ * @brief It allows the player to abandon a friendly character
  * @author Jorge Martín
  * 
  * @param game a pointer to Game
@@ -326,6 +326,12 @@ Status game_actions_take(Game *game){
     return ERROR;
   }
 
+  /*check if the object is in the inventory*/
+  if (inventory_object_is_there(player_get_backpack(player), object) == OK)
+  {
+    return ERROR;
+  }
+
   /*check if the object is movable*/
   if (object_is_movable(game_get_object(game, object)) == FALSE)
   {
@@ -333,7 +339,7 @@ Status game_actions_take(Game *game){
   }
 
   /*Check if the object depends on other object*/
-  if ((object_is_in_inventory(player_get_backpack(player), object_get_dependency(game_get_object(game, object)))) == FALSE)
+  if ((inventory_object_is_there(player_get_backpack(player), object_get_dependency(game_get_object(game, object)))) == ERROR)
   {
     return ERROR;
   }
@@ -472,7 +478,6 @@ Status game_actions_chat(Game *game) {
   Id player_location = NO_ID;
   if(!game) return ERROR;
   command_set_direction(game_get_last_command(game), U);
-  command_set_strin(game_get_last_command(game), "");
 
   if((player_location = game_get_player_location(game)) == NO_ID) return ERROR;
 
@@ -599,9 +604,10 @@ Status game_actions_open(Game *game) {
     return ERROR;
   }
 
-  if (link_get_origin(link) == game_get_player_location(game)) {
-    link_set_open(link, TRUE);
-  }
+  if (link_get_origin(link) == game_get_player_location(game) ||
+  link_get_destination(link) == game_get_player_location(game)) {
+  link_set_open(link, TRUE);
+}
   else {
     return ERROR;
   }

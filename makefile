@@ -9,7 +9,7 @@ DOC_DIR = doc
 CC = gcc
 CFLAGS = -Wall -ansi -pedantic -g -I$(INC_DIR)
 LDFLAGS = -L$(LIB_DIR) -lscreen
-OBJS = $(addprefix $(OBJ_DIR)/, command.o space.o game_loop.o game_actions.o game.o game_reader.o object.o player.o set.o character.o link.o inventory.o graphic_engine.o game_rules.o)
+OBJS = $(addprefix $(OBJ_DIR)/, command.o space.o game_loop.o game_actions.o game.o game_management.o object.o player.o set.o character.o link.o inventory.o graphic_engine.o game_rules.o)
 EXEC = proyecto
 
 .PHONY: all clean runv run runvloganthill runloganthill runvlogcastle runlogcastle runvcastle runcastle set_test character_test space_test inventory_test player_test object_test link_test crunv crun doxyfile docs debug cleandocs
@@ -31,10 +31,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 # Dependencias específicas para cada objeto
 $(OBJ_DIR)/space.o: $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h
 $(OBJ_DIR)/command.o: $(INC_DIR)/command.h $(INC_DIR)/types.h
-$(OBJ_DIR)/game_loop.o: $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_actions.h $(INC_DIR)/graphic_engine.h $(INC_DIR)/game_reader.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h $(INC_DIR)/game_rules.h
+$(OBJ_DIR)/game_loop.o: $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_actions.h $(INC_DIR)/graphic_engine.h $(INC_DIR)/game_management.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h $(INC_DIR)/game_rules.h
 $(OBJ_DIR)/game_actions.o: $(INC_DIR)/game_actions.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/character.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
-$(OBJ_DIR)/game.o: $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_reader.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
-$(OBJ_DIR)/game_reader.o: $(INC_DIR)/game_reader.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+$(OBJ_DIR)/game.o: $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_management.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+$(OBJ_DIR)/game_management.o: $(INC_DIR)/game_management.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
 $(OBJ_DIR)/object.o: $(INC_DIR)/object.h $(INC_DIR)/types.h
 $(OBJ_DIR)/player.o: $(INC_DIR)/player.h $(INC_DIR)/types.h $(INC_DIR)/inventory.h $(INC_DIR)/set.h
 $(OBJ_DIR)/set.o: $(INC_DIR)/set.h $(INC_DIR)/types.h
@@ -124,28 +124,6 @@ runloganthill:
 
 runlogcastle:
 	./$(EXEC) castle.dat -l output.txt - log_input_castle.txt
-
-# Reglas de test
-testspace: space_test 
-	./space_test 
-	
-testset: set_test 
-	./set_test 
-
-testplayer: player_test
-	./player_test
-
-testcharacter: character_test
-	./character_test
-
-testobject: object_test
-	./object_test
-
-testlink: link_test
-	./link_test
-
-testinventory: inventory_test
-	./inventory_test
 
 # Documentación
 doxyfile:

@@ -130,9 +130,10 @@ Status inventory_print(Inventory *inventory);
  * @author Jaime Romero
  * 
  * @param inv A pointer to Inventory structure
+ * @param id Id of the object to search
  * 
- * @return TRUE if it is already in the inventory an FALSE if not
+ * @return OK if it is already in the inventory an ERROR if not
  */
-Bool object_is_in_inventory(Inventory *inv, Id id);
+Status inventory_object_is_there(Inventory *inv, Id id);
 
 #endif

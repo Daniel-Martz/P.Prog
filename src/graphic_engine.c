@@ -50,6 +50,7 @@
 #define LINE_18 17/*!< Constant for the tenth line of the space*/
 #define FINAL 5/*!< Constant to write the final of a space which names are too extense*/
 #define LIMIT 21/*!< Constant for the limit to write in a line*/
+#define MID_SPACE (HEIGHT_SPACE/2) /*!< Constant for the line of the midle in the space*/
 
 /**
  * @brief This struct stores all the information of the graphic engine (everything showed by screen).
@@ -411,27 +412,27 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       screen_area_puts(ge->map,str);
     }
 
-    sprintf(str, "                             %c          ",back);
+    sprintf(str, "                                     %c          ",back);
     screen_area_puts(ge->map,str);
     
     space1 = space_left;
     space2 = space_actual;
     space3 = space_right;
 
-    for(i=0; i<4; i++){
+    for(i=0; i<MID_SPACE; i++){
       sprintf(str,"%s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
-    sprintf(str,"%s %c %s %c %s", space1[4],left, space2[4], right, space3[4]);
+    sprintf(str,"%s %c %s %c %s", space1[MID_SPACE],left, space2[MID_SPACE], right, space3[MID_SPACE]);
     screen_area_puts(ge->map,str);
 
-    for(i=5; i<HEIGHT_SPACE; i++){
+    for(i=MID_SPACE+1; i<HEIGHT_SPACE; i++){
       sprintf(str,"%s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
-    sprintf(str, "                             %c          ",next);
+    sprintf(str, "                                     %c          ",next);
     screen_area_puts(ge->map,str);
     
     space1 = space_empty;
