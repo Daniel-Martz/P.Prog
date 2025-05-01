@@ -28,3 +28,4 @@ void game_rules_check_boss_defeat(Game *game);
 void game_rules_run_all(Game *game);
  
 #endif
+

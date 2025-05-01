@@ -104,6 +104,6 @@ Status inventory_print(Inventory *inventory) {
 }
 
 Status inventory_object_is_there(Inventory *inv, Id id){
-    return set_id_is_there(inv, id);
+    return set_id_is_there(inv->objs, id);
 }
 
