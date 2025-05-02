@@ -92,6 +92,15 @@ const char* character_get_message(Character* character);
 int character_get_health(Character* character);
 
 /**
+ * @brief Reads the character's damage
+ * @author Jimena Sanchiz
+ *
+ * @param character a pointer to Character
+ * @return An integrer with the character's damage
+ */
+int character_get_damage(Character* character);
+
+/**
  * @brief Gets if the character is friendly or not
  * @author Jaime Romero
  *
@@ -153,6 +162,17 @@ Status character_set_gdesc(Character* character, const char* gdesc);
  * @return OK if everything goes well, ERROR if anything goes wrong
  */
 Status character_set_health(Character* character, int health);
+
+/**
+ * @brief Establishes the character's dp
+ * @author Jimena Sanchiz
+ *
+ * @param character a pointer to Character
+ * @param damage Character's damage points
+ * 
+ * @return OK if everything goes well, ERROR if anything goes wrong
+ */
+Status character_set_damage(Character* character, int damage);
 
 /**
  * @brief Sets if the character's character (friendly or not)

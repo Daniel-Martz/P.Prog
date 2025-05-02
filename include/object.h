@@ -213,5 +213,26 @@ Status object_set_open(Object *obj, Id open);
  */
 Id object_get_open(Object *obj);
 
+/**
+ * @brief Sets if the object is offensive or not
+ * 
+ * @author Jimena Sanchiz
+ * 
+ * @param obj A pointer to the object
+ * @param mov A boolean variable indicating if the object is offensive
+ * 
+ * @return OK if everything goes well, ERROR if there is a failure
+ */
+Status object_set_offensive(Object *obj, Bool offensive);
+
+/**
+ * @brief Gets if the object is offensive or not
+ * @author Jimena Sanchiz
+ * 
+ * @param obj A pointer to Object
+ * @return TRUE if it's offensive, FALSE if not
+ */
+Bool object_get_offensive(Object *obj);
+
 #endif
 

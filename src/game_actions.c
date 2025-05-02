@@ -415,7 +415,7 @@ Status game_actions_drop(Game *game){
 }
 
 Status game_actions_attack(Game *game) {
-  int turn = -1, turn2 = -1, following = 0, i=0, new_health = 0, i;
+  int turn = -1, turn2 = -1, following = 0, i=0, new_health = 0;
   Id player_location = NO_ID;
   Character *character = NULL, **characters = NULL;
 

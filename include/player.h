@@ -94,6 +94,15 @@ const char* player_get_name (Player* player);
 int player_get_health(Player* player);
 
 /**
+ * @brief Reads the player's damage
+ * @author Jimena Sanchiz
+ *
+ * @param player a pointer to Player
+ * @return An integrer with the player's damage
+ */
+int player_get_damage(Player *player);
+
+/**
  * @brief It gets the player's location
  * @author Daniel Martinez
  *
@@ -153,6 +162,17 @@ Status player_set_name (Player* player, const char* name);
  * @return OK if everything goes well, ERROR if anything goes wrong
  */
 Status player_set_health(Player* player, int health);
+
+/**
+ * @brief Establishes the player's dp
+ * @author Jimena Sanchiz
+ *
+ * @param player a pointer to Player
+ * @param health Player's damage points
+ * 
+ * @return OK if everything goes well, ERROR if anything goes wrong
+ */
+Status player_set_damage(Player* player, int damage);
 
 /**
  * @brief Changes the player's location
