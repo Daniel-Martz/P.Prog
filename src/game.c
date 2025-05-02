@@ -879,6 +879,23 @@ Character **game_get_space_nonfollowingcharacters(Game *game, Space *space, Id p
   return nonfollowing_characters;
 }
 
+int game_get_player_total_damage(Game *game, Id player_id) {
+  int damage = 0, i;
+  Character **characters = NULL;
+
+  if(!game || player_id == NO_ID) return POINT_ERROR;
+
+  damage += player_get_damage(game_get_player_by_id(game, player_id));
+  characters = game_get_followingcharacters(game, player_id);
+
+  for (i = 0; i< game_get_nfollowingcharacters(game, player_id); i++) {
+    damage += character_get_damage(characters[i]) + 1;
+  }
+
+  return damage;
+
+}
+
 Bool game_get_log_status(Game *game) {
   if(!game) return FALSE;
 

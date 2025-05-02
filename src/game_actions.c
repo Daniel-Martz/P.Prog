@@ -17,6 +17,8 @@
 #include <time.h>
 #include <strings.h>
 
+#define INIT_DAMAGE 0
+
 /**
    Private functions
 */
@@ -413,7 +415,7 @@ Status game_actions_drop(Game *game){
 }
 
 Status game_actions_attack(Game *game) {
-  int turn = -1, turn2 = -1, following = 0, i=0, new_health = 0;
+  int turn = -1, turn2 = -1, following = 0, i=0, new_health = 0, i;
   Id player_location = NO_ID;
   Character *character = NULL, **characters = NULL;
 
@@ -467,17 +469,26 @@ Status game_actions_attack(Game *game) {
   }
   else {
     /* If the attacking player wins the attacked charcater loses a hitpoint*/
-    if ((character_get_health(character)-(game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)))+1)) <= 0) {
+    if ((character_get_health(character)-(game_get_player_total_damage(game, player_get_id(game_get_player(game))))) <= 0) {
       character_set_health(character, 0);
     }
     else {
-    character_set_health(character, character_get_health(character)-(game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)))+1));
+    character_set_health(character, character_get_health(character) - game_get_player_total_damage(game, player_get_id(game_get_player(game))));
+    }
+
+    /* set players and its following characters damage to 0*/
+    player_set_damage(game_get_player(game), INIT_DAMAGE);
+    characters = game_get_followingcharacters(game, player_get_id(game_get_player(game)));
+    for(i = 0; i < game_get_nfollowingcharacters(game, player_get_id(game_get_player(game))); i++) {
+      character_set_damage(characters[i], INIT_DAMAGE);
     }
   }
   if(player_get_health(game_get_player(game))<=0){
     game_set_finished(game, TRUE);
     return OK;
   }
+
+
   return OK;
 }
 
@@ -644,17 +655,14 @@ Status game_actions_use(Game *game) {
     return ERROR;
   }
 
-  if(object_get_health(object) == 0) {
+  if(object_get_health(object) <= 0) {
     return ERROR;
   }
 
-  else {
-    if (player_get_health(game_get_player(game)) + object_get_health(object) <= 0) {
-      player_set_health(game_get_player(game), 0);
-    }
-    else {
-      player_set_health(game_get_player(game), player_get_health(game_get_player(game)) + object_get_health(object));
-    }
+  if(object_get_offensive(object) == TRUE) {
+    player_set_damage(game_get_player(game), player_get_damage(game_get_player(game)) + object_get_health(object));
+  } else {
+    player_set_health(game_get_player(game), player_get_health(game_get_player(game)) + object_get_health(object));
   }
 
   inventory_delete_obj_id(player_get_backpack(game_get_player(game)),object_get_id(object));

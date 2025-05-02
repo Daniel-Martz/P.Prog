@@ -16,6 +16,7 @@
 #include "player.h"
 
 #define INIT_HEALTH 0/*!< Constant for the initial hp of the player*/
+#define INIT_DAMAGE 0/*!< Constant for the initial dp of the player*/
 #define MAX_NAME 20/*!< It defines the maximum length of the player name*/
 /**
  * @brief This struct stores all the information of a player
@@ -27,7 +28,8 @@ struct _Player {
     char name[MAX_NAME]; /*!<Player's name*/
     Id location; /*!<Player's location (stored as an Id)*/
     Inventory *backpack; /*!<IInventory of the objects carried by the player*/
-    long health; /*!<Player's healthpoints*/
+    int health; /*!<Player's healthpoints*/
+    int damage; /*!<Player's damage points*/
     char gdesc[G_DESC]; /*!<Player's graphic description*/
 };
 
@@ -48,6 +50,7 @@ Player* player_create (Id id){
     newPlayer->location = NO_ID;
     if((newPlayer->backpack = inventory_create()) == NULL) return NULL;
     newPlayer->health = INIT_HEALTH;
+    newPlayer->damage = INIT_DAMAGE;
     newPlayer->gdesc[0] = '\0';
 
     return newPlayer;
@@ -93,6 +96,11 @@ int player_get_health(Player* player){
     return player->health;
 }
 
+int player_get_damage(Player *player) {
+    if(!player) return NO_ID;
+    return player->damage;
+}
+
 Id player_get_location (Player* player){
     if (!player) return NO_ID;
     return player->location;
@@ -134,11 +142,18 @@ Status player_set_health(Player* player, int health){
     return OK;
 }
 
+Status player_set_damage(Player *player, int damage) {
+    if (!player || damage < 0) return ERROR;
+    player->damage = damage;
+    return OK;
+}
+
 Status player_set_location (Player* player, Id location){
     if (!player) return ERROR;
     player->location = location;
     return OK;
 }
+
 
 Status player_set_gdesc(Player *player, const char* gdesc){
     if (!player || !gdesc) return ERROR;

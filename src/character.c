@@ -26,7 +26,8 @@ struct _Character
     Id id;/*!< The identification for the character*/
     char name[WORD_SIZE];/*!<Character's name*/
     char gdesc[G_DESC];/*!<Character's description*/
-    long health;/*!<character's healthpoints*/
+    int health;/*!<character's healthpoints*/
+    int damage;/*!<character's damage points*/
     Bool friendly;/*!<Boolean value indicating if the character is friendly or not*/
     char message[MAX_MESSAGE];/*!<Message delivered by the Character*/
     Id following;/*!<Id of the player that is being followed*/
@@ -47,6 +48,7 @@ Character* character_create(Id id){
     character->name[0]= '\0';
     character->gdesc[0] = '\0';
     character->health = 0;
+    character->damage = 0;
     character->friendly= TRUE; /*Initialized to True, it will be changed later*/
     character->message[0]='\0';
     character->following = NO_ID; /*Initialized to NO_ID, it will be changed later*/
@@ -87,6 +89,11 @@ const char* character_get_message(Character* character){
 int character_get_health(Character* character){
     if(!character) return -1;
     return character->health;
+}
+
+int character_get_damage(Character* character) {
+    if(!character) return -1;
+    return character->damage;
 }
 
 Bool character_get_friendly(Character *character){
@@ -137,6 +144,12 @@ Status character_set_health(Character* character, int health){
     return OK;
 }
 
+Status character_set_damage(Character* character, int damage) {
+    if (!character || damage < 0) return ERROR;
+    character->damage = damage;
+    return OK;
+}
+
 Status character_set_friendly(Character* character, Bool friendly){
     if (!character) return ERROR;
 
@@ -166,7 +179,7 @@ Status character_print (Character* character){
     if (!character) return ERROR;
 
     fprintf(stdout, " Character Id: %ld\n Name: %s\n Description: %s\n", character->id, character->name, character->gdesc);
-    fprintf(stdout, " Health: %ld\n Friendly: %u\n Message: %s\n", character->health, character->friendly, character->message);
+    fprintf(stdout, " Health: %d\n Damage: %d\n Friendly: %u\n Message: %s\n", character->health, character->damage, character->friendly, character->message);
     if(character->following != NO_ID){
         fprintf(stdout, " Following: %ld\n", character->following);
     }

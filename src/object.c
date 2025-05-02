@@ -21,9 +21,10 @@ struct _Object {
     char name[NAME_SIZE]; /*!<Objects name*/
     char description[MAX_DESCRIP]; /*!<The description of the object*/
     int health; /*!<The health taken or given by the object*/
-    Bool movable; /*!<Boolean inidcating if the object can be moved*/
+    Bool movable; /*!<Boolean indicating if the object can be moved*/
     Id dependency; /*!<Id of the object it depends on*/
     Id open; /*!<Id of the link an object can open*/
+    Bool offensive; /*!<Boolean indicating if the object is offensive*/
 };
 
 Object* object_create (Id id){
@@ -42,6 +43,7 @@ Object* object_create (Id id){
     obj->movable = FALSE;
     obj->dependency = NO_ID;
     obj->open = NO_ID;
+    obj->offensive = FALSE;
 
     return obj;
 }
@@ -141,6 +143,17 @@ Status object_set_open(Object *obj, Id open){
 Id object_get_open(Object *obj){
     if(!obj) return NO_ID;
     return obj->open;
+}
+
+Status object_set_offensive(Object *obj, Bool offensive) {
+    if(!obj) return ERROR;
+    obj->offensive = offensive;
+    return OK;
+}
+
+Bool object_get_offensive(Object *obj) {
+    if(!obj) return FALSE;
+    return obj->offensive;
 }
 
 Status object_print (Object* obj){
