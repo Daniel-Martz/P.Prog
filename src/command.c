@@ -23,7 +23,7 @@
  * 
  * @author Daniel Martínez
  */
-char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}, {"r", "Recruit"}, {"ab", "Abandon"}, {"u", "Use"}, {"o", "Open"}};
+char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}, {"r", "Recruit"}, {"ab", "Abandon"}, {"u", "Use"}, {"o", "Open"}, {"g", "Guess"}};
 
 /**
  * @brief This struct stores all the information of a command
