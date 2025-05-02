@@ -656,6 +656,16 @@ int game_get_space_n_nonfollowingcharacters(Game *game, Space *space, Id player_
 Character **game_get_space_nonfollowingcharacters(Game *game, Space *space, Id player_id);
 
 /**
+ * @brief It gets the total damage of the player and its followers
+ * 
+ * @author Jimena Sanchiz
+ * @param game A pointer to game
+ * @param player_id The id of the player
+ * @return The total damage points that the player has for an attack
+ */
+int game_get_player_total_damage(Game *game, Id player_id);
+
+/**
  * @brief It gets the log status of the game
  * 
  * @author Jorge Martín

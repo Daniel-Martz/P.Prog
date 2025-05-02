@@ -127,6 +127,20 @@ void test1_character_get_following();
 void test2_character_get_following();
 
 /**
+ * @test Test function for getting characters damage
+ * @pre Valid character pointer with damage set
+ * @post Output == Expected damage value
+ */
+void test1_character_get_damage();
+
+/**
+ * @test Test function for getting characters damage
+ * @pre NULL character pointer
+ * @post Output == POINT_ERROR (-1)
+ */
+void test2_character_get_damage();
+
+/**
  * @test Test function for setting character ID
  * @pre Valid character pointer and ID
  * @post Output == OK
@@ -251,5 +265,26 @@ void test1_character_set_following();
  * @post Output == ERROR
  */
 void test2_character_set_following();
+
+/**
+ * @test Test function for setting character damage
+ * @pre Valid character pointer and positive damage value
+ * @post Output == OK
+ */
+void test1_character_set_damage();
+
+/**
+ * @test Test function for setting character damage
+ * @pre Valid character pointer and negative damage value
+ * @post Output == ERROR
+ */
+void test2_character_set_damage();
+
+/**
+ * @test Test function for setting character damage
+ * @pre NULL character pointer
+ * @post Output == ERROR
+ */
+void test3_character_set_damage();
 
 #endif
