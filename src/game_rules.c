@@ -88,7 +88,7 @@ void game_rules_change_turn(Game *game) {
         return;
     }
 
-    if (game_get_finished(game) == FALSE) {
+    if ((game_get_finished(game) == FALSE) && (command_get_code(game_get_last_command(game)) == GUESS) && (command_get_last_cmd_status(game_get_last_command(game)) == OK)) {
         game_set_turn(game, (game_get_turn(game) + 1) % game_get_nplayers(game));
     }
 }
