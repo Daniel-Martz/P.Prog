@@ -20,11 +20,12 @@
 
 #define MAX_STR 255/*!< Constant assigned fpr the maximum length of a string*/
 #define MAX_BUFFER 300/*!< Constant assigned for the lenght of an auxiliary buffer*/
-#define WIDTH_MAP 100/*!< Constant asignated for the width of the map*/
-#define WIDTH_DES 31/*!< Constant asignated for the width of the description*/
-#define WIDTH_BAN 89/*!< Constant asignated for the width of the banner*/
+#define WIDTH_MAP 79/*!< Constant asignated for the width of the map*/
+#define WIDTH_DES 40/*!< Constant asignated for the width of the description*/
+#define WIDTH_BAN 150/*!< Constant asignated for the width of the banner*/
 #define HEIGHT_MAP 60/*!< Constant asignated for the height of the map*/
 #define HEIGHT_BAN 1/*!< Constant asignated for the height of the banner*/
+#define HEIGHT_DES 50/*!< Constant asignated for the height of description interface*/
 #define HEIGHT_HLP 3/*!< Constant asignated for the height of help interface*/
 #define HEIGHT_FDB 3/*!< Constant asignated for the height of feedback interface*/
 #define WIDTH_SPACE 23/*!< Constante asignated for the maximum size of the lines inside the space*/
@@ -63,7 +64,7 @@ struct _Graphic_engine {
   Area *banner;/*!< It defines the area of the banner interface*/
   Area *help;/*!< It defines the area of the help interface*/
   Area *feedback;/*!< It defines the area of the feedback interface*/
-  Area *info;/*!< It defines the area of the feedback interface*/
+  Area *face;/*!< It defines the area for the faces of the characters*/
 };
 
 /*--------------------------------------PRIVATE FUNCTIONS--------------------------------------*/
@@ -280,30 +281,34 @@ Graphic_engine *graphic_engine_create(void) {
   }
 
   /* Initializates the screen areaa */
-  screen_init(HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + HEIGHT_FDB + 4, WIDTH_MAP + WIDTH_DES + 3);
+  screen_init(HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + HEIGHT_FDB + 5, WIDTH_MAP + WIDTH_DES + 3);
   ge = (Graphic_engine *)malloc(sizeof(Graphic_engine));
   if (ge == NULL) {
     return NULL;
-  }
-
-  /* Initializates the map window area */
-  ge->map = screen_area_init(1, 1, WIDTH_MAP, HEIGHT_MAP);
-  if (!ge->map) {
-      free(ge);
-      return NULL;
-  }
+  }                         
 
   /* Initializates the descript window area */
-  ge->descript = screen_area_init(WIDTH_MAP + 2, 1, WIDTH_DES, HEIGHT_MAP);
+  ge->descript = screen_area_init(1, HEIGHT_BAN + 2, WIDTH_DES, HEIGHT_DES);
 
   /* Initializates the banner window  area */
-  ge->banner = screen_area_init((int)((WIDTH_MAP + WIDTH_DES + 1 - WIDTH_BAN) / 2), HEIGHT_MAP + 1, WIDTH_BAN + 3, HEIGHT_BAN);
+  ge->banner = screen_area_init(1, 1, WIDTH_MAP + WIDTH_DES + 2, HEIGHT_BAN);
+
+  /* Initializates the map window area */
+  ge->map = screen_area_init(WIDTH_DES + 2, HEIGHT_BAN + 2, WIDTH_MAP, HEIGHT_MAP);
 
   /* Initializates the help window area */
-  ge->help = screen_area_init(1, HEIGHT_MAP + HEIGHT_BAN + 2, WIDTH_MAP + WIDTH_DES + 1, HEIGHT_HLP);
+  ge->help = screen_area_init(WIDTH_DES + 2, HEIGHT_MAP + HEIGHT_BAN + 3, WIDTH_MAP, HEIGHT_HLP);
 
   /* Initializates the feedback window area */
-  ge->feedback = screen_area_init(1, HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + 3, WIDTH_MAP + WIDTH_DES + 1, HEIGHT_FDB);
+  ge->feedback = screen_area_init(WIDTH_DES + 2, HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + 4, WIDTH_MAP, HEIGHT_FDB);
+
+    /* Initializates the feedback window area */
+  ge->face = screen_area_init(1, HEIGHT_DES + 3 + HEIGHT_BAN, WIDTH_DES, HEIGHT_HLP + HEIGHT_FDB + HEIGHT_MAP - HEIGHT_DES + 1);
+
+  if (!ge->map || !ge->descript || !ge->banner || !ge->help || !ge->feedback || !ge->face) {
+    free(ge);
+    return NULL;
+  }
 
   return ge;
 }
@@ -403,16 +408,18 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /*PRINT THE FIRST BLOCK*/
 
+    screen_area_puts(ge->map, "                                                                                         ");
+
     space1 = space_empty;
     space2 = space_back;
     space3 = space_empty;
 
     for(i=0; i<HEIGHT_SPACE; i++){
-      sprintf(str,"%s   %s   %s", space1[i],space2[i],space3[i]);
+      sprintf(str,"  %s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
-    sprintf(str, "                                     %c          ",back);
+    sprintf(str, "                                       %c          ",back);
     screen_area_puts(ge->map,str);
     
     space1 = space_left;
@@ -420,19 +427,19 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     space3 = space_right;
 
     for(i=0; i<MID_SPACE; i++){
-      sprintf(str,"%s   %s   %s", space1[i],space2[i],space3[i]);
+      sprintf(str,"  %s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
-    sprintf(str,"%s %c %s %c %s", space1[MID_SPACE],left, space2[MID_SPACE], right, space3[MID_SPACE]);
+    sprintf(str,"  %s %c %s %c %s", space1[MID_SPACE],left, space2[MID_SPACE], right, space3[MID_SPACE]);
     screen_area_puts(ge->map,str);
 
     for(i=MID_SPACE+1; i<HEIGHT_SPACE; i++){
-      sprintf(str,"%s   %s   %s", space1[i],space2[i],space3[i]);
+      sprintf(str,"  %s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
-    sprintf(str, "                                     %c          ",next);
+    sprintf(str, "                                       %c          ",next);
     screen_area_puts(ge->map,str);
     
     space1 = space_empty;
@@ -440,7 +447,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     space3 = space_empty;
 
     for(i=0; i<HEIGHT_SPACE; i++){
-      sprintf(str,"%s   %s   %s", space1[i],space2[i],space3[i]);
+      sprintf(str,"  %s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
@@ -535,14 +542,13 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     }
 
     /* Paint in the banner area */
-    screen_area_puts(ge->banner,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ The anthill game ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLUEDO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
     /* Paint in the help area */
     screen_area_clear(ge->help);
     sprintf(str, " The commands you can use are:");
     screen_area_puts(ge->help, str);
-    sprintf(str, "     move or m (north/n or south/s or west/w or east/e) take or t, drop or d, attack or t,   chat or c, exit or e");
+    sprintf(str, " move or m (north/n or south/s or west/w or east/e) take or t, drop or d, attack or t, chat or c,    exit or e");
     screen_area_puts(ge->help, str);
 
     /* Paint in the feedback area */
