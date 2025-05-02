@@ -375,6 +375,62 @@ Status game_reader_load_links(Game *game, char *filename){
 
 }
 
+/**
+ * @brief It reads the information for the solution
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to Game
+ * @param filename A string with the name of the file
+ * 
+ * @return OK if everything worked correctly or ERROR if it didn't
+ */
+Status game_reader_load_solution(Game *game, char *filename) {
+  
+  FILE *file=NULL;
+  char line[WORD_SIZE] = "";
+  char assasin_name[WORD_SIZE] = "";
+  char weapon_name[WORD_SIZE] = "";
+  char place_name[WORD_SIZE] = "";
+  char *toks = NULL;
+  Status status = OK;
+
+  if (!filename || !game) {
+    return ERROR;
+  }
+
+  file = fopen(filename, "r");
+  if (file == NULL) {
+    return ERROR;
+  }
+
+  while (fgets(line, WORD_SIZE, file)){
+    if (strncmp("#x:", line, 3) == 0){
+      /*Read all the data and then store it in variables*/
+      toks = strtok(line + 3, "|");
+      strcpy(assasin_name, toks);
+      toks = strtok(NULL, "|");
+      strcpy(weapon_name, toks);
+      toks = strtok(NULL, "\n");
+      strcpy(place_name, toks);
+
+      /*Sets the solution*/
+      game_set_assasin_name(game, assasin_name);
+      game_set_weapon_name(game, weapon_name);
+      game_set_place_name(game, place_name);
+    }
+  }
+
+
+  if (ferror(file)) {
+    status = ERROR;
+  }
+
+  fclose(file);
+
+  return status;
+
+}
+
 /***************************************************************/
 
 Status game_management_save(Game *game, char *filename) {
@@ -445,6 +501,9 @@ Status game_management_save(Game *game, char *filename) {
     
     fprintf(file, "#l:%ld|%s|%ld|%ld|%d|%d\n", id, link_get_name(link), link_get_origin(link), link_get_destination(link), link_get_direction(link), link_get_open(link));
   }
+
+  /*Guardar solucion*/
+  fprintf(file, "#x:%s|%s|%s\n", game_get_assasin_name(game), game_get_weapon_name(game), game_get_place_name(game));
   
   fclose(file);
   return status;
@@ -474,6 +533,11 @@ Game *game_management_load(char *filename) {
     return NULL;
   }
   if (game_reader_load_links(game, filename) == ERROR) {
+    game_destroy(game);
+    return NULL;
+  }
+
+  if (game_reader_load_solution(game, filename) == ERROR) {
     game_destroy(game);
     return NULL;
   }

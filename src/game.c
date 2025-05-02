@@ -43,6 +43,9 @@ struct _Game {
   Link *links[MAX_LINKS]; /*!< It contains all the links of the game*/
   Bool log_status; /*!< It defines if the log is active or not */
   Bool determinst_status; /*!< It defines if the game is deterministic or not */
+  char assasin_name[MAX_NAME]; /*!< It defines the assasins name*/
+  char weapon_name[MAX_NAME]; /*!< It defines the weapon name*/
+  char place_name[MAX_NAME]; /*!< It defines the place name*/
 };
 
 Game *game_create(void){
@@ -923,3 +926,50 @@ Status game_set_determinist_status(Game *game, Bool determinst_status) {
 
   return OK;
 }
+
+char *game_get_assasin_name(Game *game) {
+  if(!game) return NULL;
+
+  return game->assasin_name;
+}
+
+char *game_get_weapon_name(Game *game) {
+  if(!game) return NULL;
+
+  return game->weapon_name;
+}
+
+char *game_get_place_name(Game *game) {
+  if(!game) return NULL;
+
+  return game->place_name;
+}
+
+Status game_set_assasin_name(Game *game, char *assasin_name) {
+  if(!game || !assasin_name) return ERROR;
+
+  if(!strcpy(game->assasin_name, assasin_name)){
+    return ERROR;
+  }
+  return OK;
+}
+
+Status game_set_weapon_name(Game *game, char *weapon_name) {
+  if(!game || !weapon_name) return ERROR;
+
+  if(!strcpy(game->weapon_name, weapon_name)){
+    return ERROR;
+  }
+  return OK;
+}
+
+Status game_set_place_name(Game *game, char *place_name) {
+  if(!game || !place_name) return ERROR;
+
+  if(!strcpy(game->place_name, place_name)){
+    return ERROR;
+  }
+  return OK;
+}
+
+

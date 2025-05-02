@@ -814,7 +814,7 @@ Status game_actions_guess(Game *game)
 
   assasin = game_get_character_from_name(game, game_get_assasin_name(game));
   weapon = game_get_object_from_name(game, game_get_weapon_name(game));
-  place_card = game_get_object_from_name(game, game_get_place_card(game));
+  place_card = game_get_object_from_name(game, game_get_place_name(game));
 
   if (assasin == NULL || weapon == NULL || place_card == NULL)
   {

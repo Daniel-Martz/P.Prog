@@ -25,6 +25,7 @@
 #define MAX_CHARACTERS 100/*!< Constant that estabilshes the maximum number of characters as 100*/
 #define MAX_LINKS 100/*!< Constant that estabilshes the maximum number of links as 100*/
 #define MAX_PLAYERS 8/*!< Constant that estabilshes the maximum number of players as 8*/
+#define MAX_NAME 100/*!< Constant that estabilshes the maximum name length*/
 
 /**
  * @brief Structure of the Game
@@ -702,5 +703,62 @@ Bool game_get_determinist_status(Game *game);
  * @return OK if everything worked properly or ERROR if it didn't
  */
 Status game_set_determinist_status(Game *game, Bool determinst_status);
+
+/**
+ * @brief It gets the assasin name of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @return The name of the assasin
+ */
+char* game_get_assasin_name(Game *game);
+
+/**
+ * @brief It gets the weapon name of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @return The name of the weapon
+ */
+char* game_get_weapon_name(Game *game);
+
+/**
+ * @brief It gets the place name of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @return The name of the place
+ */
+char* game_get_place_name(Game *game);
+
+/**
+ * @brief It sets the place name of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @param name The name of the place
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_assasin_name(Game *game, char* name);
+
+/**
+ * @brief It sets the weapon name of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @param name The name of the weapon
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_weapon_name(Game *game, char* name);
+
+/**
+ * @brief It sets the place name of the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @param name The name of the place
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_place_name(Game *game, char* name);
 
 #endif
