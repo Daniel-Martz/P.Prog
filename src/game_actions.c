@@ -689,92 +689,117 @@ Status game_actions_abandon(Game *game)
   }
 }
 
-Status game_actions_open(Game *game)
-{
+Status game_actions_open(Game *game) {
   Object *object = NULL;
-  Link **links = NULL, *link = NULL;
-  int i = 0;
+  Link *link = NULL;
+  char *token=NULL, *link_name = NULL;
 
   if (!game)
     return ERROR;
   command_set_direction(game_get_last_command(game), U);
   game_set_message(game, "");
 
-  object = game_get_object(game, game_get_object_from_name(game, command_get_strin(game_get_last_command(game))));
-  if (object == NULL)
-    return ERROR;
-
-  if (inventory_object_is_there(player_get_backpack(game_get_player(game)), object_get_id(object)) == ERROR)
-  {
+  token = strtok(command_get_strin(game_get_last_command(game)), " \n");
+  if(token == NULL) {
     return ERROR;
   }
 
-  if (object_get_open(object) == NO_ID)
+  strcpy(link_name, token);
+
+  token = strtok(NULL, " ");
+  if(strcasecmp(token, "with") != 0) {
     return ERROR;
-
-  links = game_get_links(game);
-
-  for (i = 0; i < game_get_nlinks(game); i++)
-  {
-    if (link_get_id(links[i]) == object_get_open(object))
-    {
-      link = links[i];
-      break;
-    }
   }
+  token = strtok(NULL, "\n");
+  object = game_get_object(game, game_get_object_from_name(game, token));
 
-  if (link == NULL)
-    return ERROR;
+  if (object == NULL) return ERROR;
 
-  if (link_get_open(link) == TRUE)
-  {
+  /*Checks if the player has the object*/
+  if (inventory_object_is_there(player_get_backpack(game_get_player(game)), object_get_id(object)) == ERROR){
     return ERROR;
   }
 
-  if (link_get_origin(link) == game_get_player_location(game) ||
-      link_get_destination(link) == game_get_player_location(game))
-  {
+  link = game_get_link_by_id(game, object_get_open(object));
+  if (link == NULL) {
+    return ERROR;
+  }
+
+  if (link_get_open(link) == TRUE) {
+    return OK;
+  }
+
+  /*Checks if the object can open the input link*/
+  if((object_get_open(object) == NO_ID) || (strcpy(link_get_name(link), link_name) != 0)) {
+    return ERROR;
+  }
+
+  /*Checks if the player is located where the link origins and opens the link*/
+  if (link_get_origin(link) == game_get_player_location(game)) {
     link_set_open(link, TRUE);
-  }
-  else
-  {
+
+  } else {
     return ERROR;
   }
 
   return OK;
 }
 
-Status game_actions_use(Game *game)
-{
-
+Status game_actions_use(Game *game) {
   Object *object = NULL;
+  Character *character = NULL;
+  char *token = NULL;
 
   if (!game)
     return ERROR;
   command_set_direction(game_get_last_command(game), U);
   game_set_message(game, "");
 
-  object = game_get_object(game, game_get_object_from_name(game, command_get_strin(game_get_last_command(game))));
+  token = strtok(command_get_strin(game_get_last_command(game)), " \n");
+
+  object = game_get_object(game, game_get_object_from_name(game, token));
   if (object == NULL)
     return ERROR;
 
-  if (inventory_object_is_there(player_get_backpack(game_get_player(game)), object_get_id(object)) == ERROR)
-  {
+  if (inventory_object_is_there(player_get_backpack(game_get_player(game)), object_get_id(object)) == ERROR) {
     return ERROR;
   }
 
-  if (object_get_health(object) <= 0)
-  {
+  if (object_get_health(object) <= 0) {
     return ERROR;
   }
 
-  if (object_get_offensive(object) == TRUE)
-  {
-    player_set_damage(game_get_player(game), player_get_damage(game_get_player(game)) + object_get_health(object));
-  }
-  else
-  {
-    player_set_health(game_get_player(game), player_get_health(game_get_player(game)) + object_get_health(object));
+  token = strtok(NULL, " \n");
+  if(token == NULL) {
+    if (object_get_offensive(object) == TRUE){
+      if(player_set_damage(game_get_player(game), player_get_damage(game_get_player(game)) + object_get_health(object)) == ERROR) {
+        return ERROR;
+      }
+    
+    } else {
+      if(player_set_health(game_get_player(game), player_get_health(game_get_player(game)) + object_get_health(object)) == ERROR) {
+        return ERROR;
+      }
+    }
+
+  } else {
+    if(strcasecmp(token, "over") != 0) {
+      return ERROR;
+    }
+    token = strtok(NULL, "\n");
+    character = game_get_character_from_name(game, token);
+    if (character == NULL) {
+      return ERROR;
+    }
+    if (object_get_offensive(object) == TRUE) {
+      if(character_set_damage(character, character_get_damage(character) + object_get_health(object)) == ERROR) {
+        return ERROR;
+      }
+    } else {
+      if (character_set_health(character, character_get_health(character) + object_get_health(object)) == ERROR) {
+        return ERROR;
+      }
+    }
   }
 
   inventory_delete_obj_id(player_get_backpack(game_get_player(game)), object_get_id(object));
