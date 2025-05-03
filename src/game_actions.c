@@ -18,6 +18,7 @@
 #include <strings.h>
 
 #define INIT_DAMAGE 0
+#define MAX_MESSAGE_GUESS 1000
 
 /**
    Private functions
@@ -466,7 +467,7 @@ Status game_actions_drop(Game *game)
 
 Status game_actions_attack(Game *game)
 {
-  int turn = -1, turn2 = -1, following = 0, i = 0, new_health = 0, i;
+  int turn = -1, turn2 = -1, following = 0, i = 0, new_health = 0;
   Id player_location = NO_ID;
   Character *character = NULL, **characters = NULL;
 
@@ -795,9 +796,7 @@ Status game_actions_guess(Game *game)
   Bool weapon_guess = FALSE;
   Bool place_card_guess = FALSE;
   Bool guess = FALSE;
-  char *assasin_name = NULL;
-  char *weapon_name = NULL;
-  char *place_card_name = NULL;
+  char message[MAX_MESSAGE_GUESS];
 
   if (!game)
     return ERROR;
@@ -813,8 +812,8 @@ Status game_actions_guess(Game *game)
   }
 
   assasin = game_get_character_from_name(game, game_get_assasin_name(game));
-  weapon = game_get_object_from_name(game, game_get_weapon_name(game));
-  place_card = game_get_object_from_name(game, game_get_place_name(game));
+  weapon = game_get_object(game, game_get_object_from_name(game, game_get_weapon_name(game)));
+  place_card = game_get_object(game, game_get_object_from_name(game, game_get_place_name(game)));
 
   if (assasin == NULL || weapon == NULL || place_card == NULL)
   {
@@ -868,29 +867,30 @@ Status game_actions_guess(Game *game)
   {
     if (assasin_guess == TRUE)
     {
-      strcpy(assasin_name, "You have guessed the assasin.");
+      strcpy(message, "You have guessed the assasin.");
     }
     else
     {
-      strcpy(assasin_name, "You have guessed wrong the assasin.");
+      strcpy(message, "You have guessed wrong the assasin.");
     }
     if (weapon_guess == TRUE)
     {
-      strcpy(weapon_name, "You have guessed the weapon.");
+      strcat(message, " You have guessed the weapon.");
     }
     else
     {
-      strcpy(weapon_name, "You have guessed wrong the weapon.");
+      strcat(message, " You have guessed wrong the weapon.");
     }
     if (place_card_guess == TRUE)
     {
-      strcpy(place_card_name, "You have guessed the place card.");
+      strcat(message, " You have guessed the place card.");
     }
     else
     {
-      strcpy(place_card_name, "You have guessed wrong the place card.");
+      strcat(message, " You have guessed wrong the place card.");
     }
-    game_set_message(game, ("%s %s %s. Try again.", assasin_name, weapon_name, place_card_name));
+    strcat(message, " Try again.");
+    game_set_message(game, message);
   }
 
   return OK;

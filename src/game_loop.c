@@ -68,8 +68,6 @@ int main(int argc, char *argv[])
 {
   Game *game = NULL;
   Graphic_engine *gengine;
-  Bool log_status = FALSE;
-  char *input_file = NULL;
   char *output_file = NULL;
 
   srand(time(NULL));
@@ -163,7 +161,6 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *output_name)
 {
   Command *last_cmd;
   FILE *log_output = NULL;
-  char command[CMD_LENGHT];
   extern char *cmd_to_str[N_CMD][N_CMDT];
   Status st;
   int i;

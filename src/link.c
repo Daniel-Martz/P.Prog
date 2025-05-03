@@ -19,7 +19,7 @@
 struct _Link
 {
     Id id; /*!<The identification for the link*/
-    char name[MAX_NAME]; /*!<The name of the link*/
+    char name[MAX_LINK_NAME]; /*!<The name of the link*/
     Id origin; /*!<The origin id of the link*/
     Id destination; /*!<The destination id of the link*/
     Direction direction; /*!<The direction of the link*/
