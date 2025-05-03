@@ -43,10 +43,9 @@ int game_loop_init(Game **game, Graphic_engine **gengine, char *file_name);
  * @param game A pointer to Game
  * @param gengine A pointer to the grafic engine
  * @param log_status a boolean that indicates if the log is active or not
- * @param log_name a string with the name of the log input file
  * @param output_name a string with the name of the log output file
  */
-void game_loop_run(Game *game, Graphic_engine *gengine, char *log_name, char *output_name);
+void game_loop_run(Game *game, Graphic_engine *gengine, char *output_name);
 
 /**
  * @brief It destroys the game and the graphic engine
@@ -90,7 +89,8 @@ int main(int argc, char *argv[])
       {
         game_set_determinist_status(game, TRUE);
       }
-      else {
+      else
+      {
         fprintf(stderr, "To use determinist option use: %s %s -d \n", argv[0], argv[1]);
         return 1;
       }
@@ -102,27 +102,27 @@ int main(int argc, char *argv[])
       {
         if ((!strcmp(argv[2], "-d")) || (!strcmp(argv[3], "-d")))
         {
-          if ((argc < 5) || (argc > 7))
+          if ((argc != 5))
           {
-            fprintf(stderr, "To use the log and determinist option use: %s %s -l -d <output_file> - <log_file>\n", argv[0], argv[1]);
+            fprintf(stderr, "To use the log and determinist option use: %s %s -l -d <log_file>\n", argv[0], argv[1]);
             return 1;
           }
-          else {
-            input_file = argv[6];
+          else
+          {
             output_file = argv[4];
-
           }
           game_set_log_status(game, TRUE);
           game_set_determinist_status(game, TRUE);
         }
-        else {
-          if ((argc < 4) || (argc > 6))
+        else
+        {
+          if ((argc != 4))
           {
-            fprintf(stderr, "To use the log option use: %s %s -l <output_file> - <log_file>\n", argv[0], argv[1]);
+            fprintf(stderr, "To use the log option use: %s %s -l <log_file>\n", argv[0], argv[1]);
             return 1;
           }
-          else {
-            input_file = argv[5];
+          else
+          {
             output_file = argv[3];
           }
           game_set_log_status(game, TRUE);
@@ -130,13 +130,13 @@ int main(int argc, char *argv[])
       }
       else
       {
-        fprintf(stderr, "To use the log option use: %s %s -l <output_file> - <log_file>\n", argv[0], argv[1]);
+        fprintf(stderr, "To use the log option use: %s %s -l <log_file>\n", argv[0], argv[1]);
         return 1;
       }
     }
   }
 
-  game_loop_run(game, gengine, input_file, output_file);
+  game_loop_run(game, gengine, output_file);
   game_loop_cleanup(game, gengine);
   return 0;
 }
@@ -159,10 +159,9 @@ int game_loop_init(Game **game, Graphic_engine **gengine, char *file_name)
   return 0;
 }
 
-void game_loop_run(Game *game, Graphic_engine *gengine, char *log_name, char *output_name)
+void game_loop_run(Game *game, Graphic_engine *gengine, char *output_name)
 {
   Command *last_cmd;
-  FILE *log_file = NULL;
   FILE *log_output = NULL;
   char command[CMD_LENGHT];
   extern char *cmd_to_str[N_CMD][N_CMDT];
@@ -176,11 +175,6 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *log_name, char *ou
 
   if (game_get_log_status(game) == TRUE)
   {
-    if (!(log_file = fopen(log_name, "r")))
-    {
-      fprintf(stderr, "Error while opening the log file");
-      return;
-    }
     if (!(log_output = fopen(output_name, "w")))
     {
       fprintf(stderr, "Error while creating the log output");
@@ -191,16 +185,9 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *log_name, char *ou
 
   while ((command_get_code(last_cmd) != EXIT) && (game_get_finished(game) == FALSE))
   {
-    if (game_get_log_status(game) == FALSE)
-    {
-      graphic_engine_paint_game(gengine, game);
-      command_get_user_input(last_cmd);
-    }
-    if (game_get_log_status(game) == TRUE)
-    {
-      fgets(command, CMD_LENGHT, log_file);
-      command_get_input_from_string(last_cmd, command);
-    }
+    graphic_engine_paint_game(gengine, game);
+    command_get_user_input(last_cmd);
+
     game_actions_update(game, last_cmd);
     st = command_get_last_cmd_status(game_get_last_command(game));
     if (game_get_log_status(game) == TRUE)
@@ -210,54 +197,38 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *log_name, char *ou
         if (command_get_code(last_cmd) == i)
         {
           fprintf(log_output, "%s ", cmd_to_str[i + 1][CMDL]);
+          break;
         }
       }
       if (st == OK)
       {
-        fprintf(log_output, "OK\n");
+        fprintf(log_output, "OK ");
       }
       if (st == ERROR)
       {
-        fprintf(log_output, "ERROR\n");
+        fprintf(log_output, "ERROR ");
       }
+      fprintf(log_output, "(P%i)\n", (game_get_turn(game) + 1));
     }
 
-    if (game_get_nplayers(game) > 1)
+    graphic_engine_paint_game(gengine, game);
+    if (command_get_code(last_cmd) == EXIT)
     {
-      if (game_get_log_status(game) == FALSE)
-      {
-        graphic_engine_paint_game(gengine, game);
-        if (command_get_code(last_cmd) == EXIT)
-        {
-          game_set_finished(game, TRUE);
-          break;
-        }
-        game_rules_run_all(game);
-        game_set_last_command(game, NULL);
-        sleep(2);
-      }
-      if (game_get_log_status(game) == TRUE)
-      {
-        if (command_get_code(last_cmd) == EXIT)
-        {
-          game_set_finished(game, TRUE);
-          break;
-        }
-        game_rules_run_all(game);
-      }
+      game_set_finished(game, TRUE);
+      break;
     }
+    game_rules_run_all(game);
+    game_set_last_command(game, NULL);
+    sleep(2);
   }
 
   if ((game_get_finished(game) == TRUE) || (player_get_health(game_get_player(game)) == 0))
   {
-    if (game_get_log_status(game) == FALSE)
-    {
-      printf("GAME OVER\n");
-    }
+    printf("GAME OVER\n");
+
     if (game_get_log_status(game) == TRUE)
     {
       fprintf(log_output, "GAME OVER\n");
-      fclose(log_file);
       fclose(log_output);
     }
   }
@@ -266,7 +237,6 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *log_name, char *ou
     if (game_get_log_status(game) == TRUE)
     {
       fprintf(log_output, "GAME OVER\n");
-      fclose(log_file);
       fclose(log_output);
     }
   }
