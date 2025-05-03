@@ -100,7 +100,7 @@ void test2_link_get_name() {
 
 void test1_link_set_name() {
     Link *link = NULL;
-    char name[MAX_NAME] = "Hola";
+    char name[MAX_LINK_NAME] = "Hola";
     link = link_create(1);
     link_set_name(link, name);
     PRINT_TEST_RESULT(!strcmp(link_get_name(link), name));
