@@ -33,6 +33,6 @@ typedef enum { ERROR, OK } Status;
  * @brief It establishes the type of data related to the direction
  * 
  */
-typedef enum { N, S, E, W, U } Direction;
+typedef enum { N, S, E, W, UP, D, U } Direction;
 
 #endif

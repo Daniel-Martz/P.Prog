@@ -175,10 +175,10 @@ Status command_get_user_input(Command* command) {
         command_set_direction(command, W);
       }
       else if (!strcasecmp(token, "Up") || !strcasecmp(token, "u")) {
-        command_set_direction(command, W);
+        command_set_direction(command, UP);
       }
       else if (!strcasecmp(token, "Down") || !strcasecmp(token, "d")) {
-        command_set_direction(command, W);
+        command_set_direction(command, D);
       }
       else {
         command_set_direction(command, U);
