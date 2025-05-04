@@ -219,7 +219,7 @@ Status game_reader_load_characters(Game *game, char *filename){
       {
         if (toks != NULL)
         {
-          toks = strtok(NULL, "|");
+          toks = strtok(NULL, "`");
           if (toks != NULL) {
             strncpy(face[row], toks, FACE_WIDTH - 1);
             face[row][FACE_WIDTH - 1] = '\0'; 

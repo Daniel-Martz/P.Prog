@@ -321,6 +321,7 @@ void graphic_engine_destroy(Graphic_engine *ge) {
   screen_area_destroy(ge->banner);
   screen_area_destroy(ge->help);
   screen_area_destroy(ge->feedback);
+  screen_area_destroy(ge->face);
 
   screen_destroy();
   free(ge);
@@ -565,20 +566,22 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     }
 
     /* PAINT THE FACE AREA*/
-    screen_area_puts(ge->face, "");
+    screen_area_clear(ge->face);
     if(last_cmd == CHAT && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
+      screen_area_puts(ge->face, "");
       strncpy(character_name, command_get_strin(game_get_last_command(game)), MAX_STR);
       character = game_get_character_from_name(game, character_name);
       sprintf(str, "Character: %s", character_name);
       screen_area_puts(ge->face, str);
       screen_area_puts(ge->face, "");
-      screen_area_puts(ge->face, "   -------------------   ");
+      screen_area_puts(ge->face, "  ------------------------   ");
       for(i=0; i < FACE_HEIGHT; i++){
         sprintf(str, " |   %s   |", character_get_face(character, i));
         screen_area_puts(ge->face, str);
       }
-      screen_area_puts(ge->face, "   -------------------   ");
+      screen_area_puts(ge->face, "  ------------------------   ");
     }
+
 
 
     /* PAINT THE COLOR */    
