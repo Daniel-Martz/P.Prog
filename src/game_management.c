@@ -181,11 +181,13 @@ Status game_reader_load_characters(Game *game, char *filename){
   char gdesc[WORD_SIZE] = "";
   char message[WORD_SIZE] = "";
   char *toks = NULL;
+  char face[FACE_HEIGHT][FACE_WIDTH] = {{0}};
   Id character_id = NO_ID, space_id = NO_ID;
   Character *character = NULL;
   Status status = OK;
   long health = 0;
   Bool friendly =FALSE;
+  int row = 0;
 
   if (!filename || !game) {
     return ERROR;
@@ -211,8 +213,23 @@ Status game_reader_load_characters(Game *game, char *filename){
       space_id = atol(toks);
       toks = strtok(NULL, "|");
       strncpy(gdesc, toks,G_DESC-1);
-      toks = strtok(NULL, "\n");
+      toks = strtok(NULL, "|");
       strncpy(message, toks, MAX_MESSAGE-1);
+      for (row = 0; row < FACE_HEIGHT; row++)
+      {
+        if (toks != NULL)
+        {
+          toks = strtok(NULL, "|");
+          if (toks != NULL) {
+            strncpy(face[row], toks, FACE_WIDTH - 1);
+            face[row][FACE_WIDTH - 1] = '\0'; 
+          } else 
+          {
+            memset(face[row], ' ', N_COLUMNS - 1); 
+            face[row][FACE_WIDTH - 1] = '\0';
+          }
+        }  
+      }
       
       /*Create the object*/
       character = character_create(character_id);
@@ -222,6 +239,7 @@ Status game_reader_load_characters(Game *game, char *filename){
       character_set_health(character, health);
       character_set_message(character, message);
       character_set_gdesc(character, gdesc);
+      character_set_face(character, (const char(*)[FACE_WIDTH])face);
       game_add_character(game, character);
       game_set_character_location(game, space_id, character_id);
       space_set_newCharacter(game_get_space(game, space_id), character_id);

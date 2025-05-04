@@ -18,22 +18,22 @@
 #s:109|Centro|
 #s:201|Biblioteca|
 
-#s:|111|Corridor1
-#s:|112|Corridor2
-#s:|113|Corridor3
-#s:|114|Corridor4
-#s:|115|Corridor5
-#s:|116|Corridor6
-#s:|117|Corridor7
-#s:|118|Corridor8
-#s:|119|Corridor9
-#s:|120|Corridor10
-#s:|121|Corridor11
-#s:|122|Corridor12
-#s:|123|Corridor13
-#s:|124|Corridor14
-#s:|125|Corridor15
-#s:|126|Corridor16
+#s:|111|Corridor1|
+#s:|112|Corridor2|
+#s:|113|Corridor3|
+#s:|114|Corridor4|
+#s:|115|Corridor5|
+#s:|116|Corridor6|
+#s:|117|Corridor7|
+#s:|118|Corridor8|
+#s:|119|Corridor9|
+#s:|120|Corridor10|
+#s:|121|Corridor11|
+#s:|122|Corridor12|
+#s:|123|Corridor13|
+#s:|124|Corridor14|
+#s:|125|Corridor15|
+#s:|126|Corridor16|
 
 
 #c:31|Coronel Rubio|10|1|113|Rubio|message

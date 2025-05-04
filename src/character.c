@@ -13,8 +13,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "character.h"
+
 
 /**
  * @brief This struct stores all the information of a character
@@ -31,11 +31,12 @@ struct _Character
     Bool friendly;/*!<Boolean value indicating if the character is friendly or not*/
     char message[MAX_MESSAGE];/*!<Message delivered by the Character*/
     Id following;/*!<Id of the player that is being followed*/
+    char face[FACE_HEIGHT][FACE_WIDTH];/*!<Matrix of the character's face*/
 };
 
 /*============================Init============================*/
 Character* character_create(Id id){
-
+    int i;
     Character *character=NULL;
     
     if(id==NO_ID) return NULL;
@@ -52,6 +53,9 @@ Character* character_create(Id id){
     character->friendly= TRUE; /*Initialized to True, it will be changed later*/
     character->message[0]='\0';
     character->following = NO_ID; /*Initialized to NO_ID, it will be changed later*/
+    for(i = 0; i<FACE_HEIGHT; i++){
+        character->face[i][0] = '\0';
+    }
 
     return character;
 }
@@ -105,6 +109,12 @@ Id character_get_following(Character* character){
     if(!character) return NO_ID;
     return character->following;
 }
+
+const char* character_get_face(Character* character, int row){
+    if (!character || row < 0 || row >= FACE_HEIGHT) return NULL;
+  
+    return character->face[row];
+  }
 
 /*============================Set============================*/
 Status character_set_id (Character* character, Id id){
@@ -174,8 +184,21 @@ Status character_set_following(Character* character, Id following){
     return OK;
 }
 
+Status character_set_face(Character *character, const char face[FACE_HEIGHT][FACE_WIDTH]){
+    int i;
+    if(!character || !face) return ERROR;
+
+    for(i = 0; i<FACE_HEIGHT; i++){
+        if(!(strcpy(character->face[i],face[i]))){
+            return ERROR;
+        }
+    }
+    return OK;
+}
+
 /*============================Print============================*/
 Status character_print (Character* character){
+    int i;
     if (!character) return ERROR;
 
     fprintf(stdout, " Character Id: %ld\n Name: %s\n Description: %s\n", character->id, character->name, character->gdesc);
@@ -186,6 +209,9 @@ Status character_print (Character* character){
     else{
         fprintf(stdout, " Not following anyone\n");
     }
-
+    fprintf(stdout, " Face:\n");
+    for (i = 0; i < FACE_HEIGHT; i++) {
+        fprintf(stdout, "  %s\n", character->face[i]);
+    }
     return OK;
 }

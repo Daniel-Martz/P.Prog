@@ -17,6 +17,8 @@
 
 #define G_DESC 7 /*!< It establishes the maximum size for gdesc*/
 #define MAX_MESSAGE 100/*!< It establishes the maximum length of the character message*/
+#define FACE_HEIGHT 9/*!<Constant for the height of the character face*/ 
+#define FACE_WIDTH 17/*!<Constant for the width of the character face*/
 
 /**
  * @brief Struct of the character
@@ -118,6 +120,16 @@ Bool character_get_friendly(Character* character);
  */
 Id character_get_following(Character* character);
 
+/**
+ * @brief Gets a row of the face description of a character
+ * @author Daniel Martínez
+ *
+ * @param character A pointer to character
+ * @param row the row of the matrix
+ * @return a string with a line of the face description
+ */
+const char* character_get_face(Character* character, int row);
+
 /*============================Set============================*/
 
 /**
@@ -205,6 +217,16 @@ Status character_set_message(Character* character, const char* message);
  * @return OK if everything goes well, ERROR if anything goes wrong
  */
 Status character_set_following(Character* character, Id id);
+
+/**
+ * @brief Sets the a matrix of characters that is the face of him
+ * @author Daniel Martínez
+ *
+ * @param character A pointer to Character
+ * @param face The matrix of chars for the face
+ * @return OK if everything goes well, ERROR if anything goes wrong
+ */
+Status character_set_face(Character *character, const char face[FACE_HEIGHT][FACE_WIDTH]);
 
 /*============================Print============================*/
 

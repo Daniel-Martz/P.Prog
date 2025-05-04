@@ -180,12 +180,12 @@ void test1_object_is_in_inventory() {
     Inventory *i;
     i = inventory_create();
     inventory_add_obj_id(i, TEST);
-    PRINT_TEST_RESULT(object_is_in_inventory(i, TEST) == TRUE);
+    PRINT_TEST_RESULT(inventory_object_is_there(i, TEST) == TRUE);
     inventory_destroy(i);
 }
 
 void test2_object_is_in_inventory() {
     Inventory *i = NULL;
-    PRINT_TEST_RESULT(object_is_in_inventory(i, TEST) == FALSE);
+    PRINT_TEST_RESULT(inventory_object_is_there(i, TEST) == FALSE);
 }
 

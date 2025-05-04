@@ -25,7 +25,7 @@
 #define WIDTH_BAN 150/*!< Constant asignated for the width of the banner*/
 #define HEIGHT_MAP 60/*!< Constant asignated for the height of the map*/
 #define HEIGHT_BAN 1/*!< Constant asignated for the height of the banner*/
-#define HEIGHT_DES 50/*!< Constant asignated for the height of description interface*/
+#define HEIGHT_DES 50/*!< Constant asignated for the height of description inter*/
 #define HEIGHT_HLP 3/*!< Constant asignated for the height of help interface*/
 #define HEIGHT_FDB 3/*!< Constant asignated for the height of feedback interface*/
 #define WIDTH_SPACE 23/*!< Constante asignated for the maximum size of the lines inside the space*/
@@ -330,7 +330,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   /* Declare de needed local variables of the function */
   Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, id_left = NO_ID, id_right = NO_ID, *objects_location = NULL, *characters_location = NULL, *player_objects = NULL;
   char buffer[MAX_BUFFER];
-  char str[MAX_STR];
+  char str[MAX_STR], character_name[MAX_STR];
   char **space_empty = NULL;
   char **space_left = NULL ,**space_right = NULL, **space_back = NULL, **space_next = NULL, **space_actual = NULL, **space1 = NULL, **space2 = NULL, **space3 = NULL;
   int i=0, j=0;
@@ -338,7 +338,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   char cmd_result[MAX_RESULT];
   extern char *cmd_to_str[N_CMD][N_CMDT];
   Object **objects;
-  Character **characters;
+  Character **characters = NULL, *character = NULL;
   Player **players;
   char right = '>', left = '<', back = '^', next = 'v';
 
@@ -563,6 +563,23 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       sprintf(str, " %s (%s): %s", cmd_to_str[last_cmd - NO_CMD][CMDL], cmd_to_str[last_cmd - NO_CMD][CMDS], cmd_result);
       screen_area_puts(ge->feedback, str);
     }
+
+    /* PAINT THE FACE AREA*/
+    screen_area_puts(ge->face, "");
+    if(last_cmd == CHAT && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
+      strncpy(character_name, command_get_strin(game_get_last_command(game)), MAX_STR);
+      character = game_get_character_from_name(game, character_name);
+      sprintf(str, "Character: %s", character_name);
+      screen_area_puts(ge->face, str);
+      screen_area_puts(ge->face, "");
+      screen_area_puts(ge->face, "   -------------------   ");
+      for(i=0; i < FACE_HEIGHT; i++){
+        sprintf(str, " |   %s   |", character_get_face(character, i));
+        screen_area_puts(ge->face, str);
+      }
+      screen_area_puts(ge->face, "   -------------------   ");
+    }
+
 
     /* PAINT THE COLOR */    
     screen_paint(game_get_turn(game));

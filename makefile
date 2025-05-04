@@ -9,43 +9,85 @@ DOC_DIR = doc
 CC = gcc
 CFLAGS = -Wall -ansi -pedantic -g -I$(INC_DIR)
 LDFLAGS = -L$(LIB_DIR) -lscreen
-OBJS = $(addprefix $(OBJ_DIR)/, command.o space.o game_loop.o game_actions.o game.o game_management.o object.o player.o set.o character.o link.o inventory.o graphic_engine.o game_rules.o)
 EXEC = proyecto
 
-.PHONY: all clean runv run runvloganthill runloganthill runvlogcastle runlogcastle runvcastle runcastle set_test character_test space_test inventory_test player_test object_test link_test crunv crun doxyfile docs debug cleandocs
+# Objetos principales
+OBJS = \
+  $(OBJ_DIR)/command.o \
+  $(OBJ_DIR)/space.o \
+  $(OBJ_DIR)/game_loop.o \
+  $(OBJ_DIR)/game_actions.o \
+  $(OBJ_DIR)/game.o \
+  $(OBJ_DIR)/game_management.o \
+  $(OBJ_DIR)/object.o \
+  $(OBJ_DIR)/player.o \
+  $(OBJ_DIR)/set.o \
+  $(OBJ_DIR)/character.o \
+  $(OBJ_DIR)/link.o \
+  $(OBJ_DIR)/inventory.o \
+  $(OBJ_DIR)/graphic_engine.o \
+  $(OBJ_DIR)/game_rules.o
+
+# Tests
+TESTS = space_test set_test character_test link_test inventory_test object_test player_test
+
+.PHONY: all clean run runv run_tests doxyfile docs debug cleandocs $(TESTS)
+
+# Crear directorios necesarios
+$(shell mkdir -p $(OBJ_DIR) $(LIB_DIR) $(DOC_DIR))
 
 # Regla principal
 all: $(EXEC)
 
-# Crear directorios si no existen
-$(shell mkdir -p $(OBJ_DIR) $(LIB_DIR) $(DOC_DIR))
-
-# Enlazado del ejecutable
-$(EXEC): $(OBJS)
-	$(CC) -o $@ $(OBJS) $(LDFLAGS)
-
-# Reglas de compilación para cada objeto
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+# Compilación explícita de cada .c a .o
+$(OBJ_DIR)/command.o: $(SRC_DIR)/command.c $(INC_DIR)/command.h $(INC_DIR)/types.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Dependencias específicas para cada objeto
-$(OBJ_DIR)/space.o: $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h
-$(OBJ_DIR)/command.o: $(INC_DIR)/command.h $(INC_DIR)/types.h
-$(OBJ_DIR)/game_loop.o: $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_actions.h $(INC_DIR)/graphic_engine.h $(INC_DIR)/game_management.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h $(INC_DIR)/game_rules.h
-$(OBJ_DIR)/game_actions.o: $(INC_DIR)/game_actions.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/character.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
-$(OBJ_DIR)/game.o: $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_management.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
-$(OBJ_DIR)/game_management.o: $(INC_DIR)/game_management.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
-$(OBJ_DIR)/object.o: $(INC_DIR)/object.h $(INC_DIR)/types.h
-$(OBJ_DIR)/player.o: $(INC_DIR)/player.h $(INC_DIR)/types.h $(INC_DIR)/inventory.h $(INC_DIR)/set.h
-$(OBJ_DIR)/set.o: $(INC_DIR)/set.h $(INC_DIR)/types.h
-$(OBJ_DIR)/character.o: $(INC_DIR)/character.h $(INC_DIR)/types.h
-$(OBJ_DIR)/link.o: $(INC_DIR)/link.h $(INC_DIR)/types.h
-$(OBJ_DIR)/inventory.o: $(INC_DIR)/inventory.h $(INC_DIR)/types.h $(INC_DIR)/set.h
-$(OBJ_DIR)/graphic_engine.o: $(INC_DIR)/graphic_engine.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/libscreen.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
-$(OBJ_DIR)/game_rules.o: $(INC_DIR)/game_rules.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/inventory.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/link.h
- 
+$(OBJ_DIR)/space.o: $(SRC_DIR)/space.c $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Reglas para tests
+$(OBJ_DIR)/game_loop.o: $(SRC_DIR)/game_loop.c $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_actions.h $(INC_DIR)/graphic_engine.h $(INC_DIR)/game_management.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h $(INC_DIR)/game_rules.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/game_actions.o: $(SRC_DIR)/game_actions.c $(INC_DIR)/game_actions.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/character.h $(INC_DIR)/game.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/game.o: $(SRC_DIR)/game.c $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/game_management.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/game_management.o: $(SRC_DIR)/game_management.c $(INC_DIR)/game_management.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/object.o: $(SRC_DIR)/object.c $(INC_DIR)/object.h $(INC_DIR)/types.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/player.o: $(SRC_DIR)/player.c $(INC_DIR)/player.h $(INC_DIR)/types.h $(INC_DIR)/inventory.h $(INC_DIR)/set.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/set.o: $(SRC_DIR)/set.c $(INC_DIR)/set.h $(INC_DIR)/types.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/character.o: $(SRC_DIR)/character.c $(INC_DIR)/character.h $(INC_DIR)/types.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/link.o: $(SRC_DIR)/link.c $(INC_DIR)/link.h $(INC_DIR)/types.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/inventory.o: $(SRC_DIR)/inventory.c $(INC_DIR)/inventory.h $(INC_DIR)/types.h $(INC_DIR)/set.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/graphic_engine.o: $(SRC_DIR)/graphic_engine.c $(INC_DIR)/graphic_engine.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/libscreen.h $(INC_DIR)/link.h $(INC_DIR)/inventory.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/game_rules.o: $(SRC_DIR)/game_rules.c $(INC_DIR)/game_rules.h $(INC_DIR)/game.h $(INC_DIR)/command.h $(INC_DIR)/types.h $(INC_DIR)/space.h $(INC_DIR)/set.h $(INC_DIR)/player.h $(INC_DIR)/inventory.h $(INC_DIR)/object.h $(INC_DIR)/character.h $(INC_DIR)/link.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Enlazado final
+$(EXEC): $(OBJS)
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+# ===== TESTS (compilación y ejecución) =====
+
 $(OBJ_DIR)/space_test.o: $(SRC_DIR)/space_test.c $(INC_DIR)/space_test.h $(INC_DIR)/space.h $(INC_DIR)/types.h $(INC_DIR)/set.h $(INC_DIR)/character.h $(INC_DIR)/test.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -88,13 +130,47 @@ $(OBJ_DIR)/inventory_test.o: $(SRC_DIR)/inventory_test.c $(INC_DIR)/inventory_te
 inventory_test: $(OBJ_DIR)/inventory_test.o $(OBJ_DIR)/inventory.o $(OBJ_DIR)/set.o
 	$(CC) -o $@ $^
 
-# Limpiar archivos generados
-clean:
-	rm -f $(EXEC) $(OBJS) $(OBJ_DIR)/*.o space_test set_test character_test link_test inventory_test object_test player_test
+# Reglas de test
+testspace: space_test 
+	./space_test 
+	
+testset: set_test 
+	./set_test 
 
-cleandocs:
-	rm -rf $(DOC_DIR)/html $(DOC_DIR)/latex
-# Reglas de ejecución
+testplayer: player_test
+	./player_test
+
+testcharacter: character_test
+	./character_test
+
+testobject: object_test
+	./object_test
+
+testlink: link_test
+	./link_test
+
+testinventory: inventory_test
+	./inventory_test
+
+run_tests: $(TESTS)
+	./space_test 
+	./set_test 
+	./player_test 
+	./character_test 
+	./object_test 
+	./link_test 
+	./inventory_test 
+
+# Ejecutables del juego
+run: $(EXEC)
+	./$(EXEC) anthill.dat
+
+runc: $(EXEC)
+	./$(EXEC) cluedo.dat
+
+runcastle: $(EXEC)
+	./$(EXEC) castle.dat
+
 runv:
 	valgrind --leak-check=full ./$(EXEC) anthill.dat
 
@@ -110,15 +186,6 @@ runvloganthill:
 runvlogcastle:
 	valgrind --leak-check=full ./$(EXEC) castle.dat -l output.txt - log_input_castle.txt
 
-run: $(EXEC)
-	./$(EXEC) anthill.dat
-
-runc: $(EXEC)
-	./$(EXEC) cluedo.dat
-
-runcastle: $(EXEC)
-	./$(EXEC) castle.dat
-
 runloganthill:
 	./$(EXEC) anthill.dat -l output.txt - log_input.txt
 
@@ -132,6 +199,13 @@ doxyfile:
 docs:
 	doxygen $(DOC_DIR)/Doxyfile
 
+cleandocs:
+	rm -rf $(DOC_DIR)/html $(DOC_DIR)/latex
+
 # Depuración
 debug: $(EXEC)
 	gdb -q --args ./$(EXEC) anthill.dat
+
+# Limpieza
+clean:
+	rm -f $(EXEC) $(OBJS) $(OBJ_DIR)/*.o $(TESTS)
