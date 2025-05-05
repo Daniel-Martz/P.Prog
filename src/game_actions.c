@@ -272,6 +272,7 @@ Status game_actions_move(Game *game)
       characters_follow = game_get_followingcharacters(game, player_id);
       for (i = 0; i < game_get_nfollowingcharacters(game, player_id); i++)
       {
+        space_character_del(game_get_space(game, space_id), character_get_id(characters_follow[i]));
         game_set_character_location(game, current_id, character_get_id(characters_follow[i]));
       }
     }
@@ -496,7 +497,7 @@ Status game_actions_attack(Game *game)
   turn = rand() % 10;
   if ((turn < 0) || turn > 9)
     return ERROR;
-  if (turn > 15)
+  if (turn > 5)
   {
     /* If the attacking player loses a new random variable determines who loses a hitpoint (it goes from 0 up to the number of following characters)*/
     following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));
@@ -542,9 +543,7 @@ Status game_actions_attack(Game *game)
   else
   {
     /* If the attacking player wins the attacked charcater loses a hitpoint*/
-    new_health = character_get_health(character) - (game_get_player_total_damage(game, player_get_id(game_get_player(game))));
-
-    if (new_health <= 0)
+    if ((new_health = character_get_health(character) - (game_get_player_total_damage(game, player_get_id(game_get_player(game))))) <= 0)
     {
       new_health = 0;
     }

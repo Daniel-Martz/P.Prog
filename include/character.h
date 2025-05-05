@@ -73,7 +73,7 @@ const char* character_get_name(Character* character);
  * @param character a pointer to Character
  * @return a string with the description of the character
  */
-const char* character_get_gdesc(Character* character);
+char* character_get_gdesc(Character* character);
 
 /**
  * @brief Gets the character's message
