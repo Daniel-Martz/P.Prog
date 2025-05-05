@@ -173,7 +173,7 @@ _________________________________________________________
 #c:46|Guarda9|3|0|119|Guarda9|You'll have to kill me if you want to pass
 #c:47|Guarda10|3|0|122|Guarda10|You'll have to kill me if you want to pass
 
-#p:1|Detective|DET|113|10|3|
+#p:1|Detective|DET|10|10|3|
 
 #l:40|Patio-Escaleras|10|11|2|1|
 #l:41|Escaleras-Patio|11|10|3|1|
