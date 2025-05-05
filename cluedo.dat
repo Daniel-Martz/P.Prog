@@ -154,25 +154,25 @@ _________________________________________________________
 #s:126|Corridor16|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]
 
 
-#c:31|Coronel Rubio|10|1|113|Rubio|Yo estaba bailando|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /#####\    |  `|              |  `\    /---\     /  ` \____________/   `
-#c:32|Sra. Celeste|10|1|125|Celeste|Los libros quizá den alguna pista|   _------____    `  /     ____  \    ` /    _/    \_ \   `/   _/   __   \ \ `|  /*)   (*)  |  |`|_/    /      /  /`(     |_-     /  /`\            /   /`|            /   /`\     \___/  /  / ` \__________/  /  `
-#c:33|Padre Prado|10|1|126|Prado|Rezaré para que se descubra al culpable|    ____  ____     `   /    \/    \    `  / /---__---\ \   ` / /          \ \  ` \/  [o]  [o]  \/ `(|      ||      |) ` |     (--)     |  ` |  ##########  |  ` |              |  `  \    |===|    /  `   \___#####___/   `
-#c:34|Profesor Mora|10|1|117|Mora|El estudio está lleno de secretos...|     __----__      `   _/        \_    ` /   __/  \__   \  ` / /          \ \  `/_/--(*)--(*)--\_\ `(|      ||      |) ` |     /__\     |  ` |  ##########  |  ` |##############|  `  \####(___)####/  `   \###########/   `
-#c:35|Dra. Orquídea|10|1|124|Orquídea|Las flores del Invernadero son tan bonitas...|     _-^^^^^-_     `   ((((((|))))))   `  ((((((   ))))))  ` (((((       ))))) ` ((( [o]   [o] ))) ` (((            )))` ((      V      )) ` ((             )) ` ((             )) `   \   \===/   /  `    \_________/    `
-#c:36|Señorita Amapola|10|1|111|Amapola|Ojala hubiese piscina...|   ____________    `  /     __     \   `  /  __/  \__  \   `/  _/__   __ \+_ | `| / [*]   [*]  \ | `||     |        || `||    /__       || `||              || `||   _______    || `||\  \_____/   /|| `// \___---____/ \\ `
+#c:31|Coronel Rubio|10|1|0|113|Rubio|Yo estaba bailando|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /#####\    |  `|              |  `\    /---\     /  ` \____________/   `
+#c:32|Sra. Celeste|10|1|0|125|Celeste|Los libros quizá den alguna pista|   _------____    `  /     ____  \    ` /    _/    \_ \   `/   _/   __   \ \ `|  /*)   (*)  |  |`|_/    /      /  /`(     |_-     /  /`\            /   /`|            /   /`\     \___/  /  / ` \__________/  /  `
+#c:33|Padre Prado|10|1|0|126|Prado|Rezaré para que se descubra al culpable|    ____  ____     `   /    \/    \    `  / /---__---\ \   ` / /          \ \  ` \/  [o]  [o]  \/ `(|      ||      |) ` |     (--)     |  ` |  ##########  |  ` |              |  `  \    |===|    /  `   \___#####___/   `
+#c:34|Profesor Mora|10|1|0|117|Mora|El estudio está lleno de secretos...|     __----__      `   _/        \_    ` /   __/  \__   \  ` / /          \ \  `/_/--(*)--(*)--\_\ `(|      ||      |) ` |     /__\     |  ` |  ##########  |  ` |##############|  `  \####(___)####/  `   \###########/   `
+#c:35|Dra. Orquídea|10|1|0|124|Orquídea|Las flores del Invernadero son tan bonitas...|     _-^^^^^-_     `   ((((((|))))))   `  ((((((   ))))))  ` (((((       ))))) ` ((( [o]   [o] ))) ` (((            )))` ((      V      )) ` ((             )) ` ((             )) `   \   \===/   /  `    \_________/    `
+#c:36|Señorita Amapola|10|1|0|111|Amapola|Ojala hubiese piscina...|   ____________    `  /     __     \   `  /  __/  \__  \   `/  _/__   __ \+_ | `| / [*]   [*]  \ | `||     |        || `||    /__       || `||              || `||   _______    || `||\  \_____/   /|| `// \___---____/ \\ `
 
 
-#c:37|Perro guarda|3|0|10|000|¡Guau!
-#c:38|Guard1|3|0|111|Guard1|You'll have to kill me if you want to pass
-#c:39|Guard2|3|0|113|Guard2|You'll have to kill me if you want to pass
-#c:40|Guard3|3|0|120|Guard3|You'll have to kill me if you want to pass
-#c:41|Guard4|3|0|125|Guard4|You'll have to kill me if you want to pass
-#c:42|Guard5|3|0|126|Guard5|You'll have to kill me if you want to pass
-#c:43|Guard6|3|0|124|Guard6|You'll have to kill me if you want to pass
-#c:44|Guard7|3|0|117|Guard7|You'll have to kill me if you want to pass
-#c:45|Guard8|3|0|118|Guard8|You'll have to kill me if you want to pass
-#c:46|Guard9|3|0|119|Guard9|You'll have to kill me if you want to pass
-#c:47|Guard10|3|0|122|Guard10|You'll have to kill me if you want to pass
+#c:37|Perro guarda|3|0|1|10|000|¡Guau!
+#c:38|Guard1|3|0|1|111|Guard1|You'll have to kill me if you want to pass
+#c:39|Guard2|3|0|1|113|Guard2|You'll have to kill me if you want to pass
+#c:40|Guard3|3|0|1|120|Guard3|You'll have to kill me if you want to pass
+#c:41|Guard4|3|0|1|125|Guard4|You'll have to kill me if you want to pass
+#c:42|Guard5|3|0|1|126|Guard5|You'll have to kill me if you want to pass
+#c:43|Guard6|3|0|1|124|Guard6|You'll have to kill me if you want to pass
+#c:44|Guard7|3|0|1|117|Guard7|You'll have to kill me if you want to pass
+#c:45|Guard8|3|0|1|118|Guard8|You'll have to kill me if you want to pass
+#c:46|Guard9|3|0|1|119|Guard9|You'll have to kill me if you want to pass
+#c:47|Guard10|3|0|1|122|Guard10|You'll have to kill me if you want to pass
 
 #c:48|Loro|3|1|201|mp>|No coronel! A mi no!
 #c:49|Jardinero|3|1|106|m-o|Alguien ha visto la cuerda? La necesito para trabajar

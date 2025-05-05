@@ -186,6 +186,7 @@ Status game_reader_load_characters(Game *game, char *filename){
   Character *character = NULL;
   Status status = OK;
   long health = 0;
+  int damage = 0;
   Bool friendly =FALSE;
   int row = 0;
 
@@ -209,6 +210,8 @@ Status game_reader_load_characters(Game *game, char *filename){
       health = atol(toks);
       toks = strtok(NULL, "|");
       friendly = (Bool)atol(toks);
+      toks = strtok(NULL, "|");
+      damage = atol(toks);
       toks = strtok(NULL, "|");
       space_id = atol(toks);
       toks = strtok(NULL, "|");
@@ -237,6 +240,7 @@ Status game_reader_load_characters(Game *game, char *filename){
       character_set_name(character, name);
       character_set_friendly(character, friendly);
       character_set_health(character, health);
+      character_set_damage(character, damage);
       character_set_message(character, message);
       character_set_gdesc(character, gdesc);
       character_set_face(character, (const char(*)[FACE_WIDTH])face);

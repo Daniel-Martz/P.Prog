@@ -20,6 +20,7 @@
 #define INIT_DAMAGE 0
 #define INIT_PLAYER_DAMAGE 1
 #define MAX_MESSAGE_GUESS 1000
+#define RANDOM 2520
 
 /**
    Private functions
@@ -494,10 +495,10 @@ Status game_actions_attack(Game *game)
   if (game_get_character_location(game, character_get_id(character)) != player_location)
     return ERROR;
 
-  turn = rand() % 10;
-  if ((turn < 0) || turn > 9)
+  turn = rand() % RANDOM;
+  if ((turn < 0) || turn > (RANDOM - 1))
     return ERROR;
-  if (turn > 15)
+  if (turn > (RANDOM/2))
   {
     /* If the attacking player loses a new random variable determines who loses a hitpoint (it goes from 0 up to the number of following characters)*/
     following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));
@@ -505,7 +506,14 @@ Status game_actions_attack(Game *game)
     {
       return ERROR;
     }
-    turn2 = rand() % following;
+    if (following == 0)
+    {
+      turn2 = 0;
+    }
+    else
+    {
+      turn2 = turn % (following + 1);
+    }
     /* If the random number is 0 (will always be if the player has no following characters) the player loses a hitpoint */
     if (turn2 == 0)
     {
@@ -530,14 +538,6 @@ Status game_actions_attack(Game *game)
       }
 
       character_set_health(characters[turn2 - 1], new_health);
-      for (i = 0; i < game_get_ncharacters(game); i++)
-      {
-        if (character_get_health(characters[i]) <= 0)
-        {
-          character_set_following(characters[i], NO_ID);
-        }
-      }
-      free(characters);
     }
   }
   else
