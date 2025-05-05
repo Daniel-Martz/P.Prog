@@ -71,7 +71,7 @@ void game_rules_random_attack(Game *game)
 
 void game_rules_open_door1(Game *game)
 {
-    char *guard1_name = "Guard1";
+    char *guard1_name = "Guarda1";
     Character *guard1 = NULL;
     char *key1_name = "Key1";
     Object *key1 = NULL;
@@ -102,12 +102,12 @@ void game_rules_open_door1(Game *game)
 
 void game_rules_open_door2(Game *game)
 {
-    char *guard2_name = "Guard2";
+    char *guard2_name = "Guarda2";
     Character *guard2 = NULL;
     char *key2_name = "Key2";
     Object *key2 = NULL;
     Id key2_id = 902;
-    Id link2_id = NO_ID;
+    Id link2_id = 49;
 
     if (!game)
         return;
@@ -128,12 +128,16 @@ void game_rules_open_door2(Game *game)
         object_set_description(key2, "A key to open the door");
         object_set_movable(key2, TRUE);
         object_set_open(key2, link2_id);
+
+        game_add_object(game, key2);
+        space_set_new_object(game_get_space(game, game_get_player_location(game)), key2_id);
+        game_set_message(game, "The guard has dropped a key!");
     }
 }
 
 void game_rules_open_door3(Game *game)
 {
-    char *guard3_name = "Guard3";
+    char *guard3_name = "Guarda3";
     Character *guard3 = NULL;
     char *key3_name = "Key3";
     Object *key3 = NULL;
@@ -164,7 +168,7 @@ void game_rules_open_door3(Game *game)
 
 void game_rules_open_door4(Game *game)
 {
-    char *guard4_name = "Guard4";
+    char *guard4_name = "Guarda4";
     Character *guard4 = NULL;
     char *key4_name = "Key4";
     Object *key4 = NULL;
@@ -195,7 +199,7 @@ void game_rules_open_door4(Game *game)
 
 void game_rules_open_door5(Game *game)
 {
-    char *guard5_name = "Guard5";
+    char *guard5_name = "Guarda5";
     Character *guard5 = NULL;
     char *key5_name = "Key5";
     Object *key5 = NULL;
@@ -226,7 +230,7 @@ void game_rules_open_door5(Game *game)
 
 void game_rules_open_door6(Game *game)
 {
-    char *guard6_name = "Guard6";
+    char *guard6_name = "Guarda6";
     Character *guard6 = NULL;
     char *key6_name = "Key6";
     Object *key6 = NULL;
@@ -257,7 +261,7 @@ void game_rules_open_door6(Game *game)
 
 void game_rules_open_door7(Game *game)
 {
-    char *guard7_name = "Guard7";
+    char *guard7_name = "Guarda7";
     Character *guard7 = NULL;
     char *key7_name = "Key7";
     Object *key7 = NULL;
@@ -288,7 +292,7 @@ void game_rules_open_door7(Game *game)
 
 void game_rules_open_door8(Game *game)
 {
-    char *guard8_name = "Guard8";
+    char *guard8_name = "Guarda8";
     Character *guard8 = NULL;
     char *key8_name = "Key8";
     Object *key8 = NULL;
@@ -314,6 +318,68 @@ void game_rules_open_door8(Game *game)
         object_set_description(key8, "A key to open the door");
         object_set_movable(key8, TRUE);
         object_set_open(key8, link8_id);
+    }
+}
+
+void game_rules_open_door9(Game *game)
+{
+    char *guard9_name = "Guarda9";
+    Character *guard9 = NULL;
+    char *key9_name = "Key9";
+    Object *key9 = NULL;
+    Id key9_id = 909;
+    Id link9_id = NO_ID;
+
+    if (!game)
+        return;
+
+    guard9 = game_get_character_from_name(game, guard9_name);
+    if (!guard9)
+        return;
+
+    key9 = game_get_object(game, key9_id);
+    if (key9) {
+        return;
+    }
+
+    if (character_get_health(guard9) == 0)
+    {
+        key9 = object_create(key9_id);
+        object_set_name(key9, key9_name);
+        object_set_description(key9, "A key to open the door");
+        object_set_movable(key9, TRUE);
+        object_set_open(key9, link9_id);
+    }
+}
+
+void game_rules_open_door10(Game *game)
+{
+    char *guard10_name = "Guarda10";
+    Character *guard10 = NULL;
+    char *key10_name = "Key10";
+    Object *key10 = NULL;
+    Id key10_id = 910;
+    Id link10_id = NO_ID;
+
+    if (!game)
+        return;
+
+    guard10 = game_get_character_from_name(game, guard10_name);
+    if (!guard10)
+        return;
+
+    key10 = game_get_object(game, key10_id);
+    if (key10) {
+        return;
+    }
+
+    if (character_get_health(guard10) == 0)
+    {
+        key10 = object_create(key10_id);
+        object_set_name(key10, key10_name);
+        object_set_description(key10, "A key to open the door");
+        object_set_movable(key10, TRUE);
+        object_set_open(key10, link10_id);
     }
 }
 
@@ -371,6 +437,8 @@ void game_rules_run_all(Game *game)
     game_rules_open_door6(game);
     game_rules_open_door7(game);
     game_rules_open_door8(game);
+    game_rules_open_door9(game);
+    game_rules_open_door10(game);
     game_rules_check_boss_defeat(game);
     game_rules_change_turn(game);
 }

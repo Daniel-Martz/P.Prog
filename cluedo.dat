@@ -163,20 +163,16 @@ _________________________________________________________
  \____________/   |  
 
 #c:37|Perro guarda|3|0|10|000|¡Guau!
-#c:38|Guarda1|3|0|111|Grd|Si quieres pasar, tendrás que matarme primero!
-#c:39|Guarda2|3|0|113|Grd|Si quieres pasar, tendrás que matarme primero!
-#c:40|Guarda3|3|0|120|Grd|Si quieres pasar, tendrás que matarme primero!
-#c:41|Guarda4|3|0|125|Grd|Si quieres pasar, tendrás que matarme primero!
-#c:42|Guarda5|3|0|126|Grd|Si quieres pasar, tendrás que matarme primero!
-#c:43|Guarda6|3|0|124|Grd|Si quieres pasar, tendrás que matarme primero!
-#c:44|Guarda7|3|0|117|Grd|Si quieres pasar, tendrás que matarme primero!
-#c:45|Guarda8|3|0|118|Grd|Si quieres pasar, tendrás que matarme primero!
-#c:46|Guarda9|3|0|119|Grd|Si quieres pasar, tendrás que matarme primero!
-#c:47|Guarda10|3|0|122|Grd|Si quieres pasar, tendrás que matarme primero!
-
-#c:48|Parrot|3|1|201|ml>|Para Coronel! Ahh
-#c:49|Anciana|3|1|102|/0\|Donde habré dejado mi cuerda? La necesito
-
+#c:38|Guarda1|3|0|111|Grd|You'll have to kill me if you want to pass
+#c:39|Guarda2|3|0|113|Grd|You'll have to kill me if you want to pass
+#c:40|Guarda3|3|0|120|Grd|You'll have to kill me if you want to pass
+#c:41|Guarda4|3|0|125|Grd|You'll have to kill me if you want to pass
+#c:42|Guarda5|3|0|126|Grd|You'll have to kill me if you want to pass
+#c:43|Guarda6|3|0|124|Grd|You'll have to kill me if you want to pass
+#c:44|Guarda7|3|0|117|Grd|You'll have to kill me if you want to pass
+#c:45|Guarda8|3|0|118|Grd|You'll have to kill me if you want to pass
+#c:46|Guarda9|3|0|119|Grd|You'll have to kill me if you want to pass
+#c:47|Guarda10|3|0|122|Grd|You'll have to kill me if you want to pass
 
 #p:1|Detective|DET|10|10|3|
 

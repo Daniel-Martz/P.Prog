@@ -18,6 +18,7 @@
 #include <strings.h>
 
 #define INIT_DAMAGE 0
+#define INIT_PLAYER_DAMAGE 1
 #define MAX_MESSAGE_GUESS 1000
 
 /**
@@ -489,7 +490,7 @@ Status game_actions_attack(Game *game)
   turn = rand() % 10;
   if ((turn < 0) || turn > 9)
     return ERROR;
-  if (turn < 5)
+  if (turn > 15)
   {
     /* If the attacking player loses a new random variable determines who loses a hitpoint (it goes from 0 up to the number of following characters)*/
     following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));
@@ -535,7 +536,7 @@ Status game_actions_attack(Game *game)
   else
   {
     /* If the attacking player wins the attacked charcater loses a hitpoint*/
-    if ((new_health = (character_get_health(character) - (game_get_player_total_damage(game, player_get_id(game_get_player(game)))))) < 0)
+    if (((character_get_health(character) - (game_get_player_total_damage(game, player_get_id(game_get_player(game))))) <= 0))
     {
       new_health = 0;
     }
@@ -545,7 +546,7 @@ Status game_actions_attack(Game *game)
     }
 
     /* set players and its following characters damage to 0*/
-    player_set_damage(game_get_player(game), INIT_DAMAGE);
+    player_set_damage(game_get_player(game), INIT_PLAYER_DAMAGE);
     characters = game_get_followingcharacters(game, player_get_id(game_get_player(game)));
     for (i = 0; i < game_get_nfollowingcharacters(game, player_get_id(game_get_player(game))); i++)
     {
