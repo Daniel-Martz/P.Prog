@@ -599,10 +599,10 @@ Id game_get_link_id_at(Game* game, int index);
  * @brief Obtains a player by its id
  * @author Jaime Romero
  * @param game Pointer to Game
- * @param index Índice del array de enlaces
+ * @param player_id The id of the player
  * @return Pointer to the player or NULL if it doesn't exist or there is an error
  */
-Player *game_get_player_by_id(Game* game, int index);
+Player *game_get_player_by_id(Game* game, Id player_id);
 
 /**
  * @brief Obtains a link by its id

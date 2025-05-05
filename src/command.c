@@ -202,7 +202,7 @@ Status command_get_user_input(Command* command) {
       command_set_strin(command, token);
     }
     if(cmd == USE || cmd == OPEN){
-      token = strtok(NULL, "0 \n");
+      token = strtok(NULL, "\n");
       command_set_strin(command, token);
     }
 

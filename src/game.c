@@ -760,14 +760,22 @@ Id game_get_link_id_at(Game* game, int index) {
   return link_get_id(game->links[index]);
 }
 
-Player *game_get_player_by_id(Game* game, int index) {
-  if (!game || index < 0 || index >= MAX_PLAYERS) {
+Player *game_get_player_by_id(Game* game, Id player_id) {
+  int i=0;
+  Player **players = NULL;
+
+  if (!game || player_id == NO_ID) {
     return NULL;
   }
   
-  if (!game->players[index]) return NULL;
+  players = game_get_players(game);
+  for (i = 0; i < game->n_players; i++) {
+    if (player_id == player_get_id(players[i])) {
+      return players[i];
+    }
+  }
   
-  return game->players[index];
+  return NULL;
 }
 
 Link *game_get_link_by_id(Game* game, Id id) {
@@ -886,10 +894,14 @@ int game_get_player_total_damage(Game *game, Id player_id) {
   int damage = 0, i;
   Character **characters = NULL;
 
-  if(!game || player_id == NO_ID) return POINT_ERROR;
+  if((!game) || (player_id == NO_ID)) return POINT_ERROR;
 
   damage += player_get_damage(game_get_player_by_id(game, player_id));
   characters = game_get_followingcharacters(game, player_id);
+
+  if (characters == NULL) {
+    return damage;
+  }
 
   for (i = 0; i< game_get_nfollowingcharacters(game, player_id); i++) {
     damage += character_get_damage(characters[i]) + 1;
