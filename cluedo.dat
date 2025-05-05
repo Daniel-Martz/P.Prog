@@ -142,24 +142,13 @@ _________________________________________________________
 #s:126|Corridor16|
 
 
-#c:31|Coronel Rubio|10|1|113|Rubio|Yo estaba bailando|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /_____\    |  `|              |  `\    /---\     /  ` \____________/   `
+#c:31|Coronel Rubio|10|1|113|Rubio|Yo estaba bailando|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /#####\    |  `|              |  `\    /---\     /  ` \____________/   `
 #c:32|Sra. Celeste|10|1|125|Celeste|Los libros quizá den alguna pista|   _------____    `  /     ____  \    ` /    _/    \_ \   `/   _/   __   \ \ `|  /*)   (*)  |  |`|_/    /      /  /`(     |_-     /  /`\            /   /`|            /   /`\     \___/  /  / ` \__________/  /  `
-#c:33|Padre Prado|10|1|126|Prado|Rezaré para que se descubra al culpable
-#c:34|Profesor Mora|10|1|117|Mora|EL estudio está lleno de secretos...
-#c:35|Dra. Orquídea|10|1|124|Orquídea|Las flores del Invernadero son tan bonitas...
-#c:36|Señorita Amapola|10|1|111|Amapola|Ojala hubiese piscina...
+#c:33|Padre Prado|10|1|126|Prado|Rezaré para que se descubra al culpable|    ____  ____     `   /    \/    \    `  / /---__---\ \   ` / /          \ \  ` \/  [o]  [o]  \/ `(|      ||      |) ` |     (--)     |  ` |  ##########  |  ` |              |  `  \    |===|    /  `   \___#####___/   `
+#c:34|Profesor Mora|10|1|117|Mora|EL estudio está lleno de secretos...|     __----__      `   _/        \_    ` /   __/  \__   \  ` / /          \ \  `/_/--(*)--(*)--\_\ `(|      ||      |) ` |     /__\     |  ` |  ##########  |  ` |##############|  `  \####(___)####/  `   \###########/   `
+#c:35|Dra. Orquídea|10|1|124|Orquídea|Las flores del Invernadero son tan bonitas...|     _-^^^^^-_     `   ((((((|))))))   `  ((((((   ))))))  ` (((((       ))))) ` ((( [o]   [o] ))) ` (((            )))` ((      V      )) ` ((             )) ` ((             )) `   \   \===/   /  `    \_________/    `
+#c:36|Señorita Amapola|10|1|111|Amapola|Ojala hubiese piscina...|   ____________    `  /     __     \   `  /  __/  \__  \   `/  _/__   __ \+_ | `| / [*]   [*]  \ | `||     |        || `||    /__       || `||              || `||   _______    || `||\  \_____/   /|| `// \___---____/ \\ `
 
- _____----____    |
-/       _____-\   |
-|      /     \_\  |
-|   __/  __    | ||
-|_-/*]   [*]   | ||
-|	   |       /_/|
-(     _0__     |) |
-\              |  |
-|              |  |
-\    /---\     /  |
- \____________/   |  
 
 #c:37|Perro guarda|3|0|10|000|¡Guau!
 #c:38|Guarda1|3|0|111|Guarda1|You'll have to kill me if you want to pass
