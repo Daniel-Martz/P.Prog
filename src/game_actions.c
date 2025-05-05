@@ -263,6 +263,12 @@ Status game_actions_move(Game *game)
       game_set_player_location(game, current_id);
 
       /*Mover a los personajes que le están siguiendo*/
+
+      if (game_get_followingcharacters(game, player_id) == NULL)
+      {
+        return OK;
+      }
+      
       characters_follow = game_get_followingcharacters(game, player_id);
       for (i = 0; i < game_get_nfollowingcharacters(game, player_id); i++)
       {
@@ -491,7 +497,7 @@ Status game_actions_attack(Game *game)
   turn = rand() % 10;
   if ((turn < 0) || turn > 9)
     return ERROR;
-  if (turn > 5)
+  if (turn > 15)
   {
     /* If the attacking player loses a new random variable determines who loses a hitpoint (it goes from 0 up to the number of following characters)*/
     following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));

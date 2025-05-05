@@ -500,7 +500,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         sprintf(str, "  Characters: ");
         screen_area_puts(ge->descript, str);
         for(i=0; i< game_get_n_characters_discovered(game); i++){
-          sprintf(str, "    %6.6s : %i (%i)",character_get_gdesc(characters[i]), (int)characters_location[i],character_get_health(characters[i]));
+          sprintf(str, "    %6.15s : %i (%i)",character_get_name(characters[i]), (int)characters_location[i],character_get_health(characters[i]));
           screen_area_puts(ge->descript, str);
         }
       }
@@ -512,7 +512,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     sprintf(str,"  Players: " );
     screen_area_puts(ge->descript, str);
     for(i=0; i< game_get_nplayers(game); i++){
-      sprintf(str, "    %6.6s : %i (%i)",player_get_name(players[i]), (int)player_get_location(players[i]),player_get_health(players[i]));
+      sprintf(str, "    %6.15s : %i (%i)",player_get_name(players[i]), (int)player_get_location(players[i]),player_get_health(players[i]));
       screen_area_puts(ge->descript, str);
     }
 

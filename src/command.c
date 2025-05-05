@@ -150,15 +150,15 @@ Status command_get_user_input(Command* command) {
       }
     }
     if(cmd == TAKE){
-      token = strtok(NULL, "0 \n");
+      token = strtok(NULL, "\n");
       command_set_strin(command, token);
     }
     if(cmd == DROP){
-      token = strtok(NULL, "0 \n");
+      token = strtok(NULL, "\n");
       command_set_strin(command, token);
     }
     if(cmd == MOVE){
-      token = strtok(NULL, "0 \n");
+      token = strtok(NULL, "\n");
       if (token == NULL) {
         command_set_direction(command, U);
       }
@@ -185,20 +185,20 @@ Status command_get_user_input(Command* command) {
       }
     }
     if(cmd == INSPECT){
-      token = strtok(NULL, "0 \n");
+      token = strtok(NULL, "n");
       command_set_strin(command, token);
     }
 
     if(cmd == RECRUIT || cmd == ABANDON){
-      token = strtok(NULL, "0 \n");
+      token = strtok(NULL, "\n");
       command_set_strin(command, token);
     }
     if(cmd == CHAT){
-      token = strtok(NULL, "0 \n");
+      token = strtok(NULL, "\n");
       command_set_strin(command, token);
     }
     if(cmd == ATTACK){
-      token = strtok(NULL, "0 \n");
+      token = strtok(NULL, "\n");
       command_set_strin(command, token);
     }
     if(cmd == USE || cmd == OPEN){
