@@ -266,7 +266,7 @@ Status game_actions_move(Game *game)
 
       if (game_get_followingcharacters(game, player_id) == NULL)
       {
-        return ERROR;
+        return OK;
       }
       
       characters_follow = game_get_followingcharacters(game, player_id);
