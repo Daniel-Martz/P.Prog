@@ -99,7 +99,7 @@ void free_gengine_paint_game(char**space){
  */
 char **graphic_engine_print_space(Id space_id, Game *game){
   char str[MAX_STR];
-  char **strspace, charac_gdesc[G_DESC];
+  char **strspace, charac_gdesc[G_DESC]={0};
   const char* gdesc[N_ROWS];
   Space *space= NULL;
   Id *objects_id = NULL;
