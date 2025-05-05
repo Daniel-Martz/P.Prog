@@ -22,12 +22,14 @@
 #define MAX_STR 255/*!< Constant assigned fpr the maximum length of a string*/
 #define MAX_BUFFER 300/*!< Constant assigned for the lenght of an auxiliary buffer*/
 #define WIDTH_MAP 79/*!< Constant asignated for the width of the map*/
-#define WIDTH_DES 40/*!< Constant asignated for the width of the description*/
+#define WIDTH_DES 50/*!< Constant asignated for the width of the description*/
 #define WIDTH_BAN 150/*!< Constant asignated for the width of the banner*/
 #define HEIGHT_MAP 60/*!< Constant asignated for the height of the map*/
 #define HEIGHT_BAN 1/*!< Constant asignated for the height of the banner*/
-#define HEIGHT_DES 50/*!< Constant asignated for the height of description inter*/
+#define HEIGHT_DES 50/*!< Constant asignated for the height of description interface*/
 #define HEIGHT_HLP 3/*!< Constant asignated for the height of help interface*/
+#define HEIGHT_CLUES 20/*!< Constante asignated for the height of the clues interface*/
+#define WIDTH_CLUES 70/*!< Constant asignated for the width of the clues interface*/
 #define HEIGHT_FDB 3/*!< Constant asignated for the height of feedback interface*/
 #define WIDTH_SPACE 23/*!< Constante asignated for the maximum size of the lines inside the space*/
 #define HEIGHT_SPACE 18/*!< Constante asignated for the maximum size of the columns inside the space*/
@@ -66,6 +68,8 @@ struct _Graphic_engine {
   Area *help;/*!< It defines the area of the help interface*/
   Area *feedback;/*!< It defines the area of the feedback interface*/
   Area *face;/*!< It defines the area for the faces of the characters*/
+  Area *vision;/*!< It defines the area for the vision of the player*/
+  Area *clues; /*!< It defines the area to print the clues*/
 };
 
 /*--------------------------------------PRIVATE FUNCTIONS--------------------------------------*/
@@ -285,7 +289,7 @@ Graphic_engine *graphic_engine_create(void) {
   }
 
   /* Initializates the screen areaa */
-  screen_init(HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + HEIGHT_FDB + 5, WIDTH_MAP + WIDTH_DES + 3);
+  screen_init(HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + HEIGHT_FDB + 5, WIDTH_MAP + WIDTH_DES +WIDTH_CLUES + 4);
   ge = (Graphic_engine *)malloc(sizeof(Graphic_engine));
   if (ge == NULL) {
     return NULL;
@@ -306,10 +310,16 @@ Graphic_engine *graphic_engine_create(void) {
   /* Initializates the feedback window area */
   ge->feedback = screen_area_init(WIDTH_DES + 2, HEIGHT_MAP + HEIGHT_BAN + HEIGHT_HLP + 4, WIDTH_MAP, HEIGHT_FDB);
 
-    /* Initializates the feedback window area */
+    /* Initializates the face window area */
   ge->face = screen_area_init(1, HEIGHT_DES + 3 + HEIGHT_BAN, WIDTH_DES, HEIGHT_HLP + HEIGHT_FDB + HEIGHT_MAP - HEIGHT_DES + 1);
 
-  if (!ge->map || !ge->descript || !ge->banner || !ge->help || !ge->feedback || !ge->face) {
+    /* Initializates the clues window area */
+  ge->clues = screen_area_init( WIDTH_DES + WIDTH_MAP + 3, 2+ HEIGHT_BAN, WIDTH_CLUES , HEIGHT_CLUES );
+
+    /* Initializates the vision window area */
+  ge->vision = screen_area_init( WIDTH_DES + WIDTH_MAP + 3, HEIGHT_CLUES + 4, WIDTH_CLUES ,HEIGHT_MAP - HEIGHT_CLUES + 7);
+
+  if (!ge->map || !ge->descript || !ge->banner || !ge->help || !ge->feedback || !ge->face || !ge->clues || !ge->vision) {
     free(ge);
     return NULL;
   }
@@ -326,6 +336,8 @@ void graphic_engine_destroy(Graphic_engine *ge) {
   screen_area_destroy(ge->help);
   screen_area_destroy(ge->feedback);
   screen_area_destroy(ge->face);
+  screen_area_destroy(ge->clues);
+  screen_area_destroy(ge->vision);
 
   screen_destroy();
   free(ge);
@@ -336,15 +348,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, id_left = NO_ID, id_right = NO_ID, *objects_location = NULL, *characters_location = NULL, *player_objects = NULL;
   char buffer[MAX_BUFFER];
   char str[MAX_STR], character_name[MAX_STR];
-  char **space_empty = NULL;
+  char **space_empty = NULL, object[MAX_STR];
   char **space_left = NULL ,**space_right = NULL, **space_back = NULL, **space_next = NULL, **space_actual = NULL, **space1 = NULL, **space2 = NULL, **space3 = NULL;
   int i=0, j=0;
   CommandCode last_cmd = UNKNOWN;
   char cmd_result[MAX_RESULT];
   extern char *cmd_to_str[N_CMD][N_CMDT];
-  Object **objects;
-  Character **characters = NULL, *character = NULL;
-  Player **players;
+  Object **objects = NULL, *obj_aux = NULL;
+  Character **characters = NULL, *character = NULL, **followers = NULL;
   char right = '>', left = '<', back = '^', next = 'v';
 
   /*INITIALIZES SOME VARIABLES*/
@@ -458,9 +469,23 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /* Paint in the description area */
     screen_area_clear(ge->descript);
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~ INFORMATION ~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+      /*IMPRESION*/
+    sprintf(str,"  Player playing (name: id (health)): " );
+    screen_area_puts(ge->descript, str);
+    sprintf(str, "    %6.15s : %i (%i)",player_get_name(game_get_player(game)), (int)player_get_location(game_get_player(game)),player_get_health(game_get_player(game)));
+    screen_area_puts(ge->descript, str);
+    sprintf(str,"  Current position: " );
+    screen_area_puts(ge->descript, str);
+    sprintf(str, "    %s (id: %i)", space_get_name(game_get_space(game,id_act)),(int)player_get_location(game_get_player(game)));
+    screen_area_puts(ge->descript, str);
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
     /*PASAMOS ARRAY DE OBJETOS A IDS*/
     if(!(objects = game_get_objects_discovered(game))){
-      screen_area_puts(ge->descript, "There are no objects discovered");
+      screen_area_puts(ge->descript, "        There are no objects discovered");
     }
     else{
       if(!(objects_location =(Id*)calloc(game_get_n_objects_discovered(game),sizeof(Id)))){
@@ -475,7 +500,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         sprintf(str, "  Objects: ");
         screen_area_puts(ge->descript, str);
         for(i=0; i< game_get_n_objects_discovered(game); i++){
-          sprintf(str, " %s: %i",object_get_name(game_get_object(game,object_get_id(objects[i]))), (int)objects_location[i]);
+          sprintf(str, "    %s: %i",object_get_name(game_get_object(game,object_get_id(objects[i]))), (int)objects_location[i]);
           screen_area_puts(ge->descript, str);
         }
       }
@@ -484,7 +509,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /*PASAMOS ARRAY DE CHARACTERS A IDS*/
     if(!(characters = game_get_characters_discovered(game))){
-      screen_area_puts(ge->descript, "There are no characters discovered");
+      screen_area_puts(ge->descript, "        There are no characters discovered");
     }
 
     else{
@@ -497,57 +522,87 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       }
       /*IMPRESION*/
       if (game_get_ncharacters(game) != 0) {
-        sprintf(str, "  Characters: ");
+        sprintf(str, "  Characters (name: id (health)): ");
         screen_area_puts(ge->descript, str);
         for(i=0; i< game_get_n_characters_discovered(game); i++){
-          sprintf(str, "    %6.15s : %i (%i)",character_get_name(characters[i]), (int)characters_location[i],character_get_health(characters[i]));
+          sprintf(str, "    %6.15s: %i (%i)",character_get_name(characters[i]), (int)characters_location[i],character_get_health(characters[i]));
           screen_area_puts(ge->descript, str);
         }
       }
     }
-    screen_area_puts(ge->descript, "       ");
-    
-    players = game_get_players(game);
-    /*IMPRESION*/
-    sprintf(str,"  Players: " );
-    screen_area_puts(ge->descript, str);
-    for(i=0; i< game_get_nplayers(game); i++){
-      sprintf(str, "    %6.15s : %i (%i)",player_get_name(players[i]), (int)player_get_location(players[i]),player_get_health(players[i]));
-      screen_area_puts(ge->descript, str);
-    }
 
-    screen_area_puts(ge->descript, "       ");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~ BACKPACK ~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     
     if(player_objects[0]!= NO_ID){
       sprintf(str, "  Player objects:");
       screen_area_puts(ge->descript, str);
       if(inventory_get_n_objs(player_get_backpack(game_get_player(game)))==1){
-        sprintf(str,"      %s", object_get_name(game_get_object(game, player_objects[0])));
+        obj_aux = game_get_object(game, player_objects[0]);
+        if(object_get_offensive(obj_aux) == TRUE){
+          strcpy(object, "weapon");
+        }
+        else{
+          strcpy(object, "healing object");
+        }
+        sprintf(str,"      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[0])),object, object_get_health(obj_aux));
         screen_area_puts(ge->descript, str);
       }
       if(inventory_get_n_objs(player_get_backpack(game_get_player(game)))>1){
-        sprintf(str,"      %s", object_get_name(game_get_object(game, player_objects[0])));
-        for(i = 1; i < inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++ ){
-          sprintf(buffer, "%s, %s", str, object_get_name(game_get_object(game, player_objects[i])));
-          strcpy(str, buffer);
-        }
+        for(i = 0; i < inventory_get_n_objs(player_get_backpack(game_get_player(game))); i++ ){
+          obj_aux = game_get_object(game, player_objects[i]);
+          if(object_get_offensive(obj_aux) == TRUE){
+            strcpy(object, "weapon");
+          }
+          else{
+            strcpy(object, "healing object");
+          }
+          sprintf(str,"      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[i])),object,object_get_health(obj_aux));
           screen_area_puts(ge->descript, str);
+        }
       }
     }
 
     else{
-      screen_area_puts(ge->descript, "  Player has no objects");
+      screen_area_puts(ge->descript, "              Player has no objects");
+    }  
+
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~ FOLLOWERS ~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+    if(!(followers = game_get_followingcharacters(game, player_get_id(game_get_player(game))))){
+      screen_area_puts(ge->descript, "              There are no followers");
+    }
+    else{
+      screen_area_puts(ge->descript, "     Your followers (name: (damage) (health)):");
+      for(i= 0; i<game_get_nfollowingcharacters(game,player_get_id(game_get_player(game))); i++){
+        sprintf(str, "         %s: (%i)(%i)", character_get_name(followers[i]), character_get_damage(followers[i]), character_get_health(followers[i]));  
+        screen_area_puts(ge->descript,str);
+      }
     }
 
-    screen_area_puts(ge->descript, "        ");
 
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~ MESSAGE ~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     if(game_get_message(game) != NULL){
-      sprintf(str," Message: %s",game_get_message(game));
-      screen_area_puts(ge->descript, str);
+      sprintf(str, "%s", game_get_message(game));
+      if(str[0] != '\0'){
+        screen_area_puts(ge->descript, str);
+      }
+      else{
+        screen_area_puts(ge->descript, "              There is no message");
+      }
     }
+    else{
+      screen_area_puts(ge->descript, "              There is no message");
+    }
+
 
     /* Paint in the banner area */
-    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLUEDO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLUEDO ~~~~~~~~~~~~~~~~~~~~~~~");
 
     /* Paint in the help area */
     screen_area_clear(ge->help);
@@ -571,20 +626,20 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /* PAINT THE FACE AREA*/
 
-    screen_area_clear(ge->face);
+
     if(last_cmd == CHAT && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
-      screen_area_puts(ge->face, "");
       strncpy(character_name, command_get_strin(game_get_last_command(game)), MAX_STR);
       character = game_get_character_from_name(game, character_name);
-      snprintf(str, MAX_NAME,  "Character: %s", character_name);
+      screen_area_puts(ge->face, "                                     ");
+      snprintf(str, MAX_NAME,  "  Character: %s", character_name);
       screen_area_puts(ge->face, str);
-      screen_area_puts(ge->face, "");
-      screen_area_puts(ge->face, "  ------------------------   ");
+      screen_area_puts(ge->face, "                                     ");
+      screen_area_puts(ge->face, "             ------------------------   ");
       for(i=0; i < FACE_HEIGHT; i++){
-        sprintf(str, " |   %s   |", character_get_face(character, i));
+        sprintf(str, "            |   %s   |", character_get_face(character, i));
         screen_area_puts(ge->face, str);
       }
-      screen_area_puts(ge->face, "  ------------------------   ");
+      screen_area_puts(ge->face, "             ------------------------   ");
     }
 
 
