@@ -485,10 +485,11 @@ Status game_set_object_location(Game *game, Id space_id, Id object_id) {
 }
 
 Status game_set_character_location(Game *game, Id space_id, Id character_id){
-  if (space_id == NO_ID || character_id == NO_ID) {
+  if (!game || space_id == NO_ID || character_id == NO_ID) {
     return ERROR;
   }
 
+  space_character_del(game_get_space(game, space_id), character_id);
   space_set_newCharacter(game_get_space(game,space_id),character_id);
   
   return OK;

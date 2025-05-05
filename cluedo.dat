@@ -142,7 +142,7 @@ _________________________________________________________
 #s:126|Corridor16|
 
 
-#c:31|Coronel Rubio|10|1|113|Rubio|Yo estaba bailando|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /_____\    |  `|              |  `\    /---\     /  ` \____________/   `
+#c:31|Coronel_Rubio|10|1|113|Rubio|Yo estaba bailando|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /_____\    |  `|              |  `\    /---\     /  ` \____________/   `
 #c:32|Sra. Celeste|10|1|125|Celeste|Los libros quizá den alguna pista|   _------____    `  /     ____  \    ` /    _/    \_ \   `/   _/   __   \ \ `|  /*)   (*)  |  |`|_/    /      /  /`(     |_-     /  /`\            /   /`|            /   /`\     \___/  /  / ` \__________/  /  `
 #c:33|Padre Prado|10|1|126|Prado|Rezaré para que se descubra al culpable
 #c:34|Profesor Mora|10|1|117|Mora|EL estudio está lleno de secretos...
@@ -173,7 +173,7 @@ _________________________________________________________
 #c:46|Guarda9|3|0|119|Guarda9|You'll have to kill me if you want to pass
 #c:47|Guarda10|3|0|122|Guarda10|You'll have to kill me if you want to pass
 
-#p:1|Detective|DET|10|10|3|
+#p:1|Detective|DET|113|10|3|
 
 #l:40|Patio-Escaleras|10|11|2|1|
 #l:41|Escaleras-Patio|11|10|3|1|

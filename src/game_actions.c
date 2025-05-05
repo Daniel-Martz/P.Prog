@@ -263,6 +263,12 @@ Status game_actions_move(Game *game)
       game_set_player_location(game, current_id);
 
       /*Mover a los personajes que le están siguiendo*/
+
+      if (game_get_followingcharacters(game, player_id) == NULL)
+      {
+        return ERROR;
+      }
+      
       characters_follow = game_get_followingcharacters(game, player_id);
       for (i = 0; i < game_get_nfollowingcharacters(game, player_id); i++)
       {
