@@ -11,6 +11,7 @@
 #include "graphic_engine.h"
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
 #include "command.h"
@@ -572,7 +573,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       screen_area_puts(ge->face, "");
       strncpy(character_name, command_get_strin(game_get_last_command(game)), MAX_STR);
       character = game_get_character_from_name(game, character_name);
-      sprintf(str, "Character: %s", character_name);
+      snprintf(str, "Character: %s", character_name, MAX_NAME);
       screen_area_puts(ge->face, str);
       screen_area_puts(ge->face, "");
       screen_area_puts(ge->face, "  ------------------------   ");
