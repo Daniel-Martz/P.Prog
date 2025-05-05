@@ -99,7 +99,7 @@ void free_gengine_paint_game(char**space){
  */
 char **graphic_engine_print_space(Id space_id, Game *game){
   char str[MAX_STR];
-  char **strspace;
+  char **strspace, charac_gdesc[G_DESC];
   const char* gdesc[N_ROWS];
   Space *space= NULL;
   Id *objects_id = NULL;
@@ -208,8 +208,11 @@ else {
       if (charact_space != NULL) {
           int nonfollowing = game_get_space_n_nonfollowingcharacters(game, game_get_space(game, space_id), player_get_id(player));
           for (i = 0; i < nonfollowing; i++) {
-              strncat(str, " ", MAX_STR - strlen(str) - 1);
-              strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
+            if(!(strcpy(charac_gdesc,character_get_gdesc(charact_space[i])))){
+              return NULL;
+            }
+            strncat(str, " ", MAX_STR - strlen(str) - 1);
+            strncat(str, charac_gdesc, MAX_STR - strlen(str) - 1);
           }
           line_lenght = strlen(str);
           if (line_lenght > LIMIT) {
@@ -573,7 +576,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       screen_area_puts(ge->face, "");
       strncpy(character_name, command_get_strin(game_get_last_command(game)), MAX_STR);
       character = game_get_character_from_name(game, character_name);
-      snprintf(str, "Character: %s", character_name, MAX_NAME);
+      snprintf(str, MAX_NAME,  "Character: %s", character_name);
       screen_area_puts(ge->face, str);
       screen_area_puts(ge->face, "");
       screen_area_puts(ge->face, "  ------------------------   ");
