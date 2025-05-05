@@ -234,10 +234,10 @@ Status game_actions_exit(Game *game)
 
 Status game_actions_move(Game *game)
 {
-  Id current_id = NO_ID;
+  Id current_id = NO_ID, player_id = NO_ID;
   Id space_id = NO_ID;
   Direction direction;
-  Character **characters = NULL;
+  Character **characters_follow = NULL;
   int i = 0;
 
   if (!game)
@@ -252,7 +252,7 @@ Status game_actions_move(Game *game)
   }
 
   space_id = game_get_player_location(game);
-
+  player_id = player_get_id(game_get_player(game));
   if (game_connection_is_open(game, space_id, direction) == TRUE)
   {
     current_id = game_get_connection(game, space_id, direction);
@@ -262,13 +262,10 @@ Status game_actions_move(Game *game)
       game_set_player_location(game, current_id);
 
       /*Mover a los personajes que le están siguiendo*/
-      characters = game_get_characters(game);
-      for (i = 0; i < game_get_ncharacters(game); i++)
+      characters_follow = game_get_followingcharacters(game, player_id);
+      for (i = 0; i < game_get_nfollowingcharacters(game, player_id); i++)
       {
-        if (character_get_following(characters[i]) == player_get_id(game_get_player(game)))
-        {
-          game_set_character_location(game, current_id, character_get_id(characters[i]));
-        }
+        game_set_character_location(game, current_id, character_get_id(characters_follow[i]));
       }
     }
     else
@@ -504,7 +501,7 @@ Status game_actions_attack(Game *game)
     /* If the random number is 0 (will always be if the player has no following characters) the player loses a hitpoint */
     if (turn2 == 0)
     {
-      if ((new_health = player_get_health(game_get_player(game)) - 1) < 0)
+      if ((new_health = player_get_health(game_get_player(game)) - character_get_damage(character)) < 0)
       {
         new_health = 0;
       }
@@ -519,7 +516,7 @@ Status game_actions_attack(Game *game)
         return ERROR;
       }
 
-      if ((new_health = character_get_health(characters[turn2 - 1]) - 1) < 0)
+      if ((new_health = character_get_health(characters[turn2 - 1]) - character_get_damage(character)) < 0)
       {
         new_health = 0;
       }
@@ -538,13 +535,13 @@ Status game_actions_attack(Game *game)
   else
   {
     /* If the attacking player wins the attacked charcater loses a hitpoint*/
-    if ((character_get_health(character) - (game_get_player_total_damage(game, player_get_id(game_get_player(game))))) <= 0)
+    if ((new_health = (character_get_health(character) - (game_get_player_total_damage(game, player_get_id(game_get_player(game)))))) < 0)
     {
-      character_set_health(character, 0);
+      new_health = 0;
     }
-    else
-    {
-      character_set_health(character, character_get_health(character) - game_get_player_total_damage(game, player_get_id(game_get_player(game))));
+
+    if(character_set_health(character, new_health) == ERROR ){
+      return ERROR;
     }
 
     /* set players and its following characters damage to 0*/
@@ -771,14 +768,15 @@ Status game_actions_use(Game *game) {
 
   token = strtok(NULL, " \n");
   if(token == NULL) {
+    /* PARA OBJETOS OFENSIVOS */
     if (object_get_offensive(object) == TRUE){
-      if(player_set_damage(game_get_player(game), player_get_damage(game_get_player(game)) + object_get_health(object)) == ERROR) {
-        return ERROR;
-      }
+      return player_set_damage(game_get_player(game), object_get_health(object));   
+    } 
     
-    } else {
+    else {
       if(player_set_health(game_get_player(game), player_get_health(game_get_player(game)) + object_get_health(object)) == ERROR) {
         return ERROR;
+        return inventory_delete_obj_id(player_get_backpack(game_get_player(game)), object_get_id(object));
       }
     }
 
@@ -791,18 +789,16 @@ Status game_actions_use(Game *game) {
     if (character == NULL) {
       return ERROR;
     }
+
     if (object_get_offensive(object) == TRUE) {
-      if(character_set_damage(character, character_get_damage(character) + object_get_health(object)) == ERROR) {
-        return ERROR;
-      }
-    } else {
+      return character_set_damage(character, object_get_health(object));
+    } 
+    else {
       if (character_set_health(character, character_get_health(character) + object_get_health(object)) == ERROR) {
-        return ERROR;
+        return inventory_delete_obj_id(player_get_backpack(game_get_player(game)), object_get_id(object));
       }
     }
   }
-
-  inventory_delete_obj_id(player_get_backpack(game_get_player(game)), object_get_id(object));
   return OK;
 }
 
