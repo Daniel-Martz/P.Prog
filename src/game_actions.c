@@ -498,7 +498,7 @@ Status game_actions_attack(Game *game)
   turn = rand() % RANDOM;
   if ((turn < 0) || turn > (RANDOM - 1))
     return ERROR;
-  if (turn > -5)
+  if (turn > (RANDOM/2))
   {
     /* If the attacking player loses a new random variable determines who loses a hitpoint (it goes from 0 up to the number of following characters)*/
     following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));
