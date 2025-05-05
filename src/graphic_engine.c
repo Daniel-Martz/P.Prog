@@ -99,7 +99,7 @@ void free_gengine_paint_game(char**space){
  */
 char **graphic_engine_print_space(Id space_id, Game *game){
   char str[MAX_STR];
-  char **strspace, charac_gdesc[G_DESC]={0};
+  char **strspace, *charac_gdesc = NULL;
   const char* gdesc[N_ROWS];
   Space *space= NULL;
   Id *objects_id = NULL;
@@ -208,8 +208,8 @@ else {
       if (charact_space != NULL) {
           int nonfollowing = game_get_space_n_nonfollowingcharacters(game, game_get_space(game, space_id), player_get_id(player));
           for (i = 0; i < nonfollowing; i++) {
-            if(!(strcpy(charac_gdesc,character_get_gdesc(charact_space[i])))){
-              return NULL;
+            if(!(charac_gdesc = character_get_gdesc(charact_space[i]))){
+              continue;
             }
             strncat(str, " ", MAX_STR - strlen(str) - 1);
             strncat(str, charac_gdesc, MAX_STR - strlen(str) - 1);

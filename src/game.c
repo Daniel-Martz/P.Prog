@@ -485,10 +485,11 @@ Status game_set_object_location(Game *game, Id space_id, Id object_id) {
 }
 
 Status game_set_character_location(Game *game, Id space_id, Id character_id){
-  if (space_id == NO_ID || character_id == NO_ID) {
+  if (!game || space_id == NO_ID || character_id == NO_ID) {
     return ERROR;
   }
 
+  space_character_del(game_get_space(game, space_id), character_id);
   space_set_newCharacter(game_get_space(game,space_id),character_id);
   
   return OK;
@@ -781,12 +782,28 @@ Player *game_get_player_by_id(Game* game, Id player_id) {
 Link *game_get_link_by_id(Game* game, Id id) {
   int i = 0;
 
-  if (id == NO_ID) {
+  if (!game || id == NO_ID) {
     return NULL;
   }
 
   for (i = 0; i < game->n_links; i++) {
     if (id == link_get_id(game->links[i])) {
+      return game->links[i];
+    }
+  }
+
+  return NULL;
+}
+
+Link *game_get_link_by_name(Game *game, char *name) {
+  int i = 0;
+
+  if (!game || !name) {
+    return NULL;
+  }
+
+  for (i = 0; i < game->n_links; i++) {
+    if (!(strcmp(name, link_get_name(game->links[i])))) {
       return game->links[i];
     }
   }

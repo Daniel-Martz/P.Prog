@@ -80,7 +80,7 @@ const char* character_get_name(Character* character){
     return character->name;
 }
 
-const char* character_get_gdesc(Character* character){
+char * character_get_gdesc(Character* character){
     if(!character) return NULL;
     return character->gdesc;
 }

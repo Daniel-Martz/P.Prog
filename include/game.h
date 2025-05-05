@@ -613,6 +613,15 @@ Player *game_get_player_by_id(Game* game, Id player_id);
  */
 Link *game_get_link_by_id(Game* game, Id id);
 
+/**
+ * @brief Obtains a link by its id
+ * @author Jorge Martín
+ * @param game Pointer to Game
+ * @param name Name of the link
+ * @return Pointer to the link or NULL if it doesn't exist or there is an error
+ */
+Link *game_get_link_by_name(Game *game, char *name);
+
 
 /**
  * @brief It gets the number of characters that are following the player

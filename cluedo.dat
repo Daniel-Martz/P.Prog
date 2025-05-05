@@ -143,7 +143,7 @@ _________________________________________________________
 #s:126|Corridor16|
 
 
-#c:31|Coronel Rubio|10|1|113|Rubio|Yo estaba bailando|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /_____\    |  `|              |  `\    /---\     /  ` \____________/   `
+#c:31|Coronel_Rubio|10|1|113|Rubio|Yo estaba bailando|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /_____\    |  `|              |  `\    /---\     /  ` \____________/   `
 #c:32|Sra. Celeste|10|1|125|Celeste|Los libros quizá den alguna pista|   _------____    `  /     ____  \    ` /    _/    \_ \   `/   _/   __   \ \ `|  /*)   (*)  |  |`|_/    /      /  /`(     |_-     /  /`\            /   /`|            /   /`\     \___/  /  / ` \__________/  /  `
 #c:33|Padre Prado|10|1|126|Prado|Rezaré para que se descubra al culpable
 #c:34|Profesor Mora|10|1|117|Mora|EL estudio está lleno de secretos...
@@ -163,16 +163,16 @@ _________________________________________________________
  \____________/   |  
 
 #c:37|Perro guarda|3|0|10|000|¡Guau!
-#c:38|Guarda1|3|0|111|Grd|You'll have to kill me if you want to pass
-#c:39|Guarda2|3|0|113|Grd|You'll have to kill me if you want to pass
-#c:40|Guarda3|3|0|120|Grd|You'll have to kill me if you want to pass
-#c:41|Guarda4|3|0|125|Grd|You'll have to kill me if you want to pass
-#c:42|Guarda5|3|0|126|Grd|You'll have to kill me if you want to pass
-#c:43|Guarda6|3|0|124|Grd|You'll have to kill me if you want to pass
-#c:44|Guarda7|3|0|117|Grd|You'll have to kill me if you want to pass
-#c:45|Guarda8|3|0|118|Grd|You'll have to kill me if you want to pass
-#c:46|Guarda9|3|0|119|Grd|You'll have to kill me if you want to pass
-#c:47|Guarda10|3|0|122|Grd|You'll have to kill me if you want to pass
+#c:38|Guarda1|3|0|111|Guarda1|You'll have to kill me if you want to pass
+#c:39|Guarda2|3|0|113|Guarda2|You'll have to kill me if you want to pass
+#c:40|Guarda3|3|0|120|Guarda3|You'll have to kill me if you want to pass
+#c:41|Guarda4|3|0|125|Guarda4|You'll have to kill me if you want to pass
+#c:42|Guarda5|3|0|126|Guarda5|You'll have to kill me if you want to pass
+#c:43|Guarda6|3|0|124|Guarda6|You'll have to kill me if you want to pass
+#c:44|Guarda7|3|0|117|Guarda7|You'll have to kill me if you want to pass
+#c:45|Guarda8|3|0|118|Guarda8|You'll have to kill me if you want to pass
+#c:46|Guarda9|3|0|119|Guarda9|You'll have to kill me if you want to pass
+#c:47|Guarda10|3|0|122|Guarda10|You'll have to kill me if you want to pass
 
 #p:1|Detective|DET|10|10|3|
 
