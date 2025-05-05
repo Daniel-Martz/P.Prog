@@ -124,22 +124,22 @@ _________________________________________________________
 ||              `---^-^---^--^--'--^---^-^--^-----^-^---^||
 ||_______________________________________________________||
 
-#s:|111|Corridor1|
-#s:|112|Corridor2|
-#s:|113|Corridor3|
-#s:|114|Corridor4|
-#s:|115|Corridor5|
-#s:|116|Corridor6|
-#s:|117|Corridor7|
-#s:|118|Corridor8|
-#s:|119|Corridor9|
-#s:|120|Corridor10|
-#s:|121|Corridor11|
-#s:|122|Corridor12|
-#s:|123|Corridor13|
-#s:|124|Corridor14|
-#s:|125|Corridor15|
-#s:|126|Corridor16|
+#s:111|Corridor1|
+#s:112|Corridor2|
+#s:113|Corridor3|
+#s:114|Corridor4|
+#s:115|Corridor5|
+#s:116|Corridor6|
+#s:117|Corridor7|
+#s:118|Corridor8|
+#s:119|Corridor9|
+#s:120|Corridor10|
+#s:121|Corridor11|
+#s:122|Corridor12|
+#s:123|Corridor13|
+#s:124|Corridor14|
+#s:125|Corridor15|
+#s:126|Corridor16|
 
 
 #c:31|Coronel Rubio|10|1|113|Rubio|message|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /_____\    |  `|              |  `\    /---\     /  ` \____________/   `
@@ -162,8 +162,18 @@ _________________________________________________________
  \____________/   |  
 
 #c:37|Perro guarda|3|0|10|000|¡Guau!
+#c:38|Guarda1|3|0|111|Grd|You'll have to kill me if you want to pass
+#c:39|Guarda2|3|0|113|Grd|You'll have to kill me if you want to pass
+#c:40|Guarda3|3|0|120|Grd|You'll have to kill me if you want to pass
+#c:41|Guarda4|3|0|125|Grd|You'll have to kill me if you want to pass
+#c:42|Guarda5|3|0|126|Grd|You'll have to kill me if you want to pass
+#c:43|Guarda6|3|0|124|Grd|You'll have to kill me if you want to pass
+#c:44|Guarda7|3|0|117|Grd|You'll have to kill me if you want to pass
+#c:45|Guarda8|3|0|118|Grd|You'll have to kill me if you want to pass
+#c:46|Guarda9|3|0|119|Grd|You'll have to kill me if you want to pass
+#c:47|Guarda10|3|0|122|Grd|You'll have to kill me if you want to pass
 
-#p:1|Detective|MmM|10|5|3|
+#p:1|Detective|DET|10|10|3|
 
 #l:40|Spawn-Escaleras|10|11|2|1|
 #l:41|Escaleras-Spawn|11|10|3|1|
@@ -173,8 +183,8 @@ _________________________________________________________
 #l:45|Corridor1-Corridor4|111|114|2|1|
 #l:46|Corridor2-Corridor6|112|116|2|1|
 #l:47|Corridor3-Corridor4|113|114|1|1|
-#l:48|Corridor3-Salón|113|102|3|1|
-#l:49|Corridor3-Comedor|113|103|2|1|
+#l:48|Corridor1-Salón|111|102|0|0|
+#l:49|Corridor3-Comedor|113|103|2|0|
 #l:50|Corridor4-Corridor3|114|113|0|1|
 #l:51|Corridor4-Corridor1|114|111|3|1|
 #l:52|Corridor4-Corridor5|114|115|1|1|
@@ -186,35 +196,35 @@ _________________________________________________________
 #l:58|Corridor6-Corridor7|116|117|1|1|
 #l:59|Corridor6-Corridor9|116|119|2|1|
 #l:60|Corridor7-Corridor6|117|116|0|1|
-#l:61|Corridor7-Estudio|117|108|3|1|
-#l:62|Corridor7-Billar|117|107|2|1|
+#l:61|Corridor2-Estudio|112|108|3|0|
+#l:62|Corridor7-Billar|117|107|2|0|
 #l:63|Corridor8-Corridor4|118|114|3|1|
 #l:64|Corridor8-Corridor11|118|121|2|1|
-#l:65|Corridor8-Comedor|118|103|0|1|
+#l:65|Corridor8-Comedor|118|103|0|0|
 #l:66|Corridor9-Corridor6|119|116|3|1|
 #l:67|Corridor9-Corridor13|119|123|2|1|
-#l:68|Corridor9-Billar|119|107|1|1|
+#l:68|Corridor9-Billar|119|107|1|0|
 #l:69|Corridor10-Corridor11|120|121|3|1|
-#l:70|Corridor10-Cocina|120|104|1|1|
+#l:70|Corridor10-Cocina|120|104|1|0|
 #l:71|Corridor11-Corridor10|121|120|0|1|
 #l:72|Corridor11-Corridor8|121|118|3|1|
 #l:73|Corridor11-Corridor15|121|125|2|1|
 #l:74|Corridor11-Corridor12|121|122|1|1|
 #l:75|Corridor12-Corridor11|122|121|0|1|
 #l:76|Corridor12-centro|122|109|3|1|
-#l:77|Corridor12-Baile|122|105|2|1|
+#l:77|Corridor12-Baile|122|105|2|0|
 #l:78|Corridor12-Corridor13|122|123|1|1|
 #l:79|Corridor13-Corridor12|123|122|0|1|
 #l:80|Corridor13-Corridor9|123|119|3|1|
 #l:81|Corridor13-Corridor16|123|126|2|1|
 #l:82|Corridor13-Corridor14|123|124|1|1|
 #l:83|Corridor14-Corridor13|124|123|0|1|
-#l:84|Corridor14-Invernadero|124|106|2|1|
+#l:84|Corridor14-Invernadero|124|106|2|0|
 #l:85|Corridor15-Corridor11|125|121|3|1|
-#l:86|Corridor15-Baile|125|105|1|1|
+#l:86|Corridor15-Baile|125|105|1|0|
 #l:87|Corridor16-Corridor13|126|123|3|1|
-#l:88|Corridor16-Baile|126|105|0|1|
-#l:89|Salon-Corridor3|102|113|2|1|
+#l:88|Corridor16-Baile|126|105|0|0|
+#l:89|Salón-Corridor1|102|111|1|1|
 #l:90|Comedor-Corridor8|103|118|1|1|
 #l:91|Comedor-Corridor3|103|113|3|1|
 #l:92|Cocina-Corridor10|104|120|3|1|
@@ -224,12 +234,15 @@ _________________________________________________________
 #l:96|Invernadero-Corridor14|106|124|3|1|
 #l:97|Billar-Corridor9|107|119|0|1|
 #l:98|Billar-Corridor7|107|117|3|1|
-#l:99|Estudio-Corridor7|108|117|2|1|
-#l:100|Invernadero-Salon|106|102|5|1|
+#l:99|Estudio-Corridor2|108|112|2|1|
+#l:100|Invernadero-Salón|106|102|5|1|
 #l:101|Salón-Invernadero|102|106|5|1|
 #l:102|Cocina-Estudio|104|108|5|1|
 #l:103|Estudio-Cocina|108|104|5|1|
-#l:104|Centro-Corridor12|104|122|2|1|
+#l:104|Centro-Corridor12|109|122|2|1|
+#l:105|Centro-Biblioteca|109|201|4|1|
+#l:106|Biblioteca-Centro|201|109|5|1|
+
 
 #x:Coronel Rubio|Cuerda|Sala de Baile
 
