@@ -53,7 +53,7 @@ O|===|* >_______________>
    
 
 
-#s:10|Spawn|
+#s:10|Patio|
 #s:11|Escaleras de Entrada|
 #s:101|Vestíbulo|
 #s:102|Salón| 
@@ -142,12 +142,12 @@ _________________________________________________________
 #s:126|Corridor16|
 
 
-#c:31|Coronel Rubio|10|1|113|Rubio|message|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /_____\    |  `|              |  `\    /---\     /  ` \____________/   `
-#c:32|Sra. Celeste|10|1|125|Celeste|message|   _------____    `  /     ____  \    ` /    _/    \_ \   `/   _/   __   \ \ `|  /*)   (*)  |  |`|_/    /      /  /`(     |_-     /  /`\            /   /`|            /   /`\     \___/  /  / ` \__________/  /  `
-#c:33|Padre Prado|10|1|126|Prado|message
-#c:34|Profesor Mora|10|1|117|Mora|message
-#c:35|Dra. Orquídea|10|1|124|Orquídea|message
-#c:36|Señorita Amapola|10|1|111|Amapola|message
+#c:31|Coronel Rubio|10|1|113|Rubio|Yo estaba bailando|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /_____\    |  `|              |  `\    /---\     /  ` \____________/   `
+#c:32|Sra. Celeste|10|1|125|Celeste|Los libros quizá den alguna pista|   _------____    `  /     ____  \    ` /    _/    \_ \   `/   _/   __   \ \ `|  /*)   (*)  |  |`|_/    /      /  /`(     |_-     /  /`\            /   /`|            /   /`\     \___/  /  / ` \__________/  /  `
+#c:33|Padre Prado|10|1|126|Prado|Rezaré para que se descubra al culpable
+#c:34|Profesor Mora|10|1|117|Mora|EL estudio está lleno de secretos...
+#c:35|Dra. Orquídea|10|1|124|Orquídea|Las flores del Invernadero son tan bonitas...
+#c:36|Señorita Amapola|10|1|111|Amapola|Ojala hubiese piscina...
 
  _____----____    |
 /       _____-\   |
@@ -162,24 +162,24 @@ _________________________________________________________
  \____________/   |  
 
 #c:37|Perro guarda|3|0|10|000|¡Guau!
-#c:38|Guarda1|3|0|111|Grd1|You'll have to kill me if you want to pass
-#c:39|Guarda2|3|0|113|Grd2|You'll have to kill me if you want to pass
-#c:40|Guarda3|3|0|120|Grd3|You'll have to kill me if you want to pass
-#c:41|Guarda4|3|0|125|Grd4|You'll have to kill me if you want to pass
-#c:42|Guarda5|3|0|126|Grd5|You'll have to kill me if you want to pass
-#c:43|Guarda6|3|0|124|Grd6|You'll have to kill me if you want to pass
-#c:44|Guarda7|3|0|117|Grd7|You'll have to kill me if you want to pass
-#c:45|Guarda8|3|0|118|Grd8|You'll have to kill me if you want to pass
-#c:46|Guarda9|3|0|119|Grd9|You'll have to kill me if you want to pass
-#c:47|Guarda10|3|0|122|Grd10|You'll have to kill me if you want to pass
+#c:38|Guarda1|3|0|111|Grd|You'll have to kill me if you want to pass
+#c:39|Guarda2|3|0|113|Grd|You'll have to kill me if you want to pass
+#c:40|Guarda3|3|0|120|Grd|You'll have to kill me if you want to pass
+#c:41|Guarda4|3|0|125|Grd|You'll have to kill me if you want to pass
+#c:42|Guarda5|3|0|126|Grd|You'll have to kill me if you want to pass
+#c:43|Guarda6|3|0|124|Grd|You'll have to kill me if you want to pass
+#c:44|Guarda7|3|0|117|Grd|You'll have to kill me if you want to pass
+#c:45|Guarda8|3|0|118|Grd|You'll have to kill me if you want to pass
+#c:46|Guarda9|3|0|119|Grd|You'll have to kill me if you want to pass
+#c:47|Guarda10|3|0|122|Grd|You'll have to kill me if you want to pass
 
 #p:1|Detective|DET|10|10|3|
 
-#l:40|Spawn-Escaleras|10|11|2|1|
-#l:41|Escaleras-Spawn|11|10|3|1|
+#l:40|Patio-Escaleras|10|11|2|1|
+#l:41|Escaleras-Patio|11|10|3|1|
 #l:42|Escaleras-Vestíbulo|11|101|4|1|
 #l:43|Vestíbulo-Escaleras|101|11|5|1|
-#l:44|Vestíbulo-Corridor5|101|105|2|1|
+#l:44|Vestíbulo-Corridor5|101|115|2|1|
 #l:45|Corridor1-Corridor4|111|114|2|1|
 #l:46|Corridor2-Corridor6|112|116|2|1|
 #l:47|Corridor3-Corridor4|113|114|1|1|
@@ -189,8 +189,9 @@ _________________________________________________________
 #l:51|Corridor4-Corridor1|114|111|3|1|
 #l:52|Corridor4-Corridor5|114|115|1|1|
 #l:53|Corridor4-Corridor8|114|118|2|1|
-#l:54|Corridor5-Corridor4|105|114|0|1|
-#l:55|Corridor5-Corridor6|105|116|1|1|
+#l:54|Corridor5-Corridor4|115|114|0|1|
+#l:55|Corridor5-Corridor6|115|116|1|1|
+#l:107|Corridor5-Vestíbulo|115|101|3|1|
 #l:56|Corridor6-Corridor5|116|115|0|1|
 #l:57|Corridor6-Corridor2|116|112|3|1|
 #l:58|Corridor6-Corridor7|116|117|1|1|

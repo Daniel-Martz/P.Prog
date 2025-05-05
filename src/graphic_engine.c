@@ -567,6 +567,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     }
 
     /* PAINT THE FACE AREA*/
+
     screen_area_clear(ge->face);
     if(last_cmd == CHAT && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
       screen_area_puts(ge->face, "");
