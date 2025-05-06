@@ -174,7 +174,7 @@ runlogc: $(EXEC)
 	./$(EXEC) cluedo.dat -l output.txt
 
 rundetc: $(EXEC)
-	./$(EXEC) cluedo.dat -d
+	./$(EXEC) dat/cluedo.dat -d
 
 runcastle: $(EXEC)
 	./$(EXEC) dat/castle.dat
