@@ -20,6 +20,8 @@
 
 #define NAME_SIZE 50/*!< The maximum size for objects names*/
 #define MAX_DESCRIP 100/*!< The maximum size for the objects descriptions*/
+#define DRAW_HEIGHT 14
+#define DRAW_WIDTH 20
 
 /**
  * @brief Structure of the object
