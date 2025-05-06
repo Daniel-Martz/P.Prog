@@ -509,6 +509,7 @@ void game_rules_run_all(Game *game)
     game_rules_open_door8(game);
     game_rules_open_door9(game);
     game_rules_open_door10(game);
+    game_rules_open_door11(game);
     game_rules_check_boss_defeat(game);
     game_rules_change_turn(game);
 }

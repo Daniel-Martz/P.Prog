@@ -216,7 +216,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *output_name)
     }
     game_rules_run_all(game);
     game_set_last_command(game, NULL);
-    sleep(2);
+    sleep(0.5);
   }
 
   if ((game_get_finished(game) == TRUE) || (player_get_health(game_get_player(game)) == 0))
