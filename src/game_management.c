@@ -109,7 +109,7 @@ Status game_reader_load_objects(Game *game, char *filename){
   Id object_id = NO_ID, space_id = NO_ID, dependency = NO_ID;
   Object *object = NULL;
   Status status = OK;
-  Bool movable, open;
+  Bool movable, open, offensive;
 
   if (!filename || !game) {
     return ERROR;
@@ -137,8 +137,10 @@ Status game_reader_load_objects(Game *game, char *filename){
       dependency = atol(toks);
       toks = strtok(NULL, "|");
       open = atol(toks);
-      toks = strtok(NULL, "\n");
+      toks = strtok(NULL, "|");
       strncpy(description, toks, MAX_DESCRIP-1);
+      toks = strtok(NULL, "\n");
+      offensive = atol(toks);
       
       /*Create the object*/
       object = object_create(object_id);
@@ -151,6 +153,7 @@ Status game_reader_load_objects(Game *game, char *filename){
       object_set_movable(object, movable);
       object_set_dependency(object, dependency);
       object_set_open(object, open);
+      object_set_offensive(object, offensive);
     }
   }
   

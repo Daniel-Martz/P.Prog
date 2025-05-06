@@ -1,4 +1,4 @@
-#o:21|Pistola|108|0|1|-1|-1|desc
+#o:21|Pistola|108|0|1|-1|-1|Arma del crimen|0
 
     ___________,
  \-'       _____|     
@@ -8,19 +8,19 @@
 |   \ 
 `---'
 
-#o:22|Tubería de Plomo|104|0|1|-1|-1|desc
+#o:22|Tubería de Plomo|104|0|1|-1|-1|Arma del crimen|0
      __
     |  | 
     |  |
     |  |
     |  |
     ---
-#o:23|Punal|103|0|1|-1|-1|desc
+#o:23|Punal|103|0|1|-1|-1|Arma del crimen|0
       /| _______________
 O|===|* >_______________>
       \|
 
-#o:24|Cuerda|106|0|1|-1|-1|desc
+#o:24|Cuerda|106|0|1|-1|-1|Arma del crimen|0
     //
    //\\ 
    \\//
@@ -29,7 +29,7 @@ O|===|* >_______________>
    \\//
     //
    //\\
-#o:25|Candelabro|105|0|1|-1|-1|desc
+#o:25|Candelabro|105|0|1|-1|-1|Arma del crimen|0
   ) ) )
   | | |
   | | |
@@ -38,7 +38,7 @@ O|===|* >_______________>
    | |
    | |
   /___\
-#o:26|Herramienta|107|0|1|-1|-1|desc
+#o:26|Herramienta|107|0|1|-1|-1|Arma del crimen|0
    /|  |\
   ( |__| )
    \    /
@@ -51,22 +51,29 @@ O|===|* >_______________>
   ( |  | )
    \|  |/
 
-#o:812|Carta Salon|102|0|1|-1|-1|desc
-#o:813|Carta Comedor|103|0|1|-1|-1|desc
-#o:814|Carta Cocina|104|0|1|-1|-1|desc
-#o:815|Carta Sala de Baile|105|0|1|-1|-1|desc
-#o:816|Carta Invernadero|106|0|1|-1|-1|desc
-#o:817|Carta Sala de Billar|107|0|1|-1|-1|desc
-#o:818|Carta Estudio|108|0|1|-1|-1|desc
-#o:821|Carta Biblioteca|201|0|1|-1|-1|desc
-#o:831|Carta Capilla|301|0|1|-1|-1|desc
-   
+#o:812|Carta Salon|102|0|1|-1|-1|Carta de espacio|0
+#o:813|Carta Comedor|103|0|1|-1|-1|Carta de espacio|0
+#o:814|Carta Cocina|104|0|1|-1|-1|Carta de espacio|0
+#o:815|Carta Sala de Baile|105|0|1|-1|-1|Carta de espacio|0
+#o:816|Carta Invernadero|106|0|1|-1|-1|Carta de espacio|0
+#o:817|Carta Sala de Billar|107|0|1|-1|-1|Carta de espacio|0
+#o:818|Carta Estudio|108|0|1|-1|-1|Carta de espacio|0
+#o:821|Carta Biblioteca|201|0|1|-1|-1|Carta de espacio|0
+#o:831|Carta Capilla|301|0|1|-1|-1|Carta de espacio|0
+#o:832|Tenazas|09|2|1|-1|-1|Ataque|1
+#o:833|Clavos|09|1|1|-1|-1|Ataque|1
+#o:834|Martillo|09|2|1|-1|-1|Ataque|1
+#o:835|Hacha|09|3|1|-1|-1|Ataque|1
+#o:836|Tijeras de Podar|106|3|1|-1|-1|Ataque|1
+#o:837|Flotador|401|0|0|-1|-1|No me puedes mover|0
+#o:838|Gasolina|09|0|1|839|-1|Solo no sirvo|0
+#o:839|Bidon|09|09|0|1|-1|-1|Sirvo para llevar liquidos|0
 
-
-#s:10|Patio|     ( )____ _ w |    /( ) w  ( )  | ()/__[_w___( )()| ()     w    [\()| ()___w_____w__()
+#s:09|Almacen| _______________|[______\__mwe___]|[  /            ]|[_/___w__*{}____]|[         \     ]|[__mn_sd___\____]
+#s:10|Patio|     ( )____ _ w |    /( ) w  ( )  | ()/__!_w___( )()| ()     w    !\()| ()___w_____w__()
 #s:11|Escaleras de Entrada|   /__________\  |   [__________[  |  /____________\ |  [____________[ | /______________\| [______________[
-#s:101|Vestíbulo|     __[_]__    | __ /MWMWMWM\ __| ()/MWMWMWMWM\()| ()MWMWMWMWMWM()| /MWMWMWMWMWMWM\
-#s:102|Salón|           ______ |          /______\|             []   |  /~~~~~~~\  []   | /~ () () ~\ []   |(_)=======(_)[]   | I[_______]I_[]_  
+#s:101|Vestibulo|     __[_]__    | __ /MWMWMWM\ __| ()/MWMWMWMWM\()| ()MWMWMWMWMWM()| /MWMWMWMWMWMWM\
+#s:102|Salon|           ______ |          /______\|             []   |  /*******\  []   | /* () () *\ []   |(_)=======(_)[]   | I[_______]I_[]_  
                          ____
                         /    \
                        /______\
@@ -159,7 +166,7 @@ _________________________________________________________
 #c:33|Padre Prado|10|1|0|126|Prado|Rezaré para que se descubra al culpable|    ____  ____     `   /    \/    \    `  / /---__---\ \   ` / /          \ \  ` \/  [o]  [o]  \/ `(|      ||      |) ` |     (--)     |  ` |  ##########  |  ` |              |  `  \    |===|    /  `   \___#####___/   `
 #c:34|Profesor Mora|10|1|0|117|Mora|El estudio está lleno de secretos...|     __----__      `   _/        \_    ` /   __/  \__   \  ` / /          \ \  `/_/--(*)--(*)--\_\ `(|      ||      |) ` |     /__\     |  ` |  ##########  |  ` |##############|  `  \####(___)####/  `   \###########/   `
 #c:35|Dra. Orquídea|10|1|0|124|Orquídea|Las flores del Invernadero son tan bonitas...|     _-^^^^^-_     `   ((((((|))))))   `  ((((((   ))))))  ` (((((       ))))) ` ((( [o]   [o] ))) ` (((            )))` ((      V      )) ` ((             )) ` ((             )) `   \   \===/   /  `    \_________/    `
-#c:36|Señorita Amapola|10|1|0|111|Amapola|Ojala hubiese piscina...|   ____________    `  /     __     \   `  /  __/  \__  \   `/  _/__   __ \+_ | `| / [*]   [*]  \ | `||     |        || `||    /__       || `||              || `||   _______    || `||\  \_____/   /|| `// \___---____/ \\ `
+#c:36|Señorita Amapola|10|1|0|111|Amapola|Ojala estuviese abierta la piscina...|   ____________    `  /     __     \   ` /   __/  \__   \  `/  _/__   __ \+_ | `| / [*]   [*]  \ | `||     |        || `||    /__       || `||              || `||   _______    || `||\  \_____/   /|| `// \___---____/ \\ `
 
 
 #c:37|Perro guarda|3|0|1|10|000|¡Guau!|
@@ -174,23 +181,23 @@ _________________________________________________________
 #c:46|Guard9|3|0|1|119|Guard9|You'll have to kill me if you want to pass|
 #c:47|Guard10|3|0|1|122|Guard10|You'll have to kill me if you want to pass|
 
-#c:48|Loro|3|1|201|mp>|No coronel! A mi no!|
-#c:49|Jardinero|3|1|106|m-o|Alguien ha visto la cuerda? La necesito para trabajar|
-#c:50|Anciana|3|1|102|/0\|El jardinero está haciendo mucho ruido, te recomiendo ver que quiere|
-#c:51|Mayordomo|3|1|104|mw|El loro de la doctora puede haber oído algo. ¿Por qué no le echas un vistazo?|
+#c:48|Loro|3|1|201|mp>|Pista: No coronel! A mi no!|
+#c:49|Jardinero|3|1|106|m-o|Pista: Alguien ha visto la cuerda? La necesito para trabajar|
+#c:50|Anciana|3|1|102|/0\|Pista: El jardinero está haciendo mucho ruido, te recomiendo ver que quiere|
+#c:51|Mayordomo|3|1|104|mw|Pista: El loro de la doctora puede haber oído algo. ¿Por qué no le echas un vistazo?|
 
 
-#p:1|Detective|DET|10|10|3|
+#p:1|Detective|DET|10|10|5|
 
-#l:40|Patio-Escaleras|10|11|2|1|
-#l:41|Escaleras-Patio|11|10|3|1|
-#l:42|Escaleras-Vestíbulo|11|101|4|1|
-#l:43|Vestíbulo-Escaleras|101|11|5|1|
-#l:44|Vestíbulo-Corridor5|101|115|2|1|
+#l:40|Patio-Almacen|10|09|2|1|
+#l:41|Almacen-Patio|09|10|3|1|
+#l:42|Escaleras-Vestibulo|11|101|4|1|
+#l:43|Vestibulo-Escaleras|101|11|5|1|
+#l:44|Vestibulo-Corridor5|101|115|2|1|
 #l:45|Corridor1-Corridor4|111|114|2|1|
 #l:46|Corridor2-Corridor6|112|116|2|1|
 #l:47|Corridor3-Corridor4|113|114|1|1|
-#l:48|Corridor1-Salón|111|102|0|0|
+#l:48|Corridor1-Salon|111|102|0|0|
 #l:49|Corridor3-Comedor|113|103|2|0|
 #l:50|Corridor4-Corridor3|114|113|0|1|
 #l:51|Corridor4-Corridor1|114|111|3|1|
@@ -198,7 +205,7 @@ _________________________________________________________
 #l:53|Corridor4-Corridor8|114|118|2|1|
 #l:54|Corridor5-Corridor4|115|114|0|1|
 #l:55|Corridor5-Corridor6|115|116|1|1|
-#l:107|Corridor5-Vestíbulo|115|101|3|1|
+#l:107|Corridor5-Vestibulo|115|101|3|1|
 #l:56|Corridor6-Corridor5|116|115|0|1|
 #l:57|Corridor6-Corridor2|116|112|3|1|
 #l:58|Corridor6-Corridor7|116|117|1|1|
@@ -232,7 +239,7 @@ _________________________________________________________
 #l:86|Corridor15-Baile|125|105|1|0|
 #l:87|Corridor16-Corridor13|126|123|3|1|
 #l:88|Corridor16-Baile|126|105|0|0|
-#l:89|Salón-Corridor1|102|111|1|1|
+#l:89|Salon-Corridor1|102|111|1|1|
 #l:90|Comedor-Corridor8|103|118|1|1|
 #l:91|Comedor-Corridor3|103|113|3|1|
 #l:92|Cocina-Corridor10|104|120|3|1|
@@ -243,8 +250,8 @@ _________________________________________________________
 #l:97|Billar-Corridor9|107|119|0|1|
 #l:98|Billar-Corridor7|107|117|3|1|
 #l:99|Estudio-Corridor2|108|112|2|1|
-#l:100|Invernadero-Salón|106|102|5|1|
-#l:101|Salón-Invernadero|102|106|5|1|
+#l:100|Invernadero-Salon|106|102|5|1|
+#l:101|Salon-Invernadero|102|106|5|1|
 #l:102|Cocina-Estudio|104|108|5|1|
 #l:103|Estudio-Cocina|108|104|5|1|
 #l:104|Centro-Corridor12|109|122|2|1|
@@ -254,6 +261,8 @@ _________________________________________________________
 #l:109|Capilla-Centro|301|109|4|1|
 #l:110|Piscina-Baile|401|105|3|1
 #l:111|Baile-Piscina|105|401|2|1
+#l:112|Almacen-Escaleras|09|11|2|1
+#l:113|Escaleras-Almacen|11|09|3|1
 
 #x:Coronel Rubio|Punal|Carta Comedor
 
