@@ -346,7 +346,6 @@ void graphic_engine_destroy(Graphic_engine *ge) {
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   /* Declare de needed local variables of the function */
   Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, id_left = NO_ID, id_right = NO_ID, *objects_location = NULL, *characters_location = NULL, *player_objects = NULL;
-  char buffer[MAX_BUFFER];
   char str[MAX_STR], character_name[MAX_STR];
   char **space_empty = NULL, object[MAX_STR];
   char **space_left = NULL ,**space_right = NULL, **space_back = NULL, **space_next = NULL, **space_actual = NULL, **space1 = NULL, **space2 = NULL, **space3 = NULL;
@@ -546,7 +545,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         else{
           strcpy(object, "healing object");
         }
-        sprintf(str,"      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[0])),object, object_get_health(obj_aux));
+        snprintf(str, MAX_STR, "      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[0])), object, object_get_health(obj_aux));
         screen_area_puts(ge->descript, str);
       }
       if(inventory_get_n_objs(player_get_backpack(game_get_player(game)))>1){
@@ -558,7 +557,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
           else{
             strcpy(object, "healing object");
           }
-          sprintf(str,"      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[i])),object,object_get_health(obj_aux));
+          snprintf(str, MAX_STR, "      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[i])), object, object_get_health(obj_aux));
           screen_area_puts(ge->descript, str);
         }
       }
