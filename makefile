@@ -185,10 +185,16 @@ run: $(EXEC)
 	./$(EXEC) dat/anthill.dat
 
 runlogc: $(EXEC)
-	./$(EXEC) cluedo.dat -l output.txt
+	./$(EXEC) dat/cluedo1.dat -l output.txt
 
 rundetc: $(EXEC)
-	./$(EXEC) cluedo.dat -d
+	./$(EXEC) dat/cluedo1.dat -d
+
+rundetlogc: $(EXEC)
+	./$(EXEC) dat/cluedo1.dat -d -l output.txt
+
+runlogdetc: $(EXEC)
+	./$(EXEC) dat/cluedo1.dat -l -d output.txt 
 
 runcastle: $(EXEC)
 	./$(EXEC) dat/castle.dat

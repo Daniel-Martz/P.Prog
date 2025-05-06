@@ -15,8 +15,8 @@
 #include <string.h>
 #include <strings.h>
 
-#define CMD_LENGHT 30/*!< It denotes the length needed for the string that stores the introduced command */
-#define MAX_SIZE 30/*!< It denotes the maximum sizez for an array*/
+#define CMD_LENGHT 70/*!< It denotes the length needed for the string that stores the introduced command */
+#define MAX_SIZE 70/*!< It denotes the maximum sizez for an array*/
 
 /**
  * @brief Store commands and it significate
