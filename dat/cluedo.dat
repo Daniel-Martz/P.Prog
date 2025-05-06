@@ -261,10 +261,10 @@ _________________________________________________________
 #l:106|Biblioteca-Centro|201|109|5|1|
 #l:108|Centro-Capilla|109|301|5|1|
 #l:109|Capilla-Centro|301|109|4|1|
-#l:110|Piscina-Baile|401|105|3|1
-#l:111|Baile-Piscina|105|401|2|1
-#l:112|Almacen-Escaleras|09|11|2|1
-#l:113|Escaleras-Almacen|11|09|3|1
+#l:110|Piscina-Baile|401|105|3|1|
+#l:111|Baile-Piscina|105|401|2|1|
+#l:112|Almacen-Escaleras|09|11|2|1|
+#l:113|Escaleras-Almacen|11|09|3|1|
 
 #x:Coronel Rubio|Cuerda|Carta Comedor
 
