@@ -546,7 +546,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         else{
           strcpy(object, "healing object");
         }
-        sprintf(str,"      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[0])),object, object_get_health(obj_aux));
+        snprintf(str, MAX_STR, "      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[0])), object, object_get_health(obj_aux));
         screen_area_puts(ge->descript, str);
       }
       if(inventory_get_n_objs(player_get_backpack(game_get_player(game)))>1){
@@ -558,7 +558,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
           else{
             strcpy(object, "healing object");
           }
-          sprintf(str,"      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[i])),object,object_get_health(obj_aux));
+          snprintf(str, MAX_STR, "      %s (%s: %i)", object_get_name(game_get_object(game, player_objects[i])), object, object_get_health(obj_aux));
           screen_area_puts(ge->descript, str);
         }
       }

@@ -161,36 +161,38 @@ run_tests: $(TESTS)
 	./link_test 
 	./inventory_test 
 
-# Ejecutables del juego
-run: $(EXEC)
-	./$(EXEC) anthill.dat
+#Ejecutables Cluedo
+run1: $(EXEC)
+	./$(EXEC) dat/cluedo.dat
 
-runc: $(EXEC)
-	./$(EXEC) cluedo.dat
+
+# Resto de Ejecutables del juego
+run: $(EXEC)
+	./$(EXEC) dat/anthill.dat
 
 runcastle: $(EXEC)
-	./$(EXEC) castle.dat
+	./$(EXEC) dat/castle.dat
 
 runv:
-	valgrind --leak-check=full ./$(EXEC) anthill.dat
+	valgrind --leak-check=full ./$(EXEC) dat/anthill.dat
 
 runvcluedo:
-	valgrind --leak-check=full ./$(EXEC) cluedo.dat
+	valgrind --leak-check=full ./$(EXEC) dat/cluedo.dat
 
 runvcastle:
-	valgrind --leak-check=full ./$(EXEC) castle.dat
+	valgrind --leak-check=full ./$(EXEC) dat/castle.dat
 
 runvloganthill:
-	valgrind --leak-check=full ./$(EXEC) anthill.dat -l output.txt - log_input.txt
+	valgrind --leak-check=full ./$(EXEC) dat/anthill.dat -l output.txt - log_input.txt
 
 runvlogcastle:
-	valgrind --leak-check=full ./$(EXEC) castle.dat -l output.txt - log_input_castle.txt
+	valgrind --leak-check=full ./$(EXEC) dat/castle.dat -l output.txt - log_input_castle.txt
 
 runloganthill:
-	./$(EXEC) anthill.dat -l output.txt - log_input.txt
+	./$(EXEC) dat/anthill.dat -l output.txt - log_input.txt
 
 runlogcastle:
-	./$(EXEC) castle.dat -l output.txt - log_input_castle.txt
+	./$(EXEC) dat/castle.dat -l output.txt - log_input_castle.txt
 
 # Documentación
 doxyfile:
@@ -204,7 +206,10 @@ cleandocs:
 
 # Depuración
 debug: $(EXEC)
-	gdb -q --args ./$(EXEC) anthill.dat
+	gdb -q --args ./$(EXEC) dat/anthill.dat
+
+debugc: $(EXEC)
+	gdb -q --args ./$(EXEC) dat/cluedo.dat
 
 # Limpieza
 clean:
