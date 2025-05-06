@@ -114,7 +114,7 @@ const char* character_get_face(Character* character, int row){
     if (!character || row < 0 || row >= FACE_HEIGHT) return NULL;
   
     return character->face[row];
-  }
+}
 
 /*============================Set============================*/
 Status character_set_id (Character* character, Id id){

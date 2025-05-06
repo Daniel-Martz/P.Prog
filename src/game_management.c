@@ -100,10 +100,12 @@ Status game_reader_load_spaces(Game *game, char *filename) {
  */
 Status game_reader_load_objects(Game *game, char *filename){
 
+  int row = 0;
   FILE *file=NULL;
   char line[WORD_SIZE] = "";
   char name[WORD_SIZE] = "";
   char description[MAX_DESCRIP] = "";
+  char draw[DRAW_HEIGHT][DRAW_WIDTH] = {{0}};
   char *toks = NULL;
   int health;
   Id object_id = NO_ID, space_id = NO_ID, dependency = NO_ID;
@@ -139,6 +141,21 @@ Status game_reader_load_objects(Game *game, char *filename){
       open = atol(toks);
       toks = strtok(NULL, "\n");
       strncpy(description, toks, MAX_DESCRIP-1);
+      for (row = 0; row < DRAW_HEIGHT; row++)
+      {
+        if (toks != NULL)
+        {
+          toks = strtok(NULL, "`");
+          if (toks != NULL) {
+            strncpy(draw[row], toks, DRAW_WIDTH - 1);
+            draw[row][DRAW_WIDTH - 1] = '\0'; 
+          } else 
+          {
+            memset(draw[row], ' ', DRAW_WIDTH ); 
+            draw[row][DRAW_WIDTH - 1] = '\0';
+          }
+        }  
+      }
       
       /*Create the object*/
       object = object_create(object_id);
@@ -228,7 +245,7 @@ Status game_reader_load_characters(Game *game, char *filename){
             face[row][FACE_WIDTH - 1] = '\0'; 
           } else 
           {
-            memset(face[row], ' ', N_COLUMNS - 1); 
+            memset(face[row], ' ', FACE_WIDTH); 
             face[row][FACE_WIDTH - 1] = '\0';
           }
         }  

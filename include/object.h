@@ -20,8 +20,8 @@
 
 #define NAME_SIZE 50/*!< The maximum size for objects names*/
 #define MAX_DESCRIP 100/*!< The maximum size for the objects descriptions*/
-#define DRAW_HEIGHT 14
-#define DRAW_WIDTH 20
+#define DRAW_HEIGHT 14/*!<Constant for the height of the character's draw*/
+#define DRAW_WIDTH 22/*!<Constant for the width of the character's draw*/
 
 /**
  * @brief Structure of the object
@@ -235,6 +235,26 @@ Status object_set_offensive(Object *obj, Bool offensive);
  * @return TRUE if it's offensive, FALSE if not
  */
 Bool object_get_offensive(Object *obj);
+
+/**
+ * @brief Sets the a matrix of characters that is the real description of the object
+ * @author Daniel Martínez
+ *
+ * @param object A pointer to Object
+ * @param draw The matrix of chars for the draw of the object
+ * @return OK if everything goes well, ERROR if anything goes wrong
+ */
+Status object_set_draw(Object *object, const char draw[DRAW_HEIGHT][DRAW_WIDTH]);
+
+/**
+ * @brief Gets a row of the real description of an object
+ * @author Daniel Martínez
+ *
+ * @param object A pointer to object
+ * @param row the row of the matrix
+ * @return a string with a line of the object description
+ */
+const char* object_get_draw(Object* object, int row);
 
 #endif
 
