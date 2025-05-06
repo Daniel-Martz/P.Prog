@@ -163,8 +163,22 @@ run_tests: $(TESTS)
 
 #Ejecutables Cluedo
 run1: $(EXEC)
-	./$(EXEC) dat/cluedo.dat
+	./$(EXEC) dat/cluedo1.dat
 
+run2: $(EXEC)
+	./$(EXEC) dat/cluedo2.dat
+
+run3: $(EXEC)	
+	./$(EXEC) dat/cluedo3.dat
+
+run4: $(EXEC)
+	./$(EXEC) dat/cluedo4.dat
+	
+run5: $(EXEC)
+	./$(EXEC) dat/cluedo5.dat
+
+run6: $(EXEC)
+	./$(EXEC) dat/cluedo6.dat
 
 # Resto de Ejecutables del juego
 run: $(EXEC)
