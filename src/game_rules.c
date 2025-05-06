@@ -419,6 +419,40 @@ void game_rules_open_door10(Game *game)
     }
 }
 
+void game_rules_open_door11(Game *game)
+{
+    char *guard11_name = "Guard11";
+    Character *guard11 = NULL;
+    char *key11_name = "Key11";
+    Object *key11 = NULL;
+    Id key11_id = 911;
+    Id link11_id = 61;
+
+    if (!game)
+        return;
+
+    guard11 = game_get_character_from_name(game, guard11_name);
+    if (!guard11)
+        return;
+
+    key11 = game_get_object(game, key11_id);
+    if (key11) {
+        return;
+    }
+
+    if (character_get_health(guard11) == 0)
+    {
+        key11 = object_create(key11_id);
+        object_set_name(key11, key11_name);
+        object_set_description(key11, "A key to open the door");
+        object_set_movable(key11, TRUE);
+        object_set_open(key11, link11_id);
+
+        game_add_object(game, key11);
+        space_set_new_object(game_get_space(game, game_get_player_location(game)), key11_id);
+        game_set_message(game, "The guard has dropped a key!");
+    }
+}
 
 void game_rules_check_boss_defeat(Game *game)
 {
@@ -475,6 +509,7 @@ void game_rules_run_all(Game *game)
     game_rules_open_door8(game);
     game_rules_open_door9(game);
     game_rules_open_door10(game);
+    game_rules_open_door11(game);
     game_rules_check_boss_defeat(game);
     game_rules_change_turn(game);
 }
