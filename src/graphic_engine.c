@@ -233,7 +233,7 @@ else {
     /*DESCRIPCION DEL MAPA*/
     if(gdesc[0] != NULL){
       for (i = 0; i < N_ROWS; i++) {
-        sprintf(strspace[i+LINE_8], "|%9.9s            |", gdesc[i]);
+        sprintf(strspace[i+LINE_8], "|  %17.17s  |", gdesc[i]);
       }
     }
     else{
