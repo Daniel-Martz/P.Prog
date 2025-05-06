@@ -170,6 +170,12 @@ run1: $(EXEC)
 run: $(EXEC)
 	./$(EXEC) dat/anthill.dat
 
+runlogc: $(EXEC)
+	./$(EXEC) cluedo.dat -l output.txt
+
+rundetc: $(EXEC)
+	./$(EXEC) cluedo.dat -d
+
 runcastle: $(EXEC)
 	./$(EXEC) dat/castle.dat
 

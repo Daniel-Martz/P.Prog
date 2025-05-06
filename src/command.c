@@ -185,7 +185,7 @@ Status command_get_user_input(Command* command) {
       }
     }
     if(cmd == INSPECT){
-      token = strtok(NULL, "n");
+      token = strtok(NULL, "\n");
       command_set_strin(command, token);
     }
 
