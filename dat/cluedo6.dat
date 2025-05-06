@@ -161,12 +161,12 @@ _________________________________________________________
 #s:126|Corridor16|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]
 
 
-#c:31|Coronel Rubio|10|1|0|113|Rubio|Mientras hablaba con Mora, ¡Me robaron la pistola!|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /#####\    |  `|              |  `\    /---\     /  ` \____________/   `
-#c:32|Sra. Celeste|10|1|0|125|Celeste|Al padre Prado se le da muy bien el billar|   _------____    `  /     ____  \    ` /    _/    \_ \   `/   _/   __   \ \ `|  /*)   (*)  |  |`|_/    /      /  /`(     |_-     /  /`\            /   /`|            /   /`\     \___/  /  / ` \__________/  /  `
-#c:33|Padre Prado|10|1|0|126|Prado|Celeste es pésima al billar, no me hizo falta ni abrir los ojos para ganarla|    ____  ____     `   /    \/    \    `  / /---__---\ \   ` / /          \ \  ` \/  [o]  [o]  \/ `(|      ||      |) ` |     (--)     |  ` |  ##########  |  ` |              |  `  \    |===|    /  `   \___#####___/   `
-#c:34|Profesor Mora|10|1|0|117|Mora|El coronel estuvo muy entretenido anoche contando historias de guerra|     __----__      `   _/        \_    ` /   __/  \__   \  ` / /          \ \  `/_/--(*)--(*)--\_\ `(|      ||      |) ` |     /__\     |  ` |  ##########  |  ` |##############|  `  \####(___)####/  `   \###########/   `
-#c:35|Dra. Orquidea|10|1|0|124|Orquidea|Estuve en el estudio redactando algunas cartas para mi informe|     _-^^^^^-_     `   ((((((|))))))   `  ((((((   ))))))  ` (((((       ))))) ` ((( [o]   [o] ))) ` (((            )))` ((      V      )) ` ((             )) ` ((             )) `   \   \===/   /  `    \_________/    `
-#c:36|Senorita Amapola|10|1|0|111|Amapola|Que agujetas de anoche, la música y los tacones no se llevan bien|   ____________    `  /     __     \   ` /   __/  \__   \  `/  _/__   __ \+_ | `| / [*]   [*]  \ | `||     |        || `||    /__       || `||              || `||   _______    || `||\  \_____/   /|| `// \___---____/ \\ `
+#c:31|Coronel Rubio|10|1|0|113|Rubio|Estuve coqueteando con la señorita Amapola. Es dura de roer!|_---------______  `\__\\\\\\\_____ \  ` /             \ \ `|   --   --    | |`|  [*]   [*]   | |`|      |       /_/`(     _0__     |) `|   /#####\    |  `|              |  `\    /---\     /  ` \____________/   `
+#c:32|Sra. Celeste|10|1|0|125|Celeste|Fui a la biblioteca y todo estaba en orden, excepto un candelabro fuera de lugar. No me pareció raro, hay poca luz|   _------____    `  /     ____  \    ` /    _/    \_ \   `/   _/   __   \ \ `|  /*)   (*)  |  |`|_/    /      /  /`(     |_-     /  /`\            /   /`|            /   /`\     \___/  /  / ` \__________/  /  `
+#c:33|Padre Prado|10|1|0|126|Prado|Anoche en la biblioteca olía a cera derretida, como si alguien hubiera encendido muchas velas. Me dio miedo y me fui corriendo|    ____  ____     `   /    \/    \    `  / /---__---\ \   ` / /          \ \  ` \/  [o]  [o]  \/ `(|      ||      |) ` |     (--)     |  ` |  ##########  |  ` |              |  `  \    |===|    /  `   \___#####___/   `
+#c:34|Profesor Mora|10|1|0|117|Mora|El padre prado se fue a la biblioteca a por una biblia pero bajó sin ella|     __----__      `   _/        \_    ` /   __/  \__   \  ` / /          \ \  `/_/--(*)--(*)--\_\ `(|      ||      |) ` |     /__\     |  ` |  ##########  |  ` |##############|  `  \####(___)####/  `   \###########/   `
+#c:35|Dra. Orquidea|10|1|0|124|Orquidea|El trabajo me tuvo leyendo estudios hasta bien entrada la noche. Necesité tres enciclopedias|     _-^^^^^-_     `   ((((((|))))))   `  ((((((   ))))))  ` (((((       ))))) ` ((( [o]   [o] ))) ` (((            )))` ((      V      )) ` ((             )) ` ((             )) `   \   \===/   /  `    \_________/    `
+#c:36|Senorita Amapola|10|1|0|111|Amapola|El coronel cree que tiene oportunidades conmigo. Podría ser mi padre!|   ____________    `  /     __     \   ` /   __/  \__   \  `/  _/__   __ \+_ | `| / [*]   [*]  \ | `||     |        || `||    /__       || `||              || `||   _______    || `||\  \_____/   /|| `// \___---____/ \\ `
 
 
 #c:37|Perro|3|0|1|10|/mP|¡Guau!|
@@ -182,10 +182,10 @@ _________________________________________________________
 #c:47|Guard10|3|0|1|122|Guard10|You'll have to kill me if you want to pass|
 #c:48|Guard11|3|0|1|112|Guard11|You'll have to kill me if you want to pass|
 
-#c:48|Loro|3|1|108|mp>|Pista: Busca a la abuela, creo que anoche estaba despierta|
-#c:49|Jardinero|3|1|106|m-o|Pista: Esta mañana vi al mayordomo preocupado, estaba un poco nervioso. Prueba a preguntartle a él|
-#c:50|Anciana|3|1|301|/0\|Pista: Cuanto ruido anoche de la Sala de Baile, no se podía dormir|
-#c:51|Mayordomo|3|1|102|mw|Pista: Escuché un disparo a eso de medianoche pero no le di importancia, estamos cerca de un coto de caza|
+#c:48|Loro|3|1|10|mp>|Pista: Amapola y Rubio son novios|
+#c:49|Jardinero|3|1|106|m-o|Pista: No vi nada raro en el patio, tampoco en el invernadero|
+#c:50|Anciana|3|1|102|/0\|Pista: Vi luz en la biblioteca hasta muy tarde, ¿quién estaría allí a esas horas?|
+#c:51|Mayordomo|3|1|103|mw|Pista: La Dra. Orquídea me pidió una vela para la biblioteca, dijo que iba a escribir algo importante|
 
 #p:1|Detective|dp|10|10|5|
 #p:2|Det2|MP|10|10|5|
@@ -265,5 +265,5 @@ _________________________________________________________
 #l:112|Almacen-Escaleras|09|11|2|1
 #l:113|Escaleras-Almacen|11|09|3|1
 
-#x:Señorita Amapola|Pistola|Carta Sala de Baile
+#x:Dra. Orquidea|Candelabro|Carta Biblioteca
 
