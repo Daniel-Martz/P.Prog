@@ -21,6 +21,7 @@
 #define INIT_PLAYER_DAMAGE 1
 #define MAX_MESSAGE_GUESS 1000
 #define RANDOM 2520
+#define MAX_STRING_LENGTH 1000
 
 /**
    Private functions
@@ -269,7 +270,7 @@ Status game_actions_move(Game *game)
       {
         return OK;
       }
-      
+
       characters_follow = game_get_followingcharacters(game, player_id);
       for (i = 0; i < game_get_nfollowingcharacters(game, player_id); i++)
       {
@@ -495,10 +496,44 @@ Status game_actions_attack(Game *game)
   if (game_get_character_location(game, character_get_id(character)) != player_location)
     return ERROR;
 
+  if (game_get_determinist_status(game) == TRUE)
+  {
+    if (game_get_player_total_damage(game, player_get_id(game_get_player(game))) < 0)
+    {
+      return ERROR;
+    }
+
+    if ((new_health = character_get_health(character) - (game_get_player_total_damage(game, player_get_id(game_get_player(game))))) <= 0)
+    {
+      new_health = 0;
+    }
+
+    if (character_set_health(character, new_health) == ERROR)
+    {
+      return ERROR;
+    }
+
+    /* set players and its following characters damage to its initial value*/
+    player_set_damage(game_get_player(game), INIT_PLAYER_DAMAGE);
+    characters = game_get_followingcharacters(game, player_get_id(game_get_player(game)));
+    for (i = 0; i < game_get_nfollowingcharacters(game, player_get_id(game_get_player(game))); i++)
+    {
+      character_set_damage(characters[i], INIT_DAMAGE);
+    }
+
+    if (player_get_health(game_get_player(game)) <= 0)
+    {
+      game_set_finished(game, TRUE);
+      return OK;
+    }
+
+    return OK;
+  }
+
   turn = rand() % RANDOM;
   if ((turn < 0) || turn > (RANDOM - 1))
     return ERROR;
-  if (turn > (RANDOM/2))
+  if (turn > (RANDOM / 2))
   {
     /* If the attacking player loses a new random variable determines who loses a hitpoint (it goes from 0 up to the number of following characters)*/
     following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));
@@ -553,7 +588,7 @@ Status game_actions_attack(Game *game)
       return ERROR;
     }
 
-    /* set players and its following characters damage to 0*/
+    /* set players and its following characters damage to its initial value*/
     player_set_damage(game_get_player(game), INIT_PLAYER_DAMAGE);
     characters = game_get_followingcharacters(game, player_get_id(game_get_player(game)));
     for (i = 0; i < game_get_nfollowingcharacters(game, player_get_id(game_get_player(game))); i++)
@@ -700,6 +735,8 @@ Status game_actions_open(Game *game)
   Object *object = NULL;
   Link *link = NULL;
   char *token = NULL, *input = NULL;
+  char input_copy[MAX_STRING_LENGTH]; 
+
 
   if (!game)
     return ERROR;
@@ -708,7 +745,9 @@ Status game_actions_open(Game *game)
   game_set_message(game, "");
 
   input = command_get_strin(game_get_last_command(game));
-  token = strtok(input, " ");
+  strcpy(input_copy, input); 
+  command_set_strin(game_get_last_command(game), " \n");
+  token = strtok(input_copy, " \n"); 
   if (token == NULL)
   {
     return ERROR;
@@ -720,17 +759,22 @@ Status game_actions_open(Game *game)
     return ERROR;
   }
 
-  token = strtok(NULL, " ");
+  token = strtok(NULL, " \n");
+  if (token == NULL)
+  {
+    return ERROR;
+  }
   if (strcasecmp(token, "with") != 0)
   {
     return ERROR;
   }
 
-  token = strtok(NULL, "\n");
+  token = strtok(NULL, " \n");
   object = game_get_object(game, game_get_object_from_name(game, token));
 
-  if (object == NULL)
+  if (object == NULL) {
     return ERROR;
+  }
 
   /*Checks if the player has the object*/
   if (inventory_object_is_there(player_get_backpack(game_get_player(game)), object_get_id(object)) == ERROR)

@@ -168,6 +168,12 @@ run: $(EXEC)
 runc: $(EXEC)
 	./$(EXEC) cluedo.dat
 
+runlogc: $(EXEC)
+	./$(EXEC) cluedo.dat -l output.txt
+
+rundetc: $(EXEC)
+	./$(EXEC) cluedo.dat -d
+
 runcastle: $(EXEC)
 	./$(EXEC) castle.dat
 

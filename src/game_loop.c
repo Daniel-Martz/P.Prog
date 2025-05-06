@@ -216,6 +216,8 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *output_name)
     }
     game_rules_run_all(game);
     game_set_last_command(game, NULL);
+    printf("RUNNING...\n");
+    printf("Strin: (n%sn)\n", command_get_strin(last_cmd));
     sleep(2);
   }
 
