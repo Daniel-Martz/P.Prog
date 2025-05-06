@@ -1,4 +1,4 @@
-#o:21|Pistola|108|0|1|-1|-1|Arma del crimen|0
+#o:21|Pistola|108|0|1|-1|-1|Arma del crimen|0|
 
     ___________,
  \-'       _____|     
@@ -8,19 +8,19 @@
 |   \ 
 `---'
 
-#o:22|Tuberia de Plomo|104|0|1|-1|-1|Arma del crimen|0
+#o:22|Tuberia de Plomo|104|0|1|-1|-1|Arma del crimen|0|
      __
     |  | 
     |  |
     |  |
     |  |
     ---
-#o:23|Punal|103|0|1|-1|-1|Arma del crimen|0
+#o:23|Punal|103|0|1|-1|-1|Arma del crimen|0|
       /| _______________
 O|===|* >_______________>
       \|
 
-#o:24|Cuerda|106|0|1|-1|-1|Arma del crimen|0
+#o:24|Cuerda|106|0|1|-1|-1|Arma del crimen|0|
     //
    //\\ 
    \\//
@@ -29,7 +29,7 @@ O|===|* >_______________>
    \\//
     //
    //\\
-#o:25|Candelabro|105|0|1|-1|-1|Arma del crimen|0
+#o:25|Candelabro|105|0|1|-1|-1|Arma del crimen|0|
   ) ) )
   | | |
   | | |
@@ -38,7 +38,7 @@ O|===|* >_______________>
    | |
    | |
   /___\
-#o:26|Herramienta|107|0|1|-1|-1|Arma del crimen|0
+#o:26|Herramienta|107|0|1|-1|-1|Arma del crimen|0|
    /|  |\
   ( |__| )
    \    /
@@ -51,23 +51,23 @@ O|===|* >_______________>
   ( |  | )
    \|  |/
 
-#o:812|Carta Salon|102|0|1|-1|-1|Carta de espacio|0
-#o:813|Carta Comedor|103|0|1|-1|-1|Carta de espacio|0
-#o:814|Carta Cocina|104|0|1|-1|-1|Carta de espacio|0
-#o:815|Carta Sala de Baile|105|0|1|-1|-1|Carta de espacio|0
-#o:816|Carta Invernadero|106|0|1|-1|-1|Carta de espacio|0
-#o:817|Carta Sala de Billar|107|0|1|-1|-1|Carta de espacio|0
-#o:818|Carta Estudio|108|0|1|-1|-1|Carta de espacio|0
-#o:821|Carta Biblioteca|201|0|1|-1|-1|Carta de espacio|0
-#o:831|Carta Capilla|301|0|1|-1|-1|Carta de espacio|0
-#o:832|Tenazas|09|2|1|-1|-1|Ataque|1
-#o:833|Clavos|09|1|1|-1|-1|Ataque|1
-#o:834|Martillo|09|2|1|-1|-1|Ataque|1
-#o:835|Hacha|09|3|1|-1|-1|Ataque|1
-#o:836|Tijeras de Podar|106|3|1|-1|-1|Ataque|1
-#o:837|Flotador|401|0|0|-1|-1|No me puedes mover|0
-#o:838|Gasolina|09|0|1|839|-1|Solo no sirvo|0
-#o:839|Bidon|09|09|0|1|-1|-1|Sirvo para llevar liquidos|0
+#o:812|Carta Salon|102|0|1|-1|-1|Carta de espacio|0|
+#o:813|Carta Comedor|103|0|1|-1|-1|Carta de espacio|0|
+#o:814|Carta Cocina|104|0|1|-1|-1|Carta de espacio|0|
+#o:815|Carta Sala de Baile|105|0|1|-1|-1|Carta de espacio|0|
+#o:816|Carta Invernadero|106|0|1|-1|-1|Carta de espacio|0|
+#o:817|Carta Sala de Billar|107|0|1|-1|-1|Carta de espacio|0|
+#o:818|Carta Estudio|108|0|1|-1|-1|Carta de espacio|0|
+#o:821|Carta Biblioteca|201|0|1|-1|-1|Carta de espacio|0|
+#o:831|Carta Capilla|301|0|1|-1|-1|Carta de espacio|0|
+#o:832|Tenazas|09|2|1|-1|-1|Ataque|1|
+#o:833|Clavos|09|1|1|-1|-1|Ataque|1|
+#o:834|Martillo|09|2|1|-1|-1|Ataque|1|
+#o:835|Hacha|09|3|1|-1|-1|Ataque|1|
+#o:836|Tijeras de Podar|106|3|1|-1|-1|Ataque|1|
+#o:837|Flotador|401|0|0|-1|-1|No me puedes mover|0|
+#o:838|Gasolina|09|0|1|839|-1|Solo no sirvo|0|
+#o:839|Bidon|09|09|0|1|-1|-1|Sirvo para llevar liquidos|0|
 
 #s:09|Almacen| _______________ |[______\__mwe___]|[  /            ]|[_/___w__*{}____]|[__mn_sd___\____]
 #s:10|Patio|     ( )____ _   |    /( ) w  ( )  | ()/__!_w___( )()| ()     w    !\()| ()___w_____w__()

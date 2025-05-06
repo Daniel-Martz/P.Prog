@@ -141,6 +141,8 @@ Status game_reader_load_objects(Game *game, char *filename){
       open = atol(toks);
       toks = strtok(NULL, "|");
       strncpy(description, toks, MAX_DESCRIP-1);
+      toks = strtok(NULL, "|");
+      offensive = atol(toks);
       for (row = 0; row < DRAW_HEIGHT; row++)
       {
         if (toks != NULL)
@@ -156,8 +158,6 @@ Status game_reader_load_objects(Game *game, char *filename){
           }
         }  
       }
-      toks = strtok(NULL, "\n");
-      offensive = atol(toks);
       
       /*Create the object*/
       object = object_create(object_id);
