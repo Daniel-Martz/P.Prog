@@ -346,12 +346,13 @@ void graphic_engine_destroy(Graphic_engine *ge) {
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   /* Declare de needed local variables of the function */
   Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, id_left = NO_ID, id_right = NO_ID, *objects_location = NULL, *characters_location = NULL, *player_objects = NULL;
-  char str[MAX_STR], character_name[MAX_STR];
+  char buffer[MAX_BUFFER];
+  char str[MAX_STR], character_name[MAX_STR], object_name[MAX_STR];
   char **space_empty = NULL, object[MAX_STR];
   char **space_left = NULL ,**space_right = NULL, **space_back = NULL, **space_next = NULL, **space_actual = NULL, **space1 = NULL, **space2 = NULL, **space3 = NULL;
   int i=0, j=0;
   CommandCode last_cmd = UNKNOWN;
-  char cmd_result[MAX_RESULT];
+  char cmd_result[MAX_RESULT], *toks = NULL;
   extern char *cmd_to_str[N_CMD][N_CMDT];
   Object **objects = NULL, *obj_aux = NULL;
   Character **characters = NULL, *character = NULL, **followers = NULL;
@@ -626,7 +627,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     /* PAINT THE FACE AREA*/
 
 
-    if(last_cmd == CHAT && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
+    if((last_cmd == CHAT || last_cmd == RECRUIT || last_cmd == ABANDON || last_cmd == ATTACK) && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
       strncpy(character_name, command_get_strin(game_get_last_command(game)), MAX_STR);
       character = game_get_character_from_name(game, character_name);
       screen_area_puts(ge->face, "                                     ");
@@ -641,6 +642,69 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       screen_area_puts(ge->face, "             ------------------------   ");
     }
 
+    else if((last_cmd == INSPECT || last_cmd == TAKE || last_cmd == DROP || last_cmd == USE || last_cmd == OPEN) && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
+      if(last_cmd == INSPECT || last_cmd == TAKE || last_cmd == DROP){
+        strncpy(object_name, command_get_strin(game_get_last_command(game)), MAX_STR);
+        obj_aux = game_get_object_from_name(game, object_name);
+        screen_area_puts(ge->face, "                                     ");
+        snprintf(str, MAX_NAME,  "  Object: %s", object_name);
+        screen_area_puts(ge->face, str);
+        screen_area_puts(ge->face, "                                     ");
+        screen_area_puts(ge->face, "             ------------------------   ");
+        for(i=0; i < DRAW_HEIGHT; i++){
+          sprintf(str, "            |   %s   |", object_get_draw(object, i));
+          screen_area_puts(ge->face, str);
+        }
+        screen_area_puts(ge->face, "             ------------------------   ");
+      }
+      else if(last_cmd == USE){
+
+        strncpy(str, command_get_strin(game_get_last_command(game)), MAX_STR);
+
+        toks = strtok(str, " \n");
+        if(!strcmp(toks,"over")){
+          toks =strtok(str, "\n");
+          strcpy(object_name, toks);
+        }
+        else{
+          strcpy(object_name, toks);
+        }
+        obj_aux = game_get_object_from_name(game, object_name);
+        screen_area_puts(ge->face, "                                     ");
+        snprintf(str, MAX_NAME,  "  Object: %s", object_name);
+        screen_area_puts(ge->face, str);
+        screen_area_puts(ge->face, "                                     ");
+        screen_area_puts(ge->face, "             ------------------------   ");
+        for(i=0; i < DRAW_HEIGHT; i++){
+          sprintf(str, "            |   %s   |", object_get_draw(object, i));
+          screen_area_puts(ge->face, str);
+        }
+        screen_area_puts(ge->face, "             ------------------------   ");
+
+      }
+      else if(last_cmd == OPEN){
+        strncpy(str, command_get_strin(game_get_last_command(game)), MAX_STR);
+
+        toks = strtok(str, " \n");
+        toks = strtok(str, " \n");
+        toks = strtok(str, " \n");
+
+        strcpy(object_name, toks);
+
+        obj_aux = game_get_object_from_name(game, object_name);
+        screen_area_puts(ge->face, "                                     ");
+        snprintf(str, MAX_NAME,  "  Object: %s", object_name);
+        screen_area_puts(ge->face, str);
+        screen_area_puts(ge->face, "                                     ");
+        screen_area_puts(ge->face, "             ------------------------   ");
+        for(i=0; i < DRAW_HEIGHT; i++){
+          sprintf(str, "            |   %s   |", object_get_draw(object, i));
+          screen_area_puts(ge->face, str);
+        }
+        screen_area_puts(ge->face, "             ------------------------   ");
+
+      }
+    }
 
 
     /* PAINT THE COLOR */    

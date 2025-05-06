@@ -25,10 +25,11 @@ struct _Object {
     Id dependency; /*!<Id of the object it depends on*/
     Id open; /*!<Id of the link an object can open*/
     Bool offensive; /*!<Boolean indicating if the object is offensive*/
+    char draw[DRAW_HEIGHT][DRAW_WIDTH];/*!<Matrix of the object's draw*/
 };
 
 Object* object_create (Id id){
-
+    int i = 0;
     Object *obj=NULL;
 
     if (id == NO_ID) return NULL;
@@ -44,6 +45,9 @@ Object* object_create (Id id){
     obj->dependency = NO_ID;
     obj->open = NO_ID;
     obj->offensive = FALSE;
+    for(i = 0; i<DRAW_HEIGHT; i++){
+        obj->draw[i][0] = '\0';
+    }
 
     return obj;
 }
@@ -163,4 +167,23 @@ Status object_print (Object* obj){
     fprintf(stdout, "--> Object (Id: %ld; Name: %s)\n", obj->id, obj->name);
 
     return OK;
+}
+
+
+Status object_set_draw(Object *object, const char draw[DRAW_HEIGHT][DRAW_WIDTH]){
+    int i;
+    if(!object || !draw) return ERROR;
+
+    for(i = 0; i<DRAW_HEIGHT; i++){
+        if(!(strcpy(object->draw[i],draw[i]))){
+            return ERROR;
+        }
+    }
+    return OK;
+}
+
+const char* object_get_draw(Object* object, int row){
+    if (!object || row < 0 || row >= DRAW_HEIGHT) return NULL;
+  
+    return object->draw[row];
 }
