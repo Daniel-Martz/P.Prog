@@ -150,9 +150,7 @@ _________________________________________________________
 #c:34|Profesor Mora|10|1|0|117|Mora|El estudio esta lleno de secretos...|     __----__      `   _/        \_    ` /   __/  \__   \  ` / /          \ \  `/_/--(*)--(*)--\_\ `(|      ||      |) ` |     /__\     |  ` |  ##########  |  ` |##############|  `  \####(___)####/  `   \###########/   `
 #c:35|Dra. Orquidea|10|1|0|124|Orquidea|Las flores del Invernadero son tan bonitas...|     _-^^^^^-_     `   ((((((|))))))   `  ((((((   ))))))  ` (((((       ))))) ` ((( [o]   [o] ))) ` (((            )))` ((      V      )) ` ((             )) ` ((             )) `   \   \===/   /  `    \_________/    `
 #c:36|Senorita Amapola|10|1|0|111|Amapola|Ojala estuviese abierta la piscina...|   ____________    `  /     __     \   ` /   __/  \__   \  `/  _/__   __ \+_ | `| / [*]   [*]  \ | `||     |        || `||    /__       || `||              || `||   _______    || `||\  \_____/   /|| `// \___---____/ \\ `
-
-
-#c:37|Perro|3|0|1|10|/mP|¡Guau!|
+#c:37|Perro|3|0|1|10|/mP|¡Guau!| ` ` `    ________`   |    |    \`    \   /  ^ |`   / \_/   0  \`  /            \` /    ____      0`/      /  \___ _/` ` `
 #c:38|Guard1|3|0|1|111|Guard1|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
 #c:39|Guard2|3|0|1|113|Guard2|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
 #c:40|Guard3|3|0|1|120|Guard3|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
@@ -164,22 +162,11 @@ _________________________________________________________
 #c:46|Guard9|3|0|1|119|Guard9|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
 #c:47|Guard10|3|0|1|122|Guard10|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
 #c:48|Guard11|3|0|1|112|Guard11|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
-#c:48|Loro|3|1|201|mp>|Pista: No coronel! A mi no!|
+#c:48|Loro|3|1|201|mp>|Pista: No coronel! A mi no!|  __________` / ___  ___ \`/ / @ \/ @ \ \`\ \___/\___/ /\` \____\/____/||` /     /\\\\\//`|     |\\\\\\` \      \\\\\\ `   \______/\\\\ `    _||_||_` `
 #c:49|Jardinero|3|1|106|m-o|Pista: Alguien ha visto la cuerda? La necesito para trabajar|
 #c:50|Anciana|3|1|102|/0\|Pista: El jardinero esta haciendo mucho ruido, te recomiendo ver que quiere|
 #c:51|Mayordomo|3|1|104|mw|Pista: El loro de la doctora puede haber oido algo. ¿Por que no le echas un vistazo?|
 
-   ____________
- /      __      \
-|      |__|      |
- \ ____________ /
-  | [*]   [*]  | 
-  |     |      |
- (     /_\      ) 
-  |  /#####\   |  
-  |   /____\   |  
-  \            /  
-   \__________/ 
 
 #p:1|Detective|dp|10|10|5|
 #p:2|Det2|MP|10|10|5|

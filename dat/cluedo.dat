@@ -168,17 +168,23 @@ _________________________________________________________
 #c:49|Jardinero|3|1|106|m-o|Pista: Alguien ha visto la cuerda? La necesito para trabajar|
 #c:50|Anciana|3|1|102|/0\|Pista: El jardinero esta haciendo mucho ruido, te recomiendo ver que quiere|
 #c:51|Mayordomo|3|1|104|mw|Pista: El loro de la doctora puede haber oido algo. ¿Por que no le echas un vistazo?|
-   ____________
- /      __      \
-|      |__|      |
- \ ____________ /
-  | [*]   [*]  | 
-  |     |      |
- (     /_\      ) 
-  |  /#####\   |  
-  |   /____\   |  
-  \            /  
-   \__________/ 
+   
+       _------.
+      /  ,     \_
+    /   /  /{}\ |o\_
+   /    \  `--' /-' \
+  |      \      \    |
+ |              |`-, |
+ /              /__/)/
+|              |
+
+    ________
+   |    |    \
+    \   /  ^ |
+   / \_/   0  \
+  /            \
+ /    ____      0
+/      /  \___ _/
 
 #p:1|Detective|dp|10|10|5|
 #p:2|Det2|MP|10|10|5|
