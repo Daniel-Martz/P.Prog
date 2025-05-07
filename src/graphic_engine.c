@@ -635,7 +635,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       screen_area_puts(ge->face, "                                     ");
       screen_area_puts(ge->face, "             ------------------------   ");
       for(i=0; i < FACE_HEIGHT; i++){
-        sprintf(str, "            |   %s   |", character_get_face(character, i));
+        sprintf(str, "            |   %-19.19s   |", character_get_face(character, i));
         screen_area_puts(ge->face, str);
       }
       screen_area_puts(ge->face, "             ------------------------   ");
@@ -682,8 +682,8 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       else if(last_cmd == OPEN){
         strncpy(str, command_get_strin(game_get_last_command(game)), MAX_STR);
         toks = strtok(str, " \n");
-        toks = strtok(str, " \n");
-        toks = strtok(str, " \n");
+        toks = strtok(NULL, " \n");
+        toks = strtok(NULL, " \n");
         strcpy(object_name, toks);
         obj_aux = game_get_object(game, game_get_object_from_name(game, object_name));
         screen_area_puts(ge->face, "                                     ");

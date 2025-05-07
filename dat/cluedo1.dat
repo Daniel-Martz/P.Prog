@@ -153,17 +153,17 @@ _________________________________________________________
 
 
 #c:37|Perro|3|0|1|10|/mP|¡Guau!|
-#c:38|Guard1|3|0|1|111|Guard1|You'll have to kill me if you want to pass|
-#c:39|Guard2|3|0|1|113|Guard2|You'll have to kill me if you want to pass|
-#c:40|Guard3|3|0|1|120|Guard3|You'll have to kill me if you want to pass|
-#c:41|Guard4|3|0|1|125|Guard4|You'll have to kill me if you want to pass|
-#c:42|Guard5|3|0|1|126|Guard5|You'll have to kill me if you want to pass|
-#c:43|Guard6|3|0|1|124|Guard6|You'll have to kill me if you want to pass|
-#c:44|Guard7|3|0|1|117|Guard7|You'll have to kill me if you want to pass|
-#c:45|Guard8|3|0|1|118|Guard8|You'll have to kill me if you want to pass|
-#c:46|Guard9|3|0|1|119|Guard9|You'll have to kill me if you want to pass|
-#c:47|Guard10|3|0|1|122|Guard10|You'll have to kill me if you want to pass|
-#c:48|Guard11|3|0|1|112|Guard11|You'll have to kill me if you want to pass|
+#c:38|Guard1|3|0|1|111|Guard1|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:39|Guard2|3|0|1|113|Guard2|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:40|Guard3|3|0|1|120|Guard3|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:41|Guard4|3|0|1|125|Guard4|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:42|Guard5|3|0|1|126|Guard5|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:43|Guard6|3|0|1|124|Guard6|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:44|Guard7|3|0|1|117|Guard7|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:45|Guard8|3|0|1|118|Guard8|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:46|Guard9|3|0|1|119|Guard9|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:47|Guard10|3|0|1|122|Guard10|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
+#c:48|Guard11|3|0|1|112|Guard11|You'll have to kill me if you want to pass|   ____________` /      __      \`|      |__|      |` \ ____________ /`  | [*]   [*]  | `  |     |      |` (     /_\      )`  |  /#####\   |`  |   /____\   |`  \            / `   \__________/`
 #c:48|Loro|3|1|201|mp>|Pista: No coronel! A mi no!|
 #c:49|Jardinero|3|1|106|m-o|Pista: Alguien ha visto la cuerda? La necesito para trabajar|
 #c:50|Anciana|3|1|102|/0\|Pista: El jardinero esta haciendo mucho ruido, te recomiendo ver que quiere|
@@ -180,7 +180,7 @@ _________________________________________________________
   |   /____\   |  
   \            /  
    \__________/ 
-   
+
 #p:1|Detective|dp|10|10|5|
 #p:2|Det2|MP|10|10|5|
 

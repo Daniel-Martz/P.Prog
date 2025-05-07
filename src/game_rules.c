@@ -227,6 +227,21 @@ void game_rules_open_door4(Game *game)
     Object *key4 = NULL;
     Id key4_id = 904;
     Id link4_id = 86;
+    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+        "    ",
+        "    ",
+        "    ",
+        "    ",
+        "  .---. ",
+        " /    |\\_______________  ",
+        "| ()  | _______   _   _) ",
+        " \\    |/       | | | |   ",
+        "  `---'        \"-\" |_|   ",
+        "    ",
+        "    ",
+        "    ",
+        "    ", 
+     };
 
     if (!game)
         return;
@@ -247,7 +262,7 @@ void game_rules_open_door4(Game *game)
         object_set_description(key4, "A key to open the door");
         object_set_movable(key4, TRUE);
         object_set_open(key4, link4_id);
-
+        object_set_draw(key4, draw);
         game_add_object(game, key4);
         space_set_new_object(game_get_space(game, game_get_player_location(game)), key4_id);
         game_set_message(game, "The guard has dropped a key!");
@@ -262,7 +277,21 @@ void game_rules_open_door5(Game *game)
     Object *key5 = NULL;
     Id key5_id = 905;
     Id link5_id = 88;
-
+    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+        "    ",
+        "    ",
+        "    ",
+        "    ",
+        "  .---. ",
+        " /    |\\_______________  ",
+        "| ()  | _______   _   _) ",
+        " \\    |/       | | | |   ",
+        "  `---'        \"-\" |_|   ",
+        "    ",
+        "    ",
+        "    ",
+        "    ", 
+     };
     if (!game)
         return;
 
@@ -282,7 +311,7 @@ void game_rules_open_door5(Game *game)
         object_set_description(key5, "A key to open the door");
         object_set_movable(key5, TRUE);
         object_set_open(key5, link5_id);
-
+        object_set_draw(key5, draw);
         game_add_object(game, key5);
         space_set_new_object(game_get_space(game, game_get_player_location(game)), key5_id);
         game_set_message(game, "The guard has dropped a key!");
@@ -297,6 +326,21 @@ void game_rules_open_door6(Game *game)
     Object *key6 = NULL;
     Id key6_id = 906;
     Id link6_id = 84;
+    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+        "    ",
+        "    ",
+        "    ",
+        "    ",
+        "  .---. ",
+        " /    |\\_______________  ",
+        "| ()  | _______   _   _) ",
+        " \\    |/       | | | |   ",
+        "  `---'        \"-\" |_|   ",
+        "    ",
+        "    ",
+        "    ",
+        "    ", 
+     };
 
     if (!game)
         return;
@@ -317,7 +361,7 @@ void game_rules_open_door6(Game *game)
         object_set_description(key6, "A key to open the door");
         object_set_movable(key6, TRUE);
         object_set_open(key6, link6_id);
-
+        object_set_draw(key6, draw);
         game_add_object(game, key6);
         space_set_new_object(game_get_space(game, game_get_player_location(game)), key6_id);
         game_set_message(game, "The guard has dropped a key!");
@@ -332,6 +376,21 @@ void game_rules_open_door7(Game *game)
     Object *key7 = NULL;
     Id key7_id = 907;
     Id link7_id = 62;
+    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+        "    ",
+        "    ",
+        "    ",
+        "    ",
+        "  .---. ",
+        " /    |\\_______________  ",
+        "| ()  | _______   _   _) ",
+        " \\    |/       | | | |   ",
+        "  `---'        \"-\" |_|   ",
+        "    ",
+        "    ",
+        "    ",
+        "    ", 
+     };
 
     if (!game)
         return;
@@ -352,7 +411,7 @@ void game_rules_open_door7(Game *game)
         object_set_description(key7, "A key to open the door");
         object_set_movable(key7, TRUE);
         object_set_open(key7, link7_id);
-
+        object_set_draw(key7, draw);
         game_add_object(game, key7);
         space_set_new_object(game_get_space(game, game_get_player_location(game)), key7_id);
         game_set_message(game, "The guard has dropped a key!");
@@ -367,6 +426,21 @@ void game_rules_open_door8(Game *game)
     Object *key8 = NULL;
     Id key8_id = 908;
     Id link8_id = 65;
+    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+        "    ",
+        "    ",
+        "    ",
+        "    ",
+        "  .---. ",
+        " /    |\\_______________  ",
+        "| ()  | _______   _   _) ",
+        " \\    |/       | | | |   ",
+        "  `---'        \"-\" |_|   ",
+        "    ",
+        "    ",
+        "    ",
+        "    ", 
+     };
 
     if (!game)
         return;
@@ -387,7 +461,7 @@ void game_rules_open_door8(Game *game)
         object_set_description(key8, "A key to open the door");
         object_set_movable(key8, TRUE);
         object_set_open(key8, link8_id);
-
+        object_set_draw(key8, draw);
         game_add_object(game, key8);
         space_set_new_object(game_get_space(game, game_get_player_location(game)), key8_id);
         game_set_message(game, "The guard has dropped a key!");
@@ -402,6 +476,21 @@ void game_rules_open_door9(Game *game)
     Object *key9 = NULL;
     Id key9_id = 909;
     Id link9_id = 68;
+    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+        "    ",
+        "    ",
+        "    ",
+        "    ",
+        "  .---. ",
+        " /    |\\_______________  ",
+        "| ()  | _______   _   _) ",
+        " \\    |/       | | | |   ",
+        "  `---'        \"-\" |_|   ",
+        "    ",
+        "    ",
+        "    ",
+        "    ", 
+     };
 
     if (!game)
         return;
@@ -422,7 +511,7 @@ void game_rules_open_door9(Game *game)
         object_set_description(key9, "A key to open the door");
         object_set_movable(key9, TRUE);
         object_set_open(key9, link9_id);
-
+        object_set_draw(key9, draw);
         game_add_object(game, key9);
         space_set_new_object(game_get_space(game, game_get_player_location(game)), key9_id);
         game_set_message(game, "The guard has dropped a key!");
@@ -437,6 +526,21 @@ void game_rules_open_door10(Game *game)
     Object *key10 = NULL;
     Id key10_id = 910;
     Id link10_id = 77;
+    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+        "    ",
+        "    ",
+        "    ",
+        "    ",
+        "  .---. ",
+        " /    |\\_______________  ",
+        "| ()  | _______   _   _) ",
+        " \\    |/       | | | |   ",
+        "  `---'        \"-\" |_|   ",
+        "    ",
+        "    ",
+        "    ",
+        "    ", 
+     };
 
     if (!game)
         return;
@@ -457,7 +561,7 @@ void game_rules_open_door10(Game *game)
         object_set_description(key10, "A key to open the door");
         object_set_movable(key10, TRUE);
         object_set_open(key10, link10_id);
-
+        object_set_draw(key10, draw);
         game_add_object(game, key10);
         space_set_new_object(game_get_space(game, game_get_player_location(game)), key10_id);
         game_set_message(game, "The guard has dropped a key!");
@@ -472,6 +576,21 @@ void game_rules_open_door11(Game *game)
     Object *key11 = NULL;
     Id key11_id = 911;
     Id link11_id = 61;
+    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+        "    ",
+        "    ",
+        "    ",
+        "    ",
+        "  .---. ",
+        " /    |\\_______________  ",
+        "| ()  | _______   _   _) ",
+        " \\    |/       | | | |   ",
+        "  `---'        \"-\" |_|   ",
+        "    ",
+        "    ",
+        "    ",
+        "    ", 
+     };
 
     if (!game)
         return;
@@ -492,7 +611,7 @@ void game_rules_open_door11(Game *game)
         object_set_description(key11, "A key to open the door");
         object_set_movable(key11, TRUE);
         object_set_open(key11, link11_id);
-
+        object_set_draw(key11, draw);
         game_add_object(game, key11);
         space_set_new_object(game_get_space(game, game_get_player_location(game)), key11_id);
         game_set_message(game, "The guard has dropped a key!");

@@ -15,7 +15,6 @@
 
 #include "types.h"
 
-#define G_DESC 7 /*!< It establishes the maximum size for gdesc*/
 #define MAX_MESSAGE 400/*!< It establishes the maximum length of the character message*/
 #define FACE_HEIGHT 11/*!<Constant for the height of the character face*/ 
 #define FACE_WIDTH 19/*!<Constant for the width of the character face*/
