@@ -19,15 +19,15 @@
 #include "space.h"
 #include "types.h"
 
-#define MAX_STR 255/*!< Constant assigned fpr the maximum length of a string*/
+#define MAX_STR 296/*!< Constant assigned fpr the maximum length of a string*/
 #define MAX_BUFFER 300/*!< Constant assigned for the lenght of an auxiliary buffer*/
-#define WIDTH_MAP 79/*!< Constant asignated for the width of the map*/
+#define WIDTH_MAP 90/*!< Constant asignated for the width of the map*/
 #define WIDTH_DES 50/*!< Constant asignated for the width of the description*/
 #define WIDTH_BAN 150/*!< Constant asignated for the width of the banner*/
 #define HEIGHT_MAP 60/*!< Constant asignated for the height of the map*/
 #define HEIGHT_BAN 1/*!< Constant asignated for the height of the banner*/
-#define HEIGHT_DES 49/*!< Constant asignated for the height of description interface*/
-#define HEIGHT_HLP 3/*!< Constant asignated for the height of help interface*/
+#define HEIGHT_DES 54/*!< Constant asignated for the height of description interface*/
+#define HEIGHT_HLP 9/*!< Constant asignated for the height of help interface*/
 #define HEIGHT_CLUES 20/*!< Constante asignated for the height of the clues interface*/
 #define WIDTH_CLUES 70/*!< Constant asignated for the width of the clues interface*/
 #define HEIGHT_FDB 3/*!< Constant asignated for the height of feedback interface*/
@@ -317,7 +317,7 @@ Graphic_engine *graphic_engine_create(void) {
   ge->clues = screen_area_init( WIDTH_DES + WIDTH_MAP + 3, 2+ HEIGHT_BAN, WIDTH_CLUES , HEIGHT_CLUES );
 
     /* Initializates the vision window area */
-  ge->vision = screen_area_init( WIDTH_DES + WIDTH_MAP + 3, HEIGHT_CLUES + 4, WIDTH_CLUES ,HEIGHT_MAP - HEIGHT_CLUES + 7);
+  ge->vision = screen_area_init( WIDTH_DES + WIDTH_MAP + 3, HEIGHT_CLUES + 4, WIDTH_CLUES ,HEIGHT_MAP - HEIGHT_CLUES + HEIGHT_HLP + HEIGHT_FDB + 1);
 
   if (!ge->map || !ge->descript || !ge->banner || !ge->help || !ge->feedback || !ge->face || !ge->clues || !ge->vision) {
     free(ge);
@@ -605,9 +605,10 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /* Paint in the help area */
     screen_area_clear(ge->help);
-    sprintf(str, " The commands you can use are:");
+    screen_area_puts(ge->help, "                                     ");
+    sprintf(str, " The commands you can use are:                                                              ");
     screen_area_puts(ge->help, str);
-    sprintf(str, " move or m (north/n or south/s or west/w or east/e) take or t, drop or d, attack or t, chat or c,    exit or e");
+    sprintf(str, " move or m (north/n or south/s or west/w or east/e) | take or t / drop or d (object name)  attack or t / chat or c (character name | recruit or r / abandon or ab (character name)   use or u [over (character name)] (object name) | open or o (link name) with (object name) guess or g | exit or e");
     screen_area_puts(ge->help, str);
 
     /* Paint in the feedback area */
@@ -731,3 +732,10 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   }
   
 }
+
+  void graphic_engine_clear_face(Graphic_engine *ge){
+    if(!ge) return;
+    screen_area_clear(ge->face);
+    return;
+  }
+  

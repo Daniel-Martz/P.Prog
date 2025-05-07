@@ -321,7 +321,7 @@ Status game_actions_inspect(Game *game)
 
   for (i = 0; i < space_get_nobjects(game_get_space(game, player_location)); i++)
   {
-    if (!(strcmp(object_get_name(game_get_object(game, ids_aux[i])), objname)))
+    if (!(strcasecmp(object_get_name(game_get_object(game, ids_aux[i])), objname)))
     {
       return game_set_message(game, object_get_description(game_get_object(game, ids_aux[i])));
     }
@@ -622,7 +622,7 @@ Status game_actions_chat(Game *game)
 
   for (i = 0; i < space_get_ncharacters(game_get_space(game, player_location)); i++)
   {
-    if (!strcmp(character_get_name(game_get_character(game, characters[i])), command_get_strin(game_get_last_command(game))))
+    if (!strcasecmp(character_get_name(game_get_character(game, characters[i])), command_get_strin(game_get_last_command(game))))
     {
       character = characters[i];
       break;
@@ -746,7 +746,6 @@ Status game_actions_open(Game *game)
 
   input = command_get_strin(game_get_last_command(game));
   strcpy(input_copy, input); 
-  command_set_strin(game_get_last_command(game), " \n");
   token = strtok(input_copy, " \n"); 
   if (token == NULL)
   {
@@ -909,7 +908,7 @@ Status game_actions_guess(Game *game)
   {
     return ERROR;
   }
-  if (strcmp(space_get_name(center_space), center_space_name) != 0)
+  if (strcasecmp(space_get_name(center_space), center_space_name) != 0)
   {
     return ERROR;
   }

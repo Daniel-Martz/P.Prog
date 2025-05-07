@@ -47,4 +47,12 @@ void graphic_engine_destroy(Graphic_engine *ge);
 */
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game);
 
+/**
+ * @brief This function was created to aboid some problems at clearing the face area
+ * @author Daniel Martínez
+ * 
+ * @param ge A pointer to Grafic_engine
+*/
+void graphic_engine_clear_face(Graphic_engine *ge);
+
 #endif

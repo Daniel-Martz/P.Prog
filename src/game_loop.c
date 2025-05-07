@@ -207,7 +207,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *output_name)
       }
       fprintf(log_output, "(P%i)\n", (game_get_turn(game) + 1));
     }
-
+    graphic_engine_clear_face(gengine);
     graphic_engine_paint_game(gengine, game);
     if (command_get_code(last_cmd) == EXIT)
     {
