@@ -163,18 +163,38 @@ run_tests: $(TESTS)
 
 #Ejecutables Cluedo
 run1: $(EXEC)
-	./$(EXEC) dat/cluedo.dat
+	./$(EXEC) dat/cluedo1.dat
 
+run2: $(EXEC)
+	./$(EXEC) dat/cluedo2.dat
+
+run3: $(EXEC)	
+	./$(EXEC) dat/cluedo3.dat
+
+run4: $(EXEC)
+	./$(EXEC) dat/cluedo4.dat
+	
+run5: $(EXEC)
+	./$(EXEC) dat/cluedo5.dat
+
+run6: $(EXEC)
+	./$(EXEC) dat/cluedo6.dat
 
 # Resto de Ejecutables del juego
 run: $(EXEC)
 	./$(EXEC) dat/anthill.dat
 
 runlogc: $(EXEC)
-	./$(EXEC) cluedo.dat -l output.txt
+	./$(EXEC) dat/cluedo1.dat -l output.txt
 
 rundetc: $(EXEC)
-	./$(EXEC) cluedo.dat -d
+	./$(EXEC) dat/cluedo1.dat -d
+
+rundetlogc: $(EXEC)
+	./$(EXEC) dat/cluedo1.dat -d -l output.txt
+
+runlogdetc: $(EXEC)
+	./$(EXEC) dat/cluedo1.dat -l -d output.txt 
 
 runcastle: $(EXEC)
 	./$(EXEC) dat/castle.dat
