@@ -26,7 +26,7 @@
 #define WIDTH_BAN 150/*!< Constant asignated for the width of the banner*/
 #define HEIGHT_MAP 60/*!< Constant asignated for the height of the map*/
 #define HEIGHT_BAN 1/*!< Constant asignated for the height of the banner*/
-#define HEIGHT_DES 50/*!< Constant asignated for the height of description interface*/
+#define HEIGHT_DES 49/*!< Constant asignated for the height of description interface*/
 #define HEIGHT_HLP 3/*!< Constant asignated for the height of help interface*/
 #define HEIGHT_CLUES 20/*!< Constante asignated for the height of the clues interface*/
 #define WIDTH_CLUES 70/*!< Constant asignated for the width of the clues interface*/
@@ -646,15 +646,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         strncpy(object_name, command_get_strin(game_get_last_command(game)), MAX_STR);
         obj_aux = game_get_object(game, game_get_object_from_name(game, object_name));
         screen_area_puts(ge->face, "                                     ");
-        snprintf(str, MAX_NAME,  "  Object: %s", object_name);
+        snprintf(str, MAX_NAME,  "          Object: %s", object_name);
         screen_area_puts(ge->face, str);
-        screen_area_puts(ge->face, "                                     ");
-        screen_area_puts(ge->face, "             ------------------------   ");
+        screen_area_puts(ge->face, "          ------------------------------   ");
         for(i=0; i < DRAW_HEIGHT; i++){
-          sprintf(str, "            |   %s   |", object_get_draw(obj_aux, i));
+          sprintf(str, "         |   %-24.24s   |", object_get_draw(obj_aux, i));
           screen_area_puts(ge->face, str);
         }
-        screen_area_puts(ge->face, "             ------------------------   ");
+        screen_area_puts(ge->face, "          ------------------------------   ");
       }
       else if(last_cmd == USE){
 
@@ -670,37 +669,32 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         }
         obj_aux = game_get_object(game, game_get_object_from_name(game, object_name));
         screen_area_puts(ge->face, "                                     ");
-        snprintf(str, MAX_NAME,  "  Object: %s", object_name);
+        snprintf(str, MAX_NAME,  "          Object: %s", object_name);
         screen_area_puts(ge->face, str);
-        screen_area_puts(ge->face, "                                     ");
-        screen_area_puts(ge->face, "             ------------------------   ");
+        screen_area_puts(ge->face, "          ------------------------------   ");
         for(i=0; i < DRAW_HEIGHT; i++){
-          sprintf(str, "            |   %s   |", object_get_draw(obj_aux, i));
+          sprintf(str, "         |   %-24.24s   |", object_get_draw(obj_aux, i));
           screen_area_puts(ge->face, str);
         }
-        screen_area_puts(ge->face, "             ------------------------   ");
+        screen_area_puts(ge->face, "          ------------------------------   ");
 
       }
       else if(last_cmd == OPEN){
         strncpy(str, command_get_strin(game_get_last_command(game)), MAX_STR);
-
         toks = strtok(str, " \n");
         toks = strtok(str, " \n");
         toks = strtok(str, " \n");
-
         strcpy(object_name, toks);
-
         obj_aux = game_get_object(game, game_get_object_from_name(game, object_name));
         screen_area_puts(ge->face, "                                     ");
-        snprintf(str, MAX_NAME,  "  Object: %s", object_name);
+        snprintf(str, MAX_NAME,  "          Object: %s", object_name);
         screen_area_puts(ge->face, str);
-        screen_area_puts(ge->face, "                                     ");
-        screen_area_puts(ge->face, "             ------------------------   ");
+        screen_area_puts(ge->face, "          ------------------------------   ");
         for(i=0; i < DRAW_HEIGHT; i++){
-          sprintf(str, "            |   %s   |", object_get_draw(obj_aux, i));
+          sprintf(str, "         |   %-24.24s   |", object_get_draw(obj_aux, i));
           screen_area_puts(ge->face, str);
         }
-        screen_area_puts(ge->face, "             ------------------------   ");
+        screen_area_puts(ge->face, "          ------------------------------   ");
 
       }
     }

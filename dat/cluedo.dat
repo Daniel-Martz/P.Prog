@@ -1,69 +1,52 @@
-#o:21|Pistola|108|0|1|-1|-1|Arma del crimen|0|
+#o:21|Pistola|108|0|1|-1|-1|Arma del crimen|0|·   ·   ·                       ·                       ·       ___________, ·    \-'       _____|·     )   _ __/     ·    / `./_/        ·   |   |           ·   |   \           ·    `---'           ·                        ·                                                                
+
 
     ___________,
  \-'       _____|     
-  )   _ __/
- / `./_/
-|   |      
-|   \ 
-`---'
+  )   _ __/     
+ / `./_/        
+|   |           
+|   \           
+`---'           
+------------------------|                     
 
-#o:22|Tuberia de Plomo|104|0|1|-1|-1|Arma del crimen|0|
-     __
-    |  | 
-    |  |
-    |  |
-    |  |
-    ---
-#o:23|Punal|103|0|1|-1|-1|Arma del crimen|0|
-      /| _______________
-O|===|* >_______________>
-      \|
 
-#o:24|Cuerda|106|0|1|-1|-1|Arma del crimen|0|
-    //
-   //\\ 
-   \\//
-    //
-   //\\
-   \\//
-    //
-   //\\
-#o:25|Candelabro|105|0|1|-1|-1|Arma del crimen|0|
-  ) ) )
-  | | |
-  | | |
- /_|_|_\
-   | |
-   | |
-   | |
-  /___\
-#o:26|Herramienta|107|0|1|-1|-1|Arma del crimen|0|
-   /|  |\
-  ( |__| )
-   \    /
-    |12|
-    |  |
-    |  |
-    |  |
-    |14|
-   / __ \
-  ( |  | )
-   \|  |/
 
-#o:812|Carta Salon|102|0|1|-1|-1|Carta de espacio|0|
-#o:813|Carta Comedor|103|0|1|-1|-1|Carta de espacio|0|
-#o:814|Carta Cocina|104|0|1|-1|-1|Carta de espacio|0|
-#o:815|Carta Sala de Baile|105|0|1|-1|-1|Carta de espacio|0|
-#o:816|Carta Invernadero|106|0|1|-1|-1|Carta de espacio|0|
-#o:817|Carta Sala de Billar|107|0|1|-1|-1|Carta de espacio|0|
-#o:818|Carta Estudio|108|0|1|-1|-1|Carta de espacio|0|
-#o:821|Carta Biblioteca|201|0|1|-1|-1|Carta de espacio|0|
-#o:831|Carta Capilla|301|0|1|-1|-1|Carta de espacio|0|
-#o:832|Tenazas|09|2|1|-1|-1|Ataque|1|
-#o:833|Clavos|09|1|1|-1|-1|Ataque|1|
+   
+  .---.
+ /    |\_______________
+| ()  | _______   _   _)
+ \    |/       | | | |
+  `---'        "-" |_|
+
+
+
+
+
+------------------------|
+
+| · · ·  · / \   / \    / \   / \ · | |   | |    | |   | |  · | |   | |    | |   | | · | |   | |    | |   | | · | |   | |    | |   | | · | |   | |    | |   | |  ·/___\ /___\  /___\ /___\ · · · ·  ·
+
+
+
+#o:22|Tuberia de Plomo|104|0|1|-1|-1|Arma del crimen|0|· · · ·           __·          |  |·          |  |·          |  |·          |  |·          |  | ·          |  |·          ----· · · ·
+#o:23|Punal|103|0|1|-1|-1|Arma del crimen|0|· · · ·      ·     ·      /| ______________·O|===|* >______________>·      \|· ·  · · · ·  ·
+#o:24|Cuerda|106|0|1|-1|-1|Arma del crimen|0|· · ·          // ·         //\\      ·         \\//     ·          //    ·         //\\·         \\//·          // ·         //\\  · · · ·  ·
+#o:25|Candelabro|105|0|1|-1|-1|Arma del crimen|0|· ·  · ·         ) ) ) ·         | | |    ·         | | |    ·          | |   ·          | |·          | |·         /___\·   · · ·  ·
+#o:26|Herramienta|107|0|1|-1|-1|Arma del crimen|0| · ·        /|  |\·       ( |__| )·        \    /·         |12| ·         |  |     ·         |  |    ·         |  |·         |14|·        / __ \·       ( |  | ) ·        \|  |/    · ·  ·
+#o:812|Carta Salon|102|0|1|-1|-1|Carta de espacio|0| · · [-------------------]· | \_ C _\           |· |   \_ L _\         |· |     \_ U _\       | · |       \_ E _\     |· |         \_ D _\   |· |           \_ O _\ | · |                   |· |       SALON       |· |                   |· [-------------------]· ·  ·
+#o:813|Carta Comedor|103|0|1|-1|-1|Carta de espacio|0| · · [-------------------]· | \_ C _\           |· |   \_ L _\         |· |     \_ U _\       | · |       \_ E _\     |· |         \_ D _\   |· |           \_ O _\ | · |                   |· |      COMEDOR      |· |                   |· [-------------------]· ·  ·
+#o:814|Carta Cocina|104|0|1|-1|-1|Carta de espacio|0| · · [-------------------]· | \_ C _\           |· |   \_ L _\         |· |     \_ U _\       | · |       \_ E _\     |· |         \_ D _\   |· |           \_ O _\ | · |                   |· |       COCINA      |· |                   |· [-------------------]· ·  ·
+#o:815|Carta Sala de Baile|105|0|1|-1|-1|Carta de espacio|0| · · [-------------------]· | \_ C _\           |· |   \_ L _\         |· |     \_ U _\       | · |       \_ E _\     |· |         \_ D _\   |· |           \_ O _\ | · |                   |· |   SALA DE BAILE   |· |                   |· [-------------------]· ·  ·
+#o:816|Carta Invernadero|106|0|1|-1|-1|Carta de espacio|0| · · [-------------------]· | \_ C _\           |· |   \_ L _\         |· |     \_ U _\       | · |       \_ E _\     |· |         \_ D _\   |· |           \_ O _\ | · |                   |· |    INVERNADERO    |· |                   |· [-------------------]· ·  ·
+#o:817|Carta Sala de Billar|107|0|1|-1|-1|Carta de espacio|0| · · [-------------------]· | \_ C _\           |· |   \_ L _\         |· |     \_ U _\       | · |       \_ E _\     |· |         \_ D _\   |· |           \_ O _\ | · |                   |· |  SALA DE BILLAR   |· |                   |· [-------------------]· ·  ·
+#o:818|Carta Estudio|108|0|1|-1|-1|Carta de espacio|0| · · [-------------------]· | \_ C _\           |· |   \_ L _\         |· |     \_ U _\       | · |       \_ E _\     |· |         \_ D _\   |· |           \_ O _\ | · |                   |· |      ESTUDIO      |· |                   |· [-------------------]· ·  ·
+#o:821|Carta Biblioteca|201|0|1|-1|-1|Carta de espacio|0| · · [-------------------]· | \_ C _\           |· |   \_ L _\         |· |     \_ U _\       | · |       \_ E _\     |· |         \_ D _\   |· |           \_ O _\ | · |                   |· |     BIBLIOTECA    |· |                   |· [-------------------]· ·  ·
+#o:831|Carta Capilla|301|0|1|-1|-1|Carta de espacio|0| · · [-------------------]· | \_ C _\           |· |   \_ L _\         |· |     \_ U _\       | · |       \_ E _\     |· |         \_ D _\   |· |           \_ O _\ | · |                   |· |      CAPILLA      |· |                   |· [-------------------]· ·  ·
+#o:832|Tenazas|09|2|1|-1|-1|Ataque|1|         __  __·        /_/  \_\ ·        | |  | | ·        | |__| | ·         \____/·          |||| ·         / || \·        (  ||  )·         \_||_/·           || ·           || ·          /__\ · · ·  ·
+#o:833|Clavos|09|1|1|-1|-1|Ataque|1| · · ·  · / \   / \    / \   / \ · | |   | |    | |   | |  · | |   | |    | |   | | · | |   | |    | |   | | · | |   | |    | |   | | · | |   | |    | |   | |  ·/___\ /___\  /___\ /___\ · · · ·  ·
 #o:834|Martillo|09|2|1|-1|-1|Ataque|1|
-#o:835|Hacha|09|3|1|-1|-1|Ataque|1|
+#o:835|Hacha|09|3|1|-1|-1|Ataque|1| · · · · _____________.---.____·(_(__________(_o o_(__()·         .___.'. .'.___.·         \ o    Y    o /·           '.__'-'__.'· · · · · ·  ·
 #o:836|Tijeras de Podar|106|3|1|-1|-1|Ataque|1|
 #o:837|Flotador|401|0|0|-1|-1|No me puedes mover|0|
 #o:838|Gasolina|09|0|1|839|-1|Solo no sirvo|0|
@@ -181,7 +164,6 @@ _________________________________________________________
 #c:46|Guard9|3|0|1|119|Guard9|You'll have to kill me if you want to pass|
 #c:47|Guard10|3|0|1|122|Guard10|You'll have to kill me if you want to pass|
 #c:48|Guard11|3|0|1|112|Guard11|You'll have to kill me if you want to pass|
-
 #c:48|Loro|3|1|201|mp>|Pista: No coronel! A mi no!|
 #c:49|Jardinero|3|1|106|m-o|Pista: Alguien ha visto la cuerda? La necesito para trabajar|
 #c:50|Anciana|3|1|102|/0\|Pista: El jardinero esta haciendo mucho ruido, te recomiendo ver que quiere|
@@ -268,3 +250,15 @@ _________________________________________________________
 
 #x:Coronel Rubio|Cuerda|Carta Comedor
 
+
+   ____________
+ /      __      \
+|      |__|      |
+ \ ____________ /
+  | [*]   [*]  | 
+  |     |      |
+ (     /_\      ) 
+  |  /#####\   |  
+  |   /____\   |  
+  \            /  
+   \__________/  

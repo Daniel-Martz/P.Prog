@@ -21,7 +21,7 @@
 #define NAME_SIZE 50/*!< The maximum size for objects names*/
 #define MAX_DESCRIP 100/*!< The maximum size for the objects descriptions*/
 #define DRAW_HEIGHT 14/*!<Constant for the height of the character's draw*/
-#define DRAW_WIDTH 22/*!<Constant for the width of the character's draw*/
+#define DRAW_WIDTH 25/*!<Constant for the width of the character's draw*/
 
 /**
  * @brief Structure of the object

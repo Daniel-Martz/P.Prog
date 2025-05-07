@@ -147,7 +147,7 @@ Status game_reader_load_objects(Game *game, char *filename){
       {
         if (toks != NULL)
         {
-          toks = strtok(NULL, "`");
+          toks = strtok(NULL, "·");
           if (toks != NULL) {
             strncpy(draw[row], toks, DRAW_WIDTH - 1);
             draw[row][DRAW_WIDTH - 1] = '\0'; 
@@ -164,6 +164,7 @@ Status game_reader_load_objects(Game *game, char *filename){
       if (!object) return ERROR;
       object_set_name(object, name);
       game_add_object(game, object);
+      object_set_draw(object, draw);
       space_set_new_object(game_get_space(game, space_id), object_id);
       object_set_description(object, description);
       object_set_health(object, health);

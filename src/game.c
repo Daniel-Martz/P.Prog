@@ -518,7 +518,7 @@ Id game_get_object_from_name(Game *game, char *objname){
   }
 
   for(i=0; i<game->n_objects; i++){
-    if(!strcmp(object_get_name(game->objects[i]),objname)){
+    if(!strcasecmp(object_get_name(game->objects[i]),objname)){
       return object_get_id(game->objects[i]);
     }
   }
