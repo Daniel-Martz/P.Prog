@@ -199,11 +199,13 @@ runlogdetc: $(EXEC)
 runcastle: $(EXEC)
 	./$(EXEC) dat/castle.dat
 
+
+#Valgrinds generales
 runv:
 	valgrind --leak-check=full ./$(EXEC) dat/anthill.dat
 
 runvcluedo:
-	valgrind --leak-check=full ./$(EXEC) dat/cluedo.dat
+	valgrind --leak-check=full ./$(EXEC) dat/cluedo1.dat
 
 runvcastle:
 	valgrind --leak-check=full ./$(EXEC) dat/castle.dat
@@ -214,11 +216,27 @@ runvloganthill:
 runvlogcastle:
 	valgrind --leak-check=full ./$(EXEC) dat/castle.dat -l output.txt - log_input_castle.txt
 
+#Logs
 runloganthill:
 	./$(EXEC) dat/anthill.dat -l output.txt - log_input.txt
 
 runlogcastle:
 	./$(EXEC) dat/castle.dat -l output.txt - log_input_castle.txt
+
+
+#Valgrind cluedos
+runvc1:
+	valgrind --leak-check=full ./$(EXEC) dat/cluedo1.dat
+runvc2:
+	valgrind --leak-check=full ./$(EXEC) dat/cluedo2.dat
+runvc3:
+	valgrind --leak-check=full ./$(EXEC) dat/cluedo3.dat
+runvc4:
+	valgrind --leak-check=full ./$(EXEC) dat/cluedo4.dat
+runvc5:
+	valgrind --leak-check=full ./$(EXEC) dat/cluedo5.dat
+runvc6:
+	valgrind --leak-check=full ./$(EXEC) dat/cluedo6.dat
 
 # Documentación
 doxyfile:
