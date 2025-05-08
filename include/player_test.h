@@ -216,4 +216,39 @@
  */
  void test2_player_delete_object();
 
+/**
+ * @test Test getting initial damage value
+ * @pre Newly created player
+ * @post Returns INIT_DAMAGE (1)
+ */
+void test1_player_get_damage();
+
+/**
+ * @test Test getting damage from NULL player
+ * @pre NULL player pointer
+ * @post Returns NO_ID
+ */
+void test2_player_get_damage();
+
+/**
+ * @test Test setting valid damage value
+ * @pre Valid player pointer and positive damage
+ * @post Returns OK and damage is set
+ */
+void test1_player_set_damage();
+
+/**
+ * @test Test setting damage on NULL player
+ * @pre NULL player pointer
+ * @post Returns ERROR
+ */
+void test2_player_set_damage();
+
+/**
+ * @test Test setting negative damage value
+ * @pre Valid player pointer but negative damage
+ * @post Returns ERROR (damage should remain unchanged)
+ */
+void test3_player_set_damage();
+
  #endif
