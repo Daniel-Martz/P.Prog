@@ -172,6 +172,124 @@ void test1_space_set_discovered();
 * @post Returns ERROR
 */
 void test2_space_set_discovered();
+
+/**
+ * @test Test deleting an existing object from space
+ * @pre Space with object
+ * @post Returns OK and object count decreases
+ */
+void test1_space_object_del();
+/**
+ * @test Test deleting non-existent object from space
+ * @pre Space without the object
+ * @post Returns ERROR
+ */
+void test2_space_object_del();
+/**
+ * @test Test deleting object from NULL space
+ * @pre NULL space pointer
+ * @post Returns ERROR
+ */
+void test3_space_object_del();
+
+/**
+ * @test Test deleting an existing character from space
+ * @pre Space with character
+ * @post Returns OK and character count decreases
+ */
+void test1_space_character_del();
+/**
+ * @test Test deleting non-existent character from space
+ * @pre Space without the character
+ * @post Returns ERROR
+ */
+void test2_space_character_del();
+/**
+ * @test Test deleting character from NULL space
+ * @pre NULL space pointer
+ * @post Returns ERROR
+ */
+void test3_space_character_del();
+
+/**
+ * @test Test checking existing object in space
+ * @pre Space with object
+ * @post Returns TRUE
+ */
+void test1_space_object_is_there();
+/**
+ * @test Test checking non-existent object in space
+ * @pre Space without the object
+ * @post Returns FALSE
+ */
+void test2_space_object_is_there();
+/**
+ * @test Test checking object in NULL space
+ * @pre NULL space pointer
+ * @post Returns ERROR
+ */
+void test3_space_object_is_there();
+/**
+ * @test Test checking existing character in space
+ * @pre Space with character
+ * @post Returns TRUE
+ */
+void test1_space_character_is_there();
+/**
+ * @test Test checking non-existent character in space
+ * @pre Space without the character
+ * @post Returns FALSE
+ */
+void test2_space_character_is_there();
+/**
+ * @test Test checking character in NULL space
+ * @pre NULL space pointer
+ * @post Returns ERROR
+ */
+void test3_space_character_is_there();
+
+/**
+ * @test Test getting number of characters in space
+ * @pre Space with characters
+ * @post Returns correct number of characters
+ */
+void test1_space_get_ncharacters();
+
+/**
+ * @test Test getting number of characters from NULL space
+ * @pre NULL space pointer
+ * @post Returns POINT_ERROR
+ */
+void test2_space_get_ncharacters();
+
+/**
+ * @test Test getting number of characters from space with no characters
+ * @pre Space with no characters
+ * @post Returns 0
+ */
+void test3_space_get_ncharacters();
+
+/**
+ * @test Test getting character IDs from space with characters
+ * @pre Space with characters
+ * @post Returns correct array of character IDs
+ */
+void test1_space_get_characters_ids();
+
+/**
+ * @test Test getting character IDs from NULL space
+ * @pre NULL space pointer
+ * @post Returns NULL
+ */
+void test2_space_get_characters_ids();
+
+/**
+ * @test Test getting character IDs from space with no characters
+ * @pre Space with no characters
+ * @post Returns NULL
+ */
+void test3_space_get_characters_ids();
+
 /**
  * @test Test printing a normal space
  * @pre Space with all fields populated

@@ -15,7 +15,7 @@
 #include "set.h"
 
 #define N_ROWS 5/*!< Number of rows in the description*/
-#define N_COLUMNS 18/*!< 9 plus a space for '\0'*/
+#define N_COLUMNS 18/*!< 17 plus a space for '\0'*/
 #define MAX_DESC 17/*!< The maximum size for gdesc*/
 
 /**
