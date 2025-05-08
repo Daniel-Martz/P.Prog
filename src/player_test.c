@@ -69,6 +69,11 @@
     if (all || test == 26)  test2_player_set_gdesc();
     if (all || test == 27)  test1_player_delete_object();
     if (all || test == 28)  test2_player_delete_object();
+    if (all || test == 29) test1_player_get_damage();
+    if (all || test == 30) test2_player_get_damage();
+    if (all || test == 31) test1_player_set_damage();
+    if (all || test == 32) test2_player_set_damage();
+    if (all || test == 33) test3_player_set_damage();
 
    PRINT_PASSED_PERCENTAGE;
 
@@ -243,6 +248,34 @@ void test1_player_delete_object() {
 void test2_player_delete_object() {
     Player *player = NULL;
     PRINT_TEST_RESULT(player_delete_object(player, 10) == ERROR);
+}
+
+void test1_player_get_damage() {
+    Player *player = player_create(1);
+    PRINT_TEST_RESULT(player_get_damage(player) == 1); 
+    player_destroy(player);
+}
+
+void test2_player_get_damage() {
+    Player *player = NULL;
+    PRINT_TEST_RESULT(player_get_damage(player) == NO_ID);
+}
+
+void test1_player_set_damage() {
+    Player *player = player_create(1);
+    PRINT_TEST_RESULT(player_set_damage(player, 5) == OK);
+    player_destroy(player);
+}
+
+void test2_player_set_damage() {
+    Player *player = NULL;
+    PRINT_TEST_RESULT(player_set_damage(player, 5) == ERROR);
+}
+
+void test3_player_set_damage() {
+    Player *player = player_create(1);
+    PRINT_TEST_RESULT(player_set_damage(player, -1) == ERROR); 
+    player_destroy(player);
 }
 
 /* gcc player_test.c player.c inventory.c set.c -o player_test */

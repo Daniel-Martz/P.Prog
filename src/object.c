@@ -113,6 +113,7 @@ Status object_set_health(Object *obj, int health){
 }
 
 int object_get_health(Object *obj){
+    if(!obj) return 0;
     return obj->health;
 }
 
