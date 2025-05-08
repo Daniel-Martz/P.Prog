@@ -161,10 +161,14 @@ Bool object_get_offensive(Object *obj) {
 }
 
 Status object_print (Object* obj){
-
+    int i;
     if (!obj) return ERROR;
 
     fprintf(stdout, "--> Object (Id: %ld; Name: %s)\n", obj->id, obj->name);
+    fprintf(stdout, " Draw:\n");
+    for (i = 0; i < DRAW_HEIGHT; i++) {
+        fprintf(stdout, "  %s\n", obj->draw[i]);
+    }
 
     return OK;
 }

@@ -472,9 +472,9 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
       /*IMPRESION*/
-    sprintf(str,"  Player playing (name: id (health)): " );
+    sprintf(str,"  Player playing (name: id (damage) (health)): " );
     screen_area_puts(ge->descript, str);
-    sprintf(str, "    %6.15s : %i (%i)",player_get_name(game_get_player(game)), (int)player_get_location(game_get_player(game)),player_get_health(game_get_player(game)));
+    sprintf(str, "    %6.15s : %i (%i) (%i)",player_get_name(game_get_player(game)), (int)player_get_location(game_get_player(game)), player_get_damage(game_get_player(game)),player_get_health(game_get_player(game)));
     screen_area_puts(ge->descript, str);
     sprintf(str,"  Current position: " );
     screen_area_puts(ge->descript, str);
