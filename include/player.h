@@ -120,6 +120,15 @@ Id player_get_location (Player* player);
  */
 const char* player_get_gdesc(Player *player);
 
+/**
+ * @brief It gets the team of the player
+ * @author Jorge Martin
+ *
+ * @param player a pointer to the player
+ * @return the team of the player
+ */
+Id player_get_team(Player *player);
+
 /*============================Set============================*/
 
 /**
@@ -194,6 +203,16 @@ Status player_set_location (Player* player, Id location);
  * @return OK if everything goes well, ERROR if anything goes wrong
  */
 Status player_set_gdesc(Player *player, const char* gdesc);
+
+/**
+ * @brief Sets the team of the player
+ * @author Jorge Martin
+ *
+ * @param player a pointer to the player
+ * @param team The id of the team
+ * @return OK, if everything goes well or ERROR if there was some mistake
+ */
+Status player_set_team(Player *player, Id team);
 
 /**
  * @brief Deletes an object from the backpack of a player

@@ -145,6 +145,15 @@ Status game_actions_use(Game *game);
 Status game_actions_guess(Game *game);
 
 /**
+ * @brief It allows the player to cooperate with another player
+ * @author Jorge Martín
+ *
+ * @param game a pointer to Game
+ * @return Status indicating the result of the action
+ */
+Status game_actions_cooperate(Game *game);
+
+/**
  * @brief Game actions implementation
  */
 
@@ -214,6 +223,10 @@ Status game_actions_update(Game *game, Command *command)
     command_set_last_cmd_status(game_get_last_command(game), game_actions_guess(game));
     break;
 
+  case COOPERATE:
+    command_set_last_cmd_status(game_get_last_command(game), game_actions_cooperate(game));
+    break;
+
   default:
     break;
   }
@@ -241,6 +254,7 @@ Status game_actions_move(Game *game)
   Id space_id = NO_ID;
   Direction direction;
   Character **characters_follow = NULL;
+  Player **players_in_same_team = NULL;
   int i = 0;
 
   if (!game)
@@ -266,17 +280,29 @@ Status game_actions_move(Game *game)
 
       /*Mover a los personajes que le están siguiendo*/
 
-      if (game_get_followingcharacters(game, player_id) == NULL)
+      if ((game_get_followingcharacters(game, player_id) == NULL) && (game_get_players_in_same_team(game, game_get_player(game)) == NULL))
       {
         return OK;
       }
 
       characters_follow = game_get_followingcharacters(game, player_id);
-      for (i = 0; i < game_get_nfollowingcharacters(game, player_id); i++)
+      if (characters_follow != NULL)
       {
-        space_character_del(game_get_space(game, space_id), character_get_id(characters_follow[i]));
-        game_set_character_location(game, current_id, character_get_id(characters_follow[i]));
+        for (i = 0; i < game_get_nfollowingcharacters(game, player_id); i++)
+        {
+          space_character_del(game_get_space(game, space_id), character_get_id(characters_follow[i]));
+          game_set_character_location(game, current_id, character_get_id(characters_follow[i]));
+        }
       }
+      players_in_same_team = game_get_players_in_same_team(game, game_get_player(game));
+      if (players_in_same_team != NULL)
+      {
+        for (i = 0; i < game_get_n_players_in_same_team(game, game_get_player(game)); i++)
+        {
+          player_set_location(players_in_same_team[i], current_id);
+        }
+      }
+
     }
     else
     {
@@ -533,7 +559,7 @@ Status game_actions_attack(Game *game)
   turn = rand() % RANDOM;
   if ((turn < 0) || turn > (RANDOM - 1))
     return ERROR;
-  if (turn < (RANDOM/4))
+  if (turn < (RANDOM / 4))
   {
     /* If the attacking player loses a new random variable determines who loses a hitpoint (it goes from 0 up to the number of following characters)*/
     following = game_get_nfollowingcharacters(game, player_get_id(game_get_player(game)));
@@ -693,6 +719,7 @@ Status game_actions_abandon(Game *game)
 {
   Character *character = NULL;
   char *character_name = NULL;
+  Id team_id = NO_ID;
 
   if (!game)
     return ERROR;
@@ -702,6 +729,24 @@ Status game_actions_abandon(Game *game)
   if (!(character_name = command_get_strin(game_get_last_command(game))))
   {
     return ERROR;
+  }
+
+  if (strcasecmp(character_name, "team") == 0)
+  {
+    team_id = player_get_team(game_get_player(game));
+    if (team_id == NO_ID)
+    {
+      return ERROR;
+    }
+    else {
+      player_set_team(game_get_player(game), NO_ID);
+      if (game_get_n_players_in_same_team(game, game_get_player(game)) == 0)
+      {
+        game_set_n_teams(game, game_get_n_teams(game) - 1);
+      }
+      game_set_message(game, "You have abandoned your team");
+      return OK;
+    }
   }
 
   if (!(character = game_get_character_from_name(game, character_name)))
@@ -735,8 +780,7 @@ Status game_actions_open(Game *game)
   Object *object = NULL;
   Link *link = NULL;
   char *token = NULL, *input = NULL;
-  char input_copy[MAX_STRING_LENGTH]; 
-
+  char input_copy[MAX_STRING_LENGTH];
 
   if (!game)
     return ERROR;
@@ -745,8 +789,8 @@ Status game_actions_open(Game *game)
   game_set_message(game, "");
 
   input = command_get_strin(game_get_last_command(game));
-  strcpy(input_copy, input); 
-  token = strtok(input_copy, " \n"); 
+  strcpy(input_copy, input);
+  token = strtok(input_copy, " \n");
   if (token == NULL)
   {
     return ERROR;
@@ -771,7 +815,8 @@ Status game_actions_open(Game *game)
   token = strtok(NULL, " \n");
   object = game_get_object(game, game_get_object_from_name(game, token));
 
-  if (object == NULL) {
+  if (object == NULL)
+  {
     return ERROR;
   }
 
@@ -995,4 +1040,98 @@ Status game_actions_guess(Game *game)
   }
 
   return OK;
+}
+
+Status game_actions_cooperate(Game *game)
+{
+  Id team_id = NO_ID;
+  char *token = NULL, *input = NULL;
+  Player *player_coop = NULL;
+
+  command_set_direction(game_get_last_command(game), U);
+  game_set_message(game, "");
+
+  if (!game)
+  {
+    return ERROR;
+  }
+
+  input = command_get_strin(game_get_last_command(game));
+  token = strtok(input, " \n");
+  if (token == NULL)
+  {
+    return ERROR;
+  }
+  if (strcasecmp(token, "with") != 0)
+  {
+    return ERROR;
+  }
+
+  token = strtok(NULL, " \n");
+  if (token == NULL)
+  {
+    return ERROR;
+  }
+  player_coop = game_get_player_by_name(game, token);
+  if (player_coop == NULL)
+  {
+    return ERROR;
+  }
+
+  if (game_get_player_location(game) == NO_ID)
+  {
+    return ERROR;
+  }
+  if (player_get_location(player_coop) == NO_ID)
+  {
+    return ERROR;
+  }
+  if (game_get_player_location(game) != player_get_location(player_coop))
+  {
+    return ERROR;
+  }
+
+  team_id = player_get_team(game_get_player(game));
+  if (team_id == NO_ID)
+  {
+    team_id = player_get_team(player_coop);
+    if (team_id == NO_ID)
+    {
+      team_id = game_get_n_teams(game) + 1;
+      if (game_set_n_teams(game, game_get_n_teams(game) + 1) == ERROR)
+      {
+        return ERROR;
+      }
+      player_set_team(game_get_player(game), team_id);
+      player_set_team(player_coop, team_id);
+      game_set_message(game, ("You have created a new team with set player."));
+      return OK;
+    }
+    else
+    {
+      player_set_team(game_get_player(game), team_id);
+      game_set_message(game, ("You have joined the team with set player."));
+      return OK;
+    }
+  }
+  else if (player_get_team(player_coop) != NO_ID)
+  {
+    if (team_id != player_get_team(player_coop))
+    {
+      return ERROR;
+    }
+    else
+    {
+      return OK;
+    }
+  }
+  else
+  {
+    player_set_team(player_coop, team_id);
+    player_set_team(game_get_player(game), team_id);
+    game_set_message(game, ("You have joined the team with set player."));
+    return OK;
+  }
+
+  return ERROR;
 }

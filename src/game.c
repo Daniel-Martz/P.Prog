@@ -34,6 +34,7 @@ struct _Game {
   int n_characters; /*!< Number of characters that the game has */
   int n_links; /*!< Number of links that the game has */
   int n_players; /*!< Number of players that the game has */
+  int n_teams; /*!< Number of teams that the game has */
   int turn; /*!< Integrer defining the player's turn */
   Command *last_cmd; /*!< It stores the last command called */
   Bool finished; /*!< It defines if the game finished or not */
@@ -83,6 +84,7 @@ Game *game_create(void){
   game->n_characters = 0;
   game->n_links = 0;
   game->n_players = 0;
+  game->n_teams = 0;
   game->turn = 0;
   game->last_cmd = command_create();
   game->finished = FALSE;
@@ -910,22 +912,30 @@ Character **game_get_space_nonfollowingcharacters(Game *game, Space *space, Id p
 int game_get_player_total_damage(Game *game, Id player_id) {
   int damage = 0, i;
   Character **characters = NULL;
+  Player **players = NULL;
 
   if((!game) || (player_id == NO_ID)) return POINT_ERROR;
 
-  damage += player_get_damage(game_get_player_by_id(game, player_id));
   characters = game_get_followingcharacters(game, player_id);
+  players = game_get_players_in_same_team(game, game_get_player_by_id(game, player_id));
 
-  if (characters == NULL) {
+  if ((characters == NULL) && (players == NULL)) {
+    damage += player_get_damage(game_get_player_by_id(game, player_id));
     return damage;
   }
 
-  for (i = 0; i< game_get_nfollowingcharacters(game, player_id); i++) {
-    damage += character_get_damage(characters[i]) + 1;
+  if (characters != NULL) {
+    for (i = 0; i< game_get_nfollowingcharacters(game, player_id); i++) {
+      damage += character_get_damage(characters[i]) + 1;
+    }
+  }
+  if (players != NULL) {
+    for (i = 0; i< game_get_n_players_in_same_team(game, game_get_player_by_id(game, player_id)); i++) {
+      damage += player_get_damage(players[i]);
+    }
   }
 
   return damage;
-
 }
 
 Bool game_get_log_status(Game *game) {
@@ -1000,5 +1010,87 @@ Status game_set_place_name(Game *game, char *place_name) {
   }
   return OK;
 }
+
+Status game_set_n_teams(Game *game, int n_teams) {
+  if(!game || (n_teams < 0) || (n_teams > MAX_TEAMS)) {
+    return ERROR;
+  }
+
+  game->n_teams = n_teams;
+  return OK;
+}
+
+int game_get_n_teams(Game *game) {
+  if(!game) return POINT_ERROR;
+  return game->n_teams;
+}
+
+Player *game_get_player_by_name(Game *game, char *name) {
+  int i = 0;
+
+  if (!game || !name) {
+    return NULL;
+  }
+
+  for (i = 0; i < game->n_players; i++) {
+    if (!(strcmp(name, player_get_name(game->players[i])))) {
+      return game->players[i];
+    }
+  }
+
+  return NULL;
+}
+
+int game_get_n_players_in_same_team(Game *game, Player *player) {
+  int i = 0, n = 0;
+  Player **players = NULL;
+
+  if (!game || !player) {
+    return POINT_ERROR;
+  }
+
+  if (player_get_team(player) == NO_ID) {
+    return POINT_ERROR;
+  }
+
+  players = game_get_players(game);
+  for (i = 0; i < game->n_players; i++) {
+    if (player_get_team(players[i]) == player_get_team(player)) {
+      n++;
+    }
+  }
+
+  return n;
+}
+
+Player **game_get_players_in_same_team(Game *game, Player *player) {
+  int i = 0, n = 0;
+  Player **players = NULL, **same_team_players = NULL;
+
+  if (!game || !player) {
+    return NULL;
+  }
+
+  if (player_get_team(player) == NO_ID) {
+    return NULL;
+  }
+
+  players = game_get_players(game);
+  same_team_players = (Player **) malloc (game_get_n_players_in_same_team(game, player) * sizeof(Player *));
+
+  if(same_team_players == NULL) {
+    return NULL;
+  }
+
+  for (i = 0; i < game->n_players; i++) {
+    if (player_get_team(players[i]) == player_get_team(player)) {
+      same_team_players[n] = players[i];
+      n++;
+    }
+  }
+
+  return same_team_players;
+}
+
 
 

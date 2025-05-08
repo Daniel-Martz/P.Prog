@@ -31,6 +31,7 @@ struct _Player {
     int health; /*!<Player's healthpoints*/
     int damage; /*!<Player's damage points*/
     char gdesc[G_DESC]; /*!<Player's graphic description*/
+    Id team; /*!<Id of the team that the player belongs to*/
 };
 
 /*============================Init============================*/
@@ -52,6 +53,7 @@ Player* player_create (Id id){
     newPlayer->health = INIT_HEALTH;
     newPlayer->damage = INIT_DAMAGE;
     newPlayer->gdesc[0] = '\0';
+    newPlayer->team = NO_ID;
 
     return newPlayer;
 }
@@ -111,6 +113,11 @@ const char* player_get_gdesc(Player *player){
     return player->gdesc;
 }
 
+Id player_get_team(Player *player){
+    if (!player) return NO_ID;
+    return player->team;
+}
+
 /*============================Set============================*/
 Status player_set_id (Player* player, Id id){
     if (!player) return ERROR;
@@ -162,6 +169,12 @@ Status player_set_gdesc(Player *player, const char* gdesc){
     {
         return ERROR;
     }
+    return OK;
+}
+
+Status player_set_team(Player *player, Id team){
+    if (!player) return ERROR;
+    player->team = team;
     return OK;
 }
 

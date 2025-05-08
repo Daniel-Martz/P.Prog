@@ -205,7 +205,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *output_name)
       {
         fprintf(log_output, "ERROR ");
       }
-      fprintf(log_output, "(P%i)\n", (player_get_id(game_get_player(game))));
+      fprintf(log_output, "(P%i)\n", ((int)player_get_id(game_get_player(game))));
     }
     graphic_engine_clear_face(gengine);
     graphic_engine_paint_game(gengine, game);

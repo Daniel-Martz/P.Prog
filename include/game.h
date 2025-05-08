@@ -26,6 +26,7 @@
 #define MAX_LINKS 100/*!< Constant that estabilshes the maximum number of links as 100*/
 #define MAX_PLAYERS 8/*!< Constant that estabilshes the maximum number of players as 8*/
 #define MAX_NAME 100/*!< Constant that estabilshes the maximum name length*/
+#define MAX_TEAMS 10/*!< Constant that estabilshes the maximum amount of teams*/
 
 /**
  * @brief Structure of the Game
@@ -769,5 +770,54 @@ Status game_set_weapon_name(Game *game, char* name);
  * @return OK if everything worked properly or ERROR if it didn't
  */
 Status game_set_place_name(Game *game, char* name);
+
+/**
+ * @brief It gets the number of teams in the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @param n_teams The number of teams
+ * @return OK if everything worked properly or ERROR if it didn't
+ */
+Status game_set_n_teams(Game *game, int n_teams);
+
+/**
+ * @brief It gets the number of teams in the game
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @return The number of teams in the game (POINT_ERROR if there was a problem)
+ */
+int game_get_n_teams(Game *game);
+
+/**
+ * @brief It gets the player by its name
+ * 
+ * @author Jaime Romero
+ * @param game A pointer to game
+ * @param name The name of the player
+ * @return A pointer to the player or NULL if it doesn't exist or there is an error
+ */
+Player *game_get_player_by_name(Game *game, char *name);
+
+/**
+ * @brief It gets the number of player in the same team
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @param player A pointer to the player
+ * @return The number of players in the same team as the player
+ */
+int game_get_n_players_in_same_team(Game *game, Player *player);
+
+/**
+ * @brief It gets the players in the same team
+ * 
+ * @author Jorge Martín
+ * @param game A pointer to game
+ * @param player A pointer to the player
+ * @return An array of players in the same team as the player
+ */
+Player **game_get_players_in_same_team(Game *game, Player *player);
 
 #endif
