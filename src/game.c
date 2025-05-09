@@ -1111,18 +1111,24 @@ int game_get_space_n_nonteamplayers(Game *game, Id space_id, Player *player){
     return POINT_ERROR;
   }
 
+  
   players = game_get_players(game);
-  for (i = 0; i < game->n_players; i++) {
-    if (player_get_location(players[i]) == space_id){
-      n++;
+  if(!players) return POINT_ERROR;
+
+  if (player_get_team(player) == NO_ID) {
+    for (i = 0; i < game->n_players; i++) {
+      if ((player_get_location(players[i]) == space_id) && (player_get_id(players[i]) != player_get_id(player)) ){
+        n++;
+      }
     }
   }
-
-
-  if(game_get_player_location(game) == space_id){
-    n -= (game_get_n_players_in_same_team(game, player) - INIT_ID); /*Se resta 1 por el player*/
+  else{
+    for (i = 0; i < game->n_players; i++) {
+      if ((player_get_location(players[i]) == space_id) && (player_get_team(players[i]) != player_get_team(player)) && (player_get_id(players[i]) != player_get_id(player))){
+        n++;
+      }
+    }
   }
-
   return n;
 }
 Player **game_get_space_nonteamplayers(Game *game, Id space_id, Player *player){
