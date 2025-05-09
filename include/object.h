@@ -237,6 +237,15 @@ Status object_set_offensive(Object *obj, Bool offensive);
 Bool object_get_offensive(Object *obj);
 
 /**
+ * @brief Gets if the object is offensive or not
+ * @author Daniel Martínez
+ * 
+ * @param obj A pointer to Object
+ * @return "weapon" if it's offensive, "healing object" if not
+ */
+const char* object_get_stroffensive(Object *object);
+
+/**
  * @brief Sets the a matrix of characters that is the real description of the object
  * @author Daniel Martínez
  *

@@ -128,6 +128,14 @@ Id character_get_following(Character* character);
  * @return a string with a line of the face description
  */
 const char* character_get_face(Character* character, int row);
+/**
+ * @brief Gets if the character is friendly or not
+ * @author Daniel Martínez
+ *
+ * @param character A pointer to Character
+ * @return "friendly" if the character is friendly or "enemy" if not
+ */
+const char* character_get_strfriendly(Character *character);
 
 /*============================Set============================*/
 

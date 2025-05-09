@@ -820,4 +820,24 @@ int game_get_n_players_in_same_team(Game *game, Player *player);
  */
 Player **game_get_players_in_same_team(Game *game, Player *player);
 
+/**
+ * @brief It gets the number of player that are in the space but not in the team
+ * 
+ * @author Daniel Martínez
+ * @param game A pointer to game
+ * @param player A pointer to the player
+ * @return The number of players in the same team as the player
+ */
+int game_get_space_n_nonteamplayers(Game *game, Id space_id, Player *player);
+
+/**
+ * @brief It gets the players that are in the space but not in the team
+ * 
+ * @author Daniel Martínez
+ * @param game A pointer to game
+ * @param player A pointer to the player
+ * @return An array of players in the same team as the player
+ */
+Player **game_get_space_nonteamplayers(Game *game, Id space_id, Player *player);
+
 #endif

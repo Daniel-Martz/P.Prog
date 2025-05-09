@@ -19,7 +19,7 @@
 #include "space.h"
 #include "types.h"
 
-#define MAX_STR 296/*!< Constant assigned fpr the maximum length of a string*/
+#define MAX_STR 350/*!< Constant assigned fpr the maximum length of a string*/
 #define MAX_BUFFER 300/*!< Constant assigned for the lenght of an auxiliary buffer*/
 #define WIDTH_MAP 90/*!< Constant asignated for the width of the map*/
 #define WIDTH_DES 50/*!< Constant asignated for the width of the description*/
@@ -53,7 +53,8 @@
 #define LINE_17 16/*!< Constant for the tenth line of the space*/
 #define LINE_18 17/*!< Constant for the tenth line of the space*/
 #define FINAL 5/*!< Constant to write the final of a space which names are too extense*/
-#define LIMIT 21/*!< Constant for the limit to write in a line*/
+#define LIMIT_1 21/*!< Constant for the LIMIT_1 to write in a line*/
+#define LIMIT_2 11/*!< Constant for the LIMIT_2 to write in a line*/
 #define MID_SPACE (HEIGHT_SPACE/2) /*!< Constant for the line of the midle in the space*/
 
 /**
@@ -102,15 +103,15 @@ void free_gengine_paint_game(char**space){
  * @return The column of strings of the space
  */
 char **graphic_engine_print_space(Id space_id, Game *game){
-  char str[MAX_STR];
-  char **strspace, *charac_gdesc = NULL;
+  char str[MAX_STR] = " ", str2[MAX_STR] = " ";
+  char **strspace;
   const char* gdesc[N_ROWS];
   Space *space= NULL;
   Id *objects_id = NULL;
-  int line_lenght = 0, i, j;
+  int aux_len1 = 0, aux_len2 = 0, i, j;
   Character **followers = NULL;
   Character **charact_space = NULL;
-  Player *player = NULL;
+  Player *player = NULL, **team = NULL, **non_team = NULL;
   
   if ((space_id == NO_ID) || !game) return NULL;
 
@@ -136,6 +137,9 @@ char **graphic_engine_print_space(Id space_id, Game *game){
   player = game_get_player(game);
   followers = game_get_followingcharacters(game, player_get_id(player));
   charact_space = game_get_space_nonfollowingcharacters(game, space, player_get_id(player));
+  team = game_get_players_in_same_team(game, player);
+  non_team = game_get_space_nonteamplayers(game, space_id, player);
+
 
   /*CHECK IF It'S DISCOVERED*/
   sprintf(strspace[LINE_1], "      __-/-^-\\-__      ");
@@ -165,71 +169,101 @@ char **graphic_engine_print_space(Id space_id, Game *game){
       if(charact_space != NULL){
         free(charact_space);
       }
+      if(team != NULL){
+        free(team);
+      }
+      if(non_team != NULL){
+        free(non_team);
+      }
       return strspace;
     }
-/* LINEA CON LOS FOLLOWERS */ 
+/* LINEA CON PLAYERS DEL TEAM Y LOS FOLLOWERS */ 
 else {
-  if (!followers || (space_id != player_get_location(player))) {
+  if (space_id != player_get_location(player)) {
       sprintf(strspace[LINE_6], "|                     |");
-  } else {
-      str[0] = '\0';
+  } 
+  else {
+
+    for (i = 0; i < game_get_n_players_in_same_team(game, player); i++) {
+      strncat(str2, " ", MAX_STR - strlen(str2) - 1);
+      strncat(str2, player_get_gdesc(team[i]), MAX_STR - strlen(str2) - 1);
+    }
+
+    if(game_get_nfollowingcharacters(game, player_get_id(player)) <= 0){
+      snprintf(strspace[LINE_6], WIDTH_SPACE+1 , "|%-21.21s|", str2);
+    }
+    else{
+
       for (i = 0; i < game_get_nfollowingcharacters(game, player_get_id(player)); i++) {
-          strncat(str, " ", MAX_STR - strlen(str) - 1);
-          strncat(str, character_get_gdesc(followers[i]), MAX_STR - strlen(str) - 1);
+        strncat(str, " ", MAX_STR - strlen(str) - 1);
+        strncat(str, character_get_gdesc(followers[i]), MAX_STR - strlen(str) - 1);
       }
-      line_lenght = strlen(str);
-      if (line_lenght > LIMIT) { 
-          snprintf(strspace[LINE_6], WIDTH_SPACE + 2, "|%-18.18s...|", str);
-      } else {
-          snprintf(strspace[LINE_6], WIDTH_SPACE + 2, "|%-21.21s|", str);
-      }
-  }
 
-/* LINEA CON EL PLAYER Y LOS CHARACTERS */
+      aux_len1 = strlen(str);
+      aux_len2 = strlen(str2);
+      if (aux_len1 > LIMIT_2 && aux_len2 > LIMIT_2) { 
+        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "|%-8.8s...||%-8.8s...|",str2, str);
+      }
+      else if(aux_len1 > LIMIT_2){
+        snprintf(strspace[LINE_6], WIDTH_SPACE -3, "|%s||%s",str2, str);
+        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "%s...|",strspace[LINE_6]);
+      }
+      else if(aux_len2 > LIMIT_2){
+        snprintf(strspace[LINE_6], WIDTH_SPACE - strlen(str)-7, "|%s",str2);
+        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "%s...||%s|",strspace[LINE_6], str);
+      }
+      else {
+        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "|%-11.11s||%-11.11s|",str2, str);
+      }
+    }
+  } 
+  
+  /* LINEA CON PLAYERS Y CHARACTERS A PARTE */
   str[0] = '\0';
-
-  if (space_id == game_get_player_location(game)) {
-      snprintf(strspace[LINE_7], WIDTH_SPACE , "|%-4.4s", player_get_gdesc(game_get_player(game)));
-      if (charact_space != NULL) {
-          int nonfollowing = game_get_space_n_nonfollowingcharacters(game, game_get_space(game, space_id), player_get_id(player));
-          for (i = 0; i < nonfollowing; i++) {
-              strncat(str, " ", MAX_STR - strlen(str) - 1);
-              strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
-          }
-          line_lenght = strlen(str);
-          if (line_lenght > LIMIT) {
-              strncat(strspace[LINE_7], str, WIDTH_SPACE - FINAL);
-              strncat(strspace[LINE_7], "...|", FINAL);
-          } else {
-            snprintf(strspace[LINE_7], WIDTH_SPACE +2 , "|%-4.4s %16.16s|", player_get_gdesc(game_get_player(game)), str);
-          }
-      } else {
-          strcat(strspace[LINE_7], "                 |"); 
+  str2[0] = '\0';
+  if((game_get_space_n_nonfollowingcharacters(game, space, player_get_id(player)) <= 0) && (game_get_space_n_nonteamplayers(game, space_id, player) <= 0)){
+    sprintf(strspace[LINE_7], "|                     |");
+  }
+  else if(game_get_space_n_nonfollowingcharacters(game, space, player_get_id(player)) <= 0){
+    for (i = 0; i < game_get_space_n_nonteamplayers(game, space_id, player); i++) {
+      strncat(str2, " ", MAX_STR - strlen(str2) - 1);
+      strncat(str2, player_get_gdesc(non_team[i]), MAX_STR - strlen(str2) - 1);
+    }
+    snprintf(strspace[LINE_7], WIDTH_SPACE+1 , "|%-21.21s|", str2);
+  }
+  else if(game_get_space_n_nonteamplayers(game, space_id, player) <= 0){
+    for (i = 0; i < game_get_space_n_nonfollowingcharacters(game, space, player_get_id(player)); i++) {
+      strncat(str, " ", MAX_STR - strlen(str) - 1);
+      strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
+    }
+    snprintf(strspace[LINE_7], WIDTH_SPACE + 1 , "|%21.21s|", str);
+  }
+  else{
+    for (i = 0; i < game_get_space_n_nonfollowingcharacters(game, space, player_get_id(player)); i++) {
+      strncat(str, " ", MAX_STR - strlen(str) - 1);
+      strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
+    }
+    for (i = 0; i < game_get_space_n_nonteamplayers(game, space_id, player); i++) {
+      strncat(str2, " ", MAX_STR - strlen(str2) - 1);
+      strncat(str2, player_get_gdesc(non_team[i]), MAX_STR - strlen(str2) - 1);
+    }
+    aux_len1 = strlen(str);
+    aux_len2 = strlen(str2);
+    if (aux_len1 > LIMIT_2 && aux_len2 > LIMIT_2) { 
+      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "|%-8.8s...||%-8.8s...|",str2, str);
+    }
+    else if(aux_len1 > LIMIT_2){
+      snprintf(strspace[LINE_7], WIDTH_SPACE -3, "|%s||%s",str2, str);
+      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "%s...|",strspace[LINE_7]);
+    }
+    else if(aux_len2 > LIMIT_2){
+      snprintf(strspace[LINE_7], WIDTH_SPACE - strlen(str)-7, "|%s",str2);
+      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "%s...||%s|",strspace[LINE_7], str);
+    }
+    else {
+      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "|%-11.11s||%-11.11s|",str2, str);
     }
   }
-  else {
-      snprintf(strspace[LINE_7], WIDTH_SPACE + 2, "|     ");
-      if (charact_space != NULL) {
-          int nonfollowing = game_get_space_n_nonfollowingcharacters(game, game_get_space(game, space_id), player_get_id(player));
-          for (i = 0; i < nonfollowing; i++) {
-            if(!(charac_gdesc = character_get_gdesc(charact_space[i]))){
-              continue;
-            }
-            strncat(str, " ", MAX_STR - strlen(str) - 1);
-            strncat(str, charac_gdesc, MAX_STR - strlen(str) - 1);
-          }
-          line_lenght = strlen(str);
-          if (line_lenght > LIMIT) {
-            snprintf(strspace[LINE_7], WIDTH_SPACE +2, "|  %16.16s...|", str);
-          } else {
-            snprintf(strspace[LINE_7], WIDTH_SPACE +2, "|     %16.16s|", str);
-          }
-      } else {
-        sprintf(strspace[LINE_7], "|                     |");
-      }
-  }
-}
-      
     /*DESCRIPCION DEL MAPA*/
     if(gdesc[0] != NULL){
       for (i = 0; i < N_ROWS; i++) {
@@ -253,8 +287,8 @@ else {
               }
               strncat(str, object_get_name(game_get_object(game, objects_id[i])), MAX_STR - strlen(str) - 1);
           }
-          line_lenght= strlen(str);
-          if (line_lenght > LIMIT) { 
+          aux_len1= strlen(str);
+          if (aux_len1 > LIMIT_1) { 
             snprintf(strspace[LINE_14], WIDTH_SPACE +1 , "|%18.18s...|", str);
           } else {
               sprintf(strspace[LINE_14], "|%21.21s|", str);
@@ -274,8 +308,15 @@ else {
     if(charact_space != NULL){
       free(charact_space);
     }
+    if(team != NULL){
+      free(team);
+    }
+    if(non_team != NULL){
+      free(non_team);
+    }
 
     return strspace;
+  }
 }
 
 /*--------------------------------------PUBLIC FUNCTIONS--------------------------------------*/
@@ -355,6 +396,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   extern char *cmd_to_str[N_CMD][N_CMDT];
   Object **objects = NULL, *obj_aux = NULL;
   Character **characters = NULL, *character = NULL, **followers = NULL;
+  Player **team = NULL, **players = NULL;
   char right = '>', left = '<', back = '^', next = 'v';
 
   /*INITIALIZES SOME VARIABLES*/
@@ -474,7 +516,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       /*IMPRESION*/
     sprintf(str,"  Player playing (name: id (damage) (health)): " );
     screen_area_puts(ge->descript, str);
-    sprintf(str, "    %6.15s : %i (%i) (%i) (%i)",player_get_name(game_get_player(game)), (int)player_get_location(game_get_player(game)), player_get_damage(game_get_player(game)),player_get_health(game_get_player(game)), (int)player_get_team(game_get_player(game)));
+    sprintf(str, "    %6.15s : %i (%i) (%i)",player_get_name(game_get_player(game)), (int)player_get_location(game_get_player(game)), player_get_damage(game_get_player(game)),player_get_health(game_get_player(game)));
     screen_area_puts(ge->descript, str);
     sprintf(str,"  Current position: " );
     screen_area_puts(ge->descript, str);
@@ -482,9 +524,26 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     screen_area_puts(ge->descript, str);
     screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
+
+    if(!(players = game_get_players(game))){
+      screen_area_puts(ge->descript, "  There are no players");
+    }
+    else{
+     /*IMPRESION*/
+      sprintf(str, "  Players (name: location):");
+      screen_area_puts(ge->descript, str);
+      for(i=0; i< game_get_nplayers(game); i++){
+        sprintf(str, "    %s: %s", player_get_name(players[i]), space_get_name(game_get_space(game, player_get_location(players[i]))));
+        screen_area_puts(ge->descript, str);
+      }
+    }
+    screen_area_puts(ge->descript, "          ");
+
+
     /*PASAMOS ARRAY DE OBJETOS A IDS*/
+    
     if(!(objects = game_get_objects_discovered(game))){
-      screen_area_puts(ge->descript, "        There are no objects discovered");
+      screen_area_puts(ge->descript, "  There are no objects discovered");
     }
     else{
       if(!(objects_location =(Id*)calloc(game_get_n_objects_discovered(game),sizeof(Id)))){
@@ -495,11 +554,11 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         }
       
       /*IMPRESION*/
+      sprintf(str, "  Objects discovered (name: location):");
+      screen_area_puts(ge->descript, str);
       if (objects_location != NULL) {
-        sprintf(str, "  Objects: ");
-        screen_area_puts(ge->descript, str);
         for(i=0; i< game_get_n_objects_discovered(game); i++){
-          sprintf(str, "    %s: %i",object_get_name(game_get_object(game,object_get_id(objects[i]))), (int)objects_location[i]);
+          sprintf(str, "    %s: %s [%s]",object_get_name(game_get_object(game,object_get_id(objects[i]))), space_get_name(game_get_space(game, objects_location[i])), object_get_stroffensive(objects[i]));
           screen_area_puts(ge->descript, str);
         }
       }
@@ -508,23 +567,24 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /*PASAMOS ARRAY DE CHARACTERS A IDS*/
     if(!(characters = game_get_characters_discovered(game))){
-      screen_area_puts(ge->descript, "        There are no characters discovered");
+      screen_area_puts(ge->descript, "  There are no characters discovered");
     }
 
     else{
       if(!(characters_location = (Id*)calloc(game_get_n_characters_discovered(game),sizeof(Id)))){
         return;
       }
-      
+
       for(i=0; i< game_get_n_characters_discovered(game) ; i++){
         characters_location[i] = game_get_character_location(game, character_get_id(characters[i]));
       }
       /*IMPRESION*/
       if (game_get_ncharacters(game) != 0) {
-        sprintf(str, "  Characters (name: id (health)): ");
+        sprintf(str, "  Characters discovered (name: location (health)):");
         screen_area_puts(ge->descript, str);
         for(i=0; i< game_get_n_characters_discovered(game); i++){
-          sprintf(str, "    %6.15s: %i (%i)",character_get_name(characters[i]), (int)characters_location[i],character_get_health(characters[i]));
+          if(character_get_following(characters[i]) != player_get_id(game_get_player(game)))
+          sprintf(str, "    %6.15s: %s (%i) [%s]", character_get_name(characters[i]), space_get_name(game_get_space(game, characters_location[i])) ,character_get_health(characters[i]), character_get_strfriendly(characters[i]));
           screen_area_puts(ge->descript, str);
         }
       }
@@ -564,7 +624,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     }
 
     else{
-      screen_area_puts(ge->descript, "              Player has no objects");
+      screen_area_puts(ge->descript, "              You have no objects");
     }  
 
     screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -581,10 +641,24 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         screen_area_puts(ge->descript,str);
       }
     }
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~ TEAM ~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+    if(!(team = game_get_players_in_same_team(game, game_get_player(game)))){
+      screen_area_puts(ge->descript, "       You are not cooperating with anyone ");
+    }
+    else{
+      screen_area_puts(ge->descript, "     Your team: (name: (damage) (health)):");
+      for(i= 0; i<game_get_n_players_in_same_team(game,game_get_player(game)); i++){
+        sprintf(str, "         %s: (%i)(%i)", player_get_name(team[i]), player_get_damage(team[i]), player_get_health(team[i]));  
+        screen_area_puts(ge->descript,str);
+      }
+    }
 
 
     screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~ MESSAGE ~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~ MESSAGE ~~~~~~~~~~~~~~~~~~~~~");
     screen_area_puts(ge->descript, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     if(game_get_message(game) != NULL){
       sprintf(str, "%s", game_get_message(game));
@@ -601,14 +675,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
 
     /* Paint in the banner area */
-    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLUEDO ~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLUEDO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
     /* Paint in the help area */
     screen_area_clear(ge->help);
     screen_area_puts(ge->help, "                                     ");
     sprintf(str, " The commands you can use are:                                                              ");
     screen_area_puts(ge->help, str);
-    sprintf(str, " move or m (north/n or south/s or west/w or east/e) | take or t / drop or d (object name)  attack or t / chat or c (character name | recruit or r / abandon or ab (character name)   use or u [over (character name)] (object name) | open or o (link name) with (object name) guess or g | exit or e");
+    sprintf(str, " move or m (north/n or south/s or west/w or east/e) | take or t / drop or d (object name)  attack or t / chat or c (character name) | recruit or r / abandon or ab (character name)  use or u [over (character name)] (object name) | open or o (link name) with (object name) cooperate or co with (player name) | guess or g | exit or e");
     screen_area_puts(ge->help, str);
 
     /* Paint in the feedback area */

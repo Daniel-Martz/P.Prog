@@ -116,6 +116,15 @@ const char* character_get_face(Character* character, int row){
     return character->face[row];
 }
 
+const char* character_get_strfriendly(Character *character){
+    if(!character) return NULL;
+
+    if(character_get_friendly(character) == TRUE){
+        return "friendly";
+    }
+    else return "enemy";
+}
+
 /*============================Set============================*/
 Status character_set_id (Character* character, Id id){
     if (!character) return ERROR;

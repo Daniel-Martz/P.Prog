@@ -194,6 +194,7 @@ long space_get_ncharacters(Space* space){
   return set_get_nids(space->characters);
 }
 
+
 Id* space_get_objects_ids(Space* space){
   if(!space) return NULL;
 

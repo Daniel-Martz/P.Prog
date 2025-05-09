@@ -345,7 +345,7 @@ Id game_get_object_location(Game *game, Id id){
 }
 
 Object **game_get_objects_discovered(Game *game) {
-int i, j, n = 0; 
+int i, j, k = 0, n = 0; 
 Id space_id;
 Object **objects_discovered;
   
@@ -353,7 +353,11 @@ if (!(game)) {
   return NULL;
 }
 
-objects_discovered = (Object **) malloc (game_get_n_objects_discovered(game) * sizeof(Object *));
+if((k = game_get_n_objects_discovered(game)) == 0){
+  return NULL;
+}
+
+objects_discovered = (Object **) malloc (k * sizeof(Object *));
 
 if(objects_discovered == NULL) {
   return NULL;
@@ -397,7 +401,7 @@ return n;
 }
 
 Character **game_get_characters_discovered(Game *game) {
-int i, j, k = 0; 
+int i, j, n, k = 0; 
 Id space_id;
 Character **characters_discovered;
   
@@ -405,7 +409,11 @@ if (!(game)) {
   return NULL;
 }
 
-characters_discovered = (Character **) malloc (game_get_n_characters_discovered(game) * sizeof(Character *));
+if((n = game_get_n_characters_discovered(game)) == 0){
+  return NULL;
+}
+
+characters_discovered = (Character **) malloc (n * sizeof(Character *));
 
 if(characters_discovered == NULL) {
   return NULL;
@@ -1064,7 +1072,7 @@ int game_get_n_players_in_same_team(Game *game, Player *player) {
 }
 
 Player **game_get_players_in_same_team(Game *game, Player *player) {
-  int i = 0, n = 0;
+  int i = 0, n = 0, teamplayers = 0;
   Player **players = NULL, **same_team_players = NULL;
 
   if (!game || !player) {
@@ -1075,8 +1083,11 @@ Player **game_get_players_in_same_team(Game *game, Player *player) {
     return NULL;
   }
 
+  if((teamplayers = game_get_n_players_in_same_team(game, player))<=0){
+    return NULL;
+  }
   players = game_get_players(game);
-  same_team_players = (Player **) malloc (game_get_n_players_in_same_team(game, player) * sizeof(Player *));
+  same_team_players = (Player **) malloc (teamplayers * sizeof(Player *));
 
   if(same_team_players == NULL) {
     return NULL;
@@ -1090,6 +1101,61 @@ Player **game_get_players_in_same_team(Game *game, Player *player) {
   }
 
   return same_team_players;
+}
+
+int game_get_space_n_nonteamplayers(Game *game, Id space_id, Player *player){
+  int i = 0, n = 0;
+  Player **players = NULL;
+
+  if (!game || !player) {
+    return POINT_ERROR;
+  }
+
+  players = game_get_players(game);
+  for (i = 0; i < game->n_players; i++) {
+    if (player_get_location(players[i]) == space_id){
+      n++;
+    }
+  }
+
+
+  if(game_get_player_location(game) == space_id){
+    n -= (game_get_n_players_in_same_team(game, player) - INIT_ID); /*Se resta 1 por el player*/
+  }
+
+  return n;
+}
+Player **game_get_space_nonteamplayers(Game *game, Id space_id, Player *player){
+  int i, n = 0, nonteam = 0;
+  Player **players = NULL, **nonteamplayers = NULL;
+
+  if ( !game || !player || space_id == NO_ID) {
+    return NULL;
+  }
+
+  if(!(players = game_get_players(game))){
+    return NULL;
+  }
+
+  nonteam = game_get_space_n_nonteamplayers(game, space_id, player);
+  if (nonteam <= 0) {
+    return NULL;
+  }
+
+  nonteamplayers = (Player **) malloc (nonteam * sizeof(Player *));
+
+  if(nonteamplayers == NULL) {
+    return NULL;
+  }
+
+  for (i = 0; i < game_get_nplayers(game); i++) {
+    if ((player_get_team(players[i]) != player_get_id(player)) && (player_get_location(player) == space_id) && (player_get_id(players[i]) != player_get_id(player))) {
+      nonteamplayers[n] = players[i];
+      n++;
+    }
+  }
+
+  return nonteamplayers;
 }
 
 

@@ -192,3 +192,12 @@ const char* object_get_draw(Object* object, int row){
   
     return object->draw[row];
 }
+
+const char* object_get_stroffensive(Object *object){
+    if(!object) return NULL;
+
+    if(object_get_offensive(object) == TRUE){
+        return "weapon";
+    }
+    else return "healing object";
+}
