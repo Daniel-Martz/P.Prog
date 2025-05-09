@@ -54,7 +54,7 @@
 #define LINE_18 17/*!< Constant for the tenth line of the space*/
 #define FINAL 5/*!< Constant to write the final of a space which names are too extense*/
 #define LIMIT_1 21/*!< Constant for the LIMIT_1 to write in a line*/
-#define LIMIT_2 11/*!< Constant for the LIMIT_2 to write in a line*/
+#define LIMIT_2 10/*!< Constant for the LIMIT_2 to write in a line*/
 #define MID_SPACE (HEIGHT_SPACE/2) /*!< Constant for the line of the midle in the space*/
 
 /**
@@ -202,18 +202,18 @@ else {
       aux_len1 = strlen(str);
       aux_len2 = strlen(str2);
       if (aux_len1 > LIMIT_2 && aux_len2 > LIMIT_2) { 
-        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "|%-8.8s...||%-8.8s...|",str2, str);
+        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "|%-7.7s...|%-7.7s...|",str2, str);
       }
       else if(aux_len1 > LIMIT_2){
-        snprintf(strspace[LINE_6], WIDTH_SPACE -3, "|%s||%s",str2, str);
+        snprintf(strspace[LINE_6], WIDTH_SPACE -4, "|%s|%s",str2, str);
         snprintf(strspace[LINE_6], WIDTH_SPACE +1, "%s...|",strspace[LINE_6]);
       }
       else if(aux_len2 > LIMIT_2){
-        snprintf(strspace[LINE_6], WIDTH_SPACE - strlen(str)-7, "|%s",str2);
-        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "%s...||%s|",strspace[LINE_6], str);
+        snprintf(strspace[LINE_6], WIDTH_SPACE - strlen(str)- 5, "|%s",str2);
+        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "%s...|%s|",strspace[LINE_6], str);
       }
       else {
-        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "|%-11.11s||%-11.11s|",str2, str);
+        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "|%-10.10s|%-10.10s|",str2, str);
       }
     }
   } 
@@ -237,6 +237,7 @@ else {
       strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
     }
     snprintf(strspace[LINE_7], WIDTH_SPACE + 1 , "|%21.21s|", str);
+    printf("%i",game_get_space_n_nonteamplayers(game, space_id, player));
   }
   else{
     for (i = 0; i < game_get_space_n_nonfollowingcharacters(game, space, player_get_id(player)); i++) {
@@ -250,19 +251,20 @@ else {
     aux_len1 = strlen(str);
     aux_len2 = strlen(str2);
     if (aux_len1 > LIMIT_2 && aux_len2 > LIMIT_2) { 
-      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "|%-8.8s...||%-8.8s...|",str2, str);
+      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "|%-7.7s...|%-7.7s...|",str2, str);
     }
     else if(aux_len1 > LIMIT_2){
-      snprintf(strspace[LINE_7], WIDTH_SPACE -3, "|%s||%s",str2, str);
+      snprintf(strspace[LINE_7], WIDTH_SPACE -4, "|%s|%s",str2, str);
       snprintf(strspace[LINE_7], WIDTH_SPACE +1, "%s...|",strspace[LINE_7]);
     }
     else if(aux_len2 > LIMIT_2){
-      snprintf(strspace[LINE_7], WIDTH_SPACE - strlen(str)-7, "|%s",str2);
-      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "%s...||%s|",strspace[LINE_7], str);
+      snprintf(strspace[LINE_7], WIDTH_SPACE - strlen(str)-5, "|%s",str2);
+      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "%s...|%s|",strspace[LINE_7], str);
     }
     else {
-      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "|%-11.11s||%-11.11s|",str2, str);
+      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "|%-10.10s|%-10.10s|",str2, str);
     }
+    printf("%i",game_get_space_n_nonteamplayers(game, space_id, player));
   }
     /*DESCRIPCION DEL MAPA*/
     if(gdesc[0] != NULL){
