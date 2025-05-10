@@ -14,6 +14,16 @@
  #include "player_test.h"
  
  #define MAX_TESTS 28/*!< It defines the number of tests*/
+ #define TEST_ID_1 1/*!< It defines a constant for id*/
+#define TEST_ID_2 2/*!< It defines a constant for id*/
+#define TEST_OBJECT_ID 10/*!< It defines a constant for id*/
+#define TEST_LOCATION_ID 5/*!< It defines a constant for id*/
+#define TEST_HEALTH_POSITIVE 5/*!< It defines a constant fo helath*/
+#define TEST_HEALTH_NEGATIVE -1/*!< It defines a constant fo helath*/
+#define TEST_DAMAGE 5/*!< It defines a constant for damage*/
+#define TEST_DAMAGE_INVALID -1/*!< It defines a constant for damage*/
+#define TEST_NAME "name"/*!< It defines a string constant*/
+#define TEST_GDESC "gdesc"/*!< It defines a string constant*/
 
  /**
   * @brief Main function for player unit tests.
@@ -80,10 +90,9 @@
    return 0;
 }
 
-
 void test1_player_create() {
     Player *player = NULL;
-    player = player_create(1);
+    player = player_create(TEST_ID_1);
     PRINT_TEST_RESULT(player != NULL);
     player_destroy(player);
 }
@@ -95,8 +104,8 @@ void test2_player_create() {
 
 void test1_player_get_id() {
     Player *player = NULL;
-    player = player_create(1);
-    PRINT_TEST_RESULT(player_get_id(player) == 1);
+    player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_get_id(player) == TEST_ID_1);
     player_destroy(player);
 }
 
@@ -107,7 +116,7 @@ void test2_player_get_id() {
 
 void test1_player_get_backpack() {
     Player *player = NULL;
-    player = player_create(1);
+    player = player_create(TEST_ID_1);
     PRINT_TEST_RESULT(player_get_backpack(player) != NULL);
     player_destroy(player);
 }
@@ -119,7 +128,7 @@ void test2_player_get_backpack() {
 
 void test1_player_get_name() {
     Player *player = NULL;
-    player = player_create(1);
+    player = player_create(TEST_ID_1);
     PRINT_TEST_RESULT(player_get_name(player) != NULL);
     player_destroy(player);
 }
@@ -131,7 +140,7 @@ void test2_player_get_name() {
 
 void test1_player_get_health() {
     Player *player = NULL;
-    player = player_create(1);
+    player = player_create(TEST_ID_1);
     PRINT_TEST_RESULT(player_get_health(player) == 0);
     player_destroy(player);
 }
@@ -143,7 +152,7 @@ void test2_player_get_health() {
 
 void test1_player_get_location() {
     Player *player = NULL;
-    player = player_create(1);
+    player = player_create(TEST_ID_1);
     PRINT_TEST_RESULT(player_get_location(player) == NO_ID);
     player_destroy(player);
 }
@@ -155,7 +164,7 @@ void test2_player_get_location() {
 
 void test1_player_get_gdesc() {
     Player *player = NULL;
-    player = player_create(1);
+    player = player_create(TEST_ID_1);
     PRINT_TEST_RESULT(player_get_gdesc(player) != NULL);
     player_destroy(player);
 }
@@ -167,91 +176,91 @@ void test2_player_get_gdesc() {
 
 void test1_player_set_id() {
     Player *player = NULL;
-    player = player_create(1);
-    PRINT_TEST_RESULT(player_set_id(player, 2) == OK);
+    player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_set_id(player, TEST_ID_2) == OK);
     player_destroy(player);
 }
 
 void test2_player_set_id() {
     Player *player = NULL;
-    PRINT_TEST_RESULT(player_set_id(player, 2) == ERROR);
+    PRINT_TEST_RESULT(player_set_id(player, TEST_ID_2) == ERROR);
 }
 
 void test1_player_add_object() {
     Player *player = NULL;
-    player = player_create(1);
-    PRINT_TEST_RESULT(player_add_object(player, 10) == OK);
+    player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_add_object(player, TEST_OBJECT_ID) == OK);
     player_destroy(player);
 }
 
 void test2_player_add_object() {
     Player *player = NULL;
-    PRINT_TEST_RESULT(player_add_object(player, 10) == ERROR);
+    PRINT_TEST_RESULT(player_add_object(player, TEST_OBJECT_ID) == ERROR);
 }
 
 void test1_player_set_name() {
     Player *player = NULL;
-    player = player_create(1);
-    PRINT_TEST_RESULT(player_set_name(player, "name") == OK);
+    player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_set_name(player, TEST_NAME) == OK);
     player_destroy(player);
 }
 
 void test2_player_set_name() {
     Player *player = NULL;
-    PRINT_TEST_RESULT(player_set_name(player, "name") == ERROR);
+    PRINT_TEST_RESULT(player_set_name(player, TEST_NAME) == ERROR);
 }
 
 void test1_player_set_health() {
     Player *player = NULL;
-    player = player_create(1);
-    PRINT_TEST_RESULT(player_set_health(player, 5) == OK);
+    player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_set_health(player, TEST_HEALTH_POSITIVE) == OK);
     player_destroy(player);
 }
 
 void test2_player_set_health() {
     Player *player = NULL;
-    PRINT_TEST_RESULT(player_set_health(player, 5) == ERROR);
+    PRINT_TEST_RESULT(player_set_health(player, TEST_HEALTH_POSITIVE) == ERROR);
 }
 
 void test1_player_set_location() {
     Player *player = NULL;
-    player = player_create(1);
-    PRINT_TEST_RESULT(player_set_location(player, 5) == OK);
+    player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_set_location(player, TEST_LOCATION_ID) == OK);
     player_destroy(player);
 }
 
 void test2_player_set_location() {
     Player *player = NULL;
-    PRINT_TEST_RESULT(player_set_location(player, 5) == ERROR);
+    PRINT_TEST_RESULT(player_set_location(player, TEST_LOCATION_ID) == ERROR);
 }
 
 void test1_player_set_gdesc() {
     Player *player = NULL;
-    player = player_create(1);
-    PRINT_TEST_RESULT(player_set_gdesc(player, "gdesc") == OK);
+    player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_set_gdesc(player, TEST_GDESC) == OK);
     player_destroy(player);
 }
 
 void test2_player_set_gdesc() {
     Player *player = NULL;
-    PRINT_TEST_RESULT(player_set_gdesc(player, "gdesc") == ERROR);
+    PRINT_TEST_RESULT(player_set_gdesc(player, TEST_GDESC) == ERROR);
 }
 
 void test1_player_delete_object() {
     Player *player = NULL;
-    player = player_create(1);
-    player_add_object(player, 10);
-    PRINT_TEST_RESULT(player_delete_object(player, 10) == OK);
+    player = player_create(TEST_ID_1);
+    player_add_object(player, TEST_OBJECT_ID);
+    PRINT_TEST_RESULT(player_delete_object(player, TEST_OBJECT_ID) == OK);
     player_destroy(player);
 }
 
 void test2_player_delete_object() {
     Player *player = NULL;
-    PRINT_TEST_RESULT(player_delete_object(player, 10) == ERROR);
+    PRINT_TEST_RESULT(player_delete_object(player, TEST_OBJECT_ID) == ERROR);
 }
 
 void test1_player_get_damage() {
-    Player *player = player_create(1);
+    Player *player = player_create(TEST_ID_1);
     PRINT_TEST_RESULT(player_get_damage(player) == 1); 
     player_destroy(player);
 }
@@ -262,20 +271,18 @@ void test2_player_get_damage() {
 }
 
 void test1_player_set_damage() {
-    Player *player = player_create(1);
-    PRINT_TEST_RESULT(player_set_damage(player, 5) == OK);
+    Player *player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_set_damage(player, TEST_DAMAGE) == OK);
     player_destroy(player);
 }
 
 void test2_player_set_damage() {
     Player *player = NULL;
-    PRINT_TEST_RESULT(player_set_damage(player, 5) == ERROR);
+    PRINT_TEST_RESULT(player_set_damage(player, TEST_DAMAGE) == ERROR);
 }
 
 void test3_player_set_damage() {
-    Player *player = player_create(1);
-    PRINT_TEST_RESULT(player_set_damage(player, -1) == ERROR); 
+    Player *player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_set_damage(player, TEST_DAMAGE_INVALID) == ERROR); 
     player_destroy(player);
 }
-
-/* gcc player_test.c player.c inventory.c set.c -o player_test */
