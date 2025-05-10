@@ -677,8 +677,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
 
     /* Paint in the banner area */
-    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLUEDO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
+    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EL CLUB DEL CRIMEN ~~~~~~~~~~~~~~~~~~~~~");
     /* Paint in the help area */
     screen_area_clear(ge->help);
     screen_area_puts(ge->help, "                                     ");
