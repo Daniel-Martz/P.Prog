@@ -165,6 +165,15 @@ run_tests: $(TESTS)
 run1: $(EXEC)
 	./$(EXEC) dat/cluedo1.dat
 
+run1det: $(EXEC)
+	./$(EXEC) dat/cluedo1.dat -d
+
+run1log: $(EXEC)
+	./$(EXEC) dat/cluedo1.dat -l output.txt
+
+run1logdet: $(EXEC)
+	./$(EXEC) dat/cluedo1.dat -l -d output.txt
+
 run2: $(EXEC)
 	./$(EXEC) dat/cluedo2.dat
 
