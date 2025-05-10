@@ -478,7 +478,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       screen_area_puts(ge->map,str);
     }
 
-    sprintf(str, "                                       %c          ",back);
+    sprintf(str, "                                             %c          ",back);
     screen_area_puts(ge->map,str);
     
     space1 = space_left;
@@ -498,7 +498,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       screen_area_puts(ge->map,str);
     }
 
-    sprintf(str, "                                       %c          ",next);
+    sprintf(str, "                                             %c          ",next);
     screen_area_puts(ge->map,str);
     
     space1 = space_empty;
