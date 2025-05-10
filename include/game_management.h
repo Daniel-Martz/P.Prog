@@ -1,6 +1,6 @@
 /**
  * @brief It defines the functions in charge of creating the spaces  
- * @file game_reader.h
+ * @file game_management.h
  * @author Jaime Romero, Daniel Martínez
  * 
  * @version 0.1
@@ -20,7 +20,6 @@
  * @brief It loads the information from a file to the game
  * 
  * @author Jaime Romero
- * @param game A pointer to Game
  * @param filename A string with the name of the file
  * 
  * @return Game with all the information loaded

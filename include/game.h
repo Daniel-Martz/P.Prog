@@ -2,7 +2,7 @@
  * @brief It defines the game interface
  *
  * @file game.h
- * @author Jaime Romero
+ * @author Jaime Romero, Jorge y Daniel
  * @version 0
  * @date 27-01-2025
  * @copyright GNU Public License
@@ -825,6 +825,7 @@ Player **game_get_players_in_same_team(Game *game, Player *player);
  * 
  * @author Daniel Martínez
  * @param game A pointer to game
+ * @param space_id The id of the space
  * @param player A pointer to the player
  * @return The number of players in the same team as the player
  */
@@ -835,6 +836,7 @@ int game_get_space_n_nonteamplayers(Game *game, Id space_id, Player *player);
  * 
  * @author Daniel Martínez
  * @param game A pointer to game
+ * @param space_id The id of the space
  * @param player A pointer to the player
  * @return An array of players in the same team as the player
  */

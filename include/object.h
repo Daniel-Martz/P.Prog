@@ -2,7 +2,7 @@
  * @brief It defines the object module
  * 
  * @file object.h
- * @author Jaime Romero
+ * @author Jaime Romero, Daniel Martínez y Jimena Sanchiz
  * 
  * @version 0.1
  * @date 2025-02-08
@@ -221,7 +221,7 @@ Id object_get_open(Object *obj);
  * @author Jimena Sanchiz
  * 
  * @param obj A pointer to the object
- * @param mov A boolean variable indicating if the object is offensive
+ * @param offensive A boolean variable indicating if the object is offensive
  * 
  * @return OK if everything goes well, ERROR if there is a failure
  */
@@ -240,7 +240,7 @@ Bool object_get_offensive(Object *obj);
  * @brief Gets if the object is offensive or not
  * @author Daniel Martínez
  * 
- * @param obj A pointer to Object
+ * @param object A pointer to Object
  * @return "weapon" if it's offensive, "healing object" if not
  */
 const char* object_get_stroffensive(Object *object);

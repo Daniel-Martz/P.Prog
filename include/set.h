@@ -2,7 +2,7 @@
  * @brief It defines the Set module (Set structure and its functions)
  * 
  * @file set.h
- * @author Jaime Romero
+ * @author Jaime Romero y Daniel Martinez
  * 
  * @version 0.1
  * @date 2025-02-18

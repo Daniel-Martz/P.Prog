@@ -2,7 +2,7 @@
  * @brief It defines the space module interface
  *
  * @file space.h
- * @author Daniel Martinez y Jaime Romero
+ * @author Daniel Martinez, Jaime Romero y Jimena Sanchiz
  * @version 0
  * @date 27-01-2025
  * @copyright GNU Public License

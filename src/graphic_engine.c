@@ -81,7 +81,7 @@ struct _Graphic_engine {
  * 
  * @param space A double poinyter to the space which is going to be freed
  */
-void free_gengine_paint_game(char**space){
+void graphic_engine_free_space(char**space){
   int i = 0;
   if (space != NULL) {
     for (i = 0; i < HEIGHT_SPACE; i++) {
@@ -474,7 +474,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     space3 = space_empty;
 
     for(i=0; i<HEIGHT_SPACE; i++){
-      sprintf(str,"  %s   %s   %s", space1[i],space2[i],space3[i]);
+      sprintf(str,"        %s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
@@ -486,15 +486,15 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     space3 = space_right;
 
     for(i=0; i<MID_SPACE; i++){
-      sprintf(str,"  %s   %s   %s", space1[i],space2[i],space3[i]);
+      sprintf(str,"        %s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
-    sprintf(str,"  %s %c %s %c %s", space1[MID_SPACE],left, space2[MID_SPACE], right, space3[MID_SPACE]);
+    sprintf(str,"        %s %c %s %c %s", space1[MID_SPACE],left, space2[MID_SPACE], right, space3[MID_SPACE]);
     screen_area_puts(ge->map,str);
 
     for(i=MID_SPACE+1; i<HEIGHT_SPACE; i++){
-      sprintf(str,"  %s   %s   %s", space1[i],space2[i],space3[i]);
+      sprintf(str,"        %s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
@@ -506,7 +506,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     space3 = space_empty;
 
     for(i=0; i<HEIGHT_SPACE; i++){
-      sprintf(str,"  %s   %s   %s", space1[i],space2[i],space3[i]);
+      sprintf(str,"        %s   %s   %s", space1[i],space2[i],space3[i]);
       screen_area_puts(ge->map,str);
     }
 
@@ -783,22 +783,22 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     /* PONER FREES DE LOS ESPACIOS */
     if (space_back != space_empty) {
-      free_gengine_paint_game(space_back);
+      graphic_engine_free_space(space_back);
     }
     if (space_next != space_empty) {
-      free_gengine_paint_game(space_next);
+      graphic_engine_free_space(space_next);
     }
     if (space_right != space_empty) {
-      free_gengine_paint_game(space_right);
+      graphic_engine_free_space(space_right);
     }
     if (space_left != space_empty) {
-      free_gengine_paint_game(space_left);
+      graphic_engine_free_space(space_left);
     }
     if (space_actual != space_empty) {
-      free_gengine_paint_game(space_actual);
+      graphic_engine_free_space(space_actual);
     }
     if (space_empty != NULL) {
-      free_gengine_paint_game(space_empty);
+      graphic_engine_free_space(space_empty);
     }
 
     free(objects_location);

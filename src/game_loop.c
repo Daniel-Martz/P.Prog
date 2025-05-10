@@ -42,7 +42,6 @@ int game_loop_init(Game **game, Graphic_engine **gengine, char *file_name);
  *
  * @param game A pointer to Game
  * @param gengine A pointer to the grafic engine
- * @param log_status a boolean that indicates if the log is active or not
  * @param output_name a string with the name of the log output file
  */
 void game_loop_run(Game *game, Graphic_engine *gengine, char *output_name);

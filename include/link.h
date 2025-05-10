@@ -1,7 +1,7 @@
 /**
  * @brief It defines the link module
  * @file link.h
- * @author Jorge Martin
+ * @author Jorge Martin y Jaime
  *
  * @version 0.1
  * @date 2025-03-18

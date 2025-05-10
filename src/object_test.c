@@ -4,7 +4,7 @@
  * @file object_test.c
  * @author Jimena Sanchiz
  * @version 0.0 
- * @date 25-03-2025
+ * @date TEST_4-03-TEST_3TEST_4
  * @copyright GNU Public License
  */
 
@@ -15,6 +15,14 @@
 
 #define MAX_TESTS 15 /*!< It defines the number of tests*/
 #define TEST 10 /*!< It defines an arbitrary test number*/
+#define TEST_2 15 /*!< It defines an arbitrary test number*/
+#define TEST_3 20 /*!< It defines an arbitrary test number*/
+#define TEST_4 25 /*!< It defines an arbitrary test number*/
+#define TEST_5 30 /*!< It defines an arbitrary test number*/
+#define TEST_6 5 /*!< It defines an arbitrary test number*/
+#define TEST_7 0 /*!< It defines an arbitrary test number*/
+#define TEST_8 -1 /*!< It defines an arbitrary test number*/
+#define TEST_9 1 /*!< It defines an arbitrary test number*/
 
 /** 
  * @brief Main function for object unit tests. 
@@ -144,7 +152,7 @@ void test1_object_get_name() {
    Object *o;
    o = object_create(TEST);
    object_set_name(o, "hola");
-   PRINT_TEST_RESULT(strcmp(object_get_name(o), "hola") == 0);
+   PRINT_TEST_RESULT(strcmp(object_get_name(o), "hola") == TEST_7);
    object_destroy(o);
 }
 
@@ -158,7 +166,7 @@ void test1_object_get_description(){
    Object *o = NULL;
    o = object_create(TEST);
    object_set_description(o, "pelota");
-   PRINT_TEST_RESULT(strcmp(object_get_description(o), "pelota") == 0);
+   PRINT_TEST_RESULT(strcmp(object_get_description(o), "pelota") == TEST_7);
    object_destroy(o);
 }
 
@@ -190,25 +198,25 @@ void test3_object_set_description(){
 /* HEALTH TESTS */
 void test1_object_set_health() {
    Object *o = object_create(TEST);
-   PRINT_TEST_RESULT(object_set_health(o, 10) == OK);
+   PRINT_TEST_RESULT(object_set_health(o, TEST) == OK);
    object_destroy(o);
 }
 
 void test2_object_set_health() {
    Object *o = NULL;
-   PRINT_TEST_RESULT(object_set_health(o, 10) == ERROR);
+   PRINT_TEST_RESULT(object_set_health(o, TEST) == ERROR);
 }
 
 void test1_object_get_health() {
    Object *o = object_create(TEST);
-   object_set_health(o, 5);
-   PRINT_TEST_RESULT(object_get_health(o) == 5);
+   object_set_health(o, TEST_6);
+   PRINT_TEST_RESULT(object_get_health(o) == TEST_6);
    object_destroy(o);
 }
 
 void test2_object_get_health() {
    Object *o = NULL;
-   PRINT_TEST_RESULT(object_get_health(o) == 0); 
+   PRINT_TEST_RESULT(object_get_health(o) == TEST_7); 
 }
 
 void test1_object_set_movable() {
@@ -236,19 +244,19 @@ void test2_object_is_movable() {
 
 void test1_object_set_dependency() {
    Object *o = object_create(TEST);
-   PRINT_TEST_RESULT(object_set_dependency(o, 20) == OK);
+   PRINT_TEST_RESULT(object_set_dependency(o, TEST_3) == OK);
    object_destroy(o);
 }
 
 void test2_object_set_dependency() {
    Object *o = NULL;
-   PRINT_TEST_RESULT(object_set_dependency(o, 20) == ERROR);
+   PRINT_TEST_RESULT(object_set_dependency(o, TEST_3) == ERROR);
 }
 
 void test1_object_get_dependency() {
    Object *o = object_create(TEST);
-   object_set_dependency(o, 15);
-   PRINT_TEST_RESULT(object_get_dependency(o) == 15);
+   object_set_dependency(o, TEST_2);
+   PRINT_TEST_RESULT(object_get_dependency(o) == TEST_2);
    object_destroy(o);
 }
 
@@ -259,19 +267,19 @@ void test2_object_get_dependency() {
 
 void test1_object_set_open() {
    Object *o = object_create(TEST);
-   PRINT_TEST_RESULT(object_set_open(o, 30) == OK);
+   PRINT_TEST_RESULT(object_set_open(o, TEST_5) == OK);
    object_destroy(o);
 }
 
 void test2_object_set_open() {
    Object *o = NULL;
-   PRINT_TEST_RESULT(object_set_open(o, 30) == ERROR);
+   PRINT_TEST_RESULT(object_set_open(o, TEST_5) == ERROR);
 }
 
 void test1_object_get_open() {
    Object *o = object_create(TEST);
-   object_set_open(o, 25);
-   PRINT_TEST_RESULT(object_get_open(o) == 25);
+   object_set_open(o, TEST_4);
+   PRINT_TEST_RESULT(object_get_open(o) == TEST_4);
    object_destroy(o);
 }
 
@@ -332,18 +340,18 @@ void test1_object_get_draw() {
        "Dibujo3"
    };
    object_set_draw(o, draw);
-   PRINT_TEST_RESULT(strcmp(object_get_draw(o, 1), "Dibujo2") == 0);
+   PRINT_TEST_RESULT(strcmp(object_get_draw(o, TEST_9), "Dibujo2") == 0);
    object_destroy(o);
 }
 
 void test2_object_get_draw() {
    Object *o = NULL;
-   PRINT_TEST_RESULT(object_get_draw(o, 1) == NULL);
+   PRINT_TEST_RESULT(object_get_draw(o, TEST_9) == NULL);
 }
 
 void test3_object_get_draw() {
    Object *o = object_create(TEST);
-   PRINT_TEST_RESULT(object_get_draw(o, -1) == NULL); 
+   PRINT_TEST_RESULT(object_get_draw(o, TEST_8) == NULL); 
    object_destroy(o);
 }
 

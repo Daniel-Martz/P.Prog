@@ -17,11 +17,11 @@
 #include <time.h>
 #include <strings.h>
 
-#define INIT_DAMAGE 0
-#define INIT_PLAYER_DAMAGE 1
-#define MAX_MESSAGE_GUESS 1000
-#define RANDOM 2520
-#define MAX_STRING_LENGTH 1000
+#define INIT_DAMAGE 0 /*!< Constant for the initial damage */
+#define INIT_PLAYER_DAMAGE 1/*!< Constant for the initial damage of a player*/
+#define MAX_MESSAGE_GUESS 1000/*!< Constant to define the maximum size of guess message*/
+#define RANDOM 2520 /*!< Constant used to generate a random number between 0 and 2519*/
+#define MAX_STRING_LENGTH 1000/*!< Constant for the maximum length for a string */
 
 /**
    Private functions

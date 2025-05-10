@@ -2,7 +2,7 @@
  * @brief It defines the Inventory module
  * 
  * @file inventory.h
- * @author Jimena Sanchiz
+ * @author Jimena Sanchiz y Jaime
  * 
  * @version 0.1
  * @date 2025-03-18

@@ -1,7 +1,7 @@
 /**
  * @brief It defines the player module
  * @file player.h
- * @author Daniel Martinez y Jaime Romero
+ * @author Daniel Martinez, Jaime Romero, Jimena y Jorge
  * 
  * @version 0.1
  * @date 2025-02-7
@@ -177,7 +177,7 @@ Status player_set_health(Player* player, int health);
  * @author Jimena Sanchiz
  *
  * @param player a pointer to Player
- * @param health Player's damage points
+ * @param damage Player's damage points
  * 
  * @return OK if everything goes well, ERROR if anything goes wrong
  */

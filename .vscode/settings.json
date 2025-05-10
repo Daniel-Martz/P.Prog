@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "graphic_engine.h": "c"
+        "graphic_engine.h": "c",
+        "string.h": "c",
+        "command.h": "c"
     }
 }

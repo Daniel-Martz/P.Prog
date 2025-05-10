@@ -1,7 +1,7 @@
 /**
  * @brief It defines the functions used to create a new character 
  * @file character.h
- * @author Jaime Romero
+ * @author Jaime Romero, Daniel y Jorge
  * 
  * @version 0.1
  * @date 2025-02-24

@@ -77,7 +77,7 @@ void game_rules_open_door1(Game *game)
     Object *key1 = NULL;
     Id key1_id = 901;
     Id link1_id = 48;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",
@@ -127,7 +127,7 @@ void game_rules_open_door2(Game *game)
     Object *key2 = NULL;
     Id key2_id = 902;
     Id link2_id = 49;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
        "    ",
        "    ",
        "    ",
@@ -177,7 +177,7 @@ void game_rules_open_door3(Game *game)
     Object *key3 = NULL;
     Id key3_id = 903;
     Id link3_id = 70;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",
@@ -227,7 +227,7 @@ void game_rules_open_door4(Game *game)
     Object *key4 = NULL;
     Id key4_id = 904;
     Id link4_id = 86;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",
@@ -277,7 +277,7 @@ void game_rules_open_door5(Game *game)
     Object *key5 = NULL;
     Id key5_id = 905;
     Id link5_id = 88;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",
@@ -326,7 +326,7 @@ void game_rules_open_door6(Game *game)
     Object *key6 = NULL;
     Id key6_id = 906;
     Id link6_id = 84;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",
@@ -376,7 +376,7 @@ void game_rules_open_door7(Game *game)
     Object *key7 = NULL;
     Id key7_id = 907;
     Id link7_id = 62;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",
@@ -426,7 +426,7 @@ void game_rules_open_door8(Game *game)
     Object *key8 = NULL;
     Id key8_id = 908;
     Id link8_id = 65;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",
@@ -476,7 +476,7 @@ void game_rules_open_door9(Game *game)
     Object *key9 = NULL;
     Id key9_id = 909;
     Id link9_id = 68;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",
@@ -526,7 +526,7 @@ void game_rules_open_door10(Game *game)
     Object *key10 = NULL;
     Id key10_id = 910;
     Id link10_id = 77;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",
@@ -576,7 +576,7 @@ void game_rules_open_door11(Game *game)
     Object *key11 = NULL;
     Id key11_id = 911;
     Id link11_id = 61;
-    char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
+    const char draw[DRAW_HEIGHT][DRAW_WIDTH] = {"     ",
         "    ",
         "    ",
         "    ",

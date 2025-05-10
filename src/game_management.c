@@ -1,6 +1,6 @@
 /**
  * @brief It creates and adds the spaces 
- * @file game_reader.c
+ * @file game_management.c
  * @author Jaime Romero, Daniel Martínez
  * 
  * @version 0.1
@@ -164,7 +164,7 @@ Status game_reader_load_objects(Game *game, char *filename){
       if (!object) return ERROR;
       object_set_name(object, name);
       game_add_object(game, object);
-      object_set_draw(object, draw);
+      object_set_draw(object, (const char(*)[DRAW_WIDTH])draw);
       space_set_new_object(game_get_space(game, space_id), object_id);
       object_set_description(object, description);
       object_set_health(object, health);
