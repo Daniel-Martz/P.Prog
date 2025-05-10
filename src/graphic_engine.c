@@ -183,10 +183,12 @@ else {
       sprintf(strspace[LINE_6], "|                     |");
   } 
   else {
-
+    sprintf(str2, " %s", player_get_gdesc(player));
     for (i = 0; i < game_get_n_players_in_same_team(game, player); i++) {
-      strncat(str2, " ", MAX_STR - strlen(str2) - 1);
-      strncat(str2, player_get_gdesc(team[i]), MAX_STR - strlen(str2) - 1);
+      if( player_get_id(team[i]) != player_get_id(player)){
+        strncat(str2, " ", MAX_STR - strlen(str2) - 1);
+        strncat(str2, player_get_gdesc(team[i]), MAX_STR - strlen(str2) - 1);
+      }
     }
 
     if(game_get_nfollowingcharacters(game, player_get_id(player)) <= 0){
@@ -206,11 +208,11 @@ else {
       }
       else if(aux_len1 > LIMIT_2){
         snprintf(strspace[LINE_6], WIDTH_SPACE -4, "|%s|%s",str2, str);
-        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "%s...|",strspace[LINE_6]);
+        snprintf(strspace[LINE_6], WIDTH_SPACE +2, "%s...|",strspace[LINE_6]);
       }
       else if(aux_len2 > LIMIT_2){
         snprintf(strspace[LINE_6], WIDTH_SPACE - strlen(str)- 5, "|%s",str2);
-        snprintf(strspace[LINE_6], WIDTH_SPACE +1, "%s...|%s|",strspace[LINE_6], str);
+        snprintf(strspace[LINE_6], WIDTH_SPACE +2, "%s...|%s|",strspace[LINE_6], str);
       }
       else {
         snprintf(strspace[LINE_6], WIDTH_SPACE +1, "|%-10.10s|%-10.10s|",str2, str);
@@ -237,7 +239,6 @@ else {
       strncat(str, character_get_gdesc(charact_space[i]), MAX_STR - strlen(str) - 1);
     }
     snprintf(strspace[LINE_7], WIDTH_SPACE + 1 , "|%21.21s|", str);
-    printf("%i",game_get_space_n_nonteamplayers(game, space_id, player));
   }
   else{
     for (i = 0; i < game_get_space_n_nonfollowingcharacters(game, space, player_get_id(player)); i++) {
@@ -264,7 +265,6 @@ else {
     else {
       snprintf(strspace[LINE_7], WIDTH_SPACE +1, "|%-10.10s|%-10.10s|",str2, str);
     }
-    printf("%i",game_get_space_n_nonteamplayers(game, space_id, player));
   }
     /*DESCRIPCION DEL MAPA*/
     if(gdesc[0] != NULL){

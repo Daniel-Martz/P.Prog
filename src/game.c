@@ -1154,10 +1154,20 @@ Player **game_get_space_nonteamplayers(Game *game, Id space_id, Player *player){
     return NULL;
   }
 
-  for (i = 0; i < game_get_nplayers(game); i++) {
-    if ((player_get_team(players[i]) != player_get_id(player)) && (player_get_location(player) == space_id) && (player_get_id(players[i]) != player_get_id(player))) {
-      nonteamplayers[n] = players[i];
-      n++;
+  if(player_get_team(player) != NO_ID){
+    for (i = 0; i < game_get_nplayers(game); i++) {
+      if ((player_get_team(players[i]) != player_get_team(player)) && (player_get_location(players[i]) == space_id) && (player_get_id(players[i]) != player_get_id(player))) {
+        nonteamplayers[n] = players[i];
+        n++;
+      }
+    }
+  }
+  else{
+    for (i = 0; i < game_get_nplayers(game); i++) {
+      if ((player_get_location(players[i]) == space_id) && (player_get_id(players[i]) != player_get_id(player))) {
+        nonteamplayers[n] = players[i];
+        n++;
+      }
     }
   }
 
