@@ -253,14 +253,6 @@ Status game_actions_update(Game *game, Command *command)
     command_set_last_cmd_status(game_get_last_command(game), game_actions_load(game));
     break;
 
-  case SAVE:
-    command_set_last_cmd_status(game_get_last_command(game), game_actions_save(game));
-    break;
-
-  case LOAD:
-    command_set_last_cmd_status(game_get_last_command(game), game_actions_load(game));
-    break;
-
   default:
     break;
   }
