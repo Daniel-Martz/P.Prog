@@ -307,19 +307,19 @@ void test4_space_get_gdesc(){
 void test1_space_get_discovered() {
   Space *s = space_create(1);
   space_set_discovered(s, OK);
-  PRINT_TEST_RESULT(space_get_discovered(s) == OK);
+  PRINT_TEST_RESULT(space_get_discovered(s) == TRUE);
   space_destroy(s);
 }
 
 void test2_space_get_discovered() {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_get_discovered(s) == ERROR);
+  PRINT_TEST_RESULT(space_get_discovered(s) == FALSE);
 }
 
 void test1_space_set_discovered() {
   Space *s = space_create(2);
   Status result = space_set_discovered(s, ERROR);
-  Bool status_result = (space_get_discovered(s) == ERROR);
+  Bool status_result = (space_get_discovered(s) == FALSE);
   PRINT_TEST_RESULT(result == OK && status_result);
   space_destroy(s);
 }
