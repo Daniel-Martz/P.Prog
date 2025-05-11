@@ -11,16 +11,7 @@
 #ifndef LIBSCREEN_H
 #define LIBSCREEN_H
 
-/**
- * @brief Structure for the Area
- * 
- */
 typedef struct _Area Area;
-
-/**
- * @brief Numeration for the colours
- * 
- */
 typedef enum {BLUE, GREEN, BLACK, RED, YELLOW, PURPLE, CYAN, WHITE} Frame_color;
 
 
@@ -43,7 +34,7 @@ void screen_init(int rows, int columns);
  * As it frees the screen, it must be called at the end of the program,
  *  once the areas created have been freed.
  */
-void screen_destroy(void);
+void screen_destroy();
 
 /**
  * @brief It paints in the terminal the actual screen composition
