@@ -104,23 +104,17 @@ Status space_set_newCharacter(Space* space, Id id) {
   return state;
 }
 
-Status space_set_gdesc (Space* space, const char new_gdesc[N_ROWS][N_COLUMNS]){
-  int i=0;
+Status space_set_gdesc(Space* space, const char new_gdesc[N_ROWS][N_COLUMNS]) {
+  int i = 0;
 
-  if (!space || new_gdesc == NULL)
-  {
-    return ERROR; 
-  }
+  if (!space || !new_gdesc) return ERROR;
   
-  /*Copy in the game description the new game description, copying only 9 characters plus '\0'*/
-  for (i = 0; i < N_ROWS; i++)
-  {
-    /*Check if the number of characters in the new description is equal to 9 to avoid errors*/
+  for (i = 0; i < N_ROWS; i++) {
     if (strlen(new_gdesc[i]) != MAX_DESC) return ERROR;
     
-    strncpy(space->gdesc[i], new_gdesc[i], N_COLUMNS); 
+    strncpy(space->gdesc[i], new_gdesc[i], N_COLUMNS - 1);
+    space->gdesc[i][N_COLUMNS - 1] = '\0'; 
   }
-  
   return OK;
 }
 

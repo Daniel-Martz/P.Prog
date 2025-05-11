@@ -169,14 +169,16 @@ void test2_space_set_newCharacter(){
 
 void test1_space_set_gdesc(){
   Space *s;
-  const char array[5][18] = {
-    "Fila1111111111111",
-    "Fila2222222222222",
-    "Fila3333333333333",
-    "Fila4444444444444",
-    "Fila5555555555555"
+  const char array[N_ROWS][N_COLUMNS] = {
+    "Fila1_123456789",  
+    "Fila2_abcdefghi",   
+    "Fila3_ABCDEFGHI",   
+    "Fila4_987654321",   
+    "Fila5_xyzXYZ123",   
+    "Fila6_000000000"    
   };
-  s = space_create(3);
+  
+  s = space_create(6);
   PRINT_TEST_RESULT(space_set_gdesc(s, array) == OK);
   space_destroy(s);
 }
@@ -252,12 +254,12 @@ void test1_space_get_gdesc(){
   {
     if ((strcmp(space_get_gdesc(s, i), array[i])))
     {
-      PRINT_TEST_RESULT(FALSE);
+      PRINT_TEST_RESULT(ERROR);
       space_destroy(s);
       return;
     }
   }
-  PRINT_TEST_RESULT(TRUE);
+  PRINT_TEST_RESULT(OK);
   space_destroy(s);
 }
 
@@ -304,27 +306,27 @@ void test4_space_get_gdesc(){
 
 void test1_space_get_discovered() {
   Space *s = space_create(1);
-  space_set_discovered(s, TRUE);
-  PRINT_TEST_RESULT(space_get_discovered(s) == TRUE);
+  space_set_discovered(s, OK);
+  PRINT_TEST_RESULT(space_get_discovered(s) == OK);
   space_destroy(s);
 }
 
 void test2_space_get_discovered() {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_get_discovered(s) == FALSE);
+  PRINT_TEST_RESULT(space_get_discovered(s) == ERROR);
 }
 
 void test1_space_set_discovered() {
   Space *s = space_create(2);
-  Status result = space_set_discovered(s, FALSE);
-  Bool status_result = (space_get_discovered(s) == FALSE);
+  Status result = space_set_discovered(s, ERROR);
+  Bool status_result = (space_get_discovered(s) == ERROR);
   PRINT_TEST_RESULT(result == OK && status_result);
   space_destroy(s);
 }
 
 void test2_space_set_discovered() {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_set_discovered(s, TRUE) == ERROR);
+  PRINT_TEST_RESULT(space_set_discovered(s, OK) == ERROR);
 }
 
 void test1_space_print() {
@@ -444,13 +446,13 @@ void test3_space_character_del() {
 void test1_space_object_is_there() {
   Space *s = space_create(1);
   space_set_new_object(s, 5);
-  PRINT_TEST_RESULT(space_object_is_there(s, 5) == TRUE);
+  PRINT_TEST_RESULT(space_object_is_there(s, 5) == OK);
   space_destroy(s);
 }
 
 void test2_space_object_is_there() {
   Space *s = space_create(1);
-  PRINT_TEST_RESULT(space_object_is_there(s, 5) == FALSE); 
+  PRINT_TEST_RESULT(space_object_is_there(s, 5) == ERROR); 
   space_destroy(s);
 }
 
@@ -461,13 +463,13 @@ void test3_space_object_is_there() {
 void test1_space_character_is_there() {
   Space *s = space_create(1);
   space_set_newCharacter(s, 3);
-  PRINT_TEST_RESULT(space_character_is_there(s, 3) == TRUE);
+  PRINT_TEST_RESULT(space_character_is_there(s, 3) == OK);
   space_destroy(s);
 }
 
 void test2_space_character_is_there() {
   Space *s = space_create(1);
-  PRINT_TEST_RESULT(space_character_is_there(s, 3) == FALSE); 
+  PRINT_TEST_RESULT(space_character_is_there(s, 3) == ERROR); 
   space_destroy(s);
 }
 
