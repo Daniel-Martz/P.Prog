@@ -13,7 +13,7 @@
  #include <string.h>
  #include "player_test.h"
  
- #define MAX_TESTS 28/*!< It defines the number of tests*/
+ #define MAX_TESTS 39/*!< It defines the number of tests*/
  #define TEST_ID_1 1/*!< It defines a constant for id*/
 #define TEST_ID_2 2/*!< It defines a constant for id*/
 #define TEST_OBJECT_ID 10/*!< It defines a constant for id*/
@@ -84,6 +84,12 @@
     if (all || test == 31) test1_player_set_damage();
     if (all || test == 32) test2_player_set_damage();
     if (all || test == 33) test3_player_set_damage();
+    if (all || test == 34) test1_player_get_objects_ids();
+    if (all || test == 35) test2_player_get_objects_ids();
+    if (all || test == 36) test1_player_get_team();
+    if (all || test == 37) test2_player_get_team();
+    if (all || test == 38) test1_player_set_team();
+    if (all || test == 39) test2_player_set_team();
 
    PRINT_PASSED_PERCENTAGE;
 
@@ -286,3 +292,44 @@ void test3_player_set_damage() {
     PRINT_TEST_RESULT(player_set_damage(player, TEST_DAMAGE_INVALID) == ERROR); 
     player_destroy(player);
 }
+
+/* GET OBJECTS IDS */
+void test1_player_get_objects_ids() {
+    Id *ids = NULL;
+    Player *player = player_create(TEST_ID_1);
+    player_add_object(player, TEST_OBJECT_ID);
+    ids = player_get_objects_ids(player);
+    PRINT_TEST_RESULT(ids != NULL && ids[0] == TEST_OBJECT_ID);
+    player_destroy(player);
+}
+
+void test2_player_get_objects_ids() {
+    Player *player = NULL;
+    PRINT_TEST_RESULT(player_get_objects_ids(player) == NULL);
+}
+
+/* GET TEAM */
+void test1_player_get_team() {
+    Player *player = player_create(TEST_ID_1);
+    player_set_team(player, TEST_ID_2);
+    PRINT_TEST_RESULT(player_get_team(player) == TEST_ID_2);
+    player_destroy(player);
+}
+
+void test2_player_get_team() {
+    Player *player = NULL;
+    PRINT_TEST_RESULT(player_get_team(player) == NO_ID);
+}
+
+/* SET TEAM */
+void test1_player_set_team() {
+    Player *player = player_create(TEST_ID_1);
+    PRINT_TEST_RESULT(player_set_team(player, TEST_ID_2) == OK);
+    player_destroy(player);
+}
+
+void test2_player_set_team() {
+    Player *player = NULL;
+    PRINT_TEST_RESULT(player_set_team(player, TEST_ID_2) == ERROR);
+}
+

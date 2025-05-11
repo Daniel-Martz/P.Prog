@@ -251,4 +251,46 @@ void test2_player_set_damage();
  */
 void test3_player_set_damage();
 
+/**
+ * @test Test function for getting player's object IDs
+ * @pre Valid player pointer with objects in inventory
+ * @post Output == Array with object IDs
+ */
+void test1_player_get_objects_ids();
+
+/**
+ * @test Test function for getting player's object IDs
+ * @pre NULL player pointer
+ * @post Output == NULL
+ */
+void test2_player_get_objects_ids();
+
+/**
+ * @test Test function for getting player's team ID
+ * @pre Valid player pointer with team set
+ * @post Output == Expected team ID
+ */
+void test1_player_get_team();
+
+/**
+ * @test Test function for getting player's team ID
+ * @pre NULL player pointer
+ * @post Output == NO_ID
+ */
+void test2_player_get_team();
+
+/**
+ * @test Test function for setting player's team
+ * @pre Valid player pointer
+ * @post Output == OK
+ */
+void test1_player_set_team();
+
+/**
+ * @test Test function for setting player's team
+ * @pre NULL player pointer
+ * @post Output == ERROR
+ */
+void test2_player_set_team();
+
  #endif

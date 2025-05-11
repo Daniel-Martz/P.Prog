@@ -13,7 +13,7 @@
 #include <string.h> 
 #include "character_test.h"
 
-#define MAX_TESTS 39 /*!< It defines the number of tests*/
+#define MAX_TESTS 50 /*!< It defines the number of tests*/
 #define TEST 10/*!< It defines an arbitrary test number*/
 
 /** 
@@ -80,6 +80,15 @@ int main(int argc, char** argv) {
   if (all || test == 37) test1_character_set_damage();
   if (all || test == 38) test2_character_set_damage();
   if (all || test == 39) test3_character_set_damage();
+  if (all || test == 40) test1_character_get_face();
+  if (all || test == 41) test2_character_get_face();
+  if (all || test == 42) test3_character_get_face();
+  if (all || test == 43) test1_character_get_strfriendly();
+  if (all || test == 44) test2_character_get_strfriendly();
+  if (all || test == 45) test3_character_get_strfriendly();
+  if (all || test == 46) test1_character_set_face();
+  if (all || test == 47) test2_character_set_face();
+  if (all || test == 48) test3_character_set_face();
   
   PRINT_PASSED_PERCENTAGE;
 
@@ -325,4 +334,66 @@ void test2_character_set_damage() {
 void test3_character_set_damage() {
     Character* c = NULL;
     PRINT_TEST_RESULT(character_set_health(c, TEST) == ERROR);
+}
+
+/* GET FACE */
+void test1_character_get_face() {
+    Character* c = character_create(TEST);
+    const char face[FACE_HEIGHT][FACE_WIDTH] = {"  O  ", " /|\\ ", " / \\ "};
+    character_set_face(c, face);
+    PRINT_TEST_RESULT(strcmp(character_get_face(c, 0), "  O  ") == 0);
+    character_destroy(c);
+}
+
+void test2_character_get_face() {
+    Character* c = NULL;
+    PRINT_TEST_RESULT(character_get_face(c, 0) == NULL);
+}
+
+void test3_character_get_face() {
+    Character* c = character_create(TEST);
+    const char face[FACE_HEIGHT][FACE_WIDTH] = {"  O  ", " /|\\ ", " / \\ "};
+    character_set_face(c, face);
+    PRINT_TEST_RESULT(character_get_face(c, FACE_HEIGHT) == NULL); 
+    character_destroy(c);
+}
+
+/* GET STRFRIENDLY */
+void test1_character_get_strfriendly() {
+    Character* c = character_create(TEST);
+    character_set_friendly(c, TRUE);
+    PRINT_TEST_RESULT(strcmp(character_get_strfriendly(c), "friendly") == 0);
+    character_destroy(c);
+}
+
+void test2_character_get_strfriendly() {
+    Character* c = character_create(TEST);
+    character_set_friendly(c, FALSE);
+    PRINT_TEST_RESULT(strcmp(character_get_strfriendly(c), "enemy") == 0);
+    character_destroy(c);
+}
+
+void test3_character_get_strfriendly() {
+    Character* c = NULL;
+    PRINT_TEST_RESULT(character_get_strfriendly(c) == NULL);
+}
+
+/* SET FACE */
+void test1_character_set_face() {
+    Character* c = character_create(TEST);
+    const char face[FACE_HEIGHT][FACE_WIDTH] = {"  O  ", " /|\\ ", " / \\ "};
+    PRINT_TEST_RESULT(character_set_face(c, face) == OK);
+    character_destroy(c);
+}
+
+void test2_character_set_face() {
+    Character* c = NULL;
+    const char face[FACE_HEIGHT][FACE_WIDTH] = {"  O  ", " /|\\ ", " / \\ "};
+    PRINT_TEST_RESULT(character_set_face(c, face) == ERROR);
+}
+
+void test3_character_set_face() {
+    Character* c = character_create(TEST);
+    PRINT_TEST_RESULT(character_set_face(c, NULL) == ERROR);
+    character_destroy(c);
 }
