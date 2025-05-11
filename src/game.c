@@ -164,16 +164,8 @@ Status game_add_player(Game *game, Player* player){
 }
 
 Game *game_create_from_file(char *filename) {
-  Game *game = NULL;
-
-  if (!(game = game_create())) {
-    return NULL;
-  }
-  game = game_management_load(filename);
-
-  return game;
+  return game_management_load(filename);
 }
-
 
 Status game_destroy(Game *game) {
   int i = 0;
