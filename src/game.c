@@ -1210,5 +1210,10 @@ Bool game_clue_is_stored (Game *game, char *clue){
   return FALSE;
 }
 
+char *game_get_clue(Game *game, int number){
+  if(!game || number<0 || number>= MAX_CLUES) return NULL;
+  return game->clues[number];
+}
+
 
 

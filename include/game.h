@@ -863,6 +863,16 @@ int game_get_nclues(Game *game);
 Status game_add_clue(Game *game, char *clue);
 
 /**
+ * @brief It get a clue
+ * 
+ * @author Daniel Martínez
+ * @param game A pointer to game
+ * @param number The number of the clue
+ * @return The clue or NULL if there was a problems
+ */
+char *game_get_clue(Game *game, int number);
+
+/**
  * @brief It check if a clue is stored
  * 
  * @author Daniel Martínez

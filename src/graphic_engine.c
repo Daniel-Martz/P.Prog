@@ -770,16 +770,21 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       }
     }
 
+    screen_area_clear(ge->clues);
+
     screen_area_puts(ge->clues, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLUES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     screen_area_puts(ge->clues, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     if(last_cmd == CHAT && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
       strcpy(clue, game_get_message(game));
       if(game_clue_is_stored(game, clue) == FALSE){
         game_add_clue(game, clue);
-        snprintf(str, MAX_STR, " Pista %i: %s", game_get_nclues(game), clue);
-        screen_area_puts(ge->clues, str);
       }
     }
+    for(i= 0; i< game_get_nclues(game); i++){
+      snprintf(str, MAX_STR, " Pista %i: %s", i+1 , game_get_clue(game,i));
+      screen_area_puts(ge->clues, str);
+    }
+
 
     /* PAINT THE COLOR */    
     screen_paint(game_get_turn(game));
