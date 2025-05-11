@@ -936,8 +936,8 @@ int game_get_player_total_damage(Game *game, Id player_id) {
   characters = game_get_followingcharacters(game, player_id);
   players = game_get_players_in_same_team(game, game_get_player_by_id(game, player_id));
 
+  damage += player_get_damage(game_get_player_by_id(game, player_id));
   if ((characters == NULL) && (players == NULL)) {
-    damage += player_get_damage(game_get_player_by_id(game, player_id));
     return damage;
   }
 
