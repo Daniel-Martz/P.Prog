@@ -154,6 +154,24 @@ Status game_actions_guess(Game *game);
 Status game_actions_cooperate(Game *game);
 
 /**
+ * @brief It loads a file with the game state
+ * @author Jaime Romero
+ *
+ * @param game a pointer to Game
+ * @return Status indicating the result of the action
+ */
+Status game_actions_load(Game *game);
+
+/**
+ * @brief It saves the game state in a file
+ * @author Jaime Romero
+ *
+ * @param game a pointer to Game
+ * @return Status indicating the result of the action
+ */
+Status game_actions_save(Game *game);
+
+/**
  * @brief Game actions implementation
  */
 
@@ -1134,4 +1152,41 @@ Status game_actions_cooperate(Game *game)
   }
 
   return ERROR;
+}
+
+Status game_actions_save(Game *game){
+  char *filename = NULL;
+
+  if (!game) return ERROR;
+
+  filename = command_get_strin(game_get_last_command(game));
+  if (filename == NULL) {
+    return ERROR;
+  }
+
+  if (game_management_save(game, filename) == ERROR) {
+    return ERROR;
+  }
+
+  return OK;
+}
+
+Status game_actions_load(Game *game){
+  char *filename = NULL;
+
+  if (!game)
+    return ERROR;
+
+  filename = command_get_strin(game_get_last_command(game));
+  if (filename == NULL)
+  {
+    return ERROR;
+  }
+
+  if (game_management_load(filename) == NULL)
+  {
+    return ERROR;
+  }
+
+  return OK;
 }

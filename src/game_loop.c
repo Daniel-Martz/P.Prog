@@ -218,6 +218,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *output_name)
     sleep(0.5);
   }
 
+
   if ((game_get_finished(game) == TRUE) || (player_get_health(game_get_player(game)) == 0))
   {
     printf("GAME OVER\n");

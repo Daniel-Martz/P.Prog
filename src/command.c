@@ -23,7 +23,7 @@
  * 
  * @author Daniel Martínez
  */
-char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}, {"r", "Recruit"}, {"ab", "Abandon"}, {"u", "Use"}, {"o", "Open"}, {"g", "Guess"}, {"co", "Cooperate"},};
+char *cmd_to_str[N_CMD][N_CMDT] = {{"", "No command"}, {"", "Unknown"}, {"e", "Exit"}, {"m", "Move"}, {"i", "Inspect"}, {"t", "Take"}, {"d", "Drop"}, {"a", "Attack"}, {"c", "Chat"}, {"r", "Recruit"}, {"ab", "Abandon"}, {"u", "Use"}, {"o", "Open"}, {"g", "Guess"}, {"co", "Cooperate"}, {"s", "Save"}, {"l", "Load"}};
 
 /**
  * @brief This struct stores all the information of a command
@@ -208,6 +208,21 @@ Status command_get_user_input(Command* command) {
 
     if(cmd == COOPERATE){
       token = strtok(NULL, "\n");
+      command_set_strin(command, token);
+    }
+
+    if(cmd == GUESS){
+      token = strtok(NULL, "\n");
+      command_set_strin(command, token);
+    }
+
+    if(cmd == SAVE){
+      token = strtok(NULL, " \n");
+      command_set_strin(command, token);
+    }
+
+    if(cmd == LOAD){
+      token = strtok(NULL, " \n");
       command_set_strin(command, token);
     }
 

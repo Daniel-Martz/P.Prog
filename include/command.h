@@ -14,7 +14,7 @@
 #include "types.h"
 
 #define N_CMDT 2/*!< It defines a constant for the the abreviature of the command and the command*/
-#define N_CMD 15/*!< It defines a constant for the number of commands */
+#define N_CMD 17/*!< It defines a constant for the number of commands */
 
 /**
  * @brief It establishes a data type for the two posible ways to refer to a command
@@ -28,7 +28,7 @@ typedef enum { CMDS, CMDL } CommandType;
  * 
  * @author Daniel Martínez
  */
-typedef enum { NO_CMD = -1, UNKNOWN, EXIT, MOVE, INSPECT, TAKE, DROP, ATTACK, CHAT, RECRUIT, ABANDON, USE, OPEN, GUESS, COOPERATE} CommandCode;
+typedef enum { NO_CMD = -1, UNKNOWN, EXIT, MOVE, INSPECT, TAKE, DROP, ATTACK, CHAT, RECRUIT, ABANDON, USE, OPEN, GUESS, COOPERATE, SAVE, LOAD} CommandCode;
 
 /**
  * @brief It estiblishes a structure that will contain the name of the command

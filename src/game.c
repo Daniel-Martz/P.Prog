@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 #define INIT_ID 1/*!< Constant that refers to the starting id of a player and object */
 
@@ -192,9 +193,12 @@ Status game_destroy(Game *game) {
 
   command_destroy(game->last_cmd);
 
+  for (i = 0; i < game->n_teams; i++) {
+    free(game->missions[i]);
+  }
+
   free(game);
   
-
   return OK;
 }
 
