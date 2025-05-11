@@ -33,7 +33,7 @@ Status game_reader_load_spaces(Game *game, char *filename) {
   Id space_id = NO_ID;
   Space *space = NULL;
   Status status = OK;
-  char gdesc[N_ROWS][N_COLUMNS];
+  char gdesc[N_ROWS][N_COLUMNS]={{0}};
   int row=0;
 
   if (!filename || !game) {

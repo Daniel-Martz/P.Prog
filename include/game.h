@@ -22,7 +22,7 @@
 
 #define MAX_SPACES 100/*!< Constant that estabilshes the maximum number of spaces as 100*/
 #define MAX_OBJECTS 100/*!< Constant that estabilshes the maximum number of objects as 100*/
-#define MAX_CHARACTERS 100/*!< Constant that estabilshes the maximum number of characters as 100*/
+#define MAX_CHARACTERS 110/*!< Constant that estabilshes the maximum number of characters as 100*/
 #define MAX_LINKS 100/*!< Constant that estabilshes the maximum number of links as 100*/
 #define MAX_PLAYERS 8/*!< Constant that estabilshes the maximum number of players as 8*/
 #define MAX_NAME 100/*!< Constant that estabilshes the maximum name length*/

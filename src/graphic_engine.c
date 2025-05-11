@@ -119,7 +119,7 @@ char **graphic_engine_print_space(Id space_id, Game *game){
 
   for (i = 0; i < N_ROWS; i++) {
       gdesc[i] = space_get_gdesc(space, i);
-      if (!gdesc[i]) gdesc[i] = "        ";  
+      if (!gdesc[i]) gdesc[i] = "                 ";  
   }
   /*ALLOC OF THE MATRIX OF THE SPACE*/
   strspace = (char **)malloc(HEIGHT_SPACE * sizeof(char *));
@@ -207,11 +207,11 @@ else {
         snprintf(strspace[LINE_6], WIDTH_SPACE +1, "|%-7.7s...|%-7.7s...|",str2, str);
       }
       else if(aux_len1 > LIMIT_2){
-        snprintf(strspace[LINE_6], WIDTH_SPACE -4, "|%s|%s",str2, str);
+        snprintf(strspace[LINE_6], WIDTH_SPACE -3, "|%s|%s",str2, str);
         snprintf(strspace[LINE_6], WIDTH_SPACE +2, "%s...|",strspace[LINE_6]);
       }
       else if(aux_len2 > LIMIT_2){
-        snprintf(strspace[LINE_6], WIDTH_SPACE - strlen(str)- 5, "|%s",str2);
+        snprintf(strspace[LINE_6], WIDTH_SPACE - strlen(str)- 4, "|%s",str2);
         snprintf(strspace[LINE_6], WIDTH_SPACE +2, "%s...|%s|",strspace[LINE_6], str);
       }
       else {
@@ -255,30 +255,23 @@ else {
       snprintf(strspace[LINE_7], WIDTH_SPACE +1, "|%-7.7s...|%-7.7s...|",str2, str);
     }
     else if(aux_len1 > LIMIT_2){
-      snprintf(strspace[LINE_7], WIDTH_SPACE -4, "|%s|%s",str2, str);
-      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "%s...|",strspace[LINE_7]);
+      snprintf(strspace[LINE_7], WIDTH_SPACE -3, "|%s|%s",str2, str);
+      snprintf(strspace[LINE_7], WIDTH_SPACE +2, "%s...|",strspace[LINE_7]);
     }
     else if(aux_len2 > LIMIT_2){
-      snprintf(strspace[LINE_7], WIDTH_SPACE - strlen(str)-5, "|%s",str2);
-      snprintf(strspace[LINE_7], WIDTH_SPACE +1, "%s...|%s|",strspace[LINE_7], str);
+      snprintf(strspace[LINE_7], WIDTH_SPACE - strlen(str)-4, "|%s",str2);
+      snprintf(strspace[LINE_7], WIDTH_SPACE +2, "%s...|%s|",strspace[LINE_7], str);
     }
     else {
       snprintf(strspace[LINE_7], WIDTH_SPACE +1, "|%-10.10s|%-10.10s|",str2, str);
     }
   }
     /*DESCRIPCION DEL MAPA*/
-    if(gdesc[0] != NULL){
-      for (i = 0; i < N_ROWS; i++) {
-        sprintf(strspace[i+LINE_8], "|  %17.17s  |", gdesc[i]);
-      }
-    }
-    else{
-      for (i = 0; i < N_ROWS; i++) {
-        sprintf(strspace[i+LINE_8],"|                     |");
-      }
+
+    for (i = 0; i < N_ROWS; i++) {
+      sprintf(strspace[i+LINE_8], "|  %17.17s  |", gdesc[i]);
     }
 
-    sprintf(strspace[LINE_13], "|                     |");
       /*OBJETOS*/
       objects_id = space_get_objects_ids(space);
       if (objects_id != NULL) {
