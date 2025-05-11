@@ -1,72 +1,44 @@
+cooperate
+cooperate with Det2 
+chat
+recruit Perro
 move east
-inspect Gasolina
-take Bidon
-take Gasolina
-take Hacha
-take Tenazas
-take Clavos
-drop gasolina
-drop Bidon
+take gasolina
+inspect gasolina
+take bidon
+take gasolina
 take martillo
+take clavos
+use gasolina
+drop gasolina
+drop bidon
 move east
 move up
 move east
 move north
 move east
-use hacha
-attack Guard8
-take Key8
-open Corridor8-Comedor with Key8
-drop Key8
-drop Hacha
-move north
-move west
-chat Coronel Rubio
-recruit Coronel Rubio
-use martillo
-attack Guard2
-take Key2
-open Corridor3-Comedor with Key2
-drop Key2
-drop martillo
-move east
-take Carta Comedor
-move south
 move east
 move east
-use Tenazas over Coronel Rubio
+chat Sra. Celeste
+recruit Sra. Celeste
+use Clavos
+use Martillo over Sra. Celeste
+attack
 attack Guard4
 take Key4
+move down
+open Corridor15-Baile
 open Corridor15-Baile with Key4
-drop Key4
-drop Tenazas
 move south
-move south
-move west
-move south
-Use Clavos
-attack Guard6
-attack Guard6
-take Key6
-open Corridor14-Invernadero with Key6
-drop Key6
-move east
-chat Jardinero
-take Cuerda
-move west
-move north
-move east
-attack Guard5
-attack Guard5
-take Key5
-open Corridor16-Baile with Key5
-drop Key5
-move north
+take Carta Sala de Baile
+take Candelabro
 move west
 move west
 move down
 move up
-abandon Coronel Rubio
-drop Carta Comedor
-drop Cuerda
+abandon
+abandon Sra. Celeste
+drop
+drop Carta Sala de Baile
+drop Candelabro
 guess
