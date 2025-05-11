@@ -699,7 +699,8 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
     if((last_cmd == CHAT || last_cmd == RECRUIT || last_cmd == ABANDON || last_cmd == ATTACK) && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
       strncpy(character_name, command_get_strin(game_get_last_command(game)), MAX_STR);
-      character = game_get_character_from_name(game, character_name);
+      if ((strcmp(character_name, "team")!= 0)) {
+        character = game_get_character_from_name(game, character_name);
       screen_area_puts(ge->face, "                                     ");
       snprintf(str, MAX_NAME,  "  Character: %s", character_name);
       screen_area_puts(ge->face, str);
@@ -710,6 +711,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         screen_area_puts(ge->face, str);
       }
       screen_area_puts(ge->face, "             -------------------------   ");
+      }
     }
 
     else if((last_cmd == INSPECT || last_cmd == TAKE || last_cmd == DROP || last_cmd == USE || last_cmd == OPEN) && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
