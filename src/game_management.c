@@ -122,6 +122,8 @@ Status game_reader_load_objects(Game *game, char *filename){
     return ERROR;
   }
 
+
+
   while (fgets(line, WORD_SIZE, file)){
     if (strncmp("#o:", line, 3) == 0){
       /*Read all the data and then store it in variables*/
@@ -508,7 +510,7 @@ Status game_management_save(Game *game, char *filename) {
     /*Guardar gdesc*/
     for (row = 0; row < N_ROWS; row++) {
       row_data = space_get_gdesc(space, row);
-      fprintf(file, "|%s", row_data ? row_data : "     "); /*Si row_data no existe se imprimen cinco espacios*/
+      fprintf(file, "|%s", row_data ? row_data : "                 "); /*Si row_data no existe se imprimen cinco espacios*/
     }
     fprintf(file, "\n");
   }
@@ -518,7 +520,14 @@ Status game_management_save(Game *game, char *filename) {
     id = game_get_object_id_at(game, i);
     object = game_get_object(game, id);
     
-    fprintf(file, "#o:%ld|%s|%ld|%d|%d|%ld|%ld|%s\n", id, object_get_name(object), game_get_object_location(game, id), object_get_health(object), object_is_movable(object), object_get_dependency(object), object_get_open(object), object_get_description(object));
+    fprintf(file, "#o:%ld|%s|%ld|%d|%d|%ld|%ld|%s|%ld\n", id, object_get_name(object), game_get_object_location(game, id), object_get_health(object), object_is_movable(object), object_get_dependency(object), object_get_open(object), object_get_description(object), object_get_offensive(object));
+    
+    /*Guardar object gdesc*/
+    for (row = 0; row < N_ROWS; row++) {
+      row_data = object_get_draw(object, row);
+      fprintf(file, "|%s", row_data ? row_data : "                 "); /*Si row_data no existe se imprimen 17 espacios*/
+    }
+    fprintf(file, "\n");
   }
 
   /*Guardar personajes*/
@@ -527,6 +536,13 @@ Status game_management_save(Game *game, char *filename) {
     character = game_get_character(game, id);
     
     fprintf(file, "#c:%ld|%s|%d|%d|%ld|%s|%s\n", id, character_get_name(character), character_get_health(character), character_get_friendly(character), game_get_character_location(game, id), character_get_gdesc(character), character_get_message(character));
+    
+    /*Guardar characters gdesc*/
+    for (row = 0; row < N_ROWS; row++) {
+      row_data = character_get_face(character, row);
+      fprintf(file, "|%s", row_data ? row_data : "                 "); /*Si row_data no existe se imprimen 17 espacios*/
+    }
+    fprintf(file, "\n");
   }
 
   /*Guardar jugadores*/
