@@ -394,7 +394,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   Character **characters = NULL, *character = NULL, **followers = NULL;
   Player **team = NULL, **players = NULL;
   char right = '>', left = '<', back = '^', next = 'v';
-  char clue[MAX_MESSAGE] ={0};
+  char clue[MAX_MESSAGE] ={0}, *vision_line = NULL;
 
   /*INITIALIZES SOME VARIABLES*/
   screen_area_clear(ge->map);
@@ -672,7 +672,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
 
 
     /* Paint in the banner area */
-    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EL CLUB DEL CRIMEN ~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->banner, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EL CLUB DEL CRIMEN ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     /* Paint in the help area */
     screen_area_clear(ge->help);
     screen_area_puts(ge->help, "                                     ");
@@ -783,6 +783,21 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     for(i= 0; i< game_get_nclues(game); i++){
       snprintf(str, MAX_STR, " Pista %i: %s", i+1 , game_get_clue(game,i));
       screen_area_puts(ge->clues, str);
+    }
+    
+    /*VISION AREA*/
+    screen_area_puts(ge->vision, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->vision, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ VISION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->vision, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    for(i=0; i < VIS_HEIGHT; i++){
+      vision_line = space_get_vision(game_get_space(game, id_act), i);
+      if(vision_line[0] != '\0'){
+        sprintf(str, " %-68.68s", space_get_vision(game_get_space(game, id_act), i));
+        screen_area_puts(ge->vision, str);
+      }
+      else{
+        screen_area_puts(ge->vision, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      }
     }
 
 

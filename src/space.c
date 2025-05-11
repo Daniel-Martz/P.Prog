@@ -25,7 +25,9 @@ struct _Space {
   Set *objects;              /*!< It contains the set of the arrays of object */
   Set *characters;              /*!< It contains the id of the character */
   char gdesc[N_ROWS][N_COLUMNS]; /*!< An array of five strings, with 9 characters each (+1 for the '\0')*/
+  char vision[VIS_HEIGHT][VIS_WIDTH]; 
   Bool discovered;/*!< It contains if the space is discovered or not*/
+
 };
 
 /*=======================Create and Destroy========================*/
@@ -52,6 +54,12 @@ Space* space_create(Id id) {
   {
     newSpace->gdesc[i][0] = '\0';
   }
+
+  for (i = 0; i < VIS_HEIGHT; i++)
+  {
+    newSpace->vision[i][0] = '\0';
+  }
+
   if(!(newSpace->objects = set_create())){
     return NULL;
   }
@@ -151,6 +159,24 @@ Status space_set_discovered(Space *space, Bool discovered) {
 
 }
 
+Status space_set_vision(Space* space, char new_vision[VIS_HEIGHT][VIS_WIDTH]){
+  int i=0;
+
+  if (!space || new_vision == NULL)
+  {
+    return ERROR; 
+  }
+  
+
+  for(i = 0; i<VIS_HEIGHT; i++){
+    if(!(strcpy(space->vision[i],new_vision[i]))){
+      return ERROR;
+    }
+  }
+  
+  return OK;
+}
+
 /*============================Get============================*/
 Id space_get_id(Space* space) {
   if (!space) {
@@ -221,6 +247,12 @@ Bool space_get_discovered(Space *space) {
   return space->discovered;
 }
 
+char* space_get_vision(Space *space, int row){
+  if (!space || row < 0 || row >= VIS_HEIGHT) return NULL;
+
+  return space->vision[row];
+}
+
 /*============================Print============================*/
 Status space_print(Space* space) {
   int i=0;
@@ -259,6 +291,7 @@ Status space_print(Space* space) {
     fprintf(stdout, "---> The space was not discovered.\n");
    }
   
+   
 
   return OK;
 }

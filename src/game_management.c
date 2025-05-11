@@ -33,61 +33,94 @@ Status game_reader_load_spaces(Game *game, char *filename) {
   Id space_id = NO_ID;
   Space *space = NULL;
   Status status = OK;
-  char gdesc[N_ROWS][N_COLUMNS]={{0}};
-  int row=0;
+  char gdesc[N_ROWS][N_COLUMNS] = {0};
+  char vision[VIS_HEIGHT][VIS_WIDTH] = {0};
+  int row = 0, i = 0;
+  Bool processing_vision = FALSE;
 
   if (!filename || !game) {
-    return ERROR;
+      return ERROR;
   }
 
   file = fopen(filename, "r");
   if (file == NULL) {
-    return ERROR;
+      return ERROR;
   }
 
   while (fgets(line, WORD_SIZE, file)) {
-    if (strncmp("#s:", line, 3) == 0) {
-      toks = strtok(line + 3, "|");
-      space_id = atol(toks);
-      toks = strtok(NULL, "|");
-      strcpy(name, toks);
+      /* Eliminar salto de línea */
+      line[strcspn(line, "\n")] = '\0';
 
-      for (row = 0; row < N_ROWS; row++)
-      {
-        if (toks != NULL)
-        {
-          toks = strtok(NULL, "|");
-          if (toks != NULL) {
-            strncpy(gdesc[row], toks, N_COLUMNS - 1);
-            gdesc[row][N_COLUMNS - 1] = '\0'; 
-          } else 
-          {
-            memset(gdesc[row], ' ', N_COLUMNS - 1); 
-            gdesc[row][N_COLUMNS - 1] = '\0';
+      /* Nueva sección de espacio */
+      if (strncmp("#s:", line, 3) == 0) {
+          /* Guardar visión del espacio anterior si existe */
+          if (processing_vision && space) {
+              if (space_set_vision(space, vision) == ERROR) {
+                  fclose(file);
+                  return ERROR;
+              }
+              processing_vision = FALSE;
+              memset(vision, 0, sizeof(vision));
+              i = 0;
           }
-        }  
-      }
 
-#ifdef DEBUG
-      printf("Leido: %ld|%s|%ld|%ld|%ld|%ld\n", id, name, north, east, south, west);
-#endif
-      space = space_create(space_id);
-      if (space != NULL) {
-        space_set_name(space, name);
-        space_set_gdesc(space, (const char(*)[N_COLUMNS])gdesc); /*Hacemos casting al llamar a la fucnión set_gdesc para que concuerde con el tipo de dato que requiere la fucnión*/
-        game_add_space(game, space);
+          /* Procesar datos del espacio */
+          toks = strtok(line + 3, "|");
+          space_id = atol(toks);
+          toks = strtok(NULL, "|");
+          strncpy(name, toks, WORD_SIZE - 1);
+          name[WORD_SIZE - 1] = '\0';
+
+          /* Leer gdesc */
+          for (row = 0; row < N_ROWS; row++) {
+              toks = strtok(NULL, "|");
+              if (toks != NULL) {
+                  strncpy(gdesc[row], toks, N_COLUMNS - 1);
+                  gdesc[row][N_COLUMNS - 1] = '\0';
+              } else {
+                  memset(gdesc[row], ' ', N_COLUMNS - 1);
+                  gdesc[row][N_COLUMNS - 1] = '\0';
+              }
+          }
+
+          /* Crear espacio */
+          space = space_create(space_id);
+          if (space == NULL) {
+              fclose(file);
+              return ERROR;
+          }
+
+          space_set_name(space, name);
+          space_set_gdesc(space, (const char(*)[N_COLUMNS])gdesc);
+          game_add_space(game, space);
+      } 
+      /* Procesar líneas de visión (no vacías y no comentarios) */
+      else if (space && line[0] != '\0' && line[0] != '#') {
+          if (i < VIS_HEIGHT) {
+              strncpy(vision[i], line, VIS_WIDTH - 1);
+              vision[i][VIS_WIDTH - 1] = '\0';
+              i++;
+              processing_vision = TRUE;
+          }
       }
-    }
+  }
+
+  /* Guardar visión del último espacio procesado */
+  if (processing_vision && space) {
+      if (space_set_vision(space, vision) == ERROR) {
+          fclose(file);
+          return ERROR;
+      }
   }
 
   if (ferror(file)) {
-    status = ERROR;
+      status = ERROR;
   }
 
   fclose(file);
-
   return status;
 }
+
 
 /**
  * @brief It assigns to each object its id, loaded from a file

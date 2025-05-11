@@ -17,6 +17,8 @@
 #define N_ROWS 6/*!< Number of rows in the description*/
 #define N_COLUMNS 18/*!< 17 plus a space for '\0'*/
 #define MAX_DESC 17/*!< The maximum size for gdesc*/
+#define VIS_HEIGHT 50/*!< The vision height*/
+#define VIS_WIDTH 70/*!< The vision width*/
 
 /**
  * @brief Structure of the space
@@ -90,6 +92,17 @@ Status space_set_new_object(Space* space, Id object_id);
  * @return OK if everything goes well, ERROR if anything goes wrong
  */
 Status space_set_gdesc (Space* space, const char new_gdesc[N_ROWS][N_COLUMNS]);
+
+/**
+ * @brief Defines the new space's vision
+ * @author Daniel Martínez
+ *
+ * @param space A pointer to space
+ * @param new_vision space's description
+ * 
+ * @return OK if everything goes well, ERROR if anything goes wrong
+ */
+Status space_set_vision (Space* space, char new_vision[VIS_HEIGHT][VIS_WIDTH]);
 
 /**
  * @brief This delete an object from the space
@@ -215,7 +228,6 @@ Id* space_get_objects_ids(Space* space);
  */
 Id* space_get_characters_ids(Space* space);
 
-
 /**
  * @brief Gets the game's description (game's interface)
  * @author Jaime Romero
@@ -234,6 +246,16 @@ const char* space_get_gdesc(Space* space, int row);
  * @return if the space was discovered or not
  */
 Bool space_get_discovered(Space *space);
+
+/**
+ * @brief Gets the space's vision (space's interface)
+ * @author Daniel Martínez
+ *
+ * @param space A pointer to Space
+ * @param row the row of the array
+ * @return a string with the vision of the space
+ */
+char* space_get_vision(Space* space, int row);
 
 /*============================Print============================*/
 
