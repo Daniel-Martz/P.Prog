@@ -161,6 +161,11 @@ run_tests: $(TESTS)
 	./link_test 
 	./inventory_test 
 
+integration_test: $(EXEC)
+	@echo "Ejecutando juego con comandos de prueba.cmd..."
+	./$(EXEC) dat/cluedo1.dat -l -d output.txt < prueba.cmd
+	@diff -q output.txt salida_esperada.txt && echo "✅ Test PASADO: Las salidas coinciden." || (echo "❌ Test FALLADO: Las salidas difieren."; echo "Diferencias:"; diff output.txt salida_esperada.txt)
+
 #Ejecutables Cluedo
 run1: $(EXEC)
 	./$(EXEC) dat/cluedo1.dat
