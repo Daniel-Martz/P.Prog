@@ -19,7 +19,7 @@
 #include "space.h"
 #include "types.h"
 
-#define MAX_STR 350/*!< Constant assigned fpr the maximum length of a string*/
+#define MAX_STR 400/*!< Constant assigned fpr the maximum length of a string*/
 #define MAX_BUFFER 300/*!< Constant assigned for the lenght of an auxiliary buffer*/
 #define WIDTH_MAP 90/*!< Constant asignated for the width of the map*/
 #define WIDTH_DES 50/*!< Constant asignated for the width of the description*/
@@ -678,7 +678,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
     screen_area_puts(ge->help, "                                     ");
     sprintf(str, " The commands you can use are:                                                              ");
     screen_area_puts(ge->help, str);
-    sprintf(str, " move or m (north/n or south/s or west/w or east/e) | take or t / drop or d (object name)  attack or t / chat or c (character name) | recruit or r / abandon or ab (character name)  use or u [over (character name)] (object name) | open or o (link name) with (object name) cooperate or co with (player name) | guess or g | exit or e");
+    sprintf(str, " move or m (north/n or south/s or west/w or east/e) | take or t / drop or d (object name)  attack or t / chat or c (character name) | recruit or r / abandon or ab (character name)  use or u [over (character name)] (object name) | open or o (link name) with (object name) cooperate or co with (player name) | guess or g | exit or e                               save or s / load or l (file_name)");
     screen_area_puts(ge->help, str);
 
     /* Paint in the feedback area */

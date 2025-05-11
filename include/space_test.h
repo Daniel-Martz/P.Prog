@@ -14,6 +14,7 @@
 #include "space.h"
 #include "set.h"
 #include "test.h"
+#include "types.h"
 
 /**
  * @test Test space creation

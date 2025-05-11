@@ -287,4 +287,67 @@ void test2_character_set_damage();
  */
 void test3_character_set_damage();
 
+/**
+ * @test Test function for getting character face row
+ * @pre Valid character pointer with face set and valid row index
+ * @post Output == Expected face row string
+ */
+void test1_character_get_face();
+
+/**
+ * @test Test function for getting character face row
+ * @pre NULL character pointer
+ * @post Output == NULL
+ */
+void test2_character_get_face();
+
+/**
+ * @test Test function for getting character face row
+ * @pre Valid character pointer but invalid row index (out of bounds)
+ * @post Output == NULL
+ */
+void test3_character_get_face();
+
+/**
+ * @test Test function for getting friendly status as string
+ * @pre Valid character pointer with friendly status TRUE
+ * @post Output == "friendly"
+ */
+void test1_character_get_strfriendly();
+
+/**
+ * @test Test function for getting friendly status as string
+ * @pre Valid character pointer with friendly status FALSE
+ * @post Output == "enemy"
+ */
+void test2_character_get_strfriendly();
+
+/**
+ * @test Test function for getting friendly status as string
+ * @pre NULL character pointer
+ * @post Output == NULL
+ */
+void test3_character_get_strfriendly();
+
+/**
+ * @test Test function for setting character face
+ * @pre Valid character pointer and valid face matrix
+ * @post Output == OK
+ */
+void test1_character_set_face();
+
+/**
+ * @test Test function for setting character face
+ * @pre NULL character pointer
+ * @post Output == ERROR
+ */
+void test2_character_set_face();
+
+/**
+ * @test Test function for setting character face
+ * @pre Valid character pointer but NULL face matrix
+ * @post Output == ERROR
+ */
+void test3_character_set_face();
+
 #endif
