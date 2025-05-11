@@ -27,6 +27,7 @@
 #define MAX_PLAYERS 8/*!< Constant that estabilshes the maximum number of players as 8*/
 #define MAX_NAME 100/*!< Constant that estabilshes the maximum name length*/
 #define MAX_TEAMS 10/*!< Constant that estabilshes the maximum amount of teams*/
+#define MAX_CLUES 10/*!< Constant for the maximum number of clues */
 
 /**
  * @brief Structure of the Game
@@ -841,5 +842,34 @@ int game_get_space_n_nonteamplayers(Game *game, Id space_id, Player *player);
  * @return An array of players in the same team as the player
  */
 Player **game_get_space_nonteamplayers(Game *game, Id space_id, Player *player);
+
+/**
+ * @brief It gets the number of clues stored
+ * 
+ * @author Daniel Martínez
+ * @param game A pointer to game
+ * @return Number of clues stored
+ */
+int game_get_nclues(Game *game);
+
+/**
+ * @brief It adds a clue to the clues stored
+ * 
+ * @author Daniel Martínez
+ * @param game A pointer to game
+ * @param clue The string with the clue
+ * @return OK if everything was correct ERROR otherwise
+ */
+Status game_add_clue(Game *game, char *clue);
+
+/**
+ * @brief It check if a clue is stored
+ * 
+ * @author Daniel Martínez
+ * @param game A pointer to game
+ * @param clue The string with the clue
+ * @return TRUE if it is stored FALSE if it isnt
+ */
+Bool game_clue_is_stored (Game *game, char *clue);
 
 #endif

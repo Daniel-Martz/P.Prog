@@ -48,14 +48,23 @@ struct _Game {
   char assasin_name[MAX_NAME]; /*!< It defines the assasins name*/
   char weapon_name[MAX_NAME]; /*!< It defines the weapon name*/
   char place_name[MAX_NAME]; /*!< It defines the place name*/
+  char *clues[MAX_CLUES]; /*!< It stores the clues*/
+  int nclues; /*!< It stores the number of clues*/
 };
 
 Game *game_create(void){
-  int i;
+  int i,j;
   Game *game = NULL;
 
   if(!(game = (Game*)calloc(1,sizeof(Game)))){
     return NULL;
+  }
+
+  for(i = 0; i< MAX_CLUES; i++){
+    if(!(game->clues[i] =(char*)calloc(MAX_MESSAGE, sizeof(char)))){
+      for (j = 0; j < i; j++) free(game->clues[j]);
+      return NULL;
+    }
   }
 
   for (i = 0; i < MAX_SPACES; i++) {
@@ -91,7 +100,7 @@ Game *game_create(void){
   game->finished = FALSE;
   game->log_status = FALSE;
   game->determinst_status = FALSE;
-
+  game->nclues = 0;
 
 
   if (!game->last_cmd) {
@@ -195,6 +204,10 @@ Status game_destroy(Game *game) {
 
   for (i = 0; i < game->n_teams; i++) {
     free(game->missions[i]);
+  }
+
+  for( i=0; i<MAX_CLUES; i++){
+    free(game->clues[i]);
   }
 
   free(game);
@@ -1176,6 +1189,33 @@ Player **game_get_space_nonteamplayers(Game *game, Id space_id, Player *player){
   }
 
   return nonteamplayers;
+}
+
+int game_get_nclues(Game *game){
+  if(!game) return POINT_ERROR;
+  return game->nclues;
+}
+
+Status game_add_clue(Game *game, char *clue){
+  if(!game || !clue) return ERROR;
+  
+  if(game->nclues >= MAX_CLUES) return ERROR;
+
+  strcpy(game->clues[game->nclues], clue);
+  game->nclues ++;
+  return OK;
+}
+Bool game_clue_is_stored (Game *game, char *clue){
+  int i;
+  if(!game || !clue){
+    return TRUE;
+  }
+  for(i=0; i<game->nclues; i++){
+    if(!strcmp(clue, game->clues[i])){
+      return TRUE;
+    }
+  }
+  return FALSE;
 }
 
 

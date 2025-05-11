@@ -57,6 +57,7 @@
 #define LIMIT_2 10/*!< Constant for the LIMIT_2 to write in a line*/
 #define MID_SPACE (HEIGHT_SPACE/2) /*!< Constant for the line of the midle in the space*/
 
+
 /**
  * @brief This struct stores all the information of the graphic engine (everything showed by screen).
  *
@@ -393,6 +394,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   Character **characters = NULL, *character = NULL, **followers = NULL;
   Player **team = NULL, **players = NULL;
   char right = '>', left = '<', back = '^', next = 'v';
+  char clue[MAX_MESSAGE] ={0};
 
   /*INITIALIZES SOME VARIABLES*/
   screen_area_clear(ge->map);
@@ -579,7 +581,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
         screen_area_puts(ge->descript, str);
         for(i=0; i< game_get_n_characters_discovered(game); i++){
           if(character_get_following(characters[i]) != player_get_id(game_get_player(game)))
-          sprintf(str, "    %6.15s: %s (%i) [%s]", character_get_name(characters[i]), space_get_name(game_get_space(game, characters_location[i])) ,character_get_health(characters[i]), character_get_strfriendly(characters[i]));
+          sprintf(str, "    %.18s: %s (%i) [%s]", character_get_name(characters[i]), space_get_name(game_get_space(game, characters_location[i])) ,character_get_health(characters[i]), character_get_strfriendly(characters[i]));
           screen_area_puts(ge->descript, str);
         }
       }
@@ -702,12 +704,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       snprintf(str, MAX_NAME,  "  Character: %s", character_name);
       screen_area_puts(ge->face, str);
       screen_area_puts(ge->face, "                                     ");
-      screen_area_puts(ge->face, "             ------------------------   ");
+      screen_area_puts(ge->face, "             -------------------------   ");
       for(i=0; i < FACE_HEIGHT; i++){
         sprintf(str, "            |   %-19.19s   |", character_get_face(character, i));
         screen_area_puts(ge->face, str);
       }
-      screen_area_puts(ge->face, "             ------------------------   ");
+      screen_area_puts(ge->face, "             -------------------------   ");
     }
 
     else if((last_cmd == INSPECT || last_cmd == TAKE || last_cmd == DROP || last_cmd == USE || last_cmd == OPEN) && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
@@ -768,6 +770,16 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
       }
     }
 
+    screen_area_puts(ge->clues, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLUES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    screen_area_puts(ge->clues, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    if(last_cmd == CHAT && (command_get_last_cmd_status(game_get_last_command(game)) == OK)){
+      strcpy(clue, game_get_message(game));
+      if(game_clue_is_stored(game, clue) == FALSE){
+        game_add_clue(game, clue);
+        snprintf(str, MAX_STR, " Pista %i: %s", game_get_nclues(game), clue);
+        screen_area_puts(ge->clues, str);
+      }
+    }
 
     /* PAINT THE COLOR */    
     screen_paint(game_get_turn(game));
@@ -801,9 +813,9 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game) {
   
 }
 
-  void graphic_engine_clear_face(Graphic_engine *ge){
-    if(!ge) return;
-    screen_area_clear(ge->face);
-    return;
-  }
+void graphic_engine_clear_face(Graphic_engine *ge){
+  if(!ge) return;
+  screen_area_clear(ge->face);
+  return;
+}
   

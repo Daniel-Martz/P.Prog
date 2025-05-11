@@ -1,0 +1,198 @@
+#s:9|Almacen| _______________ |[______\__mwe___]|[  /            ]|[_/___w__*{}____]|[__mn_sd___\____]|                 
+#s:10|Patio|     ( )____ _   |    /( ) w  ( )  | ()/__!_w___( )()| ()     w    !\()| ()___w_____w__()|                 
+#s:11|Escaleras de Entrada|   /__________\  |   [__________[  |  /____________\ |  [____________[ | /______________\| [______________[
+#s:101|Vestibulo|     __[_]__     | __ /MWMWMWM\ __ | ()/MWMWMWMWM\() | ()MWMWMWMWMWM() | /MWMWMWMWMWMWM\ |                 
+#s:102|Salon|           ______|          /______|             []  |  /*******\  []  | /* () () *\ []  |(_)=======(_)[]  
+#s:103|Comedor|        ___      |    ___[___]___  | /[/    ()    /] | [/ ()    () / / | /    ()    / /  |/__________/ /   
+#s:104|Cocina|           ___   | /   \__/     /] |/____________/ ] |[_____()_____] ] |[_____()_____]/  |                 
+#s:105|Sala de Baile|  **  \___/ **   |  0/    *   \0   | /! *  \0/ * !\  | / \  * !   / \  |  *  * / \       |                 
+#s:106|Invernadero|    ( )____w_    |   /( )  w ( )   |()/__!_w___( )() |()   w    w  !\()|()__w___w____w_()|                 
+#s:107|Sala de billar|     _______     |    /  ()   \    |   /    ()   \   |  /  ()   ()  \  | /________()___\ | [_____________] 
+#s:108|Estudio|       _____     |  ____[_____]__  | /  / msk/    /] |/__/asdf/____/ ] |[_____()_____] ] |[_____()_____] ] 
+#s:109|Centro|   /__________\  |   [__________[  |  /____________\ |  [____________[ | /______________\| [______________[
+#s:201|Biblioteca|  ___     ___    | /  /]___/  /]___|[==]/___[ H ]/__ |[  ]====]   ]xxx]|[==]    ]   ]   ]|`--^----'-^-^---'
+#s:301|Capilla|      __!__      |   [    !    ]   |   [____!____]   |[ [/_________\] ]|[ /           \ ]|[/_____________\]
+#s:401|Piscina|    ()_____()    |     /     \     |  ()/  m    \()  |   /        w\   |()/___________\()|                 
+#s:111|Corridor1|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]|                 
+#s:112|Corridor2|    [_______[    |  [ /       \ [  |[ [/_________\[ [|[ /           \ [|[/_____________\[|                 
+#s:113|Corridor3|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]|                 
+#s:114|Corridor4|    [_______[    |  [ /       \ [  |[ [/_________\[ [|[ /           \ [|[/_____________\[|                 
+#s:115|Corridor5|    [_______[    |  [ /       \ [  |[ [/_________\[ [|[ /           \ [|[/_____________\[|                 
+#s:116|Corridor6|    [_______[    |  [ /       \ [  |[ [/_________\[ [|[ /           \ [|[/_____________\[|                 
+#s:117|Corridor7|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]|                 
+#s:118|Corridor8|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]|                 
+#s:119|Corridor9|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]|                 
+#s:120|Corridor10|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]|                 
+#s:121|Corridor11|    [_______[    |  [ /       \ [  |[ [/_________\[ [|[ /           \ [|[/_____________\[|                 
+#s:122|Corridor12|    [_______[    |  [ /       \ [  |[ [/_________\[ [|[ /           \ [|[/_____________\[|                 
+#s:123|Corridor13|    [_______[    |  [ /       \ [  |[ [/_________\[ [|[ /           \ [|[/_____________\[|                 
+#s:124|Corridor14|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]|                 
+#s:125|Corridor15|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]|                 
+#s:126|Corridor16|    [_______[    |  [ /   0   \ ]  |[ [/   /!\   \] ]|[ /    / \    \ ]|[/_____________\]|                 
+#o:21|Pistola|108|0|1|-1|4294967295|Arma del crimen|0
+|   |   |                       |                       |       ___________, |    \-'       _____|
+#o:22|Tuberia de Plomo|104|0|1|-1|4294967295|Arma del crimen|0
+| | | |           __|          |  ||          |  |
+#o:23|Punal|103|0|1|-1|4294967295|Arma del crimen|0
+| | | |      |     |      /| ______________
+#o:24|Cuerda|106|0|1|-1|4294967295|Arma del crimen|0
+| | |          // |         //\\      |         \\//     |          //    
+#o:25|Candelabro|105|0|1|-1|4294967295|Arma del crimen|0
+| |  | |         ) ) ) |         | | |    |         | | |    
+#o:26|Herramienta|107|0|1|-1|4294967295|Arma del crimen|0
+| | |        /|  |\|       ( |__| )|        \    /|         |12| 
+#o:812|Carta Salon|102|0|1|-1|4294967295|Carta de espacio|0
+| | | [-------------------]| | \_ C _\           || |   \_ L _\         || |     \_ U _\       | 
+#o:813|Carta Comedor|103|0|1|-1|4294967295|Carta de espacio|0
+| | | [-------------------]| | \_ C _\           || |   \_ L _\         || |     \_ U _\       | 
+#o:814|Carta Cocina|104|0|1|-1|4294967295|Carta de espacio|0
+| | | [-------------------]| | \_ C _\           || |   \_ L _\         || |     \_ U _\       | 
+#o:815|Carta Sala de Baile|105|0|1|-1|4294967295|Carta de espacio|0
+| | | [-------------------]| | \_ C _\           || |   \_ L _\         || |     \_ U _\       | 
+#o:816|Carta Invernadero|106|0|1|-1|4294967295|Carta de espacio|0
+| | | [-------------------]| | \_ C _\           || |   \_ L _\         || |     \_ U _\       | 
+#o:817|Carta Sala de Billar|107|0|1|-1|4294967295|Carta de espacio|0
+| | | [-------------------]| | \_ C _\           || |   \_ L _\         || |     \_ U _\       | 
+#o:818|Carta Estudio|108|0|1|-1|4294967295|Carta de espacio|0
+| | | [-------------------]| | \_ C _\           || |   \_ L _\         || |     \_ U _\       | 
+#o:821|Carta Biblioteca|201|0|1|-1|4294967295|Carta de espacio|0
+| | | [-------------------]| | \_ C _\           || |   \_ L _\         || |     \_ U _\       | 
+#o:831|Carta Capilla|301|0|1|-1|4294967295|Carta de espacio|0
+| | | [-------------------]| | \_ C _\           || |   \_ L _\         || |     \_ U _\       | 
+#o:832|Tenazas|9|2|1|-1|4294967295|Ataque|1
+|         __  __|        /_/  \_\ |        | |  | | |        | |__| | |         \____/|          |||| 
+#o:833|Clavos|9|1|1|-1|4294967295|Ataque|1
+| | | |  | / \   / \    / \   / \ | | |   | |    | |   | | 
+#o:834|Martillo|9|2|1|-1|4294967295|Ataque|1
+| | | | ________  | \      /|  )____(
+#o:835|Hacha|9|3|1|-1|4294967295|Ataque|1
+| | | | | _____________.---.____|(_(__________(_o o_(__()
+#o:836|Tijeras de Podar|106|3|1|-1|4294967295|Ataque|1
+| | | |   ___|  / _ \| ( (_) |___
+#o:837|Flotador|401|0|0|-1|4294967295|No me puedes mover|0
+| | |       _-----_ |   _-``       ``-_|  /      ___      \| |     /     \     |
+#o:838|Gasolina|9|0|1|839|4294967295|Solo no sirvo|0
+| |       ________ | _ ___/________\___|(_)-`              \| |                  || |                  |
+#o:839|Bidon|9|9|0|1|4294967295|-1|0
+|0| |       __----__|  __--`        `--__| (__              __)| |  `----____----`  || |                  |
+#c:31|Coronel Rubio|10|1|113|Rubio|Yo estaba comiendo algo
+|_---------______  |\__\\\\\\\_____ \ | /             \ \||   --   --    | |||  [*]   [*]   | |||      |       /_/
+#c:32|Sra. Celeste|10|1|125|Celeste|Los libros quiza den alguna pista
+|   _------____    |  /     ____  \   | /    _/    \_ \  |/   _/   __   \ \ ||  /*)   (*)  |  |||_/    /      /  /
+#c:33|Padre Prado|10|1|126|Prado|Rezare para que se descubra al culpable
+|    ____  ____    |   /    \/    \   |  / /---__---\ \  | / /          \ \ | \/  [o]  [o]  \/ |(|      ||      |)
+#c:34|Profesor Mora|10|1|117|Mora|El estudio esta lleno de secretos...
+|     __----__     |   _/        \_   | /   __/  \__   \ | / /          \ \ |/_/--(*)--(*)--\_\|(|      ||      |)
+#c:35|Dra. Orquidea|10|1|124|Orquide|Las flores del Invernadero son tan bonitas...
+|     _-^^^^^-_    |   ((((((|))))))  |  ((((((   )))))) | (((((       )))))| ((( [o]   [o] )))| (((            ))
+#c:36|Senorita Amapola|10|1|111|Amapola|Ojala estuviese abierta la piscina...
+|   ____________   |  /     __     \  | /   __/  \__   \ |/  _/__   __ \+_ ||| / [*]   [*]  \ ||||     |        ||
+#c:37|Perro|3|0|10|/mP|¡Guau!
+| | | |    ________|   |    |    \|    \   /  ^ |
+#c:38|Guard1|3|0|111|Guard1|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:39|Guard2|3|0|113|Guard2|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:40|Guard3|3|0|120|Guard3|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:41|Guard4|3|0|125|Guard4|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:42|Guard5|3|0|126|Guard5|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:43|Guard6|3|0|124|Guard6|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:44|Guard7|3|0|117|Guard7|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:45|Guard8|3|0|118|Guard8|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:46|Guard9|3|0|119|Guard9|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:47|Guard10|3|0|122|Guard10|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:48|Guard11|3|0|112|Guard11|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:48|Guard11|3|0|112|Guard11|You'll have to kill me if you want to pass
+|   ____________| /      __      \||      |__|      || \ ____________ /|  | [*]   [*]  | |  |     |      |
+#c:49|Jardinero|3|1|106|m-o|Pista: Alguien ha visto la cuerda? La necesito para trabajar
+|  .-----\ /-----.|  |             ||__________________| \=======.=======/|  /  ---  ---  \| /|  [*]  [*]  |\
+#c:50|Anciana|3|1|102|/0\|Pista: El jardinero esta haciendo mucho ruido, te recomiendo ver que quiere
+|       _|--|_|   __-|______|-__|  |              ||  \ ____________ /|  |_-(*)---(*)-_| |  |  _   |   _  |
+#c:51|Mayordomo|3|1|104|mw|Pista: El loro de la doctora puede haber oido algo. ¿Por que no le echas un vistazo?
+|     _________|    /         \|   |   CLUEDO  || =================|  |  [*]   [*]  ||  |      |      |
+#p:1|Detective|dp|9|10|5
+#p:2|Det2|MP|10|10|5
+#l:40|Patio-Almacen|10|9|2|1
+#l:41|Almacen-Patio|9|10|3|1
+#l:42|Escaleras-Vestibulo|11|101|4|1
+#l:43|Vestibulo-Escaleras|101|11|5|1
+#l:44|Vestibulo-Corridor5|101|115|2|1
+#l:45|Corridor1-Corridor4|111|114|2|1
+#l:46|Corridor2-Corridor6|112|116|2|1
+#l:47|Corridor3-Corridor4|113|114|1|1
+#l:48|Corridor1-Salon|111|102|0|0
+#l:49|Corridor3-Comedor|113|103|2|0
+#l:50|Corridor4-Corridor3|114|113|0|1
+#l:51|Corridor4-Corridor1|114|111|3|1
+#l:52|Corridor4-Corridor5|114|115|1|1
+#l:53|Corridor4-Corridor8|114|118|2|1
+#l:54|Corridor5-Corridor4|115|114|0|1
+#l:55|Corridor5-Corridor6|115|116|1|1
+#l:107|Corridor5-Vestibulo|115|101|3|1
+#l:56|Corridor6-Corridor5|116|115|0|1
+#l:57|Corridor6-Corridor2|116|112|3|1
+#l:58|Corridor6-Corridor7|116|117|1|1
+#l:59|Corridor6-Corridor9|116|119|2|1
+#l:60|Corridor7-Corridor6|117|116|0|1
+#l:61|Corridor2-Estudio|112|108|1|0
+#l:62|Corridor7-Billar|117|107|2|0
+#l:63|Corridor8-Corridor4|118|114|3|1
+#l:64|Corridor8-Corridor11|118|121|2|1
+#l:65|Corridor8-Comedor|118|103|0|0
+#l:66|Corridor9-Corridor6|119|116|3|1
+#l:67|Corridor9-Corridor13|119|123|2|1
+#l:68|Corridor9-Billar|119|107|1|0
+#l:69|Corridor10-Corridor11|120|121|1|1
+#l:70|Corridor10-Cocina|120|104|2|0
+#l:71|Corridor11-Corridor10|121|120|0|1
+#l:72|Corridor11-Corridor8|121|118|3|1
+#l:73|Corridor11-Corridor15|121|125|2|1
+#l:74|Corridor11-Corridor12|121|122|1|1
+#l:75|Corridor12-Corridor11|122|121|0|1
+#l:76|Corridor12-centro|122|109|3|1
+#l:77|Corridor12-Baile|122|105|2|0
+#l:78|Corridor12-Corridor13|122|123|1|1
+#l:79|Corridor13-Corridor12|123|122|0|1
+#l:80|Corridor13-Corridor9|123|119|3|1
+#l:81|Corridor13-Corridor16|123|126|2|1
+#l:82|Corridor13-Corridor14|123|124|1|1
+#l:83|Corridor14-Corridor13|124|123|0|1
+#l:84|Corridor14-Invernadero|124|106|2|0
+#l:85|Corridor15-Corridor11|125|121|3|1
+#l:86|Corridor15-Baile|125|105|1|0
+#l:87|Corridor16-Corridor13|126|123|3|1
+#l:88|Corridor16-Baile|126|105|0|0
+#l:89|Salon-Corridor1|102|111|1|1
+#l:90|Comedor-Corridor8|103|118|1|1
+#l:91|Comedor-Corridor3|103|113|3|1
+#l:92|Cocina-Corridor10|104|120|3|1
+#l:93|Baile-Corridor12|105|122|3|1
+#l:94|Baile-Corridor15|105|125|0|1
+#l:95|Baile-Corridor16|105|126|1|1
+#l:96|Invernadero-Corridor14|106|124|3|1
+#l:97|Billar-Corridor9|107|119|0|1
+#l:98|Billar-Corridor7|107|117|3|1
+#l:99|Estudio-Corridor2|108|112|0|1
+#l:100|Invernadero-Salon|106|102|5|1
+#l:101|Salon-Invernadero|102|106|5|1
+#l:102|Cocina-Estudio|104|108|5|1
+#l:103|Estudio-Cocina|108|104|5|1
+#l:104|Centro-Corridor12|109|122|2|1
+#l:105|Centro-Biblioteca|109|201|4|1
+#l:106|Biblioteca-Centro|201|109|5|1
+#l:108|Centro-Capilla|109|301|5|1
+#l:109|Capilla-Centro|301|109|4|1
+#l:110|Piscina-Baile|401|105|3|1
+#l:111|Baile-Piscina|105|401|2|1
+#l:112|Almacen-Escaleras|9|11|2|1
+#l:113|Escaleras-Almacen|11|9|3|1
+#x:Coronel Rubio|Cuerda|Carta Comedor
