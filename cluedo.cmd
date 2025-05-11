@@ -1,4 +1,3 @@
-cooperate
 cooperate with Det2 
 chat
 recruit Perro
