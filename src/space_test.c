@@ -175,7 +175,8 @@ void test1_space_set_gdesc(){
     "Fila3_ABCDEFGHI",   
     "Fila4_987654321",   
     "Fila5_xyzXYZ123",   
-    "Fila6_000000000"    
+    "Fila6_000000000",
+    "Fila6_001230000"     
   };
   
   s = space_create(6);
@@ -185,12 +186,13 @@ void test1_space_set_gdesc(){
 
 void test2_space_set_gdesc(){
   Space* s = NULL;
-  const char array[5][18] = {
+  const char array[6][18] = {
     "Fila1111111111111",
     "Fila2222222222222",
     "Fila3333333333333",
     "Fila4444444444444",
-    "Fila5555555555555"
+    "Fila5555555555555",
+    "Fila6_00000000120"
   };
   PRINT_TEST_RESULT(space_set_gdesc(s, array) == ERROR);
 }

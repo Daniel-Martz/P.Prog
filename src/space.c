@@ -25,7 +25,7 @@ struct _Space {
   Set *objects;              /*!< It contains the set of the arrays of object */
   Set *characters;              /*!< It contains the id of the character */
   char gdesc[N_ROWS][N_COLUMNS]; /*!< An array of five strings, with 9 characters each (+1 for the '\0')*/
-  char vision[VIS_HEIGHT][VIS_WIDTH]; 
+  char vision[VIS_HEIGHT][VIS_WIDTH]; /*!< A matrix of characters to store the draw of the space */ 
   Bool discovered;/*!< It contains if the space is discovered or not*/
 
 };
