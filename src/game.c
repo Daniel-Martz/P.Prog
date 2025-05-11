@@ -193,9 +193,12 @@ Status game_destroy(Game *game) {
 
   command_destroy(game->last_cmd);
 
+  for (i = 0; i < game->n_teams; i++) {
+    free(game->missions[i]);
+  }
+
   free(game);
   
-
   return OK;
 }
 

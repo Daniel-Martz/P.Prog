@@ -213,9 +213,6 @@ runcastle: $(EXEC)
 runv:
 	valgrind --leak-check=full ./$(EXEC) dat/anthill.dat
 
-runvcluedo:
-	valgrind --leak-check=full ./$(EXEC) dat/cluedo1.dat
-
 runvcastle:
 	valgrind --leak-check=full ./$(EXEC) dat/castle.dat
 

@@ -2,6 +2,8 @@
     "files.associations": {
         "graphic_engine.h": "c",
         "string.h": "c",
-        "command.h": "c"
+        "command.h": "c",
+        "game_actions.h": "c",
+        "game.h": "c"
     }
 }

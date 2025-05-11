@@ -595,7 +595,6 @@ Game *game_management_load(char *filename) {
     game_destroy(game);
     return NULL;
   }
-
   if (game_reader_load_solution(game, filename) == ERROR) {
     game_destroy(game);
     return NULL;
