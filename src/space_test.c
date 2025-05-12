@@ -63,7 +63,7 @@ int main(int argc, char** argv) {
 
   if (all || test == 18) test1_space_get_objects_ids();
 
-  if (all || test == 13) test1_space_get_gdesc();
+  if (all || test == 19) test1_space_get_gdesc();
   if (all || test == 20) test2_space_get_gdesc();
   if (all || test == 21) test3_space_get_gdesc();
   if (all || test == 22) test4_space_get_gdesc();
@@ -170,13 +170,12 @@ void test2_space_set_newCharacter(){
 void test1_space_set_gdesc(){
   Space *s;
   const char array[N_ROWS][N_COLUMNS] = {
-    "Fila1_123456789",  
-    "Fila2_abcdefghi",   
-    "Fila3_ABCDEFGHI",   
-    "Fila4_987654321",   
-    "Fila5_xyzXYZ123",   
-    "Fila6_000000000",
-    "Fila6_001230000"     
+    "Fila1_12345611789",  
+    "Fila2_abcdefgh11i",   
+    "Fila3_ABCDEFG11HI",   
+    "Fila4_98765432111",   
+    "Fila5_xyzXYZ12311",   
+    "Fila6_00000000011",    
   };
   
   s = space_create(6);
@@ -186,7 +185,7 @@ void test1_space_set_gdesc(){
 
 void test2_space_set_gdesc(){
   Space* s = NULL;
-  const char array[6][18] = {
+  const char array[N_ROWS][N_COLUMNS] = {
     "Fila1111111111111",
     "Fila2222222222222",
     "Fila3333333333333",
@@ -242,7 +241,7 @@ void test1_space_get_objects_ids(){
 void test1_space_get_gdesc(){
   Space *s;
   int i=0; 
-  const char array[5][18] = {
+  const char array[N_ROWS][N_COLUMNS] = {
     "Fila1111111111111",
     "Fila2222222222222",
     "Fila3333333333333",
@@ -267,7 +266,7 @@ void test1_space_get_gdesc(){
 
 void test2_space_get_gdesc(){
   Space *s=NULL;
-  const char array[5][18] = {
+  const char array[N_ROWS][N_COLUMNS] = {
     "Fila1111111111111",
     "Fila2222222222222",
     "Fila3333333333333",
@@ -280,7 +279,7 @@ void test2_space_get_gdesc(){
 
 void test3_space_get_gdesc(){
   Space *s;
-  const char array[5][18] = {
+  const char array[5][N_COLUMNS] = {
     "Fila1111111111111",
     "Fila2222222222222",
     "Fila3333333333333",
@@ -294,7 +293,7 @@ void test3_space_get_gdesc(){
 
 void test4_space_get_gdesc(){
   Space *s;
-  const char array[5][18] = {
+  const char array[N_ROWS][N_COLUMNS] = {
     "Fila1111111111111",
     "Fila2222222222222",
     "Fila3333333333333",
@@ -332,7 +331,7 @@ void test2_space_set_discovered() {
 }
 
 void test1_space_print() {
-  const char gdesc[5][18] = {
+  const char gdesc[N_ROWS][N_COLUMNS] = {
       "Graphic1  ",
       "Graphic2  ",
       "Graphic3  ",
@@ -357,7 +356,7 @@ void test2_space_print() {
 }
 
 void test3_space_print() {
-  const char gdesc[5][18] = {
+  const char gdesc[5][N_COLUMNS] = {
     "         ",
     "         ",
     "         ",
@@ -375,7 +374,7 @@ void test3_space_print() {
 }
 
 void test4_space_print() {
-  const char gdesc[5][18] = {
+  const char gdesc[N_ROWS][N_COLUMNS] = {
     "NoChar1  ",
     "NoChar2  ",
     "NoChar3  ",
@@ -394,7 +393,7 @@ void test4_space_print() {
 }
 
 void test5_space_print() {
-  const char gdesc[5][18] = {
+  const char gdesc[N_ROWS][N_COLUMNS] = {
     "Empty1   ",
     "Empty2   ",
     "Empty3   ",

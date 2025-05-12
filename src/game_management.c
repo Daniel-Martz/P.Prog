@@ -553,7 +553,7 @@ Status game_management_save(Game *game, char *filename) {
     id = game_get_object_id_at(game, i);
     object = game_get_object(game, id);
     
-    fprintf(file, "#o:%ld|%s|%ld|%d|%d|%ld|%ld|%s|%d\n", id, object_get_name(object), game_get_object_location(game, id), object_get_health(object), object_is_movable(object), object_get_dependency(object), object_get_open(object), object_get_description(object), object_get_offensive(object));
+    fprintf(file, "#o:%ld|%s|%ld|%d|%d|%ld|%ld|%s|%d|\n", id, object_get_name(object), game_get_object_location(game, id), object_get_health(object), object_is_movable(object), object_get_dependency(object), object_get_open(object), object_get_description(object), object_get_offensive(object));
     
     /*Guardar object gdesc*/
     for (row = 0; row < N_ROWS; row++) {
